@@ -200,7 +200,7 @@
                             </li>
                         </ul>
                     </div>
-
+<!----------------------------------------------getro------------------------------------------------------------------------------------->
                     <div class="row gallery-wrapper mt-4 pt-2">
 
                         <div class="element-item col-xxl-3 col-xl-4 col-sm-6 seller hot arrival"
@@ -608,7 +608,7 @@
                         </div>
                         <!-- end col -->
                     </div>
-
+<!----------------------------------------------getro------------------------------------------------------------------------------------->
                     <div class="mt-4 text-center">
                         <a href="product-list-defualt" class="btn btn-soft-primary btn-hover">View All Products <i
                                 class="mdi mdi-arrow-right align-middle ms-1"></i></a>
