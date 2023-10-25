@@ -12,91 +12,84 @@ class ProduitsTableSeeder extends Seeder
      */
     public function run()
     {
-        \DB::Table('produits')->insert();
-        
-        
-        
-        $produit = new \App\Produit();
-        $produit-> name = 'sac a dos';
-        $produit->description = 'valise noir et rouge';
-        $produit->unit_price = 122;
-        $produit->main_pic = 'img-1.png';
-        $produit->created_at = now();
-        $produit->updated_at = now();
-        $produit->save();
+        \App\Models\Produit::create(
+            [
+                'name' => 'kepy',
+                'tag' => 'Best Arrival',
+                'description' => 'contre le soleil',
+                'unit_price' => 230.00,
+                'old_price' => 23.00,
+                'main_pic' => 'img-9.png',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
 
-
-        $produit = new \app\Models\Produit();
-        $produit-> name = 'watch';
-        $produit->description = 'montre a bracelet plastique';
-        $produit->unit_price = 125;
-        $produit->main_pic = 'img-3.png';
-        $produit->created_at = now();
-        $produit->updated_at = now();
-        $produit->save();
-
-        $produit = new \app\Models\Produit();
-        $produit-> name = 'kepy';
-        $produit->description = 'contre le soleil';
-        $produit->unit_price = 23;
-        $produit->main_pic = 'img-9.png';
-        $produit->created_at = now();
-        $produit->updated_at = now();
-        $produit->save();
-
-        $produit = new \app\Models\Produit();
-        $produit-> name = 'soulier';
-        $produit->description = 'moarron mocassin';
-        $produit->unit_price = 287;
-        $produit->main_pic = 'img-13.png';
-        $produit->created_at = now();
-        $produit->updated_at = now();
-        $produit->save();
-
-        $produit = new \app\Models\Produit();
-        $produit-> name = 'camera';
-        $produit->description = 'camera avec 145M pixeles';
-        $produit->unit_price = 500;
-        $produit->main_pic = 'img-20.png';
-        $produit->created_at = now();
-        $produit->updated_at = now();
-        $produit->save();
-
-        $produit = new \app\Models\Produit();
-        $produit-> name = 'seche cheveux';
-        $produit->description = 'pour homme et femme';
-        $produit->unit_price = 25;
-        $produit->main_pic = 'img-17.png';
-        $produit->created_at = now();
-        $produit->updated_at = now();
-        $produit->save();
-
-        $produit = new \app\Models\Produit();
-        $produit-> name = 'chemise';
-        $produit->description = 'bleu a trace';
-        $produit->unit_price = 10;
-        $produit->main_pic = 'img-31.png';
-        $produit->created_at = now();
-        $produit->updated_at = now();
-        $produit->save();
-
-        $produit = new \app\Models\Produit();
-        $produit-> name = 'brosse a cheveux';
-        $produit->description = 'kk voye';
-        $produit->unit_price = 45;
-        $produit->main_pic = 'img-18.png';
-        $produit->created_at = now();
-        $produit->updated_at = now();
-        $produit->save();
-
-        $produit = new \app\Models\Produit();
-        $produit-> name = 'valise';
-        $produit->description = 'valise pour femme';
-        $produit->unit_price = 32;
-        $produit->main_pic = 'img-15.png';
-        $produit->created_at = now();
-        $produit->updated_at = now();
-        $produit->save();
+            \App\Models\Produit::create(
+            [
+                'name' => 'seche cheveux',
+                'tag' => '',
+                'description' => 'pour homme et femme',
+                'unit_price' => 25.00,
+                'old_price' => 23.00,
+                'main_pic' => 'img-17.png',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+        \App\Models\Produit::create(
+            [
+                'name' => 'soulier',
+                'tag' => '',
+                'description' => 'moarron mocassin',
+                'unit_price' => 234.00,
+                'old_price' => 243.00,
+                'main_pic' => 'img-13.png',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+        \App\Models\Produit::create(
+            [
+                'name' => 'chemise',
+                'tag' => 'Brand new',
+                'description' => 'bleu a trace',
+                'unit_price' => 25.00,
+                'old_price' => 28.00,
+                'main_pic' => 'img-31.png',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+        \App\Models\Produit::create(
+            [
+                'name' => 'brosse a cheveux',
+                'tag' => '',
+                'description' => 'kk voye',
+                'unit_price' => 63.00,
+                'old_price' => 83.00,
+                'main_pic' => 'img-18.png',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+        \App\Models\Produit::create(
+        [
+                'name' => 'camera',
+                 'tag' => '',
+                'description' => 'camera avec 145M pixeles',
+                'unit_price' => 263.00,
+                'old_price' => 283.00,
+                'main_pic' => 'img-20.png',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+        \App\Models\Produit::create(
+            [
+                'name' => 'valise',
+                'tag' => 'Brand new',
+                'description' => 'valise pour femme',
+                'unit_price' => 83.90,
+                'old_price' => 93.60,
+                'main_pic' => 'img-15.png',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
 
     }
 }

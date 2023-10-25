@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Produit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
@@ -25,7 +26,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('index');
+        $produits = Produit::all();
+
+        return view('index',compact('produits'));
     }
 
     public function lang($locale) {
