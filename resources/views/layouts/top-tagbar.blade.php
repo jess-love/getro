@@ -3,20 +3,20 @@
             <div class="row justify-content-between align-items-center">
                 <div class="col-md-4 col-9">
                     <div class="fs-14 fw-medium">
-                        <i class="bi bi-geo-alt align-middle me-2"></i> Phoenix, USA
+                        <i class="bi bi-geo-alt align-middle me-2"></i> Rue Villate,Petion ville,Haiti
                     </div>
                 </div>
                 <div class="col-md-4 col-6 d-none d-xxl-block">
                     <div class="d-flex align-items-center justify-content-center gap-3 fs-14 fw-medium">
                         <div>
-                            <i class="bi bi-envelope align-middle me-2"></i> support@themesbrand.com
+                            <i class="bi bi-envelope align-middle me-2"></i> jessbouquet27@gmail.com
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4 col-3">
                     <div class="d-flex align-items-center justify-content-end gap-3 fs-14">
                         <div class="text-reset fw-normal d-none d-lg-block">
-                            <i class="bi bi-telephone-outbound align-middle me-2"></i> +(235) 01234 5678
+                            <i class="bi bi-telephone-outbound align-middle me-2"></i> +(509) 47 31 5678
                         </div>
                         <hr class="vr d-none d-lg-block">
                         <div class="dropdown topbar-head-dropdown topbar-tag-dropdown justify-content-end">
@@ -49,7 +49,7 @@
                                     @break
 
                                     @case('fr')
-                                        <img src="{{ URL::asset('build/images/flags/french.svg') }}"
+                                        <img src="{{ URL::asset('build/images/flags/ht.svg') }}"
                                             class="rounded-circle me-2" alt="Header Language" height="16">
                                         <span id="lang-name">français</span>
                                     @break

@@ -193,7 +193,7 @@
                                     <div class="bg-overlay bg-primary" style="opacity: 0.90;"></div>
                                     <div class="card-body d-flex align-items-center justify-content-center position-relative">
                                         <div class="text-center">
-                                            <h6 class="card-title text-white">Welcome to Toner</h6>
+                                            <h6 class="card-title text-white">Welcome to Jess Boutique</h6>
                                             <p class="text-white-75">See all the products at once.</p>
                                             <a href="#!" class="btn btn-light btn-sm btn-hover">Shop Now <i class="ph-arrow-right align-middle"></i></a>
                                         </div>
@@ -351,7 +351,7 @@
                         </li>
                     </ul>
                 </li>
-                
+
                 <li class="nav-item">
                     <a class="nav-link" href="contact-us" data-key="t-contact">{{ __('t-contact') }}</a>
                 </li>
@@ -369,7 +369,7 @@
                     <span class="position-absolute topbar-badge cartitem-badge fs-10 translate-middle badge rounded-pill bg-danger">4</span>
                 </button>
             </div>
-    
+
             <div class="dropdown topbar-head-dropdown ms-2 header-item dropdown-hover-end">
                 <button type="button" class="btn btn-icon btn-topbar btn-ghost-dark rounded-circle text-muted" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="bi bi-sun align-middle fs-20"></i>

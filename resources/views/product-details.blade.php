@@ -40,33 +40,29 @@
                                 <div class="swiper-wrapper">
                                     <div class="swiper-slide">
                                         <div class="product-thumb rounded cursor-pointer">
-                                            <img src="{{ URL::asset('build/images/products/img-31.png') }}" alt=""
+                                            <img src="{{ asset('build/images/products/'.$produit->main_pic) }}" alt=""
                                                 class="img-fluid" />
                                         </div>
                                     </div>
                                     <div class="swiper-slide">
                                         <div class="product-thumb rounded cursor-pointer">
-                                            <img src="{{ URL::asset('build/images/products/img-33.png') }}" alt=""
+                                            <img src="{{ asset('build/images/products/'.$produit->main_pic) }}" alt=""
                                                 class="img-fluid" />
                                         </div>
                                     </div>
                                     <div class="swiper-slide">
                                         <div class="product-thumb rounded cursor-pointer">
-                                            <img src="{{ URL::asset('build/images/products/img-32.png') }}" alt=""
+                                            <img src="{{ asset('build/images/products/'.$produit->main_pic) }}" alt=""
                                                 class="img-fluid" />
                                         </div>
                                     </div>
                                     <div class="swiper-slide">
                                         <div class="product-thumb rounded cursor-pointer">
-                                            <img src="{{ URL::asset('build/images/products/img-34.png') }}" alt=""
+                                            <img src="{{ asset('build/images/products/'.$produit->main_pic) }}" alt=""
                                                 class="img-fluid" />
                                         </div>
                                     </div>
-                                    <div class="swiper-slide">
-                                        <div class="product-thumb rounded cursor-pointer">
-                                            <img src="{{ URL::asset('build/images/products/img-34.png') }}" class="img-fluid" />
-                                        </div>
-                                    </div>
+                                   
                                 </div>
                             </div>
                         </div>
@@ -79,24 +75,21 @@
                                 </div>
                                 <div class="swiper productSwiper2">
                                     <div class="swiper-wrapper">
-                                        <div class="swiper-slide ">
-                                            <img src="{{ URL::asset('build/images/products/img-31.png') }}" alt=""
+
+                                        <div class="swiper-slide">
+                                            <img src="{{ asset('build/images/products/'.$produit->main_pic) }}" alt=""
                                                 class="img-fluid" />
                                         </div>
                                         <div class="swiper-slide">
-                                            <img src="{{ URL::asset('build/images/products/img-33.png') }}" alt=""
+                                            <img src="{{ asset('build/images/products/'.$produit->main_pic) }}" alt=""
                                                 class="img-fluid" />
                                         </div>
                                         <div class="swiper-slide">
-                                            <img src="{{ URL::asset('build/images/products/img-32.png') }}" alt=""
+                                            <img src="{{ asset('build/images/products/'.$produit->main_pic) }}" alt=""
                                                 class="img-fluid" />
                                         </div>
                                         <div class="swiper-slide">
-                                            <img src="{{ URL::asset('build/images/products/img-34.png') }}" alt=""
-                                                class="img-fluid" />
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <img src="{{ URL::asset('build/images/products/img-34.png') }}" alt=""
+                                            <img src="{{ asset('build/images/products/'.$produit->main_pic) }}" alt=""
                                                 class="img-fluid" />
                                         </div>
                                     </div>
@@ -139,11 +132,11 @@
                                 </div>
                                 <span class="fw-medium"> (50 Review)</span>
                             </div>
-                            <h4 class="lh-base mb-1">Opinion Striped Round Neck Green T-shirt</h4>
+                            <h4 class="lh-base mb-1">{{$produit->description}}</h4>
                             <p class="text-muted mb-4">The best part about stripped t shirt denim & white sneakers or wear
                                 it with a cool chinos and blazer to dress up <a href="javascript:void(0);"
                                     class="link-info">Read More</a></p>
-                            <h5 class="fs-24 mb-4">$185.79 <span class="text-muted fs-14"><del>$280.99</del></span> <span
+                            <h5 class="fs-24 mb-4">{{$produit->unit_price}}$ <span class="text-muted fs-14"><del>{{$produit->old_price}}$</del></span> <span
                                     class="fs-14 ms-2 text-danger"> (50% off)</span></h5>
                             <ul class="list-unstyled vstack gap-2">
                                 <li class=""><i class="bi bi-check2-circle me-2 align-middle text-success"></i>In

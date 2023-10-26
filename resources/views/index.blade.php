@@ -211,8 +211,11 @@
                                 <div class="card overflow-hidden">
                                     <div class="bg-warning-subtle rounded-top py-4">
                                         <div class="gallery-product">
-                                            <img src="{{ asset('build/images/products/'.$produit->main_pic) }}" alt=""
-                                                style="max-height: 215px;max-width: 100%;" class="mx-auto d-block">
+                                            <a href="{{route('voir_detail',['id'=>$produit->id]) }}">
+                                                <img src="{{ asset('build/images/products/'.$produit->main_pic) }}" alt=""
+                                                     style="max-height: 215px;max-width: 100%;" class="mx-auto d-block">
+                                            </a>
+
                                         </div>
                                         <p class="fs-11 fw-medium badge bg-primary py-2 px-3 product-lable mb-0">{{$produit->tag}}
                                         </p>
@@ -227,15 +230,11 @@
                                                 </button>
                                             </div>
 
-                                            <div>
-                                                <button type="button" class="btn btn-success btn-sm custom-toggle"
-                                                    data-bs-toggle="button">
-                                                    <span class="icon-on"><i
-                                                            class="mdi mdi-eye-outline align-bottom fs-15"></i></span>
-                                                    <span class="icon-off"><i
-                                                            class="mdi mdi-eye align-bottom fs-15"></i></span>
-                                                </button>
-                                            </div>
+
+                                                <div>
+                                                    <a href="{{route('voir_detail',['id'=>$produit->id]) }}" class="btn btn-sm btn-outline-secondary"><i class="mdi mdi-eye align-bottom fs-15"></i></a>
+                                                </div>
+
                                         </div>
                                         <div class="product-btn px-3">
                                             <a href="shop-cart" class="btn btn-primary btn-sm w-75 add-btn"><i
@@ -245,13 +244,13 @@
                                     <div class="card-body">
                                         <div>
                                             <a href="product-details">
-                                                <h6 class="fs-15 lh-base text-truncate mb-0">{{$produit->description}}</h6>
+                                                <h6 class="fs-15 lh-base text-truncate mb-0">{{$produit->name}} <br> <br>{{$produit->description}}</h6>
                                             </a>
                                             <div class="mt-3">
                                                 <span class="float-end">4.9 <i
                                                         class="ri-star-half-fill text-warning align-bottom"></i></span>
-                                                <h5 class="mb-0">{{$produit->unit_price}} $ <span
-                                                        class="text-muted fs-12"><del>{{$produit->old_price}}$</del></span></h5>
+                                                <h5 class="mb-0">{{number_format($produit->unit_price,2) }}$ <span>   </span><span
+                                                        class="text-muted fs-12"><del>{{number_format($produit->old_price,2)}}$</del></span></h5>
                                             </div>
                                         </div>
                                     </div>
