@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Produit;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
@@ -26,14 +26,14 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $produits = Produit::all();
+        $produits = Product::all();
 
         return view('index',compact('produits'));
     }
 
     public function produitDetail(Request $request ){
 
-        $produit = Produit::find($request->id);
+        $produit = Product::find($request->id);
         return view('product-details',compact('produit'));
 }
 
