@@ -27,14 +27,6 @@ class HomeController extends Controller
    
 
 
-
-
-
-
-
-
-
-
     public function lang($locale) {
         if ($locale) {
             App::setLocale($locale);

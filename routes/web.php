@@ -18,11 +18,11 @@ Route::get('/login', function () {
     return view('auth.login');
 });
 
-Route::get('/product-details/{id}', [App\Http\Controllers\HomeController::class, 'produitDetail'])->name('voir_detail');
+//Route::get('/product-details/{id}', [App\Http\Controllers\HomeController::class, 'produitDetail'])->name('voir_detail');
 
 Route::get('index/{locale}', [App\Http\Controllers\HomeController::class, 'lang']);
 
-Auth::routes();
+//Auth::routes();
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
