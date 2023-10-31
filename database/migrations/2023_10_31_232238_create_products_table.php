@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('tag');
             $table->string('description');
+            $table->string('manifacturer_name');
             $table->string('manifacturer_brand');
             $table->float('unit_price');
             $table->float('discount');
