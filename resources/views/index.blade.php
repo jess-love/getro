@@ -205,8 +205,7 @@
 
                         <div class="row gallery-wrapper mt-4 pt-2">
 <!----------------------------------------------getro------------------------------------------------------------------------------------->
-
-                            @foreach($produits as $produit)
+                           @foreach($produits as $produit)
                             <div class="element-item col-xxl-3 col-xl-4 col-sm-6 seller hot arrival"
                                 data-category="hot arrival">
                                 <div class="card overflow-hidden">
@@ -257,7 +256,7 @@
                                     </div>
                                 </div>
                             </div>
-                            @endforeach
+                          @endforeach
                             <!-- end col -->
 <!----------------------------------------------end getro code------------------------------------------------------------------------------------->
                         </div>
