@@ -26,9 +26,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $produits = Product::all();
-
-        return view('index',compact('produits'));
+        $products = Product::all();
+      return view('index',compact('produits'));
     }
 
     public function produitDetail(Request $request ){

@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('manifacturer_brand');
             $table->float('unit_price');
             $table->float('discount');
+            $table->string('main_pic');
             $table->timestamps();
         });
     }
