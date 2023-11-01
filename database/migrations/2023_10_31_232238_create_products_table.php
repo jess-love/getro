@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('title');
             $table->string('tag');
             $table->string('description');
-            $table->string('manifacturer_name');
-            $table->string('manifacturer_brand');
+            $table->string('manufacturer_name');
+            $table->string('manufacturer_brand');
             $table->float('unit_price');
             $table->float('discount');
             $table->string('main_pic');
