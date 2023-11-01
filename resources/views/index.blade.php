@@ -211,7 +211,7 @@
                                 <div class="card overflow-hidden">
                                     <div class="bg-warning-subtle rounded-top py-4">
                                         <div class="gallery-product">
-                                            <a href="{{route('voir_detail',['id'=>$produit->id]) }}">
+                                            <a href="{{route('view_product',['id'=>$produit->id]) }}">
                                                 <img src="{{ asset('build/images/products/'.$produit->main_pic) }}" alt=""
                                                      style="max-height: 215px;max-width: 100%;" class="mx-auto d-block">
                                             </a>
@@ -232,7 +232,7 @@
 
 
                                                 <div>
-                                                    <a href="{{route('voir_detail',['id'=>$produit->id]) }}" class="btn btn-sm btn-outline-secondary"><i class="mdi mdi-eye align-bottom fs-15"></i></a>
+                                                    <a href="{{route('view_product',['id'=>$produit->id]) }}" class="btn btn-sm btn-outline-secondary"><i class="mdi mdi-eye align-bottom fs-15"></i></a>
                                                 </div>
 
                                         </div>

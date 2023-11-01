@@ -136,7 +136,7 @@
                             <p class="text-muted mb-4">The best part about stripped t shirt denim & white sneakers or wear
                                 it with a cool chinos and blazer to dress up <a href="javascript:void(0);"
                                     class="link-info">Read More</a></p>
-                            <h5 class="fs-24 mb-4">{{$produit->unit_price}}$ <span class="text-muted fs-14"><del>{{$produit->old_price}}$</del></span> <span
+                            <h5 class="fs-24 mb-4">{{$produit->unit_price}}$ <span class="text-muted fs-14"><del>{{$produit->discount}}$</del></span> <span
                                     class="fs-14 ms-2 text-danger"> (50% off)</span></h5>
                             <ul class="list-unstyled vstack gap-2">
                                 <li class=""><i class="bi bi-check2-circle me-2 align-middle text-success"></i>In

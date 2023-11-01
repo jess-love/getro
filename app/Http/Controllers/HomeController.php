@@ -36,6 +36,27 @@ class HomeController extends Controller
     }
 
 
+
+
+    public function product(Request $request){
+
+        $produit = Product::all()->find($request->id);
+
+        return view('product-details',compact('produit'));
+
+    }
+
+
+
+    public function ViewCategory(){
+
+       $categorys = Category::all()->where('slug',1);
+
+        //dd($caregorys);
+
+        return view('products-category',compact('categorys'));
+    }
+
     public function lang($locale) {
         if ($locale) {
             App::setLocale($locale);
