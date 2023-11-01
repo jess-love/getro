@@ -244,7 +244,7 @@
                                     <div class="card-body">
                                         <div>
                                             <a href="product-details">
-                                                <h6 class="fs-15 lh-base text-truncate mb-0">{{$produit->manifacture_name}} <br> <br>{{$produit->description}}</h6>
+                                                <h6 class="fs-15 lh-base text-truncate mb-0"> </b> {{$produit->title}} </b> <br> <span style="font-weight:normal;"> {{$produit->description}} </span> </h6>
                                             </a>
                                             <div class="mt-3">
                                                 <span class="float-end">4.9 <i

@@ -82,17 +82,22 @@
 
                         <div class="accordion accordion-flush filter-accordion">
                             <div class="card-body border-bottom">
-                                <div>
-                                    <p class="text-muted text-uppercase fs-12 fw-medium mb-3">Products</p>
+                               
+                                    <p class="text-muted text-uppercase fs-12 fw-medium mb-3">Category Products</p>
                                     <ul class="list-unstyled mb-0 filter-list">
+ <!-- ************************************************Jessy's adding start********************************************************************************************* -->
+                                       
                                         <li>
                                             <a href="#" class="d-flex py-1 align-items-center">
                                                 <div class="flex-grow-1">
-                                                    <h5 class="fs-13 mb-0 listname">Grocery</h5>
+                                                    <h5 class="fs-13 mb-0 listname">grocery</h5>
                                                 </div>
                                             </a>
                                         </li>
-                                        <li>
+                                        
+<!-- ****************************************************Jessy's adding end***************************************************************************************** -->
+ 
+                                        <!-- <li>
                                             <a href="#" class="d-flex py-1 align-items-center">
                                                 <div class="flex-grow-1">
                                                     <h5 class="fs-13 mb-0 listname">Fashion</h5>
@@ -153,7 +158,7 @@
                                                     <h5 class="fs-13 mb-0 listname">Kids</h5>
                                                 </div>
                                             </a>
-                                        </li>
+                                        </li> -->
                                     </ul>
                                 </div>
                             </div>

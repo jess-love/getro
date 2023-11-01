@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use Illuminate\Support\Facades\App;
@@ -27,12 +28,13 @@ class HomeController extends Controller
     public function index()
     {
 
-        $produits = Product::all();
+        $produits = Product::all()->take(12);
 
         //dump($produits);
 
         return view('index',compact('produits'));
     }
+
 
     public function lang($locale) {
         if ($locale) {

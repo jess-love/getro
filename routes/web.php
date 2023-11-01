@@ -19,6 +19,8 @@ Route::get('/login', function () {
 });
 
 Route::get('/product-details/{id}', [App\Http\Controllers\HomeController::class, 'produitDetail'])->name('voir_detail');
+Route::get('/product-list-details', [App\Http\Controllers\ProductListDefaultController::class, 'index'])->name('product-list-details');
+
 
 Route::get('index/{locale}', [App\Http\Controllers\HomeController::class, 'lang']);
 
