@@ -181,7 +181,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-        Darryldecode\Cart\CartServiceProvider::class,
+        Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -211,7 +211,7 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
-        'Cart' => Darryldecode\Cart\Facades\CartFacade::class,
+        'Cart' => Gloudemans\Shoppingcart\Facades\Cart::class,
     ])->toArray(),
 
 ];
