@@ -18,6 +18,10 @@ Route::get('/login', function () {
     return view('auth.login');
 });
 
+Route::get('/product-details/{id}', [App\Http\Controllers\HomeController::class, 'produitDetail'])->name('voir_detail');
+Route::get('/product-list-details', [App\Http\Controllers\ProductListDefaultController::class, 'index'])->name('product-list-details');
+
+
 Route::get('/product-details/{id}', [App\Http\Controllers\HomeController::class, 'product'])->name('view_product');
 
 Route::get('/products-category', [App\Http\Controllers\HomeController::class, 'ViewCategory'])->name('CategoryProduct');

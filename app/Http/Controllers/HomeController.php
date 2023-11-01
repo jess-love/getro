@@ -28,7 +28,7 @@ class HomeController extends Controller
     public function index()
     {
 
-        $produits = Product::all();
+        $produits = Product::all()->take(12);
 
         //dump($produits);
 
