@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use Illuminate\Support\Facades\App;
@@ -32,6 +33,28 @@ class HomeController extends Controller
         //dump($produits);
 
         return view('index',compact('produits'));
+    }
+
+
+
+
+    public function product(Request $request){
+
+        $produit = Product::all()->find($request->id);
+
+        return view('product-details',compact('produit'));
+
+    }
+
+
+
+    public function ViewCategory(){
+
+       $categorys = Category::all()->where('slug',1);
+
+        //dd($caregorys);
+
+        return view('products-category',compact('categorys'));
     }
 
     public function lang($locale) {

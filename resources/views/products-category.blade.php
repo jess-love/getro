@@ -38,65 +38,27 @@
                 <!--end col-->
             </div>
             <!--end row-->
-
+<!-------------------------------------category--------------------------------------------------------------------------->
             <div class="row justify-content-center">
-                <div class="col-lg-3 col-md-6">
-                    <div class="card card-animate text-center">
-                        <div class="card-body p-4">
-                            <img src="{{ URL::asset('build/images/products/img-5.png') }}" alt="" class="avatar-xl">
-                            <div class="mt-4">
-                                <a href="product-list-defualt" class="stretched-link">
-                                    <h5 class="fs-15 mb-0">Footwear</h5>
-                                </a>
+                @foreach ($categorys as $category)
+                    <div class="col-lg-3 col-md-6">
+                        <div class="card card-animate text-center">
+                            <div class="card-body p-4">
+                                <img src="{{ asset('build/images/products/'.$category->image) }}" alt="" class="avatar-xl">
+                                <div class="mt-4">
+                                    <a href="product-list-defualt" class="stretched-link">
+                                        <h5 class="fs-15 mb-0">{{$category->title}}</h5>
+                                    </a><br>
+                                    <h6 class="fs-15 mb-0">{{$category->description}}</h6>
+                                </div>
                             </div>
                         </div>
+                       <!--end card-->
                     </div>
-                    <!--end card-->
-                </div>
                 <!--end col-->
-                <div class="col-lg-3 col-md-6">
-                    <div class="card card-animate text-center">
-                        <div class="card-body p-4">
-                            <img src="{{ URL::asset('build/images/products/img-16.png') }}" alt="" class="avatar-xl">
-                            <div class="mt-4">
-                                <a href="product-list-defualt" class="stretched-link">
-                                    <h5 class="fs-15 mb-0">Electronics</h5>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <!--end card-->
-                </div>
-                <!--end col-->
-                <div class="col-lg-3 col-md-6">
-                    <div class="card card-animate text-center">
-                        <div class="card-body p-4">
-                            <img src="{{ URL::asset('build/images/products/img-8.png') }}" alt="" class="avatar-xl">
-                            <div class="mt-4">
-                                <a href="product-list-defualt" class="stretched-link">
-                                    <h5 class="fs-15 mb-0">Men's</h5>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <!--end card-->
-                </div>
-                <!--end col-->
-                <div class="col-lg-3 col-md-6">
-                    <div class="card card-animate text-center">
-                        <div class="card-body p-4">
-                            <img src="{{ URL::asset('build/images/products/img-11.png') }}" alt="" class="avatar-xl">
-                            <div class="mt-4">
-                                <a href="product-list-defualt" class="stretched-link">
-                                    <h5 class="fs-15 mb-0">Women's</h5>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <!--end card-->
-                </div>
-                <!--end col-->
+                @endforeach
             </div>
+<!-------------------------------------end category --------------------------------------------------------------->
             <!--end row-->
         </div>
         <!--end container-->
@@ -179,7 +141,8 @@
                 </div>
                 <!--end col-->
             </div>
-            <!--end row-->
+<!--end row-->
+<!-------------------------------------category pour des moments occasionnels-------------------------------------------------->
             <div class="row">
                 <div class="col-lg-2 col-md-3 col-sm-6">
                     <div class="text-center">
@@ -261,6 +224,7 @@
                 <!--end col-->
             </div>
             <!--end row-->
+<!-------------------------------------------end category--------------------------------------------------------------------------->
         </div>
         <!--end conatiner-->
     </section>
