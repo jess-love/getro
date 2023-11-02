@@ -26,13 +26,20 @@ Route::get('/product-details/{id}', [App\Http\Controllers\HomeController::class,
 
 Route::get('/products-category', [App\Http\Controllers\HomeController::class, 'ViewCategory'])->name('CategoryProduct');
 
-Route::get('/genio','CarteController@add')->name('add_cart'); 
 
-Route::get('/gg','CarteController@panier')->name('shop_cart');
+
+Route::get('/cartAdd', 'HomeController@add')->name('cartAdd');
+
+//Route::get('/gg','CarteController@panier')->name('shop_cart');
+
+
+
+
+
 
 Route::get('index/{locale}', [App\Http\Controllers\HomeController::class, 'lang']);
 
-Auth::routes();
+//Auth::routes();
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('index');

@@ -30,8 +30,6 @@ class HomeController extends Controller
 
         $produits = Product::all()->take(12);
 
-        //dump($produits);
-
         return view('index',compact('produits'));
     }
 
