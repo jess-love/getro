@@ -54,6 +54,7 @@
                                     </div>
                                 </div>
                             </div>
+<!-------------------------------------------------category-------------------------------------------------------------------------------------------->
                             <div class="col-lg-2">
                                 <ul class="dropdown-menu-list list-unstyled mb-0 py-3">
                                     <li>
@@ -142,6 +143,7 @@
                                     </li>
                                 </ul>
                             </div>
+<!------------------------------------------------end category----------------------------------------------------------------------------------------->
                             <div class="col-lg-2 d-none d-lg-block">
                                 <div class="p-3">
                                     <p class="mb-3 text-uppercase fs-11 fw-medium text-muted" data-key="t-top-brands">{{ __('t-top-brands') }}</p>

@@ -205,13 +205,13 @@
 
                         <div class="row gallery-wrapper mt-4 pt-2">
 <!----------------------------------------------getro------------------------------------------------------------------------------------->
-                            @foreach($produits as $produit)
+                           @foreach($produits as $produit)
                             <div class="element-item col-xxl-3 col-xl-4 col-sm-6 seller hot arrival"
                                 data-category="hot arrival">
                                 <div class="card overflow-hidden">
                                     <div class="bg-warning-subtle rounded-top py-4">
                                         <div class="gallery-product">
-                                            <a href="{{route('voir_detail',['id'=>$produit->id]) }}">
+                                            <a href="{{route('view_product',['id'=>$produit->id]) }}">
                                                 <img src="{{ asset('build/images/products/'.$produit->main_pic) }}" alt=""
                                                      style="max-height: 215px;max-width: 100%;" class="mx-auto d-block">
                                             </a>
@@ -232,7 +232,7 @@
 
 
                                                 <div>
-                                                    <a href="{{route('voir_detail',['id'=>$produit->id]) }}" class="btn btn-sm btn-outline-secondary"><i class="mdi mdi-eye align-bottom fs-15"></i></a>
+                                                    <a href="{{route('view_product',['id'=>$produit->id]) }}" class="btn btn-sm btn-outline-secondary"><i class="mdi mdi-eye align-bottom fs-15"></i></a>
                                                 </div>
 
                                         </div>
@@ -244,19 +244,19 @@
                                     <div class="card-body">
                                         <div>
                                             <a href="product-details">
-                                                <h6 class="fs-15 lh-base text-truncate mb-0">{{$produit->name}} <br> <br>{{$produit->description}}</h6>
+                                                <h6 class="fs-15 lh-base text-truncate mb-0"> </b> {{$produit->title}} </b> <br> <span style="font-weight:normal;"> {{$produit->description}} </span> </h6>
                                             </a>
                                             <div class="mt-3">
                                                 <span class="float-end">4.9 <i
                                                         class="ri-star-half-fill text-warning align-bottom"></i></span>
                                                 <h5 class="mb-0">{{number_format($produit->unit_price,2) }}$ <span>   </span><span
-                                                        class="text-muted fs-12"><del>{{number_format($produit->old_price,2)}}$</del></span></h5>
+                                                        class="text-muted fs-12"><del>{{number_format($produit->discount,2)}}$</del></span></h5>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            @endforeach
+                          @endforeach
                             <!-- end col -->
 <!----------------------------------------------end getro code------------------------------------------------------------------------------------->
                         </div>

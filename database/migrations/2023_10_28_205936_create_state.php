@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Models\State;
 
 return new class extends Migration
 {
@@ -11,23 +12,23 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('produits', function (Blueprint $table) {
-            $table->increments('id');
+        Schema::create('state', function (Blueprint $table) {
+            $table->id();
             $table->string('name');
-            $table->string('tag');
-            $table->string('description');
-            $table->float('unit_price');
-            $table->float('old_price');
-            $table->string('main_pic');
+            $table->integer('value');
             $table->timestamps();
         });
+
+        // State::create(['name' => 'Admin','value' => 1,'created_at' => now(),'updated_at' => now(),]);
     }
+   
+    
 
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('produits');
+        Schema::dropIfExists('state');
     }
 };

@@ -15,19 +15,23 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('user', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('state_id');
+            $table->foreign('state_id')->references('id')->on('state');
             $table->string('first_name', 250);
             $table->string('last_name', 250);
             $table->string('email', 250)->unique();
             $table->string('avatar', 250);
             $table->string('password', 250);
+            $table->string('activity', 250);
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
 
-        User::create(['first_name' => 'Toner','last_name' => 'Front','email' => 'admin@themesbrand.com','password' => Hash::make('12345678'),'email_verified_at'=>'2022-01-02 17:04:58','avatar' => 'avatar-1.jpg','created_at' => now(),]);
+
+        // User::create(['state_id' => 1,'first_name' => 'Toner','last_name' => 'Front','email' => 'admin@themesbrand.com','password' => Hash::make('12345678'),'email_verified_at'=>'2022-01-02 17:04:58','avatar' => 'avatar-1.jpg','created_at' => now(),]);
     }
 
     /**
@@ -37,6 +41,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('user');
     }
 };

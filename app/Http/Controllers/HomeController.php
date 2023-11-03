@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Produit;
+use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Models\Product;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
 
@@ -26,26 +27,33 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $produits = Produit::all();
+
+        $produits = Product::all()->take(12);
 
         return view('index',compact('produits'));
     }
 
-    public function produitDetail(Request $request ){
 
-        $produit = Produit::find($request->id);
+
+
+    public function product(Request $request){
+
+        $produit = Product::all()->find($request->id);
+
         return view('product-details',compact('produit'));
-}
+
+    }
 
 
 
+    public function ViewCategory(){
 
+       $categorys = Category::all()->where('slug',1);
 
+        //dd($caregorys);
 
-
-
-
-
+        return view('products-category',compact('categorys'));
+    }
 
     public function lang($locale) {
         if ($locale) {
