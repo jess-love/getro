@@ -20,10 +20,10 @@
                     </a>
                 </li>
                 <li class="nav-item dropdown dropdown-hover">
-                    <a class="nav-link dropdown-toggle" data-key="t-demos" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        {{ __('t-demos') }}
+                    <a class="nav-link " data-key="t-demos" href="{{route('index')}}" role="button" >
+                       HOME
                     </a>
-                    <ul class="dropdown-menu dropdown-menu-md dropdown-menu-center dropdown-menu-list submenu">
+                    <!-- <ul class="dropdown-menu dropdown-menu-md dropdown-menu-center dropdown-menu-list submenu">
                         <li class="nav-item">
                             <a href="index" class="nav-link" data-key="t-main-layout">{{ __('t-main-layout') }}</a>
                         </li>
@@ -36,12 +36,13 @@
                         <li class="nav-item">
                             <a href="trend-fashion" class="nav-link" data-key="t-trend-fashion">{{ __('t-trend-fashion') }}</a>
                         </li>
-                    </ul>
+                    </ul> -->
                 </li>
                 <li class="nav-item dropdown dropdown-hover dropdown-mega-full">
                     <a class="nav-link dropdown-toggle" data-key="t-catalog" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        {{ __('t-catalog') }}
+                        CATEGORY
                     </a>
+                    <!-- ********************************Start layer category********************************** -->
                     <div class="dropdown-menu p-0">
                         <div class="row g-0 g-lg-4">
                             <div class="col-lg-2 d-none d-lg-block">
@@ -54,15 +55,18 @@
                                     </div>
                                 </div>
                             </div>
+                     <!-- ********************************End layer category********************************** -->
 <!-------------------------------------------------category-------------------------------------------------------------------------------------------->
+                            foreach ($categories as $kategori)
                             <div class="col-lg-2">
                                 <ul class="dropdown-menu-list list-unstyled mb-0 py-3">
                                     <li>
-                                        <p class="mb-2 text-uppercase fs-11 fw-medium text-muted menu-title" data-key="t-men">{{ __('t-men') }}</p>
+                                        <p class="mb-2 text-uppercase fs-11 fw-medium text-muted menu-title" data-key="t-men"></p>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="product-grid-sidebar-banner" class="nav-link" data-key="t-clothing">{{ __('t-clothing') }}</a>
+                                        <a href="" class="nav-link" data-key="t-clothing">{{$kategori->title}}</a>
                                     </li>
+                                    <!-- 
                                     <li class="nav-item">
                                         <a href="product-grid-right" class="nav-link" data-key="t-watches">{{ __('t-watches') }}</a>
                                     </li>
@@ -77,13 +81,17 @@
                                     </li>
                                     <li class="nav-item">
                                         <a href="product-list-right" class="nav-link" data-key="t-other-accessories">{{ __('t-other-accessories') }}</a>
-                                    </li>
+                                    </li> -->
                                 </ul>
                             </div>
+                            endforeach
                             <div class="col-lg-2">
                                 <ul class="dropdown-menu-list list-unstyled mb-0 py-3">
                                     <li>
                                         <p class="mb-2 text-uppercase fs-11 fw-medium text-muted menu-title" data-key="t-women">{{ __('t-women') }}</p>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="product-list-defualt"  class="nav-link" data-key="t-western-wear">{{ __('t-western-wear') }}</a>
                                     </li>
                                     <li class="nav-item">
                                         <a href="product-list-defualt" class="nav-link" data-key="t-western-wear">{{ __('t-western-wear') }}</a>
@@ -124,6 +132,7 @@
                                     </li>
                                 </ul>
                             </div>
+                            <!-- *******************************************Others begin**************************************** -->
                             <div class="col-lg-2">
                                 <ul class="dropdown-menu-list list-unstyled mb-0 py-3">
                                     <li>
@@ -143,6 +152,8 @@
                                     </li>
                                 </ul>
                             </div>
+                            <!-- *******************************************Others ends**************************************** -->
+                            
 <!------------------------------------------------end category----------------------------------------------------------------------------------------->
                             <div class="col-lg-2 d-none d-lg-block">
                                 <div class="p-3">

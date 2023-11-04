@@ -50,10 +50,19 @@ class HomeController extends Controller
 
        $categorys = Category::all()->where('slug',1);
 
-        //dd($caregorys);
+        // dd($caregorys);
 
         return view('products-category',compact('categorys'));
     }
+
+    public function ViewCategory1(){
+
+        $categories = Category::all()->where('slug',1);
+ 
+         // dd($caregorys);
+ 
+         return view('topbar',compact('categories'));
+     }
 
     public function lang($locale) {
         if ($locale) {
