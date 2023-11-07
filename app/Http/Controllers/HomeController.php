@@ -43,7 +43,7 @@ class HomeController extends Controller
         return view('product-details',compact('produit'));
 
     }
-
+                                                      
     //public function ViewCategory(){
 
       // $cat = Category::all();
