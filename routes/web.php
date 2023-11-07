@@ -24,7 +24,7 @@ Route::get('/product-list-details', [App\Http\Controllers\ProductListDefaultCont
 
 Route::get('/product-details/{id}', [App\Http\Controllers\HomeController::class, 'product'])->name('view_product');
 
-Route::get('/products-category', [App\Http\Controllers\HomeController::class, 'ViewCategory'])->name('CategoryProduct');
+Route::get('/productscategory', [App\Http\Controllers\HomeController::class, 'ViewCategory'])->name('CategoryProduct');
 
 
 

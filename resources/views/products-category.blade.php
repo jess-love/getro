@@ -40,7 +40,7 @@
             <!--end row-->
 <!-------------------------------------category--------------------------------------------------------------------------->
             <div class="row justify-content-center">
-                @foreach ($categorys as $category)
+                @foreach ($cat as $category)
                     <div class="col-lg-3 col-md-6">
                         <div class="card card-animate text-center">
                             <div class="card-body p-4">

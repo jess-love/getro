@@ -48,11 +48,11 @@ class HomeController extends Controller
 
     public function ViewCategory(){
 
-       $categorys = Category::all()->where('slug',1);
+       $cat = Category::all()->where('slug',1);
 
-        //dd($caregorys);
+        //dd($cat);
 
-        return view('products-category',compact('categorys'));
+        return view('products-category',compact('cat'));
     }
 
     public function lang($locale) {
