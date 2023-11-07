@@ -44,8 +44,6 @@ class HomeController extends Controller
 
     }
 
-
-
     //public function ViewCategory(){
 
       // $cat = Category::all();
