@@ -57,20 +57,18 @@
                             </div>
                      <!-- ********************************End layer category********************************** -->
 <!-------------------------------------------------category-------------------------------------------------------------------------------------------->
-                            foreach ($categories as $kategori)
+                           
                             <div class="col-lg-2">
                                 <ul class="dropdown-menu-list list-unstyled mb-0 py-3">
                                     <li>
                                         <p class="mb-2 text-uppercase fs-11 fw-medium text-muted menu-title" data-key="t-men"></p>
                                     </li>
-                                    <li class="nav-item">
-                                        <a href="" class="nav-link" data-key="t-clothing">{{$kategori->title}}</a>
-                                    </li>
-                                    <!-- 
+                                   
+                                    
                                     <li class="nav-item">
                                         <a href="product-grid-right" class="nav-link" data-key="t-watches">{{ __('t-watches') }}</a>
                                     </li>
-                                    <li class="nav-item">
+                               <!--      <li class="nav-item">
                                         <a href="product-list-left" class="nav-link" data-key="t-bags-Luggage">{{ __('t-bags-Luggage') }}</a>
                                     </li>
                                     <li class="nav-item">
@@ -84,7 +82,7 @@
                                     </li> -->
                                 </ul>
                             </div>
-                            endforeach
+                           
                             <div class="col-lg-2">
                                 <ul class="dropdown-menu-list list-unstyled mb-0 py-3">
                                     <li>
