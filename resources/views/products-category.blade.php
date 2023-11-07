@@ -39,25 +39,9 @@
             </div>
             <!--end row-->
 <!-------------------------------------category--------------------------------------------------------------------------->
-            <div class="row justify-content-center">
-                @foreach ($categorys as $category)
-                    <div class="col-lg-3 col-md-6">
-                        <div class="card card-animate text-center">
-                            <div class="card-body p-4">
-                                <img src="{{ asset('build/images/products/'.$category->image) }}" alt="" class="avatar-xl">
-                                <div class="mt-4">
-                                    <a href="product-list-defualt" class="stretched-link">
-                                        <h5 class="fs-15 mb-0">{{$category->title}}</h5>
-                                    </a><br>
-                                    <h6 class="fs-15 mb-0">{{$category->description}}</h6>
-                                </div>
-                            </div>
-                        </div>
-                       <!--end card-->
-                    </div>
-                <!--end col-->
-                @endforeach
-            </div>
+
+        {{dd($categories);}}
+        
 <!-------------------------------------end category --------------------------------------------------------------->
             <!--end row-->
         </div>
