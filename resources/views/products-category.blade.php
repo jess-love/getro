@@ -26,8 +26,35 @@
         <!--end container-->
     </section>
 
+<!-------------------------------------category--------------------------------------------------------------------------->
     <section class="section">
         <div class="container">
+<<<<<<< HEAD
+            <section>
+                <div class="container">
+                   <div class="row">
+                        @foreach ($categorys as $category)
+                            <div class="col-lg-2 col-md-3 col-sm-6">
+                                <div class="text-center">
+                                    <a href="#!">
+                                        <img src="{{ asset('build/images/products/'.$category->image) }}" alt=""
+                                         class="img-fluid rounded-circle bg-warning-subtle border border-2 border-warning border-opacity-10 p-4">
+                                    </a>
+                                    <div class="mt-4">
+                                        <a href="#!">
+                                            <h5 class="mb-2 fs-15">{{$category->title}}</h5>
+                                        </a>
+                                        <p class="text-muted fs-12">{{$category->description}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                        <!--end col-->
+                    </div>
+                </div>
+                <!--end conatiner-->
+            </section>
+=======
             <div class="row justify-content-center">
                 <div class="col-lg-12">
                     <div class="mb-5 text-center">
@@ -43,10 +70,12 @@
         {{dd($categories);}}
         
 <!-------------------------------------end category --------------------------------------------------------------->
+>>>>>>> a3670ba8d739f0a6af27ccb5c16962ff3315b97f
             <!--end row-->
         </div>
         <!--end container-->
     </section>
+<!-------------------------------------------end category--------------------------------------------------------------------------->
 
     <section class="section pt-0">
         <div class="container">
