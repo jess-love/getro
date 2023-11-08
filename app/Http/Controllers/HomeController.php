@@ -33,19 +33,6 @@ class HomeController extends Controller
         return view('index',compact('produits'));
     }
 
-
-
-
-    public function product(Request $request){
-
-        $produit = Product::all()->find($request->id);
-
-        return view('product-details',compact('produit'));
-
-    }
-
-
-
     public function ViewCategory(){
 
        $categorys = Category::all()->where('slug',1);

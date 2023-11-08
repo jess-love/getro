@@ -26,43 +26,38 @@
         <!--end container-->
     </section>
 
+<!-------------------------------------category--------------------------------------------------------------------------->
     <section class="section">
         <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-12">
-                    <div class="mb-5 text-center">
-                        <h2 class="mb-3">Classic</h2>
-                        <p class="text-muted fs-15 mb-0">Browser the collection of top categories.</p>
-                    </div>
-                </div>
-                <!--end col-->
-            </div>
-            <!--end row-->
-<!-------------------------------------category--------------------------------------------------------------------------->
-            <div class="row justify-content-center">
-                @foreach ($categorys as $category)
-                    <div class="col-lg-3 col-md-6">
-                        <div class="card card-animate text-center">
-                            <div class="card-body p-4">
-                                <img src="{{ asset('build/images/products/'.$category->image) }}" alt="" class="avatar-xl">
-                                <div class="mt-4">
-                                    <a href="product-list-defualt" class="stretched-link">
-                                        <h5 class="fs-15 mb-0">{{$category->title}}</h5>
-                                    </a><br>
-                                    <h6 class="fs-15 mb-0">{{$category->description}}</h6>
+            <section>
+                <div class="container">
+                   <div class="row">
+                        @foreach ($categorys as $category)
+                            <div class="col-lg-2 col-md-3 col-sm-6">
+                                <div class="text-center">
+                                    <a href="#!">
+                                        <img src="{{ asset('build/images/products/'.$category->image) }}" alt=""
+                                         class="img-fluid rounded-circle bg-warning-subtle border border-2 border-warning border-opacity-10 p-4">
+                                    </a>
+                                    <div class="mt-4">
+                                        <a href="#!">
+                                            <h5 class="mb-2 fs-15">{{$category->title}}</h5>
+                                        </a>
+                                        <p class="text-muted fs-12">{{$category->description}}</p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                       <!--end card-->
+                        @endforeach
+                        <!--end col-->
                     </div>
-                <!--end col-->
-                @endforeach
-            </div>
-<!-------------------------------------end category --------------------------------------------------------------->
+                </div>
+                <!--end conatiner-->
+            </section>
             <!--end row-->
         </div>
         <!--end container-->
     </section>
+<!-------------------------------------------end category--------------------------------------------------------------------------->
 
     <section class="section pt-0">
         <div class="container">

@@ -40,25 +40,25 @@
                                 <div class="swiper-wrapper">
                                     <div class="swiper-slide">
                                         <div class="product-thumb rounded cursor-pointer">
-                                            <img src="{{ asset('build/images/products/'.$produit->main_pic) }}" alt=""
+                                            <img src="{{ asset('build/images/products/'.$products->main_pic) }}" alt=""
                                                 class="img-fluid" />
                                         </div>
                                     </div>
                                     <div class="swiper-slide">
                                         <div class="product-thumb rounded cursor-pointer">
-                                            <img src="{{ asset('build/images/products/'.$produit->main_pic) }}" alt=""
+                                            <img src="{{ asset('build/images/products/'.$products->main_pic) }}" alt=""
                                                 class="img-fluid" />
                                         </div>
                                     </div>
                                     <div class="swiper-slide">
                                         <div class="product-thumb rounded cursor-pointer">
-                                            <img src="{{ asset('build/images/products/'.$produit->main_pic) }}" alt=""
+                                            <img src="{{ asset('build/images/products/'.$products->main_pic) }}" alt=""
                                                 class="img-fluid" />
                                         </div>
                                     </div>
                                     <div class="swiper-slide">
                                         <div class="product-thumb rounded cursor-pointer">
-                                            <img src="{{ asset('build/images/products/'.$produit->main_pic) }}" alt=""
+                                            <img src="{{ asset('build/images/products/'.$products->main_pic) }}" alt=""
                                                 class="img-fluid" />
                                         </div>
                                     </div>
@@ -77,19 +77,19 @@
                                     <div class="swiper-wrapper">
 
                                         <div class="swiper-slide">
-                                            <img src="{{ asset('build/images/products/'.$produit->main_pic) }}" alt=""
+                                            <img src="{{ asset('build/images/products/'.$products->main_pic) }}" alt=""
                                                 class="img-fluid" />
                                         </div>
                                         <div class="swiper-slide">
-                                            <img src="{{ asset('build/images/products/'.$produit->main_pic) }}" alt=""
+                                            <img src="{{ asset('build/images/products/'.$products->main_pic) }}" alt=""
                                                 class="img-fluid" />
                                         </div>
                                         <div class="swiper-slide">
-                                            <img src="{{ asset('build/images/products/'.$produit->main_pic) }}" alt=""
+                                            <img src="{{ asset('build/images/products/'.$products->main_pic) }}" alt=""
                                                 class="img-fluid" />
                                         </div>
                                         <div class="swiper-slide">
-                                            <img src="{{ asset('build/images/products/'.$produit->main_pic) }}" alt=""
+                                            <img src="{{ asset('build/images/products/'.$products->main_pic) }}" alt=""
                                                 class="img-fluid" />
                                         </div>
                                     </div>
@@ -132,11 +132,11 @@
                                 </div>
                                 <span class="fw-medium"> (50 Review)</span>
                             </div>
-                            <h4 class="lh-base mb-1">{{$produit->description}}</h4>
+                            <h4 class="lh-base mb-1">{{$products->description}}</h4>
                             <p class="text-muted mb-4">The best part about stripped t shirt denim & white sneakers or wear
                                 it with a cool chinos and blazer to dress up <a href="javascript:void(0);"
                                     class="link-info">Read More</a></p>
-                            <h5 class="fs-24 mb-4">{{$produit->unit_price}}$ <span class="text-muted fs-14"><del>{{$produit->discount}}$</del></span> <span
+                            <h5 class="fs-24 mb-4">{{$products->unit_price}}$ <span class="text-muted fs-14"><del>{{$products->discount}}$</del></span> <span
                                     class="fs-14 ms-2 text-danger"> (50% off)</span></h5>
                             <ul class="list-unstyled vstack gap-2">
                                 <li class=""><i class="bi bi-check2-circle me-2 align-middle text-success"></i>In
