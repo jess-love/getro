@@ -54,16 +54,8 @@ class HomeController extends Controller
 
     }
 
-    //public function ViewCategory(){
 
-    // $cat = Category::all();
-
-    //dump($cat);
-
-    // return view('products-category',compact('cat'));
-    // }
-
-    public function lang($locale) {
+  public function lang($locale) {
         if ($locale) {
             App::setLocale($locale);
             Session::put('lang', $locale);
