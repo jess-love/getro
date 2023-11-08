@@ -29,7 +29,6 @@
 <!-------------------------------------category--------------------------------------------------------------------------->
     <section class="section">
         <div class="container">
-<<<<<<< HEAD
             <section>
                 <div class="container">
                    <div class="row">
@@ -54,7 +53,6 @@
                 </div>
                 <!--end conatiner-->
             </section>
-=======
             <div class="row justify-content-center">
                 <div class="col-lg-12">
                     <div class="mb-5 text-center">
@@ -67,10 +65,9 @@
             <!--end row-->
 <!-------------------------------------category--------------------------------------------------------------------------->
 
-        {{dd($categories);}}
-        
+
 <!-------------------------------------end category --------------------------------------------------------------->
->>>>>>> a3670ba8d739f0a6af27ccb5c16962ff3315b97f
+
             <!--end row-->
         </div>
         <!--end container-->
