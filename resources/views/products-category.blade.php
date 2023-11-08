@@ -29,6 +29,7 @@
 <!-------------------------------------category--------------------------------------------------------------------------->
     <section class="section">
         <div class="container">
+<<<<<<< HEAD
             <section>
                 <div class="container">
                    <div class="row">
@@ -53,6 +54,23 @@
                 </div>
                 <!--end conatiner-->
             </section>
+=======
+            <div class="row justify-content-center">
+                <div class="col-lg-12">
+                    <div class="mb-5 text-center">
+                        <h2 class="mb-3">Classic</h2>
+                        <p class="text-muted fs-15 mb-0">Browser the collection of top categories.</p>
+                    </div>
+                </div>
+                <!--end col-->
+            </div>
+            <!--end row-->
+<!-------------------------------------category--------------------------------------------------------------------------->
+
+        {{dd($categories);}}
+        
+<!-------------------------------------end category --------------------------------------------------------------->
+>>>>>>> a3670ba8d739f0a6af27ccb5c16962ff3315b97f
             <!--end row-->
         </div>
         <!--end container-->

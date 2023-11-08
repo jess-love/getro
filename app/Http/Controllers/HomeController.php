@@ -33,14 +33,29 @@ class HomeController extends Controller
         return view('index',compact('produits'));
     }
 
+<<<<<<< HEAD
     public function ViewCategory(){
+=======
 
-       $categorys = Category::all()->where('slug',1);
 
-        //dd($caregorys);
 
-        return view('products-category',compact('categorys'));
+    public function product(Request $request){
+
+        $produit = Product::all()->find($request->id);
+
+        return view('product-details',compact('produit'));
+
     }
+
+    //public function ViewCategory(){
+
+      // $cat = Category::all();
+
+     //dump($cat);
+>>>>>>> a3670ba8d739f0a6af27ccb5c16962ff3315b97f
+
+      // return view('products-category',compact('cat'));
+   // }
 
     public function lang($locale) {
         if ($locale) {
