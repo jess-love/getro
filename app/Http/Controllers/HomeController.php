@@ -34,7 +34,14 @@ class HomeController extends Controller
     }
 
 
-    public function ViewCategory(){}
+    public function ViewCategory(){
+
+        $categorys = Category::all()->where('slug',1);
+
+        // dd($caregorys);
+
+        return view('products-category',compact('categorys'));
+    }
 
 
 

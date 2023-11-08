@@ -29,7 +29,7 @@ Route::get('/product-details/{id}', [App\Http\Controllers\ProductdetailControlle
 //Route::get('/productscategory','ViewCategoryController@viewcategory')->name('CategoryProduct');
 
 
-Route::get('/productscategory', [App\Http\Controllers\ViewCategoryController::class, 'ViewCategory'])->name('CategoryProduct');
+Route::get('/products-category', [App\Http\Controllers\ViewCategoryController::class, 'ViewCategory'])->name('CategoryProduct');
 
 
 
