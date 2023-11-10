@@ -11,9 +11,9 @@
             <div class="row justify-content-center">
                 <div class="col-lg-5">
                     <div class="text-center">
-                        <h1 class="text-white">Contact Us</h1>
-                        <p class="fs-16 mb-0 text-white-75">Let's start something great together. Get in touch with one of
-                            the team today!</p>
+                        <h1 class="text-white">Contacter Nous</h1>
+                        <p class="fs-16 mb-0 text-white-75">Commencons par quelque chose fabuleux. Restez en contact avec notre
+                            equipe pour une meilleure collaboration!</p>
                     </div>
                 </div>
             </div>
@@ -33,8 +33,8 @@
                                     </div>
                                 </div>
                                 <div class="ms-3 flex-grow-1">
-                                    <h5 class="fs-17 lh-base mb-2">Our Main Office</h5>
-                                    <p class="text-muted fs-14 mb-0">Brusneva Ul., bld. 8, appt. 34, Stavropol, Russia</p>
+                                    <h5 class="fs-17 lh-base mb-2">Notre bureau principal</h5>
+                                    <p class="text-muted fs-14 mb-0">Angle Rues Joseph et Mgr Guilloux, Port-au-Prince, Ouest</p>
                                 </div>
                             </div>
                         </div>
@@ -48,8 +48,8 @@
                                     </div>
                                 </div>
                                 <div class="ms-3 flex-grow-1">
-                                    <h5 class="fs-17 lh-base mb-2">Phone Number</h5>
-                                    <p class="text-muted fs-14 mb-0">+(234) 12345 67890<br> 888-0123-4567 (Toll free)</p>
+                                    <h5 class="fs-17 lh-base mb-2">Numero de Telephone</h5>
+                                    <p class="text-muted fs-14 mb-0">+(509) 3451 6959<br>+(509) 2942 1923 (Appel Gratuit)</p>
                                 </div>
                             </div>
                         </div>
@@ -64,7 +64,7 @@
                                 </div>
                                 <div class="ms-3 flex-grow-1">
                                     <h5 class="fs-17 lh-base mb-2">Fax</h5>
-                                    <p class="text-muted fs-14 mb-0">1-234-567-8900</p>
+                                    <p class="text-muted fs-14 mb-0">+(509) 2942 1923</p>
                                 </div>
                             </div>
                         </div>
@@ -79,7 +79,7 @@
                                 </div>
                                 <div class="ms-3 flex-grow-1">
                                     <h5 class="fs-17 lh-base mb-2">Email</h5>
-                                    <p class="text-muted fs-14 mb-0">support@themesbrand.com</p>
+                                    <p class="text-muted fs-14 mb-0">projetfds22@gmail.com</p>
                                 </div>
                             </div>
                         </div>
@@ -92,15 +92,15 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="text-center mb-4">
-                                        <h3 class="text-capitalize">Get In Touch with us for more Information</h3>
+                                        <h3 class="text-capitalize">Restons en contact pour plus d'information</h3>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="form-group mt-3">
-                                        <label for="nameInput" class="form-label">Name<span
+                                        <label for="nameInput" class="form-label">Nom<span
                                                 class="text-danger">*</span></label>
                                         <input name="nameInput" id="nameInput" type="text" class="form-control"
-                                            placeholder="Enter name">
+                                            placeholder="Entrer votre name">
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
@@ -108,28 +108,27 @@
                                         <label for="emailInput" class="form-label">Email<span
                                                 class="text-danger">*</span></label>
                                         <input name="emailInput" id="emailInput" type="email" class="form-control"
-                                            placeholder="Enter email">
+                                            placeholder="Entrer votre email">
                                     </div>
                                 </div>
                                 <div class="col-lg-12">
                                     <div class="form-group mt-3">
-                                        <label for="subjectInput" class="form-label">Subject<span
+                                        <label for="subjectInput" class="form-label">Objet<span
                                                 class="text-danger">*</span></label>
                                         <input type="text" class="form-control" id="subjectInput"
-                                            placeholder="Enter Subject..">
+                                            placeholder="Entrer l'objet..">
                                     </div>
                                 </div>
                                 <div class="col-lg-12">
                                     <div class="form-group mt-3">
                                         <label for="messageInput" class="form-label">Message<span
                                                 class="text-danger">*</span></label>
-                                        <textarea name="messageInput" id="messageInput" rows="4" class="form-control" placeholder="Enter message..."></textarea>
+                                        <textarea name="messageInput" id="messageInput" rows="4" class="form-control" placeholder="Entrer le message..."></textarea>
                                     </div>
                                 </div>
                                 <div class="col-lg-12">
                                     <div class="text-end mt-4">
-                                        <button type="submit" id="submit" name="submit" class="btn btn-primary">Send
-                                            Message <i
+                                        <button type="submit" id="submit" name="submit" class="btn btn-primary">Envoyer <i
                                                 class="bi bi-arrow-right-short align-middle fs-16 ms-1"></i></button>
                                     </div>
                                 </div>

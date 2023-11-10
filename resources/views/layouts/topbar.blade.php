@@ -1,12 +1,12 @@
 <nav class="navbar navbar-expand-lg ecommerce-navbar" id="navbar">
     <div class="container">
-        <a class="navbar-brand d-none d-lg-block" href="index">
+        <a class="navbar-brand d-none d-lg-block" href="{{route('index')}}">
             <div class="logo-dark">
-                <img src="{{ URL::asset('build/images/logo-dark.png') }}" alt="" height="25">
+                <img src="{{ URL::asset('build/images/logo1.png') }}" alt="" height="5%" width="90%">
             </div>
-            <div class="logo-light">
-                <img src="{{ URL::asset('build/images/logo-light.png') }}" alt="" height="25">
-            </div>
+{{--            <div class="logo-light">--}}
+{{--                <img src="{{ URL::asset('build/images/logo-light.png') }}" alt="" height="25">--}}
+{{--            </div>--}}
         </a>
         <button class="btn btn-soft-primary btn-icon d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <i class="bi bi-list fs-20"></i>
@@ -21,7 +21,7 @@
                 </li>
                 <li class="nav-item dropdown dropdown-hover">
                     <a class="nav-link " data-key="t-demos" href="{{route('index')}}" role="button" >
-                       HOME
+                       ACCUEIL
                     </a>
                     <!-- <ul class="dropdown-menu dropdown-menu-md dropdown-menu-center dropdown-menu-list submenu">
                         <li class="nav-item">
@@ -40,7 +40,7 @@
                 </li>
                 <li class="nav-item dropdown dropdown-hover dropdown-mega-full">
                     <a class="nav-link dropdown-toggle" data-key="t-catalog" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        CATEGORY
+                       SHOP PAR CATEGORIES
                     </a>
                     <!-- ********************************Start layer category********************************** -->
                     <div class="dropdown-menu p-0">
@@ -57,14 +57,22 @@
                             </div>
                      <!-- ********************************End layer category********************************** -->
 <!-------------------------------------------------category-------------------------------------------------------------------------------------------->
-                           
+
                             <div class="col-lg-2">
                                 <ul class="dropdown-menu-list list-unstyled mb-0 py-3">
+{{--                                   @foreach($categories as $kategori)--}}
                                     <li>
                                         <p class="mb-2 text-uppercase fs-11 fw-medium text-muted menu-title" data-key="t-men"></p>
+
+{{--                                        <a href="" class="nav-link" data-key="t-clothing">{{$kategori->title}}</a>--}}
                                     </li>
-                                   
-                                    
+{{--                                    @endforeach--}}
+                                    <li class="nav-item">
+                                        <a href="product-grid-sidebar-banner" class="nav-link" data-key="t-clothing">{{ __('t-clothing') }}</a>
+
+                                    </li>
+
+
                                     <li class="nav-item">
                                         <a href="product-grid-right" class="nav-link" data-key="t-watches">{{ __('t-watches') }}</a>
                                     </li>
@@ -82,7 +90,7 @@
                                     </li> -->
                                 </ul>
                             </div>
-                           
+
                             <div class="col-lg-2">
                                 <ul class="dropdown-menu-list list-unstyled mb-0 py-3">
                                     <li>
@@ -151,7 +159,7 @@
                                 </ul>
                             </div>
                             <!-- *******************************************Others ends**************************************** -->
-                            
+
 <!------------------------------------------------end category----------------------------------------------------------------------------------------->
                             <div class="col-lg-2 d-none d-lg-block">
                                 <div class="p-3">
@@ -195,7 +203,7 @@
                 </li>
                 <li class="nav-item dropdown dropdown-hover">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-key="t-shop">
-                        {{ __('t-shop') }}
+                        SHOP
                     </a>
                     <div class="dropdown-menu dropdown-mega-menu-xl dropdown-menu-center p-0">
                         <div class="row g-0 g-lg-4">
@@ -263,32 +271,35 @@
                 </li>
                 <li class="nav-item dropdown dropdown-hover">
                     <a class="nav-link dropdown-toggle" data-key="t-pages" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        {{ __('t-pages') }}
+                        PAGES
                     </a>
                     <ul class="dropdown-menu dropdown-menu-md dropdown-menu-center dropdown-menu-list submenu">
+                        <li class="nav-item">
+                            <a href="products-category" class="nav-link" data-key="t-categories">{{ __('t-categories') }}</a>
+                        </li>
                         <li class="nav-item dropdown dropdown-hover">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" data-key="t-products">{{ __('t-products') }}</a>
-                            <ul class="dropdown-menu submenu">
-                                <li class="dropdown dropdown-hover">
-                                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" data-key="t-grid-view">{{ __('t-grid-view') }}</a>
-                                    <ul class="dropdown-menu submenu">
-                                        <li><a class="nav-link" href="product-grid-defualt" data-key="t-defualt">{{ __('t-defualt') }}</a></li>
-                                        <li><a class="nav-link" href="product-grid-sidebar-banner" data-key="t-sidebar-with-banner">{{ __('t-sidebar-with-banner') }}</a></li>
-                                        <li><a class="nav-link" href="product-grid-right" data-key="t-right-sidebar">{{ __('t-right-sidebar') }}</a></li>
-                                        <li><a class="nav-link" href="product-grid" data-key="t-no-sidebar">{{ __('t-no-sidebar') }}</a></li>
-                                    </ul>
-                                </li>
-                                <li class="dropdown dropdown-hover">
-                                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" data-key="t-list-view">{{ __('t-list-view') }}</a>
-                                    <ul class="dropdown-menu submenu">
-                                        <li><a class="nav-link" href="product-list-defualt" data-key="t-defualt">{{ __('t-defualt') }}</a></li>
-                                        <li><a class="nav-link" href="product-list-left" data-key="t-left-sidebar">{{ __('t-left-sidebar') }}</a></li>
-                                        <li><a class="nav-link" href="product-list-right" data-key="t-right-sidebar">{{ __('t-right-sidebar') }}</a></li>
-                                        <li><a class="nav-link" href="product-list" data-key="t-no-sidebar">{{ __('t-no-sidebar') }}</a></li>
-                                    </ul>
-                                </li>
-                                <li><a class="nav-link" href="product-details" data-key="t-product-details">{{ __('t-product-details') }}</a></li>
-                            </ul>
+                            <a href="product-grid-sidebar-banner" class="nav-link"  aria-expanded="false" data-key="t-sidebar-with-banner">Products</a>
+{{--                            <ul class="dropdown-menu submenu">--}}
+{{--                               <li class="dropdown dropdown-hover">--}}
+{{--                                   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" data-key="t-grid-view">{{ __('t-grid-view') }}</a>--}}
+{{--                                   <ul class="dropdown-menu submenu">--}}
+{{--                                       <li><a class="nav-link" href="product-grid-defualt" data-key="t-defualt">{{ __('t-defualt') }}</a></li>--}}
+{{--                                       <li><a class="nav-link" href="product-grid-sidebar-banner" data-key="t-sidebar-with-banner">{{ __('t-sidebar-with-banner') }}</a></li>--}}
+{{--                                       <li><a class="nav-link" href="product-grid-right" data-key="t-right-sidebar">{{ __('t-right-sidebar') }}</a></li>--}}
+{{--                                       <li><a class="nav-link" href="product-grid" data-key="t-no-sidebar">{{ __('t-no-sidebar') }}</a></li>--}}
+{{--                                   </ul>--}}
+{{--                               </li>--}}
+{{--                               <li class="dropdown dropdown-hover">--}}
+{{--                                   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" data-key="t-list-view">{{ __('t-list-view') }}</a>--}}
+{{--                                   <ul class="dropdown-menu submenu">--}}
+{{--                                       <li><a class="nav-link" href="product-list-defualt" data-key="t-defualt">{{ __('t-defualt') }}</a></li>--}}
+{{--                                       <li><a class="nav-link" href="product-list-left" data-key="t-left-sidebar">{{ __('t-left-sidebar') }}</a></li>--}}
+{{--                                       <li><a class="nav-link" href="product-list-right" data-key="t-right-sidebar">{{ __('t-right-sidebar') }}</a></li>--}}
+{{--                                       <li><a class="nav-link" href="product-list" data-key="t-no-sidebar">{{ __('t-no-sidebar') }}</a></li>--}}
+{{--                                   </ul>--}}
+{{--                               </li>--}}
+{{--                               <li><a class="nav-link" href="product-details" data-key="t-product-details">{{ __('t-product-details') }}</a></li>--}}
+{{--                            </ul>--}}
                         </li>
                         <li class="nav-item dropdown dropdown-hover">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" data-key="t-users">{{ __('t-users') }}</a>
@@ -305,12 +316,6 @@
                                 <li><a class="nav-link" href="auth-500" data-key="t-error-500">{{ __('t-error-500') }}</a></li>
                                 <li><a class="nav-link" href="coming-soon" data-key="t-coming-soon">{{ __('t-coming-soon') }}</a></li>
                             </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a href="products-category" class="nav-link" data-key="t-categories">{{ __('t-categories') }}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="about-us" class="nav-link" data-key="t-about">{{ __('t-about') }}</a>
                         </li>
                         <li class="nav-item">
                             <a href="purchase-guide" class="nav-link" data-key="t-purchase-guide">{{ __('t-purchase-guide') }}</a>
@@ -364,7 +369,15 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="contact-us" data-key="t-contact">{{ __('t-contact') }}</a>
+                    <a class="nav-link" href="contact-us" data-key="t-contact">CONTACT</a>
+                </li>
+                <li class="nav-item">
+                    <a href="about-us" class="nav-link" data-key="t-about" width="10%">PROPOS</a>
+                      </li>
+                <li class="nav-item">
+{{--                    <a class="nav-link" href="contact-us" data-key="t-contact">AIDE</a>--}}
+                    <a class="nav-link" href="ecommerce-faq"><i class="mdi mdi-lifebuoy text-muted fs-16 align-middle me-1"></i> <span class="align-middle">AIDE</span></a>
+
                 </li>
             </ul>
         </div>
@@ -393,7 +406,7 @@
             </div>
             <div class="dropdown header-item dropdown-hover-end">
                 <button type="button" class="btn" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img class="rounded-circle header-profile-user" src="@if(@Auth::user()->avatar) {{ URL::asset('images/users')."/".@Auth::user()->avatar }} @else {{ URL::asset('build/images/users/avatar-1.jpg') }} @endif" alt="Header Avatar">
+                    <img class="rounded-circle header-profile-user" src="@if(@Auth::user()->avatar) {{ URL::asset('images/users')."/".@Auth::user()->avatar }} @else {{ URL::asset('build/images/users/avatar-1.jpg') }} @endif" alt="PROFIL">
                 </button>
                 <!-- <button type="button" class="btn btn-icon btn-topbar btn-ghost-secondary rounded-circle" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="ph-user-circle fs-22"></i>
@@ -401,10 +414,10 @@
                 <div class="dropdown-menu dropdown-menu-end">
                     <!-- item-->
                     <h6 class="dropdown-header">Welcome {{ @Auth::user()->last_name }}!</h6>
-                    <a class="dropdown-item" href="order-history"><i class="bi bi-cart4 text-muted fs-16 align-middle me-1"></i> <span class="align-middle">Order History</span></a>
-                    <a class="dropdown-item" href="track-order"><i class="bi bi-truck text-muted fs-16 align-middle me-1"></i> <span class="align-middle">Track Orders</span></a>
+                    <a class="dropdown-item" href="order-history"><i class="bi bi-cart4 text-muted fs-16 align-middle me-1"></i> <span class="align-middle">Historique Commande</span></a>
+                    <a class="dropdown-item" href="track-order"><i class="bi bi-truck text-muted fs-16 align-middle me-1"></i> <span class="align-middle">Track Commande</span></a>
                     <a class="dropdown-item" href="javascript:void(0)"><i class="bi bi-speedometer2 text-muted fs-16 align-middle me-1"></i> <span class="align-middle">Dashboard</span></a>
-                    <a class="dropdown-item" href="ecommerce-faq"><i class="mdi mdi-lifebuoy text-muted fs-16 align-middle me-1"></i> <span class="align-middle">Help</span></a>
+{{--                    <a class="dropdown-item" href="ecommerce-faq"><i class="mdi mdi-lifebuoy text-muted fs-16 align-middle me-1"></i> <span class="align-middle">Aide</span></a>--}}
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="account"><i class="bi bi-coin text-muted fs-16 align-middle me-1"></i> <span class="align-middle">Balance : <b>$8451.36</b></span></a>
                     <a class="dropdown-item" href="account"><span class="badge bg-success-subtle text-success mt-1 float-end">New</span><i class="mdi mdi-cog-outline text-muted fs-16 align-middle me-1"></i> <span class="align-middle">Settings</span></a>

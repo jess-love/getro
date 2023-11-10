@@ -36,6 +36,7 @@ class HomeController extends Controller
 
 
 
+
     public function product(Request $request){
 
         $produit = Product::all()->find($request->id);
@@ -45,17 +46,6 @@ class HomeController extends Controller
     }
 
 
-
-    public function ViewCategory(){
-
-       $categorys = Category::all()->where('slug',1);
-
-        // dd($caregorys);
-
-        return view('products-category',compact('categorys'));
-    }
-
-   
 
     public function lang($locale) {
         if ($locale) {
