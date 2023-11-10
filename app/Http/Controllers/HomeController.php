@@ -32,19 +32,7 @@ class HomeController extends Controller
 
         return view('index',compact('produits'));
     }
-
-
-    public function ViewCategory(){
-
-        $categorys = Category::all()->where('slug',1);
-
-        // dd($caregorys);
-
-        return view('products-category',compact('categorys'));
-    }
-
-
-
+    
 
     public function product(Request $request){
 
