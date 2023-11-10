@@ -23,12 +23,16 @@ Route::get('/login', function () {
 Route::get('/product-list-details', [App\Http\Controllers\ProductListDefaultController::class, 'index'])->name('product-list-details');
 
 
-Route::get('/product-details/{id}', [App\Http\Controllers\HomeController::class, 'product'])->name('view_product');
+//Route::get('/product-details/{id}', [App\Http\Controllers\HomeController::class, 'product'])->name('view_product');
+Route::get('/product-details/{id}', [App\Http\Controllers\ProductdetailController::class, 'ViewProduitDetail'])->name('view_product');
 
 //Route::get('/productscategory','ViewCategoryController@viewcategory')->name('CategoryProduct');
 
 
-Route::get('/productscategory', [App\Http\Controllers\ViewCategoryController::class, 'ViewCategory'])->name('CategoryProduct');
+Route::get('/products-category', [App\Http\Controllers\ViewCategoryController::class, 'ViewCategory'])->name('CategoryProduct');
+Route::get('/category', [App\Http\Controllers\CategoryIndexPage::class, 'CategoryIndexpage'])->name('Category');
+
+Route::get('categoryMenu',[App\Http\Controllers\ViewCategoryController::class, 'viewcategoryinMenu']);      //->name('CategoryMenu');
 
 
 
@@ -43,7 +47,7 @@ Route::get('/cartAdd', 'HomeController@add')->name('cartAdd');
 
 Route::get('index/{locale}', [App\Http\Controllers\HomeController::class, 'lang']);
 
-//Auth::routes();
+Auth::routes();
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
@@ -51,4 +55,3 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('{any}', [TonerController::class, 'index']);
 });
-

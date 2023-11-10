@@ -40,7 +40,7 @@
                 </li>
                 <li class="nav-item dropdown dropdown-hover dropdown-mega-full">
                     <a class="nav-link dropdown-toggle" data-key="t-catalog" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        {{ __('t-catalog') }}
+                        {{__('t-catalog')}}
                     </a>
                     <div class="dropdown-menu p-0">
                         <div class="row g-0 g-lg-4">
@@ -55,11 +55,15 @@
                                 </div>
                             </div>
 <!-------------------------------------------------category-------------------------------------------------------------------------------------------->
+                            
                             <div class="col-lg-2">
                                 <ul class="dropdown-menu-list list-unstyled mb-0 py-3">
+                                @foreach ( $cat as $catmenu)
                                     <li>
-                                        <p class="mb-2 text-uppercase fs-11 fw-medium text-muted menu-title" data-key="t-men">{{ __('t-men') }}</p>
+                                        <p class="mb-2 text-uppercase fs-11 fw-medium text-muted menu-title" data-key="t-men">{{ $catmenu->title }}</p>
                                     </li>
+                                @endforeach
+{{-- 
                                     <li class="nav-item">
                                         <a href="product-grid-sidebar-banner" class="nav-link" data-key="t-clothing">{{ __('t-clothing') }}</a>
                                     </li>
@@ -77,7 +81,7 @@
                                     </li>
                                     <li class="nav-item">
                                         <a href="product-list-right" class="nav-link" data-key="t-other-accessories">{{ __('t-other-accessories') }}</a>
-                                    </li>
+                                    </li> --}}
                                 </ul>
                             </div>
                             <div class="col-lg-2">

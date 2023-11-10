@@ -32,9 +32,7 @@ class HomeController extends Controller
 
         return view('index',compact('produits'));
     }
-
-
-
+    
 
     public function product(Request $request){
 
