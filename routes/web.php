@@ -44,7 +44,7 @@ Route::get('/cartAdd', 'HomeController@add')->name('cartAdd');
 
 Route::get('index/{locale}', [App\Http\Controllers\HomeController::class, 'lang']);
 
-//Auth::routes();
+ Auth::routes();
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
