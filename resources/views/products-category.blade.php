@@ -41,10 +41,10 @@
                 <!--end col-->
             </div>
             <!--end row-->
-            <!-------------------------------------category pour des moments occasionnels-------------------------------------------------->
+<!-------------------------------------category pour des moments occasionnels-------------------------------------------------->
 
             <div class="row">
-                @foreach ($categorys as $category)
+                @foreach ($categories as $category)
                     <div class="col-lg-2 col-md-3 col-sm-6">
                         <div class="text-center">
                             <img src="{{ asset('build/images/products/'.$category->image) }}" alt=""
@@ -61,6 +61,8 @@
                 <!--end col-->
             </div>
 
+
+<!-------------------------------------end category --------------------------------------------------------------->
             <!--end row-->
             <!-------------------------------------------end category--------------------------------------------------------------------------->
         </div>
