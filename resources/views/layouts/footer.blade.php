@@ -3,9 +3,9 @@
         <div class="row">
             <div class="col-lg-4">
                 <div class="footer-info">
-                    <img src="{{ URL::asset('build/images/logo-light.png') }}" alt="" height="28" class="logo-light">
-                    <img src="{{ URL::asset('build/images/logo-dark.png') }}" alt="" height="28" class="logo-dark">
-                    <p class="footer-desc mt-4 mb-2 me-3">Toner provides best fashion experience for both men and women at best pricing. We follow New fashion approach to give best premium feel.</p>
+                    <img src="{{ URL::asset('build/images/logo2.png') }}" alt="" height="28%" width="160" class="logo-light">
+                    <img src="{{ URL::asset('build/images/logo2.png') }}" alt="" height="28%" width="160" class="logo-dark">
+                    <p class="footer-desc mt-4 mb-2 me-3">Bel Mache offre la meilleure expérience de mode pour hommes et femmes au meilleur prix. Nous suivons la nouvelle approche de la mode pour donner la meilleure sensation haut de gamme.</p>
 
                     <div class="footer-social mt-4">
                         <ul class="list-inline mb-0">
@@ -31,11 +31,11 @@
                         <div class="mt-lg-0 mt-4">
                             <h5 class="footer-title">Categories</h5>
                             <ul class="list-unstyled footer-link mt-3">
-                                <li><a href="#!">Men</a></li>
-                                <li><a href="#!">Jewellers</a></li>
-                                <li><a href="#!">Accessories</a></li>
-                                <li><a href="#!">Clothing</a></li>
-                                <li><a href="#!">Beauty Items</a></li>
+                                <li><a href="#!">Homme/Femme</a></li>
+                                <li><a href="#!">Bijoux</a></li>
+                                <li><a href="#!">Accessoires</a></li>
+                                <li><a href="#!">Vetements</a></li>
+                                <li><a href="#!">Beaute</a></li>
                             </ul>
                         </div>
                     </div>
@@ -43,37 +43,37 @@
                         <div class="mt-lg-0 mt-4">
                             <h5 class="footer-title">Information</h5>
                             <ul class="list-unstyled footer-link mt-3">
-                                <li><a href="#!">Custom Service</a></li>
+                                <li><a href="#!">Service personnalisé</a></li>
                                 <li><a href="#!">FAQs</a></li>
-                                <li><a href="#!">Ordering</a></li>
-                                <li><a href="#!">Tracking</a></li>
-                                <li><a href="#!">Contacts</a></li>
+                                <li><a href="#!">Commande</a></li>
+                                <li><a href="#!">Suivi</a></li>
+                                <li><a href="#!">Contact</a></li>
                             </ul>
                         </div>
                     </div>
 
                     <div class="col-md-3">
                         <div class="mt-lg-0 mt-4">
-                            <h5 class="footer-title">My Account</h5>
+                            <h5 class="footer-title">Mon Compte</h5>
                             <ul class="list-unstyled footer-link mt-3">
-                                <li><a href="#!">Sign In</a></li>
-                                <li><a href="#!">View Cart</a></li>
-                                <li><a href="#!">My Wishlist</a></li>
-                                <li><a href="#!">Track My Order</a></li>
-                                <li><a href="#!">Help</a></li>
+                                <li><a href="#!">Connexion</a></li>
+                                <li><a href="#!">Voir panier</a></li>
+                                <li><a href="#!">Ma liste</a></li>
+                                <li><a href="#!">Suivre ma commande</a></li>
+                                <li><a href="#!">Aide</a></li>
                             </ul>
                         </div>
                     </div>
 
                     <div class="col-md-3">
                         <div class="mt-lg-0 mt-4">
-                            <h5 class="footer-title">Customer Service</h5>
+                            <h5 class="footer-title">Service Client</h5>
                             <ul class="list-unstyled footer-link mt-3">
-                                <li><a href="#!">Payment Methods</a></li>
-                                <li><a href="#!">Money-back!</a></li>
-                                <li><a href="#!">Returns</a></li>
-                                <li><a href="#!">Shipping</a></li>
-                                <li><a href="#!">Terms and conditions</a></li>
+                                <li><a href="#!">PaiementMethode</a></li>
+                                <li><a href="#!">Remboursement !</a></li>
+                                <li><a href="#!">Retour</a></li>
+                                <li><a href="#!">Livraison</a></li>
+                                <li><a href="#!">Termes et conditions</a></li>
                             </ul>
                         </div>
                     </div>
@@ -83,8 +83,8 @@
 
         <div class="row footer-border-alt mt-4 align-items-center fs-15">
             <div class="col-sm-6">
-                <script>document.write(new Date().getFullYear())</script> © Toner. Design &amp; Develop by <a href="https://themesbrand.com/" target=
-                "_blank" class="text-reset text-decoration-underline">Themesbrand</a>
+                <script>document.write(new Date().getFullYear())</script> © Bel Mache. Conception &amp; Developpe par <a href="https://projetfds22.com/" target=
+                "_blank" class="text-reset text-decoration-underline">FDS PROJET</a>
             </div>
             <div class="col-sm-6">
                 <div class="text-sm-end d-none d-sm-block">

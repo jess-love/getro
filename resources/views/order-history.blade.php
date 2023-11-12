@@ -151,7 +151,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="flex-grow-1">
-                                                    <a href="product-details">
+                                                    <a"product-details">
                                                         <h6 class="fs-15 mb-1">Hp Trendsetter Backpack</h6>
                                                     </a>
                                                     <p class="mb-0 text-muted fs-13">Handbags & Clutches</p>

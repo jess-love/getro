@@ -19,6 +19,7 @@ class ViewCategoryController extends Controller
 
 
 
+
     public function viewcategoryinMenu(){
 
         $cat = Category::all();
@@ -27,4 +28,5 @@ class ViewCategoryController extends Controller
 
         return view('index',compact('cat'));
     }
+
 }

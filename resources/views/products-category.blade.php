@@ -41,7 +41,26 @@
                 <!--end col-->
             </div>
             <!--end row-->
+
+
+<!-------------------------------------category--------------------------------------------------------------------------->
+            <div class="row justify-content-center">
+                @foreach ($categories as $category)
+                    <div class="col-lg-3 col-md-6">
+                        <div class="card card-animate text-center">
+                            <div class="card-body p-4">
+                                <img src="{{ asset('build/images/products/'.$category->image) }}" alt="" class="avatar-xl">
+                                <div class="mt-4">
+                                    <a href="product-list-defualt" class="stretched-link">
+                                        <h5 class="fs-15 mb-0">{{$category->title}}</h5>
+                                    </a><br>
+                                    <h6 class="fs-15 mb-0">{{$category->description}}</h6>
+                                </div>
+
+            <!-------------------------------------category pour des moments occasionnels-------------------------------------------------->
+
 <!-------------------------------------category pour des moments occasionnels-------------------------------------------------->
+
 
             <div class="row">
                 @foreach ($categories as $category)
@@ -54,6 +73,8 @@
                                     <h5 class="mb-2 fs-15">{{$category->title}}</h5>
                                 </a>
                                 <p class="text-muted fs-12">{{$category->description}}</p>
+
+
                             </div>
                         </div>
                     </div>

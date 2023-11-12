@@ -20,7 +20,7 @@
                     </a>
                 </li>
                 <li class="nav-item dropdown dropdown-hover">
-                    <a class="nav-link dropdown-toggle" data-key="t-demos" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="nav-link " data-key="t-demos" href="{{route('index')}}"  role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         {{ __('t-home') }}
                     </a>
                     <ul class="dropdown-menu dropdown-menu-md dropdown-menu-center dropdown-menu-list submenu">
