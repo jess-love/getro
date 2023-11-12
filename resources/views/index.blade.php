@@ -188,12 +188,10 @@
             </div>
 
             <div class="row mt-5">
-
                 <div class="col-lg-12">
                     <div class="text-center">
                         <ul class="list-inline categories-filter animation-nav " id="filter">
-                            <li class="list-inline-item"><a class="categories active" data-filter="*">All Arrival</a>
-                            </li>
+                            <li class="list-inline-item"><a class="categories active" data-filter="*">All Arrival</a></li>
                             <li class="list-inline-item"><a class="categories" data-filter=".seller">Best Seller</a></li>
                             <li class="list-inline-item"><a class="categories" data-filter=".hot">Hot Collection</a></li>
                             <li class="list-inline-item"><a class="categories" data-filter=".trendy">Trendy</a></li>

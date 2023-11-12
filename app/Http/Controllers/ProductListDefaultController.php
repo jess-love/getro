@@ -13,8 +13,6 @@ class ProductListDefaultController extends Controller
     {
 
        $category = Category::all();
-        // dd($category);
-        // return dd($category);
 
         return view('product-list-defualt', compact('category'));
     }

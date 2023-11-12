@@ -15,4 +15,18 @@ class ViewCategoryController extends Controller
 
         return view('products-category',compact('categories'));
     }
+
+
+
+
+
+    public function viewcategoryinMenu(){
+
+        $cat = Category::all();
+
+        //dd($cat);
+
+        return view('index',compact('cat'));
+    }
+
 }

@@ -9,7 +9,7 @@
 @endsection
 @section('content')
     <section class="section ecommerce-about"
-        style="background-image: url('build/images/profile-bg.jpg'); background-size: cover; background-position: center;">
+             style="background-image: url('build/images/profile-bg.jpg'); background-size: cover; background-position: center;">
         <div class="bg-overlay bg-primary" style="opacity: 0.85;"></div>
         <div class="container">
             <div class="row justify-content-center">
@@ -26,18 +26,22 @@
         <!--end container-->
     </section>
 
-    <section class="section">
+
+
+
+    <section>
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-12">
                     <div class="mb-5 text-center">
-                        <h2 class="mb-3">Classic</h2>
-                        <p class="text-muted fs-15 mb-0">Browser the collection of top categories.</p>
+                        <h3 class="mb-3">Ellips</h3>
+                        <p class="text-muted fs-14 mb-0">Browser the collection of top categories.</p>
                     </div>
                 </div>
                 <!--end col-->
             </div>
             <!--end row-->
+
 
 <!-------------------------------------category--------------------------------------------------------------------------->
             <div class="row justify-content-center">
@@ -55,6 +59,9 @@
 
             <!-------------------------------------category pour des moments occasionnels-------------------------------------------------->
 
+<!-------------------------------------category pour des moments occasionnels-------------------------------------------------->
+
+
             <div class="row">
                 @foreach ($categories as $category)
                     <div class="col-lg-2 col-md-3 col-sm-6">
@@ -67,17 +74,20 @@
                                 </a>
                                 <p class="text-muted fs-12">{{$category->description}}</p>
 
+
                             </div>
                         </div>
-                       <!--end card-->
                     </div>
-                <!--end col-->
                 @endforeach
+                <!--end col-->
             </div>
+
+
 <!-------------------------------------end category --------------------------------------------------------------->
             <!--end row-->
+            <!-------------------------------------------end category--------------------------------------------------------------------------->
         </div>
-        <!--end container-->
+        <!--end conatiner-->
     </section>
 
     <section class="section pt-0">
@@ -98,7 +108,7 @@
             <div class="row gy-4">
                 <div class="col-xxl-4 col-md-6">
                     <a href="product-list-defualt"
-                        class="product-banner-1 mt-4 mt-lg-0 rounded overflow-hidden position-relative d-block">
+                       class="product-banner-1 mt-4 mt-lg-0 rounded overflow-hidden position-relative d-block">
                         <img src="{{ URL::asset('build/images/ecommerce/features/img-3.jpg') }}" class="img-fluid rounded" alt="">
                         <div class="bg-overlay blue"></div>
                         <div class="product-content p-4">
@@ -113,7 +123,7 @@
                 <!--end col-->
                 <div class="col-xxl-4 col-md-6">
                     <a href="product-list-defualt"
-                        class="product-banner-1 mt-4 mt-lg-0 rounded overflow-hidden position-relative d-block right">
+                       class="product-banner-1 mt-4 mt-lg-0 rounded overflow-hidden position-relative d-block right">
                         <img src="{{ URL::asset('build/images/ecommerce/features/img-2.jpg') }}" class="img-fluid rounded" alt="">
                         <div class="bg-overlay"></div>
                         <div class="product-content p-4 text-end">
@@ -128,7 +138,7 @@
                 <!--end col-->
                 <div class="col-xxl-4 col-md-6">
                     <a href="product-grid-defualt"
-                        class="product-banner-1 mt-4 mt-lg-0 rounded overflow-hidden position-relative d-block">
+                       class="product-banner-1 mt-4 mt-lg-0 rounded overflow-hidden position-relative d-block">
                         <img src="{{ URL::asset('build/images/ecommerce/features/img-1.jpg') }}" class="img-fluid rounded" alt="">
                         <div class="product-content p-4">
                             <p class="text-uppercase fw-semibold text-secondary fs-15 mb-2">Summer Sales</p>
@@ -157,13 +167,13 @@
                 </div>
                 <!--end col-->
             </div>
-<!--end row-->
-<!-------------------------------------category pour des moments occasionnels-------------------------------------------------->
+            <!--end row-->
+            <!-------------------------------------category pour des moments occasionnels-------------------------------------------------->
             <div class="row">
                 <div class="col-lg-2 col-md-3 col-sm-6">
                     <div class="text-center">
                         <img src="{{ URL::asset('build/images/products/img-6.png') }}" alt=""
-                            class="img-fluid rounded-circle bg-warning-subtle border border-2 border-warning border-opacity-10 p-4">
+                             class="img-fluid rounded-circle bg-warning-subtle border border-2 border-warning border-opacity-10 p-4">
                         <div class="mt-4">
                             <a href="#!">
                                 <h5 class="mb-2 fs-15">Clothes</h5>
@@ -176,7 +186,7 @@
                 <div class="col-lg-2 col-md-3 col-sm-6">
                     <div class="text-center">
                         <img src="{{ URL::asset('build/images/products/img-20.png') }}" alt=""
-                            class="img-fluid rounded-circle bg-dark-subtle border border-2 border-dark border-opacity-10 p-4">
+                             class="img-fluid rounded-circle bg-dark-subtle border border-2 border-dark border-opacity-10 p-4">
                         <div class="mt-4">
                             <a href="#!">
                                 <h5 class="mb-2 fs-15">Electronics</h5>
@@ -189,7 +199,7 @@
                 <div class="col-lg-2 col-md-3 col-sm-6">
                     <div class="text-center">
                         <img src="{{ URL::asset('build/images/products/img-18.png') }}" alt=""
-                            class="img-fluid rounded-circle bg-warning-subtle border border-2 border-warning border-opacity-10 p-4">
+                             class="img-fluid rounded-circle bg-warning-subtle border border-2 border-warning border-opacity-10 p-4">
                         <div class="mt-4">
                             <a href="#!">
                                 <h5 class="mb-2 fs-15">Cosmetic</h5>
@@ -202,7 +212,7 @@
                 <div class="col-lg-2 col-md-3 col-sm-6">
                     <div class="text-center">
                         <img src="{{ URL::asset('build/images/products/img-1.png') }}" alt=""
-                            class="img-fluid rounded-circle bg-danger-subtle border border-2 border-danger border-opacity-10 p-4">
+                             class="img-fluid rounded-circle bg-danger-subtle border border-2 border-danger border-opacity-10 p-4">
                         <div class="mt-4">
                             <a href="#!">
                                 <h5 class="mb-2 fs-15">Bags</h5>
@@ -215,7 +225,7 @@
                 <div class="col-lg-2 col-md-3 col-sm-6">
                     <div class="text-center">
                         <img src="{{ URL::asset('build/images/products/img-15.png') }}" alt=""
-                            class="img-fluid rounded-circle bg-info-subtle border border-2 border-info border-opacity-10 p-4">
+                             class="img-fluid rounded-circle bg-info-subtle border border-2 border-info border-opacity-10 p-4">
                         <div class="mt-4">
                             <a href="#!">
                                 <h5 class="mb-2 fs-15">Handbags & Clutches</h5>
@@ -228,7 +238,7 @@
                 <div class="col-lg-2 col-md-3 col-sm-6">
                     <div class="text-center">
                         <img src="{{ URL::asset('build/images/products/img-5.png') }}" alt=""
-                            class="img-fluid rounded-circle bg-danger-subtle border border-2 border-danger border-opacity-10 p-4">
+                             class="img-fluid rounded-circle bg-danger-subtle border border-2 border-danger border-opacity-10 p-4">
                         <div class="mt-4">
                             <a href="#!">
                                 <h5 class="mb-2 fs-15">Footwear</h5>
@@ -240,7 +250,7 @@
                 <!--end col-->
             </div>
             <!--end row-->
-<!-------------------------------------------end category--------------------------------------------------------------------------->
+            <!-------------------------------------------end category--------------------------------------------------------------------------->
         </div>
         <!--end conatiner-->
     </section>
@@ -266,7 +276,7 @@
                                     <div class="bg-dark-subtle rounded-top py-4">
                                         <div class="gallery-product">
                                             <img src="{{ URL::asset('build/images/products/img-15.png') }}" alt=""
-                                                style="max-height: 215px;max-width: 100%;" class="mx-auto d-block">
+                                                 style="max-height: 215px;max-width: 100%;" class="mx-auto d-block">
                                         </div>
                                     </div>
                                     <div class="card-body text-center">
@@ -281,7 +291,7 @@
                                     <div class="bg-dark-subtle rounded-top py-4">
                                         <div class="gallery-product">
                                             <img src="{{ URL::asset('build/images/products/img-17.png') }}" alt=""
-                                                style="max-height: 215px;max-width: 100%;" class="mx-auto d-block">
+                                                 style="max-height: 215px;max-width: 100%;" class="mx-auto d-block">
                                         </div>
                                     </div>
                                     <div class="card-body text-center">
@@ -296,7 +306,7 @@
                                     <div class="bg-success-subtle rounded-top py-4">
                                         <div class="gallery-product">
                                             <img src="{{ URL::asset('build/images/products/img-4.png') }}" alt=""
-                                                style="max-height: 215px;max-width: 100%;" class="mx-auto d-block">
+                                                 style="max-height: 215px;max-width: 100%;" class="mx-auto d-block">
                                         </div>
                                     </div>
                                     <div class="card-body text-center">
@@ -311,7 +321,7 @@
                                     <div class="bg-danger-subtle rounded-top py-4">
                                         <div class="gallery-product">
                                             <img src="{{ URL::asset('build/images/products/img-12.png') }}" alt=""
-                                                style="max-height: 215px;max-width: 100%;" class="mx-auto d-block">
+                                                 style="max-height: 215px;max-width: 100%;" class="mx-auto d-block">
                                         </div>
                                     </div>
                                     <div class="card-body text-center">
@@ -326,7 +336,7 @@
                                     <div class="bg-warning-subtle rounded-top py-4">
                                         <div class="gallery-product">
                                             <img src="{{ URL::asset('build/images/products/img-18.png') }}" alt=""
-                                                style="max-height: 215px;max-width: 100%;" class="mx-auto d-block">
+                                                 style="max-height: 215px;max-width: 100%;" class="mx-auto d-block">
                                         </div>
                                     </div>
                                     <div class="card-body text-center">
@@ -341,7 +351,7 @@
                                     <div class="bg-dark-subtle rounded-top py-4">
                                         <div class="gallery-product">
                                             <img src="{{ URL::asset('build/images/products/img-9.png') }}" alt=""
-                                                style="max-height: 215px;max-width: 100%;" class="mx-auto d-block">
+                                                 style="max-height: 215px;max-width: 100%;" class="mx-auto d-block">
                                         </div>
                                     </div>
                                     <div class="card-body text-center">
@@ -397,7 +407,7 @@
                                         <span class="categrory-text text-white fs-18">Cosmetics</span>
                                     </div>
                                     <img src="{{ URL::asset('build/images/ecommerce/instagram/img-2.jpg') }}"
-                                        class="w-100 object-fit-cover" alt="" style="max-height: 318px;">
+                                         class="w-100 object-fit-cover" alt="" style="max-height: 318px;">
                                 </a>
                             </div>
                         </div>
@@ -408,7 +418,7 @@
                                         <span class="categrory-text text-white fs-18">Handbags & Clutches</span>
                                     </div>
                                     <img src="{{ URL::asset('build/images/ecommerce/instagram/img-5.jpg') }}"
-                                        class="w-100 object-fit-cover" alt="" style="max-height: 318px;">
+                                         class="w-100 object-fit-cover" alt="" style="max-height: 318px;">
                                 </a>
                             </div>
                         </div>
@@ -419,7 +429,7 @@
     </section>
 
     <section class="section"
-        style="background-image: url('build/images/profile-bg.jpg'); background-size: cover;background-position: center;">
+             style="background-image: url('build/images/profile-bg.jpg'); background-size: cover;background-position: center;">
         <div class="bg-overlay bg-primary" style="opacity: 0.85;"></div>
         <div class="container">
             <div class="row justify-content-center">
@@ -431,7 +441,7 @@
                         <form action="#!">
                             <div class="position-relative ecommerce-subscript">
                                 <input type="email" class="form-control rounded-pill border-0"
-                                    placeholder="Enter your email">
+                                       placeholder="Enter your email">
                                 <button type="submit" class="btn btn-darken-primary rounded-pill">Subscript Now</button>
                             </div>
                         </form>
@@ -471,39 +481,3 @@
                 <div class="col-lg-3 col-sm-6">
                     <div class="d-flex align-items-center gap-3">
                         <div class="flex-shrink-0">
-                            <img src="{{ URL::asset('build/images/ecommerce/guarantee-certificate.png') }}" alt=""
-                                class="avatar-sm">
-                        </div>
-                        <div class="flex-grow-1">
-                            <h5 class="fs-15">Money Back Guarantee</h5>
-                            <p class="text-muted mb-0">Within 5 business days</p>
-                        </div>
-                    </div>
-                </div>
-                <!--end col-->
-                <div class="col-lg-3 col-sm-6">
-                    <div class="d-flex align-items-center gap-3">
-                        <div class="flex-shrink-0">
-                            <img src="{{ URL::asset('build/images/ecommerce/24-hours-support.png') }}" alt="" class="avatar-sm">
-                        </div>
-                        <div class="flex-grow-1">
-                            <h5 class="fs-15">24 X 7 Service</h5>
-                            <p class="text-muted mb-0">Online service for customer</p>
-                        </div>
-                    </div>
-                </div>
-                <!--end col-->
-            </div>
-            <!--end row-->
-        </div>
-        <!--end container-->
-    </section>
-@endsection
-@section('scripts')
-    <!--Swiper slider js-->
-    <script src="{{ URL::asset('build/libs/swiper/swiper-bundle.min.js') }}"></script>
-
-    <script src="{{ URL::asset('build/js/frontend/category.init.js') }}"></script>
-
-    <script src="{{ URL::asset('build/js/frontend/menu.init.js') }}"></script>
-@endsection
