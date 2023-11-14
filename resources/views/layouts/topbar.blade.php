@@ -55,15 +55,13 @@
                                 </div>
                             </div>
 <!-------------------------------------------------category-------------------------------------------------------------------------------------------->
-                            
+                            @foreach ( $categories as $catmenu)
                             <div class="col-lg-2">
                                 <ul class="dropdown-menu-list list-unstyled mb-0 py-3">
-                                {{-- @foreach ( $cat as $catmenu)
                                     <li>
                                         <p class="mb-2 text-uppercase fs-11 fw-medium text-muted menu-title" data-key="t-men">{{ $catmenu->title }}</p>
                                     </li>
-                                @endforeach --}}
-{{-- 
+
                                     <li class="nav-item">
                                         <a href="product-grid-sidebar-banner" class="nav-link" data-key="t-clothing">{{ __('t-clothing') }}</a>
                                     </li>
@@ -81,72 +79,74 @@
                                     </li>
                                     <li class="nav-item">
                                         <a href="product-list-right" class="nav-link" data-key="t-other-accessories">{{ __('t-other-accessories') }}</a>
-                                    </li> --}}
+                                    </li>
+
                                 </ul>
                             </div>
-                            <div class="col-lg-2">
-                                <ul class="dropdown-menu-list list-unstyled mb-0 py-3">
-                                    <li>
-                                        <p class="mb-2 text-uppercase fs-11 fw-medium text-muted menu-title" data-key="t-women">{{ __('t-women') }}</p>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="product-list-defualt" class="nav-link" data-key="t-western-wear">{{ __('t-western-wear') }}</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="product-list-left" class="nav-link" data-key="t-handbags-clutches">{{ __('t-handbags-clutches') }}</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="product-grid-right" class="nav-link" data-key="t-lingerie-nightwear">{{ __('t-lingerie-nightwear') }}</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="product-grid-sidebar-banner" class="nav-link" data-key="t-footwear">{{ __('t-footwear') }}</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="product-grid-defualt" class="nav-link" data-key="t-fashion-silver-jewellery">{{ __('t-fashion-silver-jewellery') }}</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="col-lg-2">
-                                <ul class="dropdown-menu-list list-unstyled mb-0 py-3">
-                                    <li>
-                                        <p class="mb-2 text-uppercase fs-11 fw-medium text-muted menu-title" data-key="t-accessories-others">{{ __('t-accessories-others') }}</p>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="product-grid-right" class="nav-link" data-key="t-home-kitchen-pets">{{ __('t-home-kitchen-pets') }}</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="product-list-left" class="nav-link" data-key="t-beauty-health-grocery">{{ __('t-beauty-health-grocery') }}</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="product-grid-sidebar-banner" class="nav-link" data-key="t-sports-fitness-bags-luggage">{{ __('t-sports-fitness-bags-luggage') }}</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="product-list" class="nav-link" data-key="t-car-motorbike-industrial">{{ __('t-car-motorbike-industrial') }}</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="product-list-right" class="nav-link" data-key="t-books">{{ __('t-books') }}</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="col-lg-2">
-                                <ul class="dropdown-menu-list list-unstyled mb-0 py-3">
-                                    <li>
-                                        <p class="mb-2 text-uppercase fs-11 fw-medium text-muted menu-title" data-key="t-others">{{ __('t-others') }}</p>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="auth-signup-basic" class="nav-link" data-key="t-sign-up">{{ __('t-sign-up') }}</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="auth-signin-basic" class="nav-link" data-key="t-sign-in">{{ __('t-sign-in') }}</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="auth-pass-reset-basic" class="nav-link" data-key="t-passowrd-reset">{{ __('t-passowrd-reset') }}</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="auth-404" class="nav-link" data-key="t-error-404">{{ __('t-error-404') }}</a>
-                                    </li>
-                                </ul>
-                            </div>
+                            @endforeach
+{{--                            <div class="col-lg-2">--}}
+{{--                                <ul class="dropdown-menu-list list-unstyled mb-0 py-3">--}}
+{{--                                    <li>--}}
+{{--                                        <p class="mb-2 text-uppercase fs-11 fw-medium text-muted menu-title" data-key="t-women">{{ $catmenu->title }}</p>--}}
+{{--                                    </li>--}}
+{{--                                    <li class="nav-item">--}}
+{{--                                        <a href="product-list-defualt" class="nav-link" data-key="t-western-wear">{{ __('t-western-wear') }}</a>--}}
+{{--                                    </li>--}}
+{{--                                    <li class="nav-item">--}}
+{{--                                        <a href="product-list-left" class="nav-link" data-key="t-handbags-clutches">{{ __('t-handbags-clutches') }}</a>--}}
+{{--                                    </li>--}}
+{{--                                    <li class="nav-item">--}}
+{{--                                        <a href="product-grid-right" class="nav-link" data-key="t-lingerie-nightwear">{{ __('t-lingerie-nightwear') }}</a>--}}
+{{--                                    </li>--}}
+{{--                                    <li class="nav-item">--}}
+{{--                                        <a href="product-grid-sidebar-banner" class="nav-link" data-key="t-footwear">{{ __('t-footwear') }}</a>--}}
+{{--                                    </li>--}}
+{{--                                    <li class="nav-item">--}}
+{{--                                        <a href="product-grid-defualt" class="nav-link" data-key="t-fashion-silver-jewellery">{{ __('t-fashion-silver-jewellery') }}</a>--}}
+{{--                                    </li>--}}
+{{--                                </ul>--}}
+{{--                            </div>--}}
+{{--                            <div class="col-lg-2">--}}
+{{--                                <ul class="dropdown-menu-list list-unstyled mb-0 py-3">--}}
+{{--                                    <li>--}}
+{{--                                        <p class="mb-2 text-uppercase fs-11 fw-medium text-muted menu-title" data-key="t-accessories-others">{{ __('t-accessories-others') }}</p>--}}
+{{--                                    </li>--}}
+{{--                                    <li class="nav-item">--}}
+{{--                                        <a href="product-grid-right" class="nav-link" data-key="t-home-kitchen-pets">{{ __('t-home-kitchen-pets') }}</a>--}}
+{{--                                    </li>--}}
+{{--                                    <li class="nav-item">--}}
+{{--                                        <a href="product-list-left" class="nav-link" data-key="t-beauty-health-grocery">{{ __('t-beauty-health-grocery') }}</a>--}}
+{{--                                    </li>--}}
+{{--                                    <li class="nav-item">--}}
+{{--                                        <a href="product-grid-sidebar-banner" class="nav-link" data-key="t-sports-fitness-bags-luggage">{{ __('t-sports-fitness-bags-luggage') }}</a>--}}
+{{--                                    </li>--}}
+{{--                                    <li class="nav-item">--}}
+{{--                                        <a href="product-list" class="nav-link" data-key="t-car-motorbike-industrial">{{ __('t-car-motorbike-industrial') }}</a>--}}
+{{--                                    </li>--}}
+{{--                                    <li class="nav-item">--}}
+{{--                                        <a href="product-list-right" class="nav-link" data-key="t-books">{{ __('t-books') }}</a>--}}
+{{--                                    </li>--}}
+{{--                                </ul>--}}
+{{--                            </div>--}}
+{{--                            <div class="col-lg-2">--}}
+{{--                                <ul class="dropdown-menu-list list-unstyled mb-0 py-3">--}}
+{{--                                    <li>--}}
+{{--                                        <p class="mb-2 text-uppercase fs-11 fw-medium text-muted menu-title" data-key="t-others">{{ __('t-others') }}</p>--}}
+{{--                                    </li>--}}
+{{--                                    <li class="nav-item">--}}
+{{--                                        <a href="auth-signup-basic" class="nav-link" data-key="t-sign-up">{{ __('t-sign-up') }}</a>--}}
+{{--                                    </li>--}}
+{{--                                    <li class="nav-item">--}}
+{{--                                        <a href="auth-signin-basic" class="nav-link" data-key="t-sign-in">{{ __('t-sign-in') }}</a>--}}
+{{--                                    </li>--}}
+{{--                                    <li class="nav-item">--}}
+{{--                                        <a href="auth-pass-reset-basic" class="nav-link" data-key="t-passowrd-reset">{{ __('t-passowrd-reset') }}</a>--}}
+{{--                                    </li>--}}
+{{--                                    <li class="nav-item">--}}
+{{--                                        <a href="auth-404" class="nav-link" data-key="t-error-404">{{ __('t-error-404') }}</a>--}}
+{{--                                    </li>--}}
+{{--                                </ul>--}}
+{{--                            </div>--}}
 <!------------------------------------------------end category----------------------------------------------------------------------------------------->
                             <div class="col-lg-2 d-none d-lg-block">
                                 <div class="p-3">
