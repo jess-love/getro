@@ -9,12 +9,12 @@ use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
-    public function add($id){
-    $produit = Product::findorFail($id);
+    public function addProductToCart($id){
+    $produit = Product::query()->findOrFail($id);
     $cart = session()->get('cart',[]);
 
     if(isset($cart[$id])){
-        $cart[$id]['quatite']++;
+        $cart[$id]['quantite']++;
     }else{
         $cart[$id] = [
             "title" =>$produit->title,
@@ -23,7 +23,9 @@ class CartController extends Controller
             "image" => $produit->main_pic
         ];
     }
-    return view('index');
+    session()->put('cart',$cart);
+
+    return redirect()->back()->with('success','produit a ete bien ajoute au panier');
 
 }
 

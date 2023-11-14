@@ -29,9 +29,9 @@ Route::get('/category', [App\Http\Controllers\CategoryIndexPage::class, 'Categor
 
 Route::get('categoryMenu',[App\Http\Controllers\ViewCategoryController::class, 'viewcategoryinMenu']);      //->name('CategoryMenu');
 
-Route::get('/cartAdd', 'HomeController@add')->name('cartAdd');
-
-Route::get('/produit/{id}',[App\Http\Controllers\CartController::class,'add'])->name('add_product_to_cart');
+//Route::get('/cartAdd/{id}', 'HomeController@add')->name('cartAdd');
+Route::get('/produitToCart/{id}',[App\Http\Controllers\CartController::class,'addProductToCart'])->name('ProductToCart');
+//Route::get('/produit/{id}',[App\Http\Controllers\CartController::class,'add'])->name('add_product_to_cart');
 
 
 
