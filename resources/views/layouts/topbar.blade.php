@@ -43,8 +43,6 @@
 
                        SHOP PAR CATEGORIES
 
-                        {{__('t-catalog')}}
-
                     </a>
                     <!-- ********************************Start layer category********************************** -->
                     <div class="dropdown-menu p-0">
@@ -73,7 +71,7 @@
                                     </li>
 {{--                                    @endforeach--}}
 
-                            
+
                             <div class="col-lg-2">
                                 <ul class="dropdown-menu-list list-unstyled mb-0 py-3">
                                 {{-- @foreach ( $cat as $catmenu)
@@ -81,7 +79,7 @@
                                         <p class="mb-2 text-uppercase fs-11 fw-medium text-muted menu-title" data-key="t-men">{{ $catmenu->title }}</p>
                                     </li>
                                 @endforeach --}}
-{{-- 
+{{--
 
                                     <li class="nav-item">
                                         <a href="product-grid-sidebar-banner" class="nav-link" data-key="t-clothing">{{ __('t-clothing') }}</a>
