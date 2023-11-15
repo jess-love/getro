@@ -28,6 +28,6 @@ class AppServiceProvider extends ServiceProvider
         Schema::defaultStringLength(191);
 
         view()->composer(
-            ['index','products-category','Product-details'], HeaderComposer::class);
+            ['index','products-category','Product-details','shop-cart','wishlist','payment','order-history'], HeaderComposer::class);
     }
 }
