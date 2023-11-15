@@ -44,13 +44,6 @@ class HomeController extends Controller
     }
 
 
-    //public function ViewCategory(){
-
-      // $cat = Category::all();
-
-     //dump($cat);
-
-
 
   public function lang($locale) {
 

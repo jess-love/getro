@@ -33,11 +33,13 @@ Route::get('/category', [App\Http\Controllers\CategoryController::class, 'ViewCa
 //Route::get('/productscategory','ViewCategoryController@viewcategory')->name('CategoryProduct');
 
 
+
 Route::get('/products-category', [App\Http\Controllers\ViewCategoryController::class, 'ViewCategory'])->name('CategoryProduct');
 Route::get('/category', [App\Http\Controllers\CategoryIndexPage::class, 'CategoryIndexpage'])->name('Category');
 
 
 Route::get('categoryMenu',[App\Http\Controllers\ViewCategoryController::class, 'viewcategoryinMenu']);      //->name('CategoryMenu');
+
 
 //Route::get('/cartAdd/{id}', 'HomeController@add')->name('cartAdd');
 Route::get('/produitToCart/{id}',[App\Http\Controllers\CartController::class,'addProductToCart'])->name('ProductToCart');
