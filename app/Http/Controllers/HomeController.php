@@ -32,7 +32,7 @@ class HomeController extends Controller
 
         return view('index',compact('produits'));
     }
-    
+
 
 
     public function product(Request $request){
@@ -42,6 +42,7 @@ class HomeController extends Controller
         return view('product-details',compact('produit'));
 
     }
+
                                                       
     //public function ViewCategory(){
 
@@ -54,6 +55,7 @@ class HomeController extends Controller
 
       // return view('products-category',compact('cat'));
    // }
+
 
 
   public function lang($locale) {

@@ -133,8 +133,7 @@
                                 <span class="fw-medium"> (50 Review)</span>
                             </div>
                             <h4 class="lh-base mb-1">{{$products->description}}</h4>
-                            <p class="text-muted mb-4">The best part about stripped t shirt denim & white sneakers or wear
-                                it with a cool chinos and blazer to dress up <a href="javascript:void(0);"
+                            <p class="text-muted mb-4"><a href="javascript:void(0);"
                                     class="link-info">Read More</a></p>
                             <h5 class="fs-24 mb-4">{{$products->unit_price}}$ <span class="text-muted fs-14"><del>{{$products->discount}}$</del></span> <span
                                     class="fs-14 ms-2 text-danger"> (50% off)</span></h5>
@@ -252,7 +251,7 @@
                             </a>
                         </li>
                     </ul>
-
+<!-----------------------------details sur produits-------------------------------------------------------------------------------->
                     <!-- Tab panes -->
                     <div class="tab-content text-muted">
                         <div class="tab-pane active" id="home1" role="tabpanel">
@@ -670,6 +669,7 @@
                         </div>
                     </div>
                 </div>
+<!----------------------------------------fin details sur produits----------------------------------------------------->
                 <!--end col-->
             </div>
             <!--end row-->

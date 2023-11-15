@@ -66,8 +66,10 @@
                 @foreach ($categories as $category)
                     <div class="col-lg-2 col-md-3 col-sm-6">
                         <div class="text-center">
-                            <img src="{{ asset('build/images/products/'.$category->image) }}" alt=""
-                                 class="img-fluid rounded-circle bg-warning-subtle border border-2 border-warning border-opacity-10 p-4">
+                            <a href="#!">
+                                <img src="{{ asset('build/images/products/'.$category->image) }}" alt=""
+                                     class="img-fluid rounded-circle bg-warning-subtle border border-2 border-warning border-opacity-10 p-4">
+                            </a>
                             <div class="mt-4">
                                 <a href="#!">
                                     <h5 class="mb-2 fs-15">{{$category->title}}</h5>

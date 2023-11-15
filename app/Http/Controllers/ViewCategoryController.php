@@ -11,9 +11,10 @@ class ViewCategoryController extends Controller
 
     public function viewcategory(){
 
-        $categories = Category::all()->where('slug',1);;
+       // $categories = Category::all()->where('slug',1);
+        //return view('products-category',compact('categories'));
 
-        return view('products-category',compact('categories'));
+        return view('products-category');
     }
 
 
