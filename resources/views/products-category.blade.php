@@ -26,70 +26,31 @@
         <!--end container-->
     </section>
 
-
-
-
     <section>
         <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-12">
-                    <div class="mb-5 text-center">
-                        <h3 class="mb-3">Ellips</h3>
-                        <p class="text-muted fs-14 mb-0">Browser the collection of top categories.</p>
-                    </div>
-                </div>
-                <!--end col-->
-            </div>
             <!--end row-->
-
-
+            <br>
+            <br>
 <!-------------------------------------category--------------------------------------------------------------------------->
-            <div class="row justify-content-center">
-                @foreach ($categories as $category)
-                    <div class="col-lg-3 col-md-6">
-                        <div class="card card-animate text-center">
-                            <div class="card-body p-4">
-                                <img src="{{ asset('build/images/products/'.$category->image) }}" alt="" class="avatar-xl">
-                                <div class="mt-4">
-                                    <a href="product-list-defualt" class="stretched-link">
-                                        <h5 class="fs-15 mb-0">{{$category->title}}</h5>
-                                    </a><br>
-                                    <h6 class="fs-15 mb-0">{{$category->description}}</h6>
-                                </div>
-
-            <!-------------------------------------category pour des moments occasionnels-------------------------------------------------->
-
-<!-------------------------------------category pour des moments occasionnels-------------------------------------------------->
-
-
             <div class="row">
                 @foreach ($categories as $category)
-                    <div class="col-lg-2 col-md-3 col-sm-6">
-                        <div class="text-center">
-                            <a href="#!">
-                                <img src="{{ asset('build/images/products/'.$category->image) }}" alt=""
-                                     class="img-fluid rounded-circle bg-warning-subtle border border-2 border-warning border-opacity-10 p-4">
-                            </a>
-                            <div class="mt-4">
-                                <a href="#!">
-                                    <h5 class="mb-2 fs-15">{{$category->title}}</h5>
-                                </a>
-                                <p class="text-muted fs-12">{{$category->description}}</p>
-
-
-                            </div>
+                <div class="col-lg-2 col-md-3 col-sm-6">
+                    <div class="text-center">
+                        <img src="{{ asset('build/images/products/'.$category->image) }}" alt=""
+                             class="img-fluid rounded-circle bg-warning-subtle border border-20 border-warning border-opacity-8 p-15">
+                        <div class="mt-4">
+                            <a href="product-list-defualt" class="stretched-link">
+                                <h5 class="fs-15 mb-0">{{$category->title}}</h5>
+                            </a><br>
+                            <h6 class="fs-15 mb-0">{{$category->description}}</h6>
                         </div>
                     </div>
+                </div>
                 @endforeach
                 <!--end col-->
             </div>
-
-
-<!-------------------------------------end category --------------------------------------------------------------->
-            <!--end row-->
             <!-------------------------------------------end category--------------------------------------------------------------------------->
-        </div>
-        <!--end conatiner-->
+        </div><!--end conatiner-->
     </section>
 
     <section class="section pt-0">
@@ -97,6 +58,8 @@
             <div class="row justify-content-center">
                 <div class="col-lg-12">
                     <div class="mb-5 text-center">
+                        <br>
+                        <br>
                         <h2 class="mb-3">Default</h2>
                         <p class="text-muted fs-15 mb-0">Browser the collection of top categories.</p>
                     </div>
@@ -483,3 +446,39 @@
                 <div class="col-lg-3 col-sm-6">
                     <div class="d-flex align-items-center gap-3">
                         <div class="flex-shrink-0">
+                            <img src="{{ URL::asset('build/images/ecommerce/guarantee-certificate.png') }}" alt=""
+                                 class="avatar-sm">
+                        </div>
+                        <div class="flex-grow-1">
+                            <h5 class="fs-15">Money Back Guarantee</h5>
+                            <p class="text-muted mb-0">Within 5 business days</p>
+                        </div>
+                    </div>
+                </div>
+                <!--end col-->
+                <div class="col-lg-3 col-sm-6">
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="flex-shrink-0">
+                            <img src="{{ URL::asset('build/images/ecommerce/24-hours-support.png') }}" alt="" class="avatar-sm">
+                        </div>
+                        <div class="flex-grow-1">
+                            <h5 class="fs-15">24 X 7 Service</h5>
+                            <p class="text-muted mb-0">Online service for customer</p>
+                        </div>
+                    </div>
+                </div>
+                <!--end col-->
+            </div>
+            <!--end row-->
+        </div>
+        <!--end container-->
+    </section>
+@endsection
+@section('scripts')
+    <!--Swiper slider js-->
+    <script src="{{ URL::asset('build/libs/swiper/swiper-bundle.min.js') }}"></script>
+
+    <script src="{{ URL::asset('build/js/frontend/category.init.js') }}"></script>
+
+    <script src="{{ URL::asset('build/js/frontend/menu.init.js') }}"></script>
+@endsection
