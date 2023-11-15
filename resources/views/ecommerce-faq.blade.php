@@ -11,10 +11,10 @@
             <div class="row justify-content-center">
                 <div class="col-lg-6">
                     <div class="text-center">
-                        <h1 class="text-white mb-0">Frequently Asked Questions</h1>
+                        <h1 class="text-white mb-0">Questions fréquemment posées</h1>
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb breadcrumb-light justify-content-center mt-4 fs-15">
-                                <li class="breadcrumb-item"><a href="#">Shop</a></li>
+                                <li class="breadcrumb-item"><a href="#">Boutique</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">Faq's</li>
                             </ol>
                         </nav>
@@ -32,14 +32,14 @@
             <div class="row justify-content-center">
                 <div class="col-lg-12">
                     <div class="text-center">
-                        <h3>Have any Questions ?</h3>
-                        <p class="text-muted mb-4">You can ask anything you want to know about Feedback.</p>
+                        <h3>Avez-vous des questions ?</h3>
+                        <p class="text-muted mb-4">Vous pouvez demander tout ce que vous voulez savoir sur les commentaires.</p>
                         <div class="hstack flex-wrap gap-2 justify-content-center">
                             <button type="button" class="btn btn-primary btn-label rounded-pill"><i
-                                    class="ri-mail-line label-icon align-middle rounded-pill fs-16"></i> Email Us</button>
+                                    class="ri-mail-line label-icon align-middle rounded-pill fs-16"></i> Email nous</button>
                             <button type="button" class="btn btn-info btn-label rounded-pill"><i
-                                    class="ri-twitter-line label-icon align-middle rounded-pill fs-16"></i> Send Us
-                                Tweet</button>
+                                    class="ri-twitter-line label-icon align-middle rounded-pill fs-16"></i> Envoyez-nous des
+                                Tweets</button>
                         </div>
                     </div>
                 </div>
@@ -55,7 +55,7 @@
                                     <i class="bi bi-box-seam"></i>
                                 </div>
                             </div>
-                            <h5 class="fs-16 mb-3"><a href="#" class="text-body stretched-link">Order</a></h5>
+                            <h5 class="fs-16 mb-3"><a href="#" class="text-body stretched-link">Commander</a></h5>
                         </div>
                     </div>
                 </div>
@@ -68,7 +68,7 @@
                                     <i class="bi bi-cash-coin"></i>
                                 </div>
                             </div>
-                            <h5 class="fs-16 mb-3"><a href="#" class="text-body stretched-link">Payments</a></h5>
+                            <h5 class="fs-16 mb-3"><a href="#" class="text-body stretched-link">Paiements</a></h5>
                         </div>
                     </div>
                 </div>
@@ -81,7 +81,7 @@
                                     <i class="bi bi-truck"></i>
                                 </div>
                             </div>
-                            <h5 class="fs-16 mb-3"><a href="#" class="text-body stretched-link">Delivery</a></h5>
+                            <h5 class="fs-16 mb-3"><a href="#" class="text-body stretched-link">Livraison</a></h5>
                         </div>
                     </div>
                 </div>
@@ -94,7 +94,7 @@
                                     <i class="bi bi-bag-dash"></i>
                                 </div>
                             </div>
-                            <h5 class="fs-16 mb-3"><a href="#" class="text-body stretched-link">Returns</a></h5>
+                            <h5 class="fs-16 mb-3"><a href="#" class="text-body stretched-link">Retour</a></h5>
                         </div>
                     </div>
                 </div>
@@ -104,7 +104,7 @@
                 <div class="col-xxl-8 col-lg-8">
                     <div>
                         <div class="mb-4">
-                            <h5 class="fs-16 mb-0 fw-semibold">General Questions</h5>
+                            <h5 class="fs-16 mb-0 fw-semibold">Questions Generaux</h5>
                         </div>
 
                         <div class="accordion accordion-border-box" id="genques-accordion">
@@ -113,16 +113,16 @@
                                     <button class="accordion-button" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#genques-collapseOne" aria-expanded="true"
                                         aria-controls="genques-collapseOne">
-                                        What are FAQ questions?
+                                        C'est quoi FAQ questions?
                                     </button>
                                 </h2>
                                 <div id="genques-collapseOne" class="accordion-collapse collapse show"
                                     aria-labelledby="genques-headingOne" data-bs-parent="#genques-accordion">
                                     <div class="accordion-body">
-                                        An FAQ page <b>(short for Frequently Asked Question page)</b> is a part of your
-                                        website that provides answers to common questions, assuages concerns, and overcomes
-                                        objections. It's a space where customers away from your sales-focused landing pages
-                                        and homepage.
+                                        Un FAQ page <b>(abréviation de page de questions fréquemment posées)</b> fait partie de votre
+                                        site Web qui fournit des réponses aux questions courantes, apaise les inquiétudes et surmonte
+                                        objections. C'est un espace où les clients s'éloignent de vos pages de destination axées sur les ventes
+                                        et page d'accueil.
                                     </div>
                                 </div>
                             </div>
@@ -131,16 +131,16 @@
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#genques-collapseTwo" aria-expanded="false"
                                         aria-controls="genques-collapseTwo">
-                                        What is FAQ process?
+                                        C'est quoi FAQ processus?
                                     </button>
                                 </h2>
                                 <div id="genques-collapseTwo" class="accordion-collapse collapse"
                                     aria-labelledby="genques-headingTwo" data-bs-parent="#genques-accordion">
                                     <div class="accordion-body">
-                                        FAQ stands for Frequently Asked Questions. It's <b>your opportunity to communicate
-                                            with the most important visitors to your website</b> – those who have begun the
-                                        decision-making process about whether to do business with you can't fit elsewhere on
-                                        their website.
+                                        FAQ signifie Foire aux questions. C'est <b>votre opportunité de communiquer
+                                            avec les visiteurs les plus importants de votre site Web</b> – ceux qui ont commencé le
+                                        le processus de prise de décision concernant l'opportunité de faire affaire avec vous ne peut pas s'adapter ailleurs
+                                        leur site internet.
                                     </div>
                                 </div>
                             </div>
@@ -149,15 +149,15 @@
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#genques-collapseThree" aria-expanded="false"
                                         aria-controls="genques-collapseThree">
-                                        What is the purpose of FAQ?
+                                        Quel est l'objectif de FAQ?
                                     </button>
                                 </h2>
                                 <div id="genques-collapseThree" class="accordion-collapse collapse"
                                     aria-labelledby="genques-headingThree" data-bs-parent="#genques-accordion">
                                     <div class="accordion-body">
-                                        The purpose of a FAQ is generally to provide information on frequent questions or
-                                        concerns; however, the format is a useful means of organizing information, and text
-                                        consisting of questions and their answers may thus be called a FAQ regardless.
+                                        Le but d'une FAQ est généralement de fournir des informations sur des questions fréquentes ou
+                                        préoccupations; cependant, le format est un moyen utile d'organiser l'information et le texte
+                                        composé de questions et de leurs réponses peut donc être appelé une FAQ malgré tout.
                                     </div>
                                 </div>
                             </div>
@@ -166,16 +166,16 @@
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#genques-collapseFour" aria-expanded="false"
                                         aria-controls="genques-collapseFour">
-                                        What is an online FAQ?
+                                        Qu'est-ce qu'un FAQ en ligne ?
                                     </button>
                                 </h2>
                                 <div id="genques-collapseFour" class="accordion-collapse collapse"
                                     aria-labelledby="genques-headingFour" data-bs-parent="#genques-accordion">
                                     <div class="accordion-body">
-                                        FAQs stand for frequently asked questions. It is one of the many crucial pages of
-                                        your website. It gives your customers answers to recurring and common questions and
-                                        addresses their concerns public product documentation that is released at the same
-                                        time.
+                                        Les FAQ représentent les questions fréquemment posées. C'est l'une des nombreuses pages cruciales de
+                                        votre site web. Il donne à vos clients des réponses aux questions récurrentes et courantes et
+                                        répond à leurs préoccupations, la documentation publique du produit est publiée en même temps
+                                        temps.
                                     </div>
                                 </div>
                             </div>
@@ -198,10 +198,10 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="d-sm-flex align-items-center">
-                        <h2 class="text-white text-capitalize mb-0 flex-grow-1">Let us know how we can help you</h2>
+                        <h2 class="text-white text-capitalize mb-0 flex-grow-1">Dites-nous comment nous pouvons vous aider</h2>
                         <div class="flex-shrink-0 mt-3 mt-sm-0">
                             <a href="contact-us" class="btn btn-darken-secondary btn-hover"><i
-                                    class="ph-phone align-middle me-1"></i> Contact Us</a>
+                                    class="ph-phone align-middle me-1"></i> Contacter Nous</a>
                         </div>
                     </div>
                 </div>

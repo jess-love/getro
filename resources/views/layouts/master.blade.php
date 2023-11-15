@@ -20,6 +20,8 @@
     @include('layouts.top-tagbar')
     <!-- topbar -->
     @include('layouts.topbar')
+{{--    @include('layouts.topbar', ['category'=>$categories])--}}
+
 
     @yield('content')
 
