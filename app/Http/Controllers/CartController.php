@@ -2,20 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
-use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
-
+use Cart;
 
 class CartController extends Controller
 {
-    public function addProductToCart(){
+    //
 
-    return view('');
-}
+    public function index(){
 
-    public function panier(){
+        $cartItems = Cart::instance('cart')->content();
 
-
+        return view('');
     }
 }

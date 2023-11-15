@@ -40,6 +40,9 @@ Route::get('categoryMenu',[App\Http\Controllers\ViewCategoryController::class, '
 
 Route::get('/produitToCart/{id}',[App\Http\Controllers\CartController::class,'addProductToCart'])->name('ProductToCart');
 
+ //route pour shoppingcart
+Route::get('/cart',[\App\Http\Controllers\CartController::class,'index'])->name('cart.index');
+
 
 
 

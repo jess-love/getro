@@ -49,7 +49,7 @@
                 @endforeach
                 <!--end col-->
             </div>
-            <!-------------------------------------------end category--------------------------------------------------------------------------->
+<!-------------------------------------------end category------------------------------------------------------------------>
         </div><!--end conatiner-->
     </section>
 
@@ -393,8 +393,7 @@
         </div>
     </section>
 
-    <section class="section"
-             style="background-image: url('build/images/profile-bg.jpg'); background-size: cover;background-position: center;">
+    <section class="section" style="background-image: url('build/images/profile-bg.jpg'); background-size: cover;background-position: center;">
         <div class="bg-overlay bg-primary" style="opacity: 0.85;"></div>
         <div class="container">
             <div class="row justify-content-center">
