@@ -23,20 +23,7 @@
                     <a class="nav-link " data-key="t-demos" href="{{route('index')}}" role="button" >
                        ACCUEIL
                     </a>
-                    <!-- <ul class="dropdown-menu dropdown-menu-md dropdown-menu-center dropdown-menu-list submenu">
-                        <li class="nav-item">
-                            <a href="index" class="nav-link" data-key="t-main-layout">{{ __('t-main-layout') }}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="watch-main-layout" class="nav-link" data-key="t-unique-watches">{{ __('t-unique-watches') }}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="modern-fashion" class="nav-link" data-key="t-modern-fashion">{{ __('t-modern-fashion') }}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="trend-fashion" class="nav-link" data-key="t-trend-fashion">{{ __('t-trend-fashion') }}</a>
-                        </li>
-                    </ul> -->
+
                 </li>
                 <li class="nav-item dropdown dropdown-hover dropdown-mega-full">
                     <a class="nav-link dropdown-toggle" data-key="t-catalog" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -59,52 +46,27 @@
                             </div>
                      <!-- ********************************End layer category********************************** -->
 <!-------------------------------------------------category-------------------------------------------------------------------------------------------->
-]
+
+                            @foreach ( $categories as $catmenu)
+
+
 
                             <div class="col-lg-2">
                                 <ul class="dropdown-menu-list list-unstyled mb-0 py-3">
-{{--                                   @foreach($categories as $kategori)--}}
                                     <li>
                                         <p class="mb-2 text-uppercase fs-11 fw-medium text-muted menu-title" data-key="t-men"></p>
-
-{{--                                        <a href="" class="nav-link" data-key="t-clothing">{{$kategori->title}}</a>--}}
                                     </li>
-{{--                                    @endforeach--}}
+
 
 
                             <div class="col-lg-2">
                                 <ul class="dropdown-menu-list list-unstyled mb-0 py-3">
-                                {{-- @foreach ( $cat as $catmenu)
                                     <li>
                                         <p class="mb-2 text-uppercase fs-11 fw-medium text-muted menu-title" data-key="t-men">{{ $catmenu->title }}</p>
                                     </li>
+
+
                                 @endforeach --}}
-{{--
-
-                                    <li class="nav-item">
-                                        <a href="product-grid-sidebar-banner" class="nav-link" data-key="t-clothing">{{ __('t-clothing') }}</a>
-
-                                    </li>
-
-
-                                    <li class="nav-item">
-                                        <a href="product-grid-right" class="nav-link" data-key="t-watches">{{ __('t-watches') }}</a>
-                                    </li>
-                               <!--      <li class="nav-item">
-                                        <a href="product-list-left" class="nav-link" data-key="t-bags-Luggage">{{ __('t-bags-Luggage') }}</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="product-grid-right" class="nav-link" data-key="t-footwear">{{ __('t-footwear') }}</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="product-list" class="nav-link" data-key="t-innerwear">{{ __('t-innerwear') }}</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="product-list-right" class="nav-link" data-key="t-other-accessories">{{ __('t-other-accessories') }}</a>
-
-                                    </li> -->
-
-                                    </li> --}}
 
                                 </ul>
                             </div>
@@ -173,10 +135,15 @@
                                     </li>
                                     <li class="nav-item">
                                         <a href="auth-404" class="nav-link" data-key="t-error-404">{{ __('t-error-404') }}</a>
+
                                     </li>
+
                                 </ul>
                             </div>
+
+                            @endforeach
                             <!-- *******************************************Others ends**************************************** -->
+
 
 <!------------------------------------------------end category----------------------------------------------------------------------------------------->
                             <div class="col-lg-2 d-none d-lg-block">
@@ -297,27 +264,7 @@
                         </li>
                         <li class="nav-item dropdown dropdown-hover">
                             <a href="product-grid-sidebar-banner" class="nav-link"  aria-expanded="false" data-key="t-sidebar-with-banner">Products</a>
-{{--                            <ul class="dropdown-menu submenu">--}}
-{{--                               <li class="dropdown dropdown-hover">--}}
-{{--                                   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" data-key="t-grid-view">{{ __('t-grid-view') }}</a>--}}
-{{--                                   <ul class="dropdown-menu submenu">--}}
-{{--                                       <li><a class="nav-link" href="product-grid-defualt" data-key="t-defualt">{{ __('t-defualt') }}</a></li>--}}
-{{--                                       <li><a class="nav-link" href="product-grid-sidebar-banner" data-key="t-sidebar-with-banner">{{ __('t-sidebar-with-banner') }}</a></li>--}}
-{{--                                       <li><a class="nav-link" href="product-grid-right" data-key="t-right-sidebar">{{ __('t-right-sidebar') }}</a></li>--}}
-{{--                                       <li><a class="nav-link" href="product-grid" data-key="t-no-sidebar">{{ __('t-no-sidebar') }}</a></li>--}}
-{{--                                   </ul>--}}
-{{--                               </li>--}}
-{{--                               <li class="dropdown dropdown-hover">--}}
-{{--                                   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" data-key="t-list-view">{{ __('t-list-view') }}</a>--}}
-{{--                                   <ul class="dropdown-menu submenu">--}}
-{{--                                       <li><a class="nav-link" href="product-list-defualt" data-key="t-defualt">{{ __('t-defualt') }}</a></li>--}}
-{{--                                       <li><a class="nav-link" href="product-list-left" data-key="t-left-sidebar">{{ __('t-left-sidebar') }}</a></li>--}}
-{{--                                       <li><a class="nav-link" href="product-list-right" data-key="t-right-sidebar">{{ __('t-right-sidebar') }}</a></li>--}}
-{{--                                       <li><a class="nav-link" href="product-list" data-key="t-no-sidebar">{{ __('t-no-sidebar') }}</a></li>--}}
-{{--                                   </ul>--}}
-{{--                               </li>--}}
-{{--                               <li><a class="nav-link" href="product-details" data-key="t-product-details">{{ __('t-product-details') }}</a></li>--}}
-{{--                            </ul>--}}
+
                         </li>
                         <li class="nav-item dropdown dropdown-hover">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" data-key="t-users">{{ __('t-users') }}</a>

@@ -43,6 +43,7 @@ class HomeController extends Controller
 
     }
 
+
     //public function ViewCategory(){
 
       // $cat = Category::all();
@@ -51,6 +52,7 @@ class HomeController extends Controller
 
       // return view('products-category',compact('cat'));
    // }
+
 
 
   public function lang($locale) {

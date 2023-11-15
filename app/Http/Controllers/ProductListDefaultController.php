@@ -12,7 +12,7 @@ class ProductListDefaultController extends Controller
     public function index()
     {
 
-       $category = Category::all();
+       $category = Category::all()->where('slug',1);
 
         return view('product-list-defualt', compact('category'));
     }
