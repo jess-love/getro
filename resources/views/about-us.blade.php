@@ -14,10 +14,10 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-6">
-                    <h1 class="fw-bold mb-3">👋 About Us</h1>
-                    <p class="fs-16 text-muted mb-5 mb-lg-3">We’re impartial and independent, and every day we create
-                        distinctive, world-class programmes and content which inform, educate and entertain millions of
-                        people in the around the world. The thought process that led to the items being created and sold.
+                    <h1 class="fw-bold mb-3">👋 A propos de nous</h1>
+                    <p class="fs-16 text-muted mb-5 mb-lg-3">Nous sommes et dynamique independant, et chaque jour nous creons pour vous des
+                        evenements pour vous aider a faire vos achats en toute quietude. Des contenus et programmes qui vous procure de l'education,
+                        des produits de la production locale qui vous permettra de rester connecter a l'embleme de notre cher Haiti!
                     </p>
                 </div>
                 <div class="col-lg-6">
@@ -54,10 +54,10 @@
                                 style="width:70px;height:70px">
                             </lord-icon>
                             <h5 class="fs-16 mt-3">25,000+ Happy Customer</h5>
-                            <p class="text-muted">Customer happiness goes beyond customer satisfaction by creating an
-                                emotional connection with a brand's.</p>
+                            <p class="text-muted">La joie de nos clients marche avec la satisfaction que nous leur rendons a travers nos produits
+                                en creant une connection emotionnelle avec nos marques.</p>
                             <div>
-                                <a href="#!" class="link-effect link-primary">Read More <i
+                                <a href="#!" class="link-effect link-primary">Lire Plus <i
                                         class="bi bi-arrow-right ms-2"></i></a>
                             </div>
                         </div>
@@ -69,11 +69,11 @@
                             <lord-icon src="https://cdn.lordicon.com/hbwqfgcf.json" trigger="hover" target="div"
                                 style="width:70px;height:70px">
                             </lord-icon>
-                            <h5 class="fs-16 mt-3">6+ Years of Experiences</h5>
-                            <p class="text-muted">The years of experience you list on your resume represent the work
-                                experience you have if you have little experience.</p>
+                            <h5 class="fs-16 mt-3">2+ Annees d'experience</h5>
+                            <p class="text-muted">Les annees d'experience listees dans votre CV representent l'experience de travail
+                                que vous avez.</p>
                             <div>
-                                <a href="#!" class="link-effect link-primary">Read More <i
+                                <a href="#!" class="link-effect link-primary">Lire Plus <i
                                         class="bi bi-arrow-right ms-2"></i></a>
                             </div>
                         </div>
@@ -85,11 +85,11 @@
                             <lord-icon src="https://cdn.lordicon.com/xhbsnkyp.json" trigger="hover" target="div"
                                 style="width:70px;height:70px">
                             </lord-icon>
-                            <h5 class="fs-16 mt-3">14 Awards Won</h5>
-                            <p class="text-muted">The Global Content Awards celebrate excellence in content marketing and
-                                rewards agencies and in-house teams.</p>
+                            <h5 class="fs-16 mt-3">14 prix Gagne</h5>
+                            <p class="text-muted">Les contenus global de nos prix excelle dans le marketing
+                                et les agences dans notre gestion d'equipe.</p>
                             <div>
-                                <a href="#!" class="link-effect link-primary">Read More <i
+                                <a href="#!" class="link-effect link-primary">Lire Plus <i
                                         class="bi bi-arrow-right ms-2"></i></a>
                             </div>
                         </div>
@@ -104,9 +104,9 @@
             <div class="row justify-content-center">
                 <div class="col-lg-6">
                     <div class="text-center mb-5">
-                        <h2 class="mb-3">Expart Management Team</h2>
-                        <P class="text-muted fs-15">An Expert Leader is first and foremost someone who has deep expertise in
-                            the area that they are leading.</P>
+                        <h2 class="mb-3">Expert en gestion d'equipe/h2>
+                        <P class="text-muted fs-15">Un expert est le premier et tout d'abord quelqu'un qui a un profond expertise
+                            dans le milieu qu'il est entrain d'evoluer.</P>
                     </div>
                 </div>
             </div>
@@ -119,9 +119,9 @@
                         </div>
                         <div class="mt-4 pt-1">
                             <a href="#!">
-                                <h5>Rachael Larson</h5>
+                                <h5>Marie Jessy BOUQUET</h5>
                             </a>
-                            <p class="text-muted mb-0">Founder</p>
+                            <p class="text-muted mb-0">Fondateur</p>
                         </div>
                     </div>
                 </div>
@@ -133,9 +133,9 @@
                         </div>
                         <div class="mt-4 pt-1">
                             <a href="#!">
-                                <h5>Jennifer Thompson</h5>
+                                <h5>JB. Rotshil MOISE</h5>
                             </a>
-                            <p class="text-muted mb-0">Sr. Manager</p>
+                            <p class="text-muted mb-0">Gestionnaire</p>
                         </div>
                     </div>
                 </div>
@@ -147,9 +147,9 @@
                         </div>
                         <div class="mt-4 pt-1">
                             <a href="#!">
-                                <h5>Amanda Rivera</h5>
+                                <h5>Roselande ESTERVIL</h5>
                             </a>
-                            <p class="text-muted mb-0">Marketing Executive</p>
+                            <p class="text-muted mb-0">Marketing</p>
                         </div>
                     </div>
                 </div>
@@ -161,9 +161,9 @@
                         </div>
                         <div class="mt-4 pt-1">
                             <a href="#!">
-                                <h5>Donald Schmidt</h5>
+                                <h5>Wichley VALENTIN</h5>
                             </a>
-                            <p class="text-muted mb-0">Account Executive</p>
+                            <p class="text-muted mb-0">Comptable</p>
                         </div>
                     </div>
                 </div>
@@ -181,13 +181,13 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="mt-4 mt-lg-0">
-                        <p class="text-uppercase fw-medium text-muted">Best Products Sales</p>
-                        <h2 class="lh-base fw-semibold mb-3">Desgining Spaces to enahance your business growth</h2>
-                        <P class="text-muted fs-16">A physical office space will promote collaboration and understanding.
-                            Having a physical location for your business allows you to put together the company that you
-                            want in an environment where employees can communicate with each other without having to go
-                            through any extra steps.</P>
-                        <a href="#!" class="fw-medium link-effect">Shop Now <i
+                        <p class="text-uppercase fw-medium text-muted">Meilleurs produits en vente/p>
+                        <h2 class="lh-base fw-semibold mb-3">Espace de production pour ameliorer votre business</h2>
+                        <P class="text-muted fs-16">L’espace de bureau physique favorisera la collaboration et la compréhension.
+                            Avoir un emplacement physique pour votre entreprise vous permet de constituer l'entreprise que vous
+                            souhaitez dans un environnement où les employés peuvent communiquer entre eux sans avoir à se déplacer
+                            à travers toutes les étapes supplémentaires.</P>
+                        <a href="#!" class="fw-medium link-effect">Acheter Maintenant <i
                                 class="bi bi-arrow-right ms-2"></i></a>
                     </div>
                 </div>
@@ -202,14 +202,14 @@
             <div class="row justify-content-center">
                 <div class="col-lg-6">
                     <div class="text-center">
-                        <h1 class="text-white lh-base text-capitalize">Don't miss out on special offers</h1>
-                        <p class="text-white-75 fs-15 mb-4 pb-2">Never Miss Anything From Toner By Signing Up To Our
-                            Newsletter.</p>
+                        <h1 class="text-white lh-base text-capitalize">Ne manquez pas les offres spéciales</h1>
+                        <p class="text-white-75 fs-15 mb-4 pb-2">Ne manquez rien de Belmache en vous inscrivant à notre
+                            Bulletin.</p>
                         <form action="#!">
                             <div class="position-relative ecommerce-subscript">
                                 <input type="email" class="form-control rounded-pill border-0"
                                     placeholder="Enter your email">
-                                <button type="submit" class="btn btn-darken-primary rounded-pill">Subscript Now</button>
+                                <button type="submit" class="btn btn-darken-primary rounded-pill">Inscrivez-vous Maintenant</button>
                             </div>
                         </form>
                     </div>
@@ -227,8 +227,8 @@
                             <img src="{{ URL::asset('build/images/ecommerce/fast-delivery.png') }}" alt="" class="avatar-sm">
                         </div>
                         <div class="flex-grow-1">
-                            <h5 class="fs-15">Fast &amp; Secure Delivery</h5>
-                            <p class="text-muted mb-0">Tell about your service.</p>
+                            <h5 class="fs-15">Rapide et efficace Livraison sécurisée</h5>
+                            <p class="text-muted mb-0">Parlez de votre service.</p>
                         </div>
                     </div>
                 </div>
@@ -239,8 +239,8 @@
                             <img src="{{ URL::asset('build/images/ecommerce/returns.png') }}" alt="" class="avatar-sm">
                         </div>
                         <div class="flex-grow-1">
-                            <h5 class="fs-15">2 Days Return Policy</h5>
-                            <p class="text-muted mb-0">No question ask.</p>
+                            <h5 class="fs-15">Politique de retour sous 2 jours</h5>
+                            <p class="text-muted mb-0">Aucune question à poser.</p>
                         </div>
                     </div>
                 </div>
@@ -252,8 +252,8 @@
                                 class="avatar-sm">
                         </div>
                         <div class="flex-grow-1">
-                            <h5 class="fs-15">Money Back Guarantee</h5>
-                            <p class="text-muted mb-0">Within 5 business days</p>
+                            <h5 class="fs-15">Garantie de remboursement</h5>
+                            <p class="text-muted mb-0">Dans les 5 jours ouvrables</p>
                         </div>
                     </div>
                 </div>
@@ -265,7 +265,7 @@
                         </div>
                         <div class="flex-grow-1">
                             <h5 class="fs-15">24 X 7 Service</h5>
-                            <p class="text-muted mb-0">Online service for customer</p>
+                            <p class="text-muted mb-0">Service en ligne pour le client</p>
                         </div>
                     </div>
                 </div>

@@ -34,6 +34,7 @@ class HomeController extends Controller
     }
 
 
+
     public function product(Request $request){
 
         $produit = Product::all()->find($request->id);
@@ -42,7 +43,17 @@ class HomeController extends Controller
 
     }
 
-    public function lang($locale) {
+
+    //public function ViewCategory(){
+
+      // $cat = Category::all();
+
+     //dump($cat);
+
+
+
+  public function lang($locale) {
+
         if ($locale) {
             App::setLocale($locale);
             Session::put('lang', $locale);
