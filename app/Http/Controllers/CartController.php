@@ -8,11 +8,4 @@ use Cart;
 class CartController extends Controller
 {
     //
-
-    public function index(){
-
-        $cartItems = Cart::instance('cart')->content();
-
-        return view('');
-    }
 }

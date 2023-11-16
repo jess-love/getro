@@ -35,13 +35,13 @@ Route::get('/products-category', [App\Http\Controllers\ViewCategoryController::c
 Route::get('/category', [App\Http\Controllers\CategoryIndexPage::class, 'CategoryIndexpage'])->name('Category');
 
 
-Route::get('categoryMenu',[App\Http\Controllers\ViewCategoryController::class, 'viewcategoryinMenu']);      //->name('CategoryMenu');
+Route::get('categoryMenu',[App\Http\Controllers\ViewCategoryController::class, 'viewcategoryinMenu']); 
 
 
 Route::get('/produitToCart/{id}',[App\Http\Controllers\CartController::class,'addProductToCart'])->name('ProductToCart');
 
  //route pour shoppingcart
-Route::get('/cart',[\App\Http\Controllers\CartController::class,'index'])->name('cart.index');
+Route::get('/cart',[App\Http\Controllers\CartController::class,'index'])->name('cart.index');
 
 
 
