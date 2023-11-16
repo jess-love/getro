@@ -30,9 +30,6 @@ Route::get('/products-category', [App\Http\Controllers\HomeController::class, 'V
 Route::get('/category', [App\Http\Controllers\CategoryController::class, 'ViewCategory'])->name('CategoryIndexPage');
 
 
-//Route::get('/productscategory','ViewCategoryController@viewcategory')->name('CategoryProduct');
-
-
 
 Route::get('/products-category', [App\Http\Controllers\ViewCategoryController::class, 'ViewCategory'])->name('CategoryProduct');
 Route::get('/category', [App\Http\Controllers\CategoryIndexPage::class, 'CategoryIndexpage'])->name('Category');
@@ -41,19 +38,10 @@ Route::get('/category', [App\Http\Controllers\CategoryIndexPage::class, 'Categor
 Route::get('categoryMenu',[App\Http\Controllers\ViewCategoryController::class, 'viewcategoryinMenu']);      //->name('CategoryMenu');
 
 
-//Route::get('/cartAdd/{id}', 'HomeController@add')->name('cartAdd');
 Route::get('/produitToCart/{id}',[App\Http\Controllers\CartController::class,'addProductToCart'])->name('ProductToCart');
-//Route::get('/produit/{id}',[App\Http\Controllers\CartController::class,'add'])->name('add_product_to_cart');
 
-
-
-
-Route::get('/cartAdd', 'HomeController@add')->name('cartAdd');
-
-//Route::get('/gg','CarteController@panier')->name('shop_cart');
-
-
-
+ //route pour shoppingcart
+Route::get('/cart',[\App\Http\Controllers\CartController::class,'index'])->name('cart.index');
 
 
 
