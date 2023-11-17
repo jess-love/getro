@@ -33,16 +33,16 @@
             <br>
 <!-------------------------------------category--------------------------------------------------------------------------->
             <div class="row">
-                @foreach ($categories as $category)
+                @foreach ($cat_and_sub as $category)
                 <div class="col-lg-2 col-md-3 col-sm-6">
                     <div class="text-center">
-                        <img src="{{ asset('build/images/products/'.$category->image) }}" alt=""
+                        <img src="{{ asset('build/images/products/'.$category->CategoryFunc->image) }}" alt=""
                              class="img-fluid rounded-circle bg-warning-subtle border border-20 border-warning border-opacity-8 p-15">
                         <div class="mt-4">
                             <a href="product-list-defualt" class="stretched-link">
-                                <h5 class="fs-15 mb-0">{{$category->title}}</h5>
+                                <h5 class="fs-15 mb-0">{{$category->CategoryFunc->title}}</h5>
                             </a><br>
-                            <h6 class="fs-15 mb-0">{{$category->description}}</h6>
+                            <h6 class="fs-15 mb-0">{{$category->CategoryFunc->description}}</h6>
                         </div>
                     </div>
                 </div>
