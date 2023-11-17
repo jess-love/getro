@@ -91,7 +91,7 @@
                                     <div class="col-sm">
                                         <div class="d-flex flex-wrap my-n1">
                                             <div>
-                                                <a href="{{route('remove.item')}}" class="d-block text-body p-1 px-2" data-bs-toggle="modal"
+                                                <a href="" class="d-block text-body p-1 px-2" data-bs-toggle="modal"
                                                    data-bs-target="#removeItemModal"><i
                                                         class="ri-delete-bin-fill text-muted align-bottom me-1"></i> Remove</a>
                                             </div>
