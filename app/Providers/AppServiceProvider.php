@@ -29,6 +29,7 @@ class AppServiceProvider extends ServiceProvider
 
         view()->composer(
 
+
             [
                 'contact-us', 'about-us', 'index','products-category','Product-details',
                 'product-grid-sidebar-banner', 'product-list-defualt', 'account',

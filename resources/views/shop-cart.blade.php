@@ -38,6 +38,8 @@
                 </div>
             </div>
             <div class="row product-list justify-content-center">
+
+ <!----------------------------------------les produits du panier------------------------------------------------------->
                 <div class="col-lg-8">
                     <div class="d-flex align-items-center mb-4">
                         <h5 class="mb-0 flex-grow-1 fw-medium">There are <span class="fw-bold product-count"></span>
@@ -46,6 +48,7 @@
                             <a href="#!" class="text-decoration-underline link-secondary">Clear Cart</a>
                         </div>
                     </div>
+ <!----------------------------------------le panier commence ici------------------------------------------------------->
                     <div class="card product">
                         <div class="card-body p-4">
                             <div class="row gy-3">
@@ -106,7 +109,6 @@
                         <!-- end card footer -->
                     </div>
                     <!--end card-->
-
                     <div class="card product">
                         <div class="card-body p-4">
                             <div class="row gy-3">
@@ -286,7 +288,9 @@
                     </div>
                     <!--end card-->
                 </div>
+<!----------------------------------------fin produits du panier------------------------------------------------------->
                 <!--end col-->
+<!----------------------------------------------order summary----------------------------------------------------------------------->
                 <div class="col-lg-4">
                     <div class="sticky-side-div">
                         <div class="card">
@@ -343,7 +347,7 @@
                                     class="ri-logout-box-r-line align-bottom ms-1"></i></button>
                         </div>
                     </div>
-                    <!-- end stickey -->
+<!------------------------------------------------- end order summary --------------------------------------------------------------------->
                 </div>
             </div>
             <!--end row-->
