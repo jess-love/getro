@@ -178,13 +178,13 @@
                             </ul>
                         </div>
   <!---------------------------------------form panier----------------------------------------------------------->
-                        <form method="POST" action="{{route('post.add')}}" id="add_to_cart">
+                        <form method="POST" action="{{route('post.add',['id'=>$products->id])}}" id="add_to_cart">
                             @csrf
                             <div class="d-flex align-items-center mb-4">
                                 <h5 class="fs-15 mb-0">Quantity:</h5>
                                 <div class="input-step ms-2">
                                     <button type="button" class="minus">–</button>
-                                    <input type="number" class="product-quantity1" value="1" min="0"
+                                    <input name="qty" type="number" class="product-quantity1" value="1" min="0"
                                         max="100" readonly="">
                                     <button type="button" class="plus">+</button>
                                 </div>
@@ -193,6 +193,7 @@
                                 <div class="col-md-6">
                                     <div>
                                         <h6 class="fs-14 fw-medium text-muted">Sizes:</h6>
+
                                         <ul class="clothe-size list-unstyled hstack gap-2 mb-0 flex-wrap">
                                             <li> <input value="S" type="radio" name="sizes7" id="product-color-72"> <label
                                                     class="avatar-xs btn btn-soft-primary text-uppercase p-0 fs-12 d-flex align-items-center justify-content-center rounded-circle"
