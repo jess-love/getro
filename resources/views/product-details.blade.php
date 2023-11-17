@@ -99,10 +99,12 @@
                             </div>
                         </div>
                         <!--end col-->
+<!------------------------------------------------------------------------------------add to cart----------------------->
                         <div class="col-lg-12">
                             <div class="mt-3">
                                 <div class="hstack gap-2">
-                                    <button type="button" class="btn btn-success btn-hover w-100">
+
+                                    <button type="submit" class="btn btn-success btn-hover w-100" form="add_to_cart">
                                         <i class="bi bi-basket2 me-2"></i> Add To Cart
                                     </button>
                                     <button type="button" class="btn btn-primary btn-hover w-100">
@@ -110,10 +112,12 @@
                                     </button>
                                     <button class="btn btn-soft-danger custom-toggle btn-hover" data-bs-toggle="button"
                                         aria-pressed="true"> <span class="icon-on"><i class="ri-heart-line"></i></span>
-                                        <span class="icon-off"><i class="ri-heart-fill"></i></span> </button>
+                                        <span class="icon-off"><i class="ri-heart-fill"></i></span>
+                                    </button>
                                 </div>
                             </div>
                         </div>
+<!------------------------------------------------------------------------------------end add to cart----------------------->
                         <!--end col-->
                     </div>
                     <!--end row-->
@@ -173,59 +177,64 @@
                                 </li>
                             </ul>
                         </div>
-                        <div class="d-flex align-items-center mb-4">
-                            <h5 class="fs-15 mb-0">Quantity:</h5>
-                            <div class="input-step ms-2">
-                                <button type="button" class="minus">–</button>
-                                <input type="number" class="product-quantity1" value="1" min="0"
-                                    max="100" readonly="">
-                                <button type="button" class="plus">+</button>
+  <!---------------------------------------form panier----------------------------------------------------------->
+                        <form method="POST" action="{{route('post.add')}}" id="add_to_cart">
+                            @csrf
+                            <div class="d-flex align-items-center mb-4">
+                                <h5 class="fs-15 mb-0">Quantity:</h5>
+                                <div class="input-step ms-2">
+                                    <button type="button" class="minus">–</button>
+                                    <input type="number" class="product-quantity1" value="1" min="0"
+                                        max="100" readonly="">
+                                    <button type="button" class="plus">+</button>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row gy-3">
-                            <div class="col-md-6">
-                                <div>
-                                    <h6 class="fs-14 fw-medium text-muted">Sizes:</h6>
-                                    <ul class="clothe-size list-unstyled hstack gap-2 mb-0 flex-wrap">
-                                        <li> <input type="radio" name="sizes7" id="product-color-72"> <label
-                                                class="avatar-xs btn btn-soft-primary text-uppercase p-0 fs-12 d-flex align-items-center justify-content-center rounded-circle"
-                                                for="product-color-72">s</label> </li>
-                                        <li> <input type="radio" name="sizes7" id="product-color-73"> <label
-                                                class="avatar-xs btn btn-soft-primary text-uppercase p-0 fs-12 d-flex align-items-center justify-content-center rounded-circle"
-                                                for="product-color-73">m</label> </li>
-                                        <li> <input type="radio" name="sizes7" checked id="product-color-74"> <label
-                                                class="avatar-xs btn btn-soft-primary text-uppercase p-0 fs-12 d-flex align-items-center justify-content-center rounded-circle"
-                                                for="product-color-74">l</label> </li>
-                                        <li> <input type="radio" name="sizes7" id="product-color-75"> <label
-                                                class="avatar-xs btn btn-soft-primary text-uppercase p-0 fs-12 d-flex align-items-center justify-content-center rounded-circle"
-                                                for="product-color-75">xl</label> </li>
+                            <div class="row gy-3">
+                                <div class="col-md-6">
+                                    <div>
+                                        <h6 class="fs-14 fw-medium text-muted">Sizes:</h6>
+                                        <ul class="clothe-size list-unstyled hstack gap-2 mb-0 flex-wrap">
+                                            <li> <input value="S" type="radio" name="sizes7" id="product-color-72"> <label
+                                                    class="avatar-xs btn btn-soft-primary text-uppercase p-0 fs-12 d-flex align-items-center justify-content-center rounded-circle"
+                                                    for="product-color-72">s</label> </li>
+                                            <li> <input value="M" type="radio" name="sizes7" id="product-color-73"> <label
+                                                    class="avatar-xs btn btn-soft-primary text-uppercase p-0 fs-12 d-flex align-items-center justify-content-center rounded-circle"
+                                                    for="product-color-73">m</label> </li>
+                                            <li> <input value="L" type="radio" name="sizes7" checked id="product-color-74"> <label
+                                                    class="avatar-xs btn btn-soft-primary text-uppercase p-0 fs-12 d-flex align-items-center justify-content-center rounded-circle"
+                                                    for="product-color-74">l</label> </li>
+                                            <li> <input value="xl" type="radio" name="sizes7" id="product-color-75"> <label
+                                                    class="avatar-xs btn btn-soft-primary text-uppercase p-0 fs-12 d-flex align-items-center justify-content-center rounded-circle"
+                                                    for="product-color-75">xl</label> </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <h6 class="fs-14 fw-medium text-muted">Colors: </h6>
+                                    <ul class="clothe-colors list-unstyled hstack gap-1 mb-0 flex-wrap ms-2">
+                                        <li>
+                                            <input type="radio" name="sizes" id="product-color-2">
+                                            <label
+                                                class="avatar-xs btn btn-info p-0 d-flex align-items-center justify-content-center rounded-circle"
+                                                for="product-color-2"></label>
+                                        </li>
+                                        <li>
+                                            <input type="radio" name="sizes" id="product-color-3">
+                                            <label
+                                                class="avatar-xs btn btn-light p-0 d-flex align-items-center justify-content-center rounded-circle"
+                                                for="product-color-3"></label>
+                                        </li>
+                                        <li>
+                                            <input type="radio" name="sizes" id="product-color-4" checked>
+                                            <label
+                                                class="avatar-xs btn btn-primary p-0 d-flex align-items-center justify-content-center rounded-circle"
+                                                for="product-color-4"></label>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <h6 class="fs-14 fw-medium text-muted">Colors: </h6>
-                                <ul class="clothe-colors list-unstyled hstack gap-1 mb-0 flex-wrap ms-2">
-                                    <li>
-                                        <input type="radio" name="sizes" id="product-color-2">
-                                        <label
-                                            class="avatar-xs btn btn-info p-0 d-flex align-items-center justify-content-center rounded-circle"
-                                            for="product-color-2"></label>
-                                    </li>
-                                    <li>
-                                        <input type="radio" name="sizes" id="product-color-3">
-                                        <label
-                                            class="avatar-xs btn btn-light p-0 d-flex align-items-center justify-content-center rounded-circle"
-                                            for="product-color-3"></label>
-                                    </li>
-                                    <li>
-                                        <input type="radio" name="sizes" id="product-color-4" checked>
-                                        <label
-                                            class="avatar-xs btn btn-primary p-0 d-flex align-items-center justify-content-center rounded-circle"
-                                            for="product-color-4"></label>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
+                        </form>
+ <!---------------------------------------end form panier----------------------------------------------------------->
                     </div>
                 </div>
                 <!--end col-->

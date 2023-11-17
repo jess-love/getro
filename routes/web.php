@@ -3,6 +3,7 @@
 use App\Http\Controllers\TonerController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ViewCategoryController;
+use App\Http\Controllers;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,13 +36,14 @@ Route::get('/products-category', [App\Http\Controllers\ViewCategoryController::c
 Route::get('/category', [App\Http\Controllers\CategoryIndexPage::class, 'CategoryIndexpage'])->name('Category');
 
 
-Route::get('categoryMenu',[App\Http\Controllers\ViewCategoryController::class, 'viewcategoryinMenu']);      //->name('CategoryMenu');
+Route::get('categoryMenu',[App\Http\Controllers\ViewCategoryController::class, 'viewcategoryinMenu']);
 
 
 Route::get('/produitToCart/{id}',[App\Http\Controllers\CartController::class,'addProductToCart'])->name('ProductToCart');
 
  //route pour shoppingcart
-Route::get('/cart',[\App\Http\Controllers\CartController::class,'index'])->name('cart.index');
+Route::post('/cart/post',[App\Http\Controllers\CartController::class,'add'])->name('post.add');
+Route::post('/panier/index','CartController@index')->name('panier_index');
 
 
 
