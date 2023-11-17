@@ -42,7 +42,7 @@ Route::get('categoryMenu',[App\Http\Controllers\ViewCategoryController::class, '
 Route::get('/produitToCart/{id}',[App\Http\Controllers\CartController::class,'addProductToCart'])->name('ProductToCart');
 
  //route pour shoppingcart
-Route::post('/cart/post',[App\Http\Controllers\CartController::class,'add'])->name('post.add');
+Route::post('/cart/{id}',[App\Http\Controllers\CartController::class,'add'])->name('post.add');
 Route::post('/panier/index','CartController@index')->name('panier_index');
 
 
