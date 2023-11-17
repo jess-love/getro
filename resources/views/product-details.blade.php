@@ -943,7 +943,7 @@
                         <p class="fs-15 text-uppercase fw-medium"><span class="fw-semibold text-danger">25% Up to</span>
                             off all Products</p>
                         <h1 class="lh-base text-capitalize mb-3">Stay home & get your daily needs from our shop</h1>
-                        <p class="fs-15 mb-4 pb-2">Start you'r daily shopping with <a href="#!"
+                        <p class="fs-15 mb-4 pb-2">Start you're daily shopping with <a href="#!"
                                 class="link-info fw-medium">Toner</a></p>
                         <form action="#!">
                             <div class="position-relative ecommerce-subscript">
@@ -1001,7 +1001,7 @@
                                 class="avatar-sm">
                         </div>
                         <div class="flex-grow-1">
-                            <h5 class="fs-15">Money Back Guarantee</h5>
+                            <h5 class="fs-15"> Money Back Guarantee </h5>
                             <p class="text-muted mb-0">Within 5 business days</p>
                         </div>
                     </div>

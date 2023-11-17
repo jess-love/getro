@@ -53,51 +53,17 @@
                                                     @endif
                                                     <li> <p class="mb-2 text-uppercase fs-11 fw-medium text-muted menu-title" data-key="t-men">{{ $subCategory->title }}</p></li>
 
+
                                         @endforeach
                                         </ul>
-                                    </div>
-                                @endforeach
+                            </div>
+                            @endforeach
                             @else
                                 <p>No variable available.</p>
                             @endif
 
 
                             <div class="col-lg-2 d-none d-lg-block">
-{{--                                <div class="p-3">--}}
-{{--                                    <p class="mb-3 text-uppercase fs-11 fw-medium text-muted" data-key="t-top-brands">{{ __('t-top-brands') }}</p>--}}
-{{--                                    <div class="row g-2">--}}
-{{--                                        <div class="col-lg-4">--}}
-{{--                                            <a href="#!" class="d-block p-2 border border-dashed text-center rounded-3">--}}
-{{--                                                <img src="{{ URL::asset('build/images/brands/img-8.png') }}" alt="" class="avatar-sm">--}}
-{{--                                            </a>--}}
-{{--                                        </div>--}}
-{{--                                        <div class="col-lg-4">--}}
-{{--                                            <a href="#!" class="d-block p-2 border border-dashed text-center rounded-3">--}}
-{{--                                                <img src="{{ URL::asset('build/images/brands/img-2.png') }}" alt="" class="avatar-sm">--}}
-{{--                                            </a>--}}
-{{--                                        </div>--}}
-{{--                                        <div class="col-lg-4">--}}
-{{--                                            <a href="#!" class="d-block p-2 border border-dashed text-center rounded-3">--}}
-{{--                                                <img src="{{ URL::asset('build/images/brands/img-3.png') }}" alt="" class="avatar-sm">--}}
-{{--                                            </a>--}}
-{{--                                        </div>--}}
-{{--                                        <div class="col-lg-4">--}}
-{{--                                            <a href="#!" class="d-block p-2 border border-dashed text-center rounded-3">--}}
-{{--                                                <img src="{{ URL::asset('build/images/brands/img-4.png') }}" alt="" class="avatar-sm">--}}
-{{--                                            </a>--}}
-{{--                                        </div>--}}
-{{--                                        <div class="col-lg-4">--}}
-{{--                                            <a href="#!" class="d-block p-2 border border-dashed text-center rounded-3">--}}
-{{--                                                <img src="{{ URL::asset('build/images/brands/img-5.png') }}" alt="" class="avatar-sm">--}}
-{{--                                            </a>--}}
-{{--                                        </div>--}}
-{{--                                        <div class="col-lg-4">--}}
-{{--                                            <a href="#!" class="d-block p-2 border border-dashed text-center rounded-3">--}}
-{{--                                                <img src="{{ URL::asset('build/images/brands/img-6.png') }}" alt="" class="avatar-sm">--}}
-{{--                                            </a>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
                             </div>
                         </div>
                     </div>
@@ -287,13 +253,11 @@
                     <a href="#!" class="dropdown-item" data-mode="auto"><i class="bi bi-moon-stars align-middle me-2"></i> Auto (system defualt)</a>
                 </div>
             </div>
+ <!---------------------------------------------------------avatar---------------------------------------------------------------------------------------------------------->
             <div class="dropdown header-item dropdown-hover-end">
                 <button type="button" class="btn" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <img class="rounded-circle header-profile-user" src="@if(@Auth::user()->avatar) {{ URL::asset('images/users')."/".@Auth::user()->avatar }} @else {{ URL::asset('build/images/users/avatar-1.jpg') }} @endif" alt="Header Avatar">
                 </button>
-                <!-- <button type="button" class="btn btn-icon btn-topbar btn-ghost-secondary rounded-circle" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="ph-user-circle fs-22"></i>
-                </button>    -->
                 <div class="dropdown-menu dropdown-menu-end">
                     <!-- item-->
                     <h6 class="dropdown-header">Welcome {{ @Auth::user()->last_name }}!</h6>
@@ -308,14 +272,15 @@
                     <a class="dropdown-item" href="{{ url('logout') }}"><i class="bi bi-box-arrow-right text-muted fs-16 align-middle me-1"></i> <span class="align-middle" data-key="t-logout">{{ __('t-logout') }}</span></a>
                 </div>
             </div>
+<!------------------------------------------------------------end avatar---------------------------------------------------------------------------------------------------------------->
         </div>
     </div>
 </nav>
 
-<!--cart -->
+<!------------------------------------------------------------------------cart ---------------------------------------------------------------------------------------------------->
 <div class="offcanvas offcanvas-end product-list" tabindex="-1" id="ecommerceCart" aria-labelledby="ecommerceCartLabel">
     <div class="offcanvas-header border-bottom">
-        <h5 class="offcanvas-title" id="ecommerceCartLabel">My Cart <span class="badge bg-danger align-middle ms-1 cartitem-badge">4</span></h5>
+        <h5 class="offcanvas-title" id="ecommerceCartLabel">My Cart <span class="badge bg-danger align-middle ms-1 cartitem-badge">{{count((array) session('cart'))}}</span></h5>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body px-0">
@@ -484,7 +449,7 @@
         </div>
     </div>
 </div>
-
+<!-- ---------------------------------------------------------------------end cart----------------------------------------------------------------------------------------------------->
 <!-- Modal -->
 <div class="modal fade" id="searchModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-lg">
