@@ -178,14 +178,14 @@
                             </ul>
                         </div>
   <!---------------------------------------form panier----------------------------------------------------------->
-                        <form method="POST" action="{{route('post.add',['id'=>$products->id])}}" id="add_to_cart">
+                        <form method="POST" action="{{route('post_add',['id'=>$products->id])}}" id="add_to_cart">
                             @csrf
                             <div class="d-flex align-items-center mb-4">
                                 <h5 class="fs-15 mb-0">Quantity:</h5>
                                 <div class="input-step ms-2">
                                     <button type="button" class="minus">–</button>
                                     <input name="qty" type="number" class="product-quantity1" value="1" min="0"
-                                        max="100" readonly="">
+                                           max="100" readonly="">
                                     <button type="button" class="plus">+</button>
                                 </div>
                             </div>
@@ -214,19 +214,19 @@
                                     <h6 class="fs-14 fw-medium text-muted">Colors: </h6>
                                     <ul class="clothe-colors list-unstyled hstack gap-1 mb-0 flex-wrap ms-2">
                                         <li>
-                                            <input type="radio" name="sizes" id="product-color-2">
+                                            <input value="Vert" type="radio" name="color" id="product-color-2">
                                             <label
                                                 class="avatar-xs btn btn-info p-0 d-flex align-items-center justify-content-center rounded-circle"
                                                 for="product-color-2"></label>
                                         </li>
                                         <li>
-                                            <input type="radio" name="sizes" id="product-color-3">
+                                            <input value="Gris" type="radio" name="color" id="product-color-3">
                                             <label
                                                 class="avatar-xs btn btn-light p-0 d-flex align-items-center justify-content-center rounded-circle"
                                                 for="product-color-3"></label>
                                         </li>
                                         <li>
-                                            <input type="radio" name="sizes" id="product-color-4" checked>
+                                            <input value="Blue" type="radio" name="color" id="product-color-4" checked>
                                             <label
                                                 class="avatar-xs btn btn-primary p-0 d-flex align-items-center justify-content-center rounded-circle"
                                                 for="product-color-4"></label>
@@ -955,7 +955,7 @@
                         <h1 class="lh-base text-capitalize mb-3">Stay home & get your daily needs from our shop</h1>
                         <p class="fs-15 mb-4 pb-2">Start you're daily shopping with <a href="#!"
                                 class="link-info fw-medium">Toner</a></p>
-                        <form action="#!">
+                        <form >
                             <div class="position-relative ecommerce-subscript">
                                 <input type="email" class="form-control rounded-pill" placeholder="Enter your email">
                                 <button type="submit" class="btn btn-primary btn-hover rounded-pill">Subscript
