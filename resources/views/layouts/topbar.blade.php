@@ -1,3 +1,4 @@
+<?php $displayedCategories = []; ?>
 <nav class="navbar navbar-expand-lg ecommerce-navbar" id="navbar">
     <div class="container">
         <a class="navbar-brand d-none d-lg-block" href="{{route('index')}}">
@@ -19,12 +20,13 @@
                         <img src="{{ URL::asset('build/images/logo-light.png') }}" alt="" height="25" class="card-logo-light mx-auto">
                     </a>
                 </li>
-                <li class="nav-item dropdown dropdown-hover">
-                    <a class="nav-link" href="{{route('index')}}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        ACCUEIL
-                    </a>
-                </li>
-                <li class="nav-item dropdown dropdown-mega-full">
+{{--                <li class="nav-item dropdown ">--}}
+{{--                    <a class="nav-link" href="{{route('index')}}" role="button" data-bs-toggle="dropdown" aria-expanded="false">--}}
+{{--                        ACCUEIL--}}
+{{--                    </a>--}}
+{{--                </li>--}}
+
+                <li class="nav-item dropdown dropdown-mega-full dropdown-hover">
                     <a class="nav-link dropdown-toggle" data-key="t-catalog" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         CATEGORIE
                     </a>
@@ -40,51 +42,28 @@
                                     </div>
                                 </div>
                             </div>
-                            @foreach ($categories as $catmenu)
-                            <div class="col-lg-2">
+                            @if ($cat_and_sub)
+                                @foreach($cat_and_sub as $categoryId => $subCategories)
+                                    <div class="col-lg-2">
+                                        <ul class="dropdown-menu-list list-unstyled mb-0 py-3">
+                                        @foreach ($subCategories as $subCategory)
+                                                @if ($subCategory->CategoryFunc && !in_array($subCategory->CategoryFunc->title, $displayedCategories))
+                                                         <li> <p class="mb-2 text-uppercase fs-16 fw-bold text-muted menu-title" data-key="t-men">{{ $subCategory->CategoryFunc->title }}</p></li>
+                                                        <?php $displayedCategories[] = $subCategory->CategoryFunc->title; ?>
+                                                    @endif
+                                                    <li> <p class="mb-2 text-uppercase fs-11 fw-medium text-muted menu-title" data-key="t-men">{{ $subCategory->title }}</p></li>
 
-                                <ul class="dropdown-menu-list list-unstyled mb-0 py-3">
-                                    <li> <p class="mb-2 text-uppercase fs-11 fw-medium text-muted menu-title" data-key="t-men">{{ $catmenu->title }}</p></li>
-                                </ul>
 
+                                        @endforeach
+                                        </ul>
                             </div>
                             @endforeach
+                            @else
+                                <p>No variable available.</p>
+                            @endif
+
+
                             <div class="col-lg-2 d-none d-lg-block">
-                                <div class="p-3">
-                                    <p class="mb-3 text-uppercase fs-11 fw-medium text-muted" data-key="t-top-brands">{{ __('t-top-brands') }}</p>
-                                    <div class="row g-2">
-                                        <div class="col-lg-4">
-                                            <a href="#" class="d-block p-2 border border-dashed text-center rounded-3">
-                                                <img src="{{ URL::asset('build/images/brands/img-8.png') }}" alt="" class="avatar-sm">
-                                            </a>
-                                        </div>
-                                        <div class="col-lg-4">
-                                            <a href="#" class="d-block p-2 border border-dashed text-center rounded-3">
-                                                <img src="{{ URL::asset('build/images/brands/img-2.png') }}" alt="" class="avatar-sm">
-                                            </a>
-                                        </div>
-                                        <div class="col-lg-4">
-                                            <a href="#" class="d-block p-2 border border-dashed text-center rounded-3">
-                                                <img src="{{ URL::asset('build/images/brands/img-3.png') }}" alt="" class="avatar-sm">
-                                            </a>
-                                        </div>
-                                        <div class="col-lg-4">
-                                            <a href="#" class="d-block p-2 border border-dashed text-center rounded-3">
-                                                <img src="{{ URL::asset('build/images/brands/img-4.png') }}" alt="" class="avatar-sm">
-                                            </a>
-                                        </div>
-                                        <div class="col-lg-4">
-                                            <a href="#" class="d-block p-2 border border-dashed text-center rounded-3">
-                                                <img src="{{ URL::asset('build/images/brands/img-5.png') }}" alt="" class="avatar-sm">
-                                            </a>
-                                        </div>
-                                        <div class="col-lg-4">
-                                            <a href="#" class="d-block p-2 border border-dashed text-center rounded-3">
-                                                <img src="{{ URL::asset('build/images/brands/img-6.png') }}" alt="" class="avatar-sm">
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
