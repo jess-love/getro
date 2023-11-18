@@ -40,7 +40,7 @@ Route::get('/products-category', [App\Http\Controllers\HomeController::class, 'V
 Route::get('/products-category', [App\Http\Controllers\ViewCategoryController::class, 'ViewCategory'])->name('CategoryProduct');
 Route::get('/category', [App\Http\Controllers\CategoryIndexPage::class, 'CategoryIndexpage'])->name('Category');
 Route::get('/categoryMenu',[App\Http\Controllers\ViewCategoryController::class, 'viewcategoryinMenu']);      //->name('CategoryMenu');
-=======
+
 Route::get('categoryMenu',[App\Http\Controllers\ViewCategoryController::class, 'viewcategoryinMenu']);
 
 
