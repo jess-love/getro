@@ -28,17 +28,25 @@ Route::get('/product-details/{id}', [App\Http\Controllers\ProductdetailControlle
 
 
 Route::get('/products-category', [App\Http\Controllers\HomeController::class, 'ViewCategory'])->name('CategoryProduct');
-Route::get('/category', [App\Http\Controllers\CategoryController::class, 'ViewCategory'])->name('CategoryIndexPage');
+
+
+
+//Route::get('/sub/category', [App\Http\Controllers\CategoryController::class, 'sub'])->name('sub');
+
+
 
 
 
 Route::get('/products-category', [App\Http\Controllers\ViewCategoryController::class, 'ViewCategory'])->name('CategoryProduct');
 Route::get('/category', [App\Http\Controllers\CategoryIndexPage::class, 'CategoryIndexpage'])->name('Category');
-
+Route::get('/categoryMenu',[App\Http\Controllers\ViewCategoryController::class, 'viewcategoryinMenu']);      //->name('CategoryMenu');
 
 Route::get('categoryMenu',[App\Http\Controllers\ViewCategoryController::class, 'viewcategoryinMenu']);
 
+
 //route add to cart
+
+
 Route::get('/produitToCart/{id}',[App\Http\Controllers\CartController::class,'addProductToCart'])->name('ProductToCart');
 //Route to shop-cart view
 Route::get('/shop-cart',[App\Http\Controllers\CartController::class,'shopcart'])->name('shopCart');
