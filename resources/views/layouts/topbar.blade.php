@@ -383,7 +383,7 @@
         </div>
         <div class="row g-2">
             <div class="col-6">
-                <button type="button" class="btn btn-light w-100" id="reset-layout">View Cart</button>
+                <a href="{{route('shopCart')}}" target="_blank" class="btn btn-light w-100">View Cart</a>
             </div>
             <div class="col-6">
                 <a href="#!" target="_blank" class="btn btn-info w-100">Continue to Checkout</a>

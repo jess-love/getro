@@ -30,7 +30,7 @@ class CartController extends Controller
 
 
     public function shopcart(){
-        
+
         return view('shop-cart');
     }
 }
