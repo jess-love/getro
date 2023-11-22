@@ -41,6 +41,7 @@
             </div>
             <div class="row product-list justify-content-center">
 
+ 
  <!----------------------------------------les produits du panier------------------------------------------------------->
                 <div class="col-lg-8">
                     <div class="d-flex align-items-center mb-4">
