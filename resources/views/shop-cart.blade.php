@@ -52,46 +52,41 @@
                     </div>
 
  <!----------------------------------------le panier commence ici------------------------------------------------------->
-<<<<<<< HEAD
+
                     @php $total = 0 @endphp
                     @foreach((array) session('cart') as $id => $details)
                         @php
                             $total += $details['price']*$details['quantity'];
                         @endphp
 
-=======
+
                     @foreach($content as $produitcart)
->>>>>>> 8780b187cc0e946068ed7f43c27d5a585ae70ec4
+
                         <div class="card product">
                             <div class="card-body p-4">
                                 <div class="row gy-3">
                                     <div class="col-sm-auto">
                                         <div class="avatar-lg h-100">
                                             <div class="avatar-title bg-danger-subtle rounded py-3">
-<<<<<<< HEAD
-                                                <img src="{{ URL::asset('build/images/products/'.$details['image']) }}" alt=""
-=======
-                                                <img src="{{ URL::asset('build/images/products/'.$produitcart->options->image) }}" alt=""
->>>>>>> 8780b187cc0e946068ed7f43c27d5a585ae70ec4
-                                                     class="avatar-md">
+
+                                                <img src="{{ URL::asset('build/images/products/'.$details['image']) }}" alt="" class="avatar-md">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-sm">
                                         <a href="#!">
-<<<<<<< HEAD
+
                                             <h5 class="fs-16 lh-base mb-1">{{$details['title']}}</h5>
                                         </a>
                                         <ul class="list-inline text-muted fs-13 mb-3">
                                             <li class="list-inline-item">Color : <span class="fw-medium">Red</span></li>
                                             <li class="list-inline-item">Size : <span class="fw-medium">M</span></li>
                                         </ul>
-                                        <div class="input-step">
-                                            <button type="button" class="minus">–</button>
-                                            <input type="number" class="product-quantity" value="3" min="0"
-=======
+                                        <button type="button" class="minus">–</button>
+                                            <input type="number" class="product-quantity" value="2" min="0" max="100" readonly>
+                                        <button type="button" class="plus">+</button>
+
                                             <h5 class="fs-16 lh-base mb-1">{{$produitcart->name}}</h5>
-                                        </a>
                                         <ul class="list-inline text-muted fs-13 mb-3">
                                             <li class="list-inline-item">Color : <span class="fw-medium">{{$produitcart->options->Color}}</span></li>
                                             <li class="list-inline-item">Size : <span class="fw-medium">{{$produitcart->options->size}}</span></li>
@@ -99,7 +94,7 @@
                                         <div class="input-step">
                                             <button type="button" class="minus">–</button>
                                             <input type="number" class="product-quantity" value="{{$produitcart->qty}}" min="0"
->>>>>>> 8780b187cc0e946068ed7f43c27d5a585ae70ec4
+
                                                    max="100" readonly>
                                             <button type="button" class="plus">+</button>
                                         </div>
@@ -107,11 +102,11 @@
                                     <div class="col-sm-auto">
                                         <div class="text-lg-end">
                                             <p class="text-muted mb-1 fs-12">Item Price:</p>
-<<<<<<< HEAD
+
                                             <h5 class="fs-16">$<span class="product-price">{{$details['price']}}</span></h5>
-=======
+
                                             <h5 class="fs-16">$<span class="product-price">{{$produitcart->price}}</span></h5>
->>>>>>> 8780b187cc0e946068ed7f43c27d5a585ae70ec4
+
                                         </div>
                                     </div>
                                 </div>
@@ -121,28 +116,23 @@
                                     <div class="col-sm">
                                         <div class="d-flex flex-wrap my-n1">
                                             <div>
-<<<<<<< HEAD
-                                                <a href="#!" class="d-block text-body p-1 px-2" data-bs-toggle="modal"
-=======
-                                                <a href="" class="d-block text-body p-1 px-2" data-bs-toggle="modal"
->>>>>>> 8780b187cc0e946068ed7f43c27d5a585ae70ec4
-                                                   data-bs-target="#removeItemModal"><i
+
+                                                <a href="" class="d-block text-body p-1 px-2" data-bs-toggle="modal"data-bs-target="#removeItemModal"><i
                                                         class="ri-delete-bin-fill text-muted align-bottom me-1"></i> Remove</a>
                                             </div>
                                             <div>
-                                                <a href="#!" class="d-block text-body p-1 px-2"><i
-                                                        class="ri-star-fill text-muted align-bottom me-1"></i> Add Wishlist</a>
+                                                <a href="#!" class="d-block text-body p-1 px-2"><i class="ri-star-fill text-muted align-bottom me-1"></i> Add Wishlist</a>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-sm-auto">
                                         <div class="d-flex align-items-center gap-2 text-muted">
                                             <div>Total :</div>
-<<<<<<< HEAD
+
                                             <h5 class="fs-14 mb-0">$<span class="product-line-price">{{$details['price']*$details['quantity']}}</span></h5>
-=======
+
                                             <h5 class="fs-14 mb-0">$<span class="product-line-price">269.97</span></h5>
->>>>>>> 8780b187cc0e946068ed7f43c27d5a585ae70ec4
+
                                         </div>
                                     </div>
                                 </div>
@@ -206,8 +196,7 @@
                         </div>
                         <div class="hstack gap-2 justify-content-end">
                             <button type="button" class="btn btn-hover btn-danger">Continue Shopping</button>
-                            <button type="button" class="btn btn-hover btn-success">Check Out <i
-                                    class="ri-logout-box-r-line align-bottom ms-1"></i></button>
+                            <button type="button" class="btn btn-hover btn-success">Check Out <i class="ri-logout-box-r-line align-bottom ms-1"></i></button>
                         </div>
                     </div>
 <!------------------------------------------------- end order summary --------------------------------------------------------------------->
