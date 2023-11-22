@@ -38,9 +38,10 @@ Route::get('/category', [App\Http\Controllers\CategoryIndexPage::class, 'Categor
 
 Route::get('categoryMenu',[App\Http\Controllers\ViewCategoryController::class, 'viewcategoryinMenu']);
 
-
+//route add to cart
 Route::get('/produitToCart/{id}',[App\Http\Controllers\CartController::class,'addProductToCart'])->name('ProductToCart');
-
+//Route to shop-cart view
+Route::get('/shop-cart',[App\Http\Controllers\CartController::class,'shopcart'])->name('shop-cart');
  //route pour shoppingcart
 Route::post('/cart/{id}',[App\Http\Controllers\CartController::class,'add'])->name('post.add');
 Route::post('/panier/index','CartController@index')->name('panier_index');

@@ -4,33 +4,33 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
-use Gloudemans\Shoppingcart\Facades\Cart;
-use Illuminate\Routing\Route;
 
 class CartController extends Controller
 {
     //
 
-    public function add(Request $request){
+    public function addProductToCart($id){
 
-        $produit = Product::find($request->id);
-
-        Cart::add(
-            ['id' => $produit->id,
-            'name' => $produit->title,
-            'qty' => 2,
-            'price' => $produit->price,
-            'options' => ['size' => $request->qty,
-                          'Color' => ''
-            ]]);
-
-        return redirect(route('post.add'));
-
+        $product = Product::findOrFail($id);
+        $cart = session()->get('cart',[]);
+        if(isset($cart[$id])){
+            $cart[$id]['quantity']++;
+        }else{
+            $cart[$id] = [
+                'title' =>$product->title,
+                'price' =>$product->unit_price,
+                'image' =>$product->main_pic,
+                'quantity' =>1,
+            ];
+        }
+        session()->put('cart',$cart);
+        return redirect()->back()->with('success','Product add to cart succssfully!');
     }
 
-    public function index(){
 
-        $content = Cart::content();
-        dd($content);
+
+    public function shopcart(){
+        
+        return view('shop-cart');
     }
 }
