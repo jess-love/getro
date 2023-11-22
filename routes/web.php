@@ -43,10 +43,14 @@ Route::get('/produitToCart/{id}',[App\Http\Controllers\CartController::class,'ad
 //Route to shop-cart view
 Route::get('/shop-cart',[App\Http\Controllers\CartController::class,'shopcart'])->name('shopCart');
  //route pour shoppingcart
-Route::post('/cart/{id}',[App\Http\Controllers\CartController::class,'add'])->name('post.add');
-Route::post('/panier/index','CartController@index')->name('panier_index');
 
+Route::post('/cart/{id}',[App\Http\Controllers\CartController::class,'add'])->name('post_add');
+Route::get('/panier/index',[App\Http\Controllers\CartController::class,'index'])->name('cart_index');
 
+//route pour remove item
+Route::delete('/panier/remove',[App\Http\Controllers\CartController::class,'removeItem'])->name('remove.item');
+//route pour delete all items from cart
+Route::delete('/panier/clear',[App\Http\Controllers\CartController::class,'clearCart'])->name('clear.cart');
 
 
 Route::get('index/{locale}', [App\Http\Controllers\HomeController::class, 'lang']);
