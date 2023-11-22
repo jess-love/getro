@@ -21,24 +21,15 @@ class CartController extends Controller
                 'title' =>$product->title,
                 'price' =>$product->unit_price,
                 'image' =>$product->main_pic,
+                'color' =>"Roude",
+                'size' =>"XL",
                 'quantity' =>2,
             ];
         }
         session()->put('cart',$cart);
         return redirect()->back()->with('success','Product add to cart succssfully!');
     }
-
-
-
-
-    public function shopcart(){
-
-        return view('shop-cart');
-
-        $content = Cart::content();
-        //dd($content);
-        return view('shop-cart', compact('content'));
-    }
+    
 
 
     public function countItem(){
