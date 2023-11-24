@@ -6,8 +6,6 @@
     <!-- extra css -->
 @endsection
 @section('content')
-
-
     <section class="page-wrapper bg-primary">
         <div class="container">
             <div class="row">
@@ -39,121 +37,91 @@
                     </div>
                 </div>
             </div>
-            <div class="row product-list justify-content-center">
+<!----------------------------------------les produits du panier------------------------------------------------------->
 
- <!----------------------------------------les produits du panier------------------------------------------------------->
+<!----------------------------------------le panier commence ici------------------------------------------------------->
+            <div class="row product-list justify-content-center">
                 <div class="col-lg-8">
                     <div class="d-flex align-items-center mb-4">
                         <h5 class="mb-0 flex-grow-1 fw-medium">There are <span class="fw-bold product-count"></span>
                             products in your cart</h5>
                         <div class="flex-shrink-0">
-                            <a href="{{route('clear.cart')}}" class="text-decoration-underline link-secondary">Clear Cart</a>
+                            <a href="#!" class="text-decoration-underline link-secondary">Clear Cart</a>
                         </div>
                     </div>
+            @php $total = 0 @endphp
+            @foreach((array) session('cart') as $id => $details)
+             @php
+                $total += $details['price']*$details['quantity'];
+             @endphp
+             <div class="card product">
+                                <div class="card-body p-4">
+                                    <div class="row gy-3">
+                                        <div class="col-sm-auto">
+                                            <div class="avatar-lg h-100">
+                                                <div class="avatar-title bg-danger-subtle rounded py-3">
 
- <!----------------------------------------le panier commence ici------------------------------------------------------->
-<<<<<<< HEAD
-                    @php $total = 0 @endphp
-                    @foreach((array) session('cart') as $id => $details)
-                        @php
-                            $total += $details['price']*$details['quantity'];
-                        @endphp
-
-=======
-                    @foreach($content as $produitcart)
->>>>>>> 8780b187cc0e946068ed7f43c27d5a585ae70ec4
-                        <div class="card product">
-                            <div class="card-body p-4">
-                                <div class="row gy-3">
-                                    <div class="col-sm-auto">
-                                        <div class="avatar-lg h-100">
-                                            <div class="avatar-title bg-danger-subtle rounded py-3">
-<<<<<<< HEAD
-                                                <img src="{{ URL::asset('build/images/products/'.$details['image']) }}" alt=""
-=======
-                                                <img src="{{ URL::asset('build/images/products/'.$produitcart->options->image) }}" alt=""
->>>>>>> 8780b187cc0e946068ed7f43c27d5a585ae70ec4
-                                                     class="avatar-md">
+                                                    <img src="{{ URL::asset('build/images/products/'.$details['image']) }}" alt="" class="avatar-md">
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-sm">
-                                        <a href="#!">
-<<<<<<< HEAD
-                                            <h5 class="fs-16 lh-base mb-1">{{$details['title']}}</h5>
-                                        </a>
-                                        <ul class="list-inline text-muted fs-13 mb-3">
-                                            <li class="list-inline-item">Color : <span class="fw-medium">Red</span></li>
-                                            <li class="list-inline-item">Size : <span class="fw-medium">M</span></li>
-                                        </ul>
-                                        <div class="input-step">
-                                            <button type="button" class="minus">–</button>
-                                            <input type="number" class="product-quantity" value="3" min="0"
-=======
-                                            <h5 class="fs-16 lh-base mb-1">{{$produitcart->name}}</h5>
-                                        </a>
-                                        <ul class="list-inline text-muted fs-13 mb-3">
-                                            <li class="list-inline-item">Color : <span class="fw-medium">{{$produitcart->options->Color}}</span></li>
-                                            <li class="list-inline-item">Size : <span class="fw-medium">{{$produitcart->options->size}}</span></li>
-                                        </ul>
-                                        <div class="input-step">
-                                            <button type="button" class="minus">–</button>
-                                            <input type="number" class="product-quantity" value="{{$produitcart->qty}}" min="0"
->>>>>>> 8780b187cc0e946068ed7f43c27d5a585ae70ec4
-                                                   max="100" readonly>
-                                            <button type="button" class="plus">+</button>
+                                        <div class="col-sm">
+                                            <a href="#!">
+
+                                                <h5 class="fs-16 lh-base mb-1">{{$details['title']}}</h5>
+                                            </a>
+                                            <ul class="list-inline text-muted fs-13 mb-3">
+                                                <li class="list-inline-item">Color : <span class="fw-medium">Red</span></li>
+                                                <li class="list-inline-item">Size : <span class="fw-medium">M</span></li>
+                                            </ul>
+
+                                            <div class="input-step">
+                                                <button type="button" class="minus">–</button>
+                                                <input type="number" class="product-quantity" value="{{$details['quantity']}}" min="0" max="100" readonly>
+                                                <button type="button" class="plus">+</button>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-sm-auto">
-                                        <div class="text-lg-end">
-                                            <p class="text-muted mb-1 fs-12">Item Price:</p>
-<<<<<<< HEAD
-                                            <h5 class="fs-16">$<span class="product-price">{{$details['price']}}</span></h5>
-=======
-                                            <h5 class="fs-16">$<span class="product-price">{{$produitcart->price}}</span></h5>
->>>>>>> 8780b187cc0e946068ed7f43c27d5a585ae70ec4
+                                        <div class="col-sm-auto">
+                                            <div class="text-lg-end">
+                                                <p class="text-muted mb-1 fs-12">Item Price:</p>
+
+                                                <h5 class="fs-16">$<span class="product-price">{{$details['price']}}</span></h5>
+
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="card-footer">
-                                <div class="row align-items-center gy-3">
-                                    <div class="col-sm">
-                                        <div class="d-flex flex-wrap my-n1">
-                                            <div>
-<<<<<<< HEAD
-                                                <a href="#!" class="d-block text-body p-1 px-2" data-bs-toggle="modal"
-=======
-                                                <a href="" class="d-block text-body p-1 px-2" data-bs-toggle="modal"
->>>>>>> 8780b187cc0e946068ed7f43c27d5a585ae70ec4
-                                                   data-bs-target="#removeItemModal"><i
-                                                        class="ri-delete-bin-fill text-muted align-bottom me-1"></i> Remove</a>
-                                            </div>
-                                            <div>
-                                                <a href="#!" class="d-block text-body p-1 px-2"><i
-                                                        class="ri-star-fill text-muted align-bottom me-1"></i> Add Wishlist</a>
+                                <div class="card-footer">
+                                    <div class="row align-items-center gy-3">
+                                        <div class="col-sm">
+                                            <div class="d-flex flex-wrap my-n1">
+                                                <div>
+
+                                                    <a href="" class="d-block text-body p-1 px-2" data-bs-toggle="modal"data-bs-target="#removeItemModal"><i
+                                                            class="ri-delete-bin-fill text-muted align-bottom me-1"></i> Remove</a>
+                                                </div>
+                                                <div>
+                                                    <a href="#!" class="d-block text-body p-1 px-2"><i class="ri-star-fill text-muted align-bottom me-1"></i> Add Wishlist</a>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-sm-auto">
-                                        <div class="d-flex align-items-center gap-2 text-muted">
-                                            <div>Total :</div>
-<<<<<<< HEAD
-                                            <h5 class="fs-14 mb-0">$<span class="product-line-price">{{$details['price']*$details['quantity']}}</span></h5>
-=======
-                                            <h5 class="fs-14 mb-0">$<span class="product-line-price">269.97</span></h5>
->>>>>>> 8780b187cc0e946068ed7f43c27d5a585ae70ec4
+                                        <div class="col-sm-auto">
+                                            <div class="d-flex align-items-center gap-2 text-muted">
+                                                <div>Total :</div>
+
+                                                <h5 class="fs-14 mb-0">$<span class="product-line-price">{{$details['price']*$details['quantity']}}</span></h5>
+
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+                                <!-- end card footer -->
                             </div>
-                            <!-- end card footer -->
-                        </div>
-                    @endforeach
+                <!--end card-->
+            @endforeach
+
                 </div>
-<!----------------------------------------fin produits du panier------------------------------------------------------->
                 <!--end col-->
-<!----------------------------------------------order summary----------------------------------------------------------------------->
                 <div class="col-lg-4">
                     <div class="sticky-side-div">
                         <div class="card">
@@ -163,7 +131,7 @@
                                 </div>
                                 <div class="hstack gap-3 px-3 mx-n3">
                                     <input class="form-control me-auto" type="text" placeholder="Enter coupon code"
-                                        value="Toner15" aria-label="Add Promo Code here...">
+                                           value="Toner15" aria-label="Add Promo Code here...">
                                     <button type="button" class="btn btn-primary w-xs">Apply</button>
                                 </div>
                             </div>
@@ -176,28 +144,28 @@
                                 <div class="table-responsive table-card">
                                     <table class="table table-borderless mb-0 fs-15">
                                         <tbody>
-                                            <tr>
-                                                <td>Sub Total :</td>
-                                                <td class="text-end cart-subtotal"></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Discount <span class="text-muted">(Toner15)</span>:</td>
-                                                <td class="text-end cart-discount"></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Shipping Charge :</td>
-                                                <td class="text-end cart-shipping"></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Estimated Tax (12.5%) : </td>
-                                                <td class="text-end cart-tax"></td>
-                                            </tr>
-                                            <tr class="table-active">
-                                                <th>Total (USD) :</th>
-                                                <td class="text-end">
-                                                    <span class="fw-semibold cart-total">${{$total}}</span>
-                                                </td>
-                                            </tr>
+                                        <tr>
+                                            <td>Sub Total :</td>
+                                            <td class="text-end cart-subtotal"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Discount <span class="text-muted">(Toner15)</span>:</td>
+                                            <td class="text-end cart-discount"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Shipping Charge :</td>
+                                            <td class="text-end cart-shipping"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Estimated Tax (12.5%) : </td>
+                                            <td class="text-end cart-tax"></td>
+                                        </tr>
+                                        <tr class="table-active">
+                                            <th>Total (USD) :</th>
+                                            <td class="text-end">
+                                                <span class="fw-semibold cart-total">{{$total}}</span>
+                                            </td>
+                                        </tr>
                                         </tbody>
                                     </table>
                                 </div>
@@ -210,7 +178,7 @@
                                     class="ri-logout-box-r-line align-bottom ms-1"></i></button>
                         </div>
                     </div>
-<!------------------------------------------------- end order summary --------------------------------------------------------------------->
+                    <!-- end stickey -->
                 </div>
             </div>
             <!--end row-->
@@ -239,10 +207,10 @@
                         class="card ecommerce-product-widgets border-0 rounded-0 shadow-none overflow-hidden card-animate">
                         <div class="bg-light bg-opacity-50 rounded py-4 position-relative">
                             <img src="{{ URL::asset('build/images/products/img-12.png') }}" alt=""
-                                style="max-height: 200px;max-width: 100%;" class="mx-auto d-block rounded-2">
+                                 style="max-height: 200px;max-width: 100%;" class="mx-auto d-block rounded-2">
                             <div class="action vstack gap-2">
                                 <button class="btn btn-danger avatar-xs p-0 btn-soft-warning custom-toggle product-action"
-                                    data-bs-toggle="button"><span class="icon-on"><i
+                                        data-bs-toggle="button"><span class="icon-on"><i
                                             class="ri-heart-line"></i></span><span class="icon-off"><i
                                             class="ri-heart-fill"></i></span></button>
                             </div>
@@ -271,7 +239,7 @@
                                 <h5 class="mb-0">$209.99</h5>
                             </div>
                             <div class="mt-3">
-                                <a href="#" class="btn btn-primary w-100 add-btn"><i class="mdi mdi-cart me-1"></i>
+                                <a href="#!" class="btn btn-primary w-100 add-btn"><i class="mdi mdi-cart me-1"></i>
                                     Add To Cart</a>
                             </div>
                         </div>
@@ -283,10 +251,10 @@
                         class="card ecommerce-product-widgets border-0 rounded-0 shadow-none overflow-hidden card-animate">
                         <div class="bg-light bg-opacity-50 rounded py-4 position-relative">
                             <img src="{{ URL::asset('build/images/products/img-7.png') }}" alt=""
-                                style="max-height: 200px;max-width: 100%;" class="mx-auto d-block rounded-2">
+                                 style="max-height: 200px;max-width: 100%;" class="mx-auto d-block rounded-2">
                             <div class="action vstack gap-2">
                                 <button class="btn btn-danger avatar-xs p-0 btn-soft-warning custom-toggle product-action "
-                                    data-bs-toggle="button"><span class="icon-on"><i
+                                        data-bs-toggle="button"><span class="icon-on"><i
                                             class="ri-heart-line"></i></span><span class="icon-off"><i
                                             class="ri-heart-fill"></i></span></button>
                             </div>
@@ -320,10 +288,10 @@
                         class="card ecommerce-product-widgets border-0 rounded-0 shadow-none overflow-hidden card-animate">
                         <div class="bg-light bg-opacity-50 rounded py-4 position-relative">
                             <img src="{{ URL::asset('build/images/products/img-3.png') }}" alt=""
-                                style="max-height: 200px;max-width: 100%;" class="mx-auto d-block rounded-2">
+                                 style="max-height: 200px;max-width: 100%;" class="mx-auto d-block rounded-2">
                             <div class="action vstack gap-2">
                                 <button class="btn btn-danger avatar-xs p-0 btn-soft-warning custom-toggle product-action "
-                                    data-bs-toggle="button"><span class="icon-on"><i
+                                        data-bs-toggle="button"><span class="icon-on"><i
                                             class="ri-heart-line"></i></span><span class="icon-off"><i
                                             class="ri-heart-fill"></i></span></button>
                             </div>
@@ -361,10 +329,10 @@
                         class="card ecommerce-product-widgets border-0 rounded-0 shadow-none overflow-hidden card-animate">
                         <div class="bg-light bg-opacity-50 rounded py-4 position-relative">
                             <img src="{{ URL::asset('build/images/products/img-2.png') }}" alt=""
-                                style="max-height: 200px;max-width: 100%;" class="mx-auto d-block rounded-2">
+                                 style="max-height: 200px;max-width: 100%;" class="mx-auto d-block rounded-2">
                             <div class="action vstack gap-2">
                                 <button class="btn btn-danger avatar-xs p-0 btn-soft-warning custom-toggle product-action "
-                                    data-bs-toggle="button"><span class="icon-on"><i
+                                        data-bs-toggle="button"><span class="icon-on"><i
                                             class="ri-heart-line"></i></span><span class="icon-off"><i
                                             class="ri-heart-fill"></i></span></button>
                             </div>
@@ -399,7 +367,7 @@
     </section>
 
     <section class="section bg-light bg-opacity-25"
-        style="background-image: url('build/images/ecommerce/bg-effect.png');background-position: center; background-size: cover;">
+             style="background-image: url('build/images/ecommerce/bg-effect.png');background-position: center; background-size: cover;">
         <div class="container">
             <div class="row align-items-center justify-content-between">
                 <div class="col-lg-6">
@@ -408,7 +376,7 @@
                             off all Products</p>
                         <h1 class="lh-base text-capitalize mb-3">Stay home & get your daily needs from our shop</h1>
                         <p class="fs-15 mb-4 pb-2">Start You'r Daily Shopping with <a href="#!"
-                                class="link-primary text-decoration-underline fw-medium">Toner</a></p>
+                                                                                      class="link-primary text-decoration-underline fw-medium">Toner</a></p>
                         <form action="#!">
                             <div class="position-relative ecommerce-subscript">
                                 <input type="email" class="form-control rounded-pill" placeholder="Enter your email">
@@ -462,7 +430,7 @@
                     <div class="d-flex align-items-center gap-3">
                         <div class="flex-shrink-0">
                             <img src="{{ URL::asset('build/images/ecommerce/guarantee-certificate.png') }}" alt=""
-                                class="avatar-sm">
+                                 class="avatar-sm">
                         </div>
                         <div class="flex-grow-1">
                             <h5 class="fs-15">Money Back Guarantee</h5>
