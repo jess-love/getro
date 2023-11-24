@@ -27,6 +27,7 @@ class AppServiceProvider extends ServiceProvider
     {
         Schema::defaultStringLength(191);
 
+
         view()->composer(
 
             [
@@ -35,6 +36,9 @@ class AppServiceProvider extends ServiceProvider
                 'ecommerce-faq', 'track-order', 'order-history', 'products-category.blade'
             ]
             , HeaderComposer::class);
+
+        view()->composer( ["*"], HeaderComposer::class);
+
 
     }
 }

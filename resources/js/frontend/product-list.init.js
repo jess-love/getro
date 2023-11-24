@@ -7,145 +7,158 @@ Contact: Themesbrand@gmail.com
 File: product list init Js File
 */
 
-var productListData = [{
-    'id': 1,
-    "productImg": "build/images/products/img-10.png",
-    "productTitle": "World's most expensive t shirt",
-    "description": "T-Shirt house best black boys T-Shirt fully cotton material & all size available hirt fully cotton material & all size available.",
-    "category": "Fashion",
-    "price": "354.99",
-    "discount": "25%",
-    "rating": "4.9",
-    "stock": "Out of stock",
-    "color": ["secondary", "light", "dark"],
-    "size": ["s", "m", "l"],
-},{
-    'id': 2,
-    "productImg": "build/images/products/img-15.png",
-    "productTitle": "Like Style Women Black Handbag",
-    "description": "T-Shirt house best black boys T-Shirt fully cotton material & all size available hirt fully cotton material & all size available.",
-    "category": "Fashion",
-    "price": "742.00",
-    "discount": "0%",
-    "rating": "4.2",
-    "stock": "In stock",
-    "color": ["light", "dark"],
-},{
-    'id': 3,
-    "productImg": "build/images/products/img-1.png",
-    "productTitle": "Black Horn Backpack For Men Bags 30 L Backpack",
-    "description": "T-Shirt house best black boys T-Shirt fully cotton material & all size available hirt fully cotton material & all size available.",
-    "category": "Grocery",
-    "price": "150.99",
-    "discount": "25%",
-    "rating": "3.8",
-    "stock": "In stock",
-    "color": ["primary", "danger", "secondary"],
-    "size": ["s", "m", "l"],
-},{
-    'id': 4,
-    "productImg": "build/images/products/img-7.png",
-    "productTitle": "Innovative education book",
-    "description": "T-Shirt house best black boys T-Shirt fully cotton material & all size available hirt fully cotton material & all size available.",
-    "category": "Kids",
-    "price": "96.26",
-    "discount": "0%",
-    "rating": "4.7",
-    "stock": "In stock",
-},{
-    'id': 5,
-    "productImg": "build/images/products/img-4.png",
-    "productTitle": "Sangria Girls Mint Green & Off-White Solid Open Toe Flats",
-    "description": "T-Shirt house best black boys T-Shirt fully cotton material & all size available hirt fully cotton material & all size available.",
-    "category": "Kids",
-    "price": "96.26",
-    "discount": "75%",
-    "rating": "4.7",
-    "stock": "In stock",
-    "color": ["success", "danger", "secondary"],
-    "size": ["40", "41", "42"],
-},{
-    'id': 6,
-    "productImg": "build/images/products/img-5.png",
-    "productTitle": "Lace-Up Casual Shoes For Men",
-    "description": "T-Shirt house best black boys T-Shirt fully cotton material & all size available hirt fully cotton material & all size available.",
-    "category": "Fashion",
-    "price": "229.00",
-    "discount": "0%",
-    "rating": "4.0",
-    "stock": "In stock",
-    "color": ["danger"],
-    "size": ["40", "41", "42"],
-},{
-    'id': 7,
-    "productImg": "build/images/products/img-6.png",
-    "productTitle": "Striped High Neck Casual Men Orange Sweater",
-    "description": "T-Shirt house best black boys T-Shirt fully cotton material & all size available hirt fully cotton material & all size available.",
-    "category": "Fashion",
-    "price": "120.00",
-    "discount": "48%",
-    "rating": "4.8",
-    "stock": "In stock",
-    "size": ["s", "m", "l", "xl"],
-},{
-    'id': 8,
-    "productImg": "build/images/products/img-9.png",
-    "productTitle": "Lace-Up Casual Shoes For Men",
-    "description": "T-Shirt house best black boys T-Shirt fully cotton material & all size available hirt fully cotton material & all size available.",
-    "category": "Kids",
-    "price": "229.00",
-    "discount": "15%",
-    "rating": "2.4",
-    "stock": "In stock",
-    "color": ["light", "warning"],
-    "size": ["s", "l"],
-},{
-    'id': 9,
-    "productImg": "build/images/products/img-10.png",
-    "productTitle": "Printed, Typography Men Round Neck Black T-shirt",
-    "description": "T-Shirt house best black boys T-Shirt fully cotton material & all size available hirt fully cotton material & all size available.",
-    "category": "Fashion",
-    "price": "81.99",
-    "discount": "0%",
-    "rating": "4.9",
-    "stock": "In stock",
-    "color": ["dark", "light"],
-    "size": ["s", "m", "l", "xl"],
-},{
-    'id': 10,
-    "productImg": "build/images/products/img-12.png",
-    "productTitle": "Carven Lounge Chair Red",
-    "description": "T-Shirt house best black boys T-Shirt fully cotton material & all size available hirt fully cotton material & all size available.",
-    "category": "Furniture",
-    "price": "209.99",
-    "discount": "0%",
-    "rating": "4.1",
-    "stock": "In stock",
-    "color": ["secondary", "dark", "danger", "light"],
-},{
-    'id': 11,
-    "productImg": "build/images/products/img-3.png",
-    "productTitle": "Ninja Pro Max Smartwatch",
-    "description": "T-Shirt house best black boys T-Shirt fully cotton material & all size available hirt fully cotton material & all size available.",
-    "category": "Watches",
-    "price": "309.09",
-    "discount": "20%",
-    "rating": "3.5",
-    "stock": "In stock",
-    "color": ["secondary", "info"],
-},{
-    'id': 12,
-    "productImg": "build/images/products/img-2.png",
-    "productTitle": "Opinion Striped Round Neck Green T-shirt",
-    "description": "T-Shirt house best black boys T-Shirt fully cotton material & all size available hirt fully cotton material & all size available.",
-    "category": "Fashion",
-    "price": "126.99",
-    "discount": "0%",
-    "rating": "4.1",
-    "stock": "In stock",
-    "color": ["success"],
-    "size": ["s", "m", "l", "xl"],
-}];
+console.log(productData);
+var productListData = [
+//     {
+//     'id': 1,
+//     "productImg": "build/images/products/img-10.png",
+//     "productTitle": "World's most expensive t shirt",
+//     "description": "T-Shirt house best black boys T-Shirt fully cotton material & all size available hirt fully cotton material & all size available.",
+//     "category": "Fashion",
+//     "price": "354.99",
+//     "discount": "25%",
+//     "rating": "4.9",
+//     "stock": "Out of stock",
+//     "color": ["secondary", "light", "dark"],
+//     "size": ["s", "m", "l"],
+// }
+// ,{
+//     'id': 2,
+//     "productImg": "build/images/products/img-15.png",
+//     "productTitle": "Like Style Women Black Handbag",
+//     "description": "T-Shirt house best black boys T-Shirt fully cotton material & all size available hirt fully cotton material & all size available.",
+//     "category": "Fashion",
+//     "price": "742.00",
+//     "discount": "0%",
+//     "rating": "4.2",
+//     "stock": "In stock",
+//     "color": ["light", "dark"],
+// }
+// ,{
+//     'id': 3,
+//     "productImg": "build/images/products/img-1.png",
+//     "productTitle": "Black Horn Backpack For Men Bags 30 L Backpack",
+//     "description": "T-Shirt house best black boys T-Shirt fully cotton material & all size available hirt fully cotton material & all size available.",
+//     "category": "Grocery",
+//     "price": "150.99",
+//     "discount": "25%",
+//     "rating": "3.8",
+//     "stock": "In stock",
+//     "color": ["primary", "danger", "secondary"],
+//     "size": ["s", "m", "l"],
+// }
+// ,{
+//     'id': 4,
+//     "productImg": "build/images/products/img-7.png",
+//     "productTitle": "Innovative education book",
+//     "description": "T-Shirt house best black boys T-Shirt fully cotton material & all size available hirt fully cotton material & all size available.",
+//     "category": "Kids",
+//     "price": "96.26",
+//     "discount": "0%",
+//     "rating": "4.7",
+//     "stock": "In stock",
+// },{
+//     'id': 5,
+//     "productImg": "build/images/products/img-4.png",
+//     "productTitle": "Sangria Girls Mint Green & Off-White Solid Open Toe Flats",
+//     "description": "T-Shirt house best black boys T-Shirt fully cotton material & all size available hirt fully cotton material & all size available.",
+//     "category": "Kids",
+//     "price": "96.26",
+//     "discount": "75%",
+//     "rating": "4.7",
+//     "stock": "In stock",
+//     "color": ["success", "danger", "secondary"],
+//     "size": ["40", "41", "42"],
+// }
+// ,{
+//     'id': 6,
+//     "productImg": "build/images/products/img-5.png",
+//     "productTitle": "Lace-Up Casual Shoes For Men",
+//     "description": "T-Shirt house best black boys T-Shirt fully cotton material & all size available hirt fully cotton material & all size available.",
+//     "category": "Fashion",
+//     "price": "229.00",
+//     "discount": "0%",
+//     "rating": "4.0",
+//     "stock": "In stock",
+//     "color": ["danger"],
+//     "size": ["40", "41", "42"],
+// }
+// ,{
+//     'id': 7,
+//     "productImg": "build/images/products/img-6.png",
+//     "productTitle": "Striped High Neck Casual Men Orange Sweater",
+//     "description": "T-Shirt house best black boys T-Shirt fully cotton material & all size available hirt fully cotton material & all size available.",
+//     "category": "Fashion",
+//     "price": "120.00",
+//     "discount": "48%",
+//     "rating": "4.8",
+//     "stock": "In stock",
+//     "size": ["s", "m", "l", "xl"],
+// }
+// ,{
+//     'id': 8,
+//     "productImg": "build/images/products/img-9.png",
+//     "productTitle": "Lace-Up Casual Shoes For Men",
+//     "description": "T-Shirt house best black boys T-Shirt fully cotton material & all size available hirt fully cotton material & all size available.",
+//     "category": "Kids",
+//     "price": "229.00",
+//     "discount": "15%",
+//     "rating": "2.4",
+//     "stock": "In stock",
+//     "color": ["light", "warning"],
+//     "size": ["s", "l"],
+// }
+// ,{
+//     'id': 9,
+//     "productImg": "build/images/products/img-10.png",
+//     "productTitle": "Printed, Typography Men Round Neck Black T-shirt",
+//     "description": "T-Shirt house best black boys T-Shirt fully cotton material & all size available hirt fully cotton material & all size available.",
+//     "category": "Fashion",
+//     "price": "81.99",
+//     "discount": "0%",
+//     "rating": "4.9",
+//     "stock": "In stock",
+//     "color": ["dark", "light"],
+//     "size": ["s", "m", "l", "xl"],
+// }
+// ,{
+//     'id': 10,
+//     "productImg": "build/images/products/img-12.png",
+//     "productTitle": "Carven Lounge Chair Red",
+//     "description": "T-Shirt house best black boys T-Shirt fully cotton material & all size available hirt fully cotton material & all size available.",
+//     "category": "Furniture",
+//     "price": "209.99",
+//     "discount": "0%",
+//     "rating": "4.1",
+//     "stock": "In stock",
+//     "color": ["secondary", "dark", "danger", "light"],
+// }
+// ,{
+//     'id': 11,
+//     "productImg": "build/images/products/img-3.png",
+//     "productTitle": "Ninja Pro Max Smartwatch",
+//     "description": "T-Shirt house best black boys T-Shirt fully cotton material & all size available hirt fully cotton material & all size available.",
+//     "category": "Watches",
+//     "price": "309.09",
+//     "discount": "20%",
+//     "rating": "3.5",
+//     "stock": "In stock",
+//     "color": ["secondary", "info"],
+// }
+// ,{
+//     'id': 12,
+//     "productImg": "build/images/products/img-2.png",
+//     "productTitle": "Opinion Striped Round Neck Green T-shirt",
+//     "description": "T-Shirt house best black boys T-Shirt fully cotton material & all size available hirt fully cotton material & all size available.",
+//     "category": "Fashion",
+//     "price": "126.99",
+//     "discount": "0%",
+//     "rating": "4.1",
+//     "stock": "In stock",
+//     "color": ["success"],
+//     "size": ["s", "m", "l", "xl"],
+// }
+];
 
 
 var prevButton = document.getElementById('page-prev');
@@ -154,7 +167,7 @@ var nextButton = document.getElementById('page-next');
 var currentPage = 1;
 var itemsPerPage = 5;
 
-loadProductList(productListData, currentPage);
+// loadProductList(productListData, currentPage);
 paginationEvents();
 
 function loadProductList(datas, page) {
@@ -167,7 +180,7 @@ function loadProductList(datas, page) {
         // Array.from(datas).forEach(function (listdata) {
             if(datas[i]){
                 var checkinput = datas[i].wishList ? "active" : "";
-                
+
                 var num = 1;
                 if (datas[i].color) {
                     var colorElem = '<ul class="clothe-colors list-unstyled hstack gap-1 mb-0 flex-wrap">';
@@ -707,7 +720,7 @@ if(document.getElementById('select-rating')){
         } else {
             filterDataAll = productListData;
         }
-        
+
         searchResult(filterDataAll);
         loadProductList(filterDataAll, currentPage);
     }, false);

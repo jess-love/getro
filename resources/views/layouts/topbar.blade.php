@@ -1,4 +1,12 @@
 <?php $displayedCategories = []; ?>
+<head>
+
+<style>
+    .highlight-link:hover {
+        background-color: yellow; /* Changez cette couleur selon vos préférences */
+    }
+</style>
+</head>
 <nav class="navbar navbar-expand-lg ecommerce-navbar" id="navbar">
     <div class="container">
         <a class="navbar-brand d-none d-lg-block" href="{{route('index')}}">
@@ -20,11 +28,14 @@
                         <img src="{{ URL::asset('build/images/logo-light.png') }}" alt="" height="25" class="card-logo-light mx-auto">
                     </a>
                 </li>
+
                <li class="nav-item dropdown ">
                    <a class="nav-link" href="{{route('index')}}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                        ACCUEIL
                    </a>
                 </li>
+
+
 
                 <li class="nav-item dropdown dropdown-mega-full dropdown-hover">
                     <a class="nav-link dropdown-toggle" data-key="t-catalog" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -46,18 +57,22 @@
                                 @foreach($cat_and_sub as $categoryId => $subCategories)
                                     <div class="col-lg-2">
                                         <ul class="dropdown-menu-list list-unstyled mb-0 py-3">
-                                        @foreach ($subCategories as $subCategory)
+                                            @foreach ($subCategories as $subCategory)
                                                 @if ($subCategory->CategoryFunc && !in_array($subCategory->CategoryFunc->title, $displayedCategories))
-                                                         <li> <p class="mb-2 text-uppercase fs-16 fw-bold text-muted menu-title" data-key="t-men">{{ $subCategory->CategoryFunc->title }}</p></li>
+                                                    <li  class="nav-item dropdown dropdown-hover">
+                                                        <p class="mb-2 text-uppercase fs-16 fw-bold text-muted menu-title" >{{ $subCategory->CategoryFunc->title }}</p>
+                                                    </li>
                                                         <?php $displayedCategories[] = $subCategory->CategoryFunc->title; ?>
-                                                    @endif
-                                                    <li> <p class="mb-2 text-uppercase fs-11 fw-medium text-muted menu-title" data-key="t-men">{{ $subCategory->title }}</p></li>
-
-
-                                        @endforeach
+                                                @endif
+                                                <li  class="nav-item  dropdown-hover">
+                                                    <a href="{{ route('products_nav', ['sub_category_id' => $subCategory->id]) }}">
+                                                        <p class="mb-2 text-uppercase fs-11 fw-medium text-muted menu-title" data-key="t-men">{{ $subCategory->title }}</p>
+                                                    </a>
+                                                </li>
+                                            @endforeach
                                         </ul>
-                            </div>
-                            @endforeach
+                                    </div>
+                                @endforeach
                             @else
                                 <p>No variable available.</p>
                             @endif --}}
@@ -68,7 +83,7 @@
                         </div>
                     </div>
                 </li>
-{{--                ******************************Shop start*****************************************************--}}
+                {{--                ******************************Shop start*****************************************************--}}
                 <li class="nav-item dropdown dropdown-hover">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-key="t-shop">
                         SHOP
@@ -253,7 +268,7 @@
                     <a href="#!" class="dropdown-item" data-mode="auto"><i class="bi bi-moon-stars align-middle me-2"></i> Auto (system defualt)</a>
                 </div>
             </div>
- <!---------------------------------------------------------avatar---------------------------------------------------------------------------------------------------------->
+            <!---------------------------------------------------------avatar---------------------------------------------------------------------------------------------------------->
             <div class="dropdown header-item dropdown-hover-end">
                 <button type="button" class="btn" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <img class="rounded-circle header-profile-user" src="@if(@Auth::user()->avatar) {{ URL::asset('images/users')."/".@Auth::user()->avatar }} @else {{ URL::asset('build/images/users/avatar-1.jpg') }} @endif" alt="Header Avatar">
@@ -268,11 +283,11 @@
                     <a class="dropdown-item" href="ecommerce-faq"><i class="mdi mdi-lifebuoy text-muted fs-16 align-middle me-1"></i> <span class="align-middle">Help</span></a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="account"><i class="bi bi-coin text-muted fs-16 align-middle me-1"></i> <span class="align-middle">Balance : <b>$8451.36</b></span></a>
-{{--                    <a class="dropdown-item" href="account"><span class="badge bg-success-subtle text-success mt-1 float-end">New</span><i class="mdi mdi-cog-outline text-muted fs-16 align-middle me-1"></i> <span class="align-middle">Settings</span></a>--}}
+                    {{--                    <a class="dropdown-item" href="account"><span class="badge bg-success-subtle text-success mt-1 float-end">New</span><i class="mdi mdi-cog-outline text-muted fs-16 align-middle me-1"></i> <span class="align-middle">Settings</span></a>--}}
                     <a class="dropdown-item" href="{{ url('logout') }}"><i class="bi bi-box-arrow-right text-muted fs-16 align-middle me-1"></i> <span class="align-middle" data-key="t-logout">{{ __('t-logout') }}</span></a>
                 </div>
             </div>
-<!------------------------------------------------------------end avatar---------------------------------------------------------------------------------------------------------------->
+            <!------------------------------------------------------------end avatar---------------------------------------------------------------------------------------------------------------->
         </div>
     </div>
 </nav>
