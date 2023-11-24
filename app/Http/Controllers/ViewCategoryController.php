@@ -11,19 +11,13 @@ class ViewCategoryController extends Controller
 
 
     public function viewcategory(){
-
-        return view('products-category');
+        $categories = Category::all();
+        return view('products-category',compact('categories'));
     }
 
     public function viewcategoryinMenu(){
-//        $cat_and_sub = sub_category::with('CategoryFunc')->get()->groupBy('category_id');
-//
-//        return view('index', ['cat_and_sub' => $cat_and_sub]);
         $cat = Category::all(); //dd($cat);
         return view('index',compact('cat'));
-
-//        $cat_and_sub= sub_category::with('CategoryFunc')->get()->groupBy('category_id');
-//        dd($cat_and_sub);
 
     }
 

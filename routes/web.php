@@ -22,36 +22,27 @@ Route::get('/login', function () {
 
 
 Route::get('/product-list-details', [App\Http\Controllers\ProductListDefaultController::class, 'index'])->name('product-list-details');
-
 Route::get('/product-details/{id}', [App\Http\Controllers\ProductdetailController::class, 'ViewProduitDetail'])->name('view_product');
-
-
-
 Route::get('/products-category', [App\Http\Controllers\HomeController::class, 'ViewCategory'])->name('CategoryProduct');
 
 
 
 //Route::get('/sub/category', [App\Http\Controllers\CategoryController::class, 'sub'])->name('sub');
 
-
-
-
-
 Route::get('/products-category', [App\Http\Controllers\ViewCategoryController::class, 'ViewCategory'])->name('CategoryProduct');
-Route::get('/category', [App\Http\Controllers\CategoryIndexPage::class, 'CategoryIndexpage'])->name('Category');
 Route::get('/categoryMenu',[App\Http\Controllers\ViewCategoryController::class, 'viewcategoryinMenu']);      //->name('CategoryMenu');
-=======
+
 Route::get('categoryMenu',[App\Http\Controllers\ViewCategoryController::class, 'viewcategoryinMenu']);
-
-
-
 Route::get('/produitToCart/{id}',[App\Http\Controllers\CartController::class,'addProductToCart'])->name('ProductToCart');
 
  //route pour shoppingcart
 Route::post('/cart/{id}',[App\Http\Controllers\CartController::class,'add'])->name('post.add');
 Route::post('/panier/index','CartController@index')->name('panier_index');
 
-
+//route pour produit en liaison avec les sous-categories
+Route::get('/products/{sub_category_id}', [App\Http\Controllers\ProductController::class, 'product'])->name('products_nav');
+//Route::get('/produits', [App\Http\Controllers\ProductController::class, 'ViewAllProduct'])->name('view_all_products');
+Route::get('/souscategories', [App\Http\Controllers\ProductController::class, 'Sub_Categories'])->name('sub_categories');
 
 
 Route::get('index/{locale}', [App\Http\Controllers\HomeController::class, 'lang']);
