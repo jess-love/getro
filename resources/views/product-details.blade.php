@@ -183,10 +183,9 @@
                             <div class="d-flex align-items-center mb-4">
                                 <h5 class="fs-15 mb-0">Quantity:</h5>
                                 <div class="input-step ms-2">
-                                    <button type="button" class="minus">–</button>
-                                    <input name="qty" type="number" class="product-quantity1" value="1" min="0"
-                                           max="100" readonly="">
-                                    <button type="button" class="plus">+</button>
+                                    <button type="button" class="minus decrement-btn" >–</button>
+                                        <input name="quantity " type="number" class="product- qty-input" value="1" min="0"max="100" readonly="">
+                                    <button type="button" class="plus increment-btn">+</button>
                                 </div>
                             </div>
                             <div class="row gy-3">
@@ -1043,4 +1042,24 @@
 
     <!-- landing-index js -->
     <script src="{{ URL::asset('build/js/frontend/menu.init.js') }}"></script>
+@endsection
+
+@section('scripts')
+    <script>
+        $(document).ready(function (){
+            $('.increment-btn').click(function (e){
+                e.preventDefault();
+
+                var inc_value =$('.qty-input').val();
+                var value = parseInt(inc_value,10);
+                value = isNaN(value)? 0:value;
+                if(value<10)
+                {
+                    value++;
+                    $('.qty-input').val(value);
+                }
+            });
+        });
+
+    </script>
 @endsection

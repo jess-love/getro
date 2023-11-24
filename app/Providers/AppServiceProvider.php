@@ -29,14 +29,12 @@ class AppServiceProvider extends ServiceProvider
 
         view()->composer(
 
-
             [
                 'contact-us', 'about-us', 'index','products-category','Product-details',
-                'product-grid-sidebar-banner', 'product-list-defualt', 'account',
+                'product-grid-sidebar-banner', 'product-list-defualt', 'topbar','account',
                 'ecommerce-faq', 'track-order', 'order-history', 'products-category.blade'
             ]
             , HeaderComposer::class);
-
 
     }
 }
