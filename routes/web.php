@@ -32,17 +32,36 @@ Route::get('/products-category', [App\Http\Controllers\HomeController::class, 'V
 Route::get('/products-category', [App\Http\Controllers\ViewCategoryController::class, 'ViewCategory'])->name('CategoryProduct');
 Route::get('/categoryMenu',[App\Http\Controllers\ViewCategoryController::class, 'viewcategoryinMenu']);      //->name('CategoryMenu');
 
+
 Route::get('categoryMenu',[App\Http\Controllers\ViewCategoryController::class, 'viewcategoryinMenu']);
 Route::get('/produitToCart/{id}',[App\Http\Controllers\CartController::class,'addProductToCart'])->name('ProductToCart');
 
+
+Route::get('categoryMenu',[App\Http\Controllers\ViewCategoryController::class, 'viewcategoryinMenu']);
+
+
+//route add to cart
+
+
+Route::get('/produitToCart/{id}',[App\Http\Controllers\CartController::class,'addProductToCart'])->name('ProductToCart');
+//Route to shop-cart view
+Route::get('/shop-cart',[App\Http\Controllers\CartController::class,'shopcart'])->name('shopCart');
  //route pour shoppingcart
-Route::post('/cart/{id}',[App\Http\Controllers\CartController::class,'add'])->name('post.add');
-Route::post('/panier/index','CartController@index')->name('panier_index');
+
 
 //route pour produit en liaison avec les sous-categories
 Route::get('/products/{sub_category_id}', [App\Http\Controllers\ProductController::class, 'product'])->name('products_nav');
 //Route::get('/produits', [App\Http\Controllers\ProductController::class, 'ViewAllProduct'])->name('view_all_products');
 Route::get('/souscategories', [App\Http\Controllers\ProductController::class, 'Sub_Categories'])->name('sub_categories');
+
+Route::post('/cart/{id}',[App\Http\Controllers\CartController::class,'add'])->name('post_add');
+Route::get('/panier/index',[App\Http\Controllers\CartController::class,'index'])->name('cart_index');
+
+//route pour remove item
+Route::delete('/panier/remove',[App\Http\Controllers\CartController::class,'removeItem'])->name('remove.item');
+//route pour delete all items from cart
+Route::delete('/panier/clear',[App\Http\Controllers\CartController::class,'clearCart'])->name('clear.cart');
+
 
 
 Route::get('index/{locale}', [App\Http\Controllers\HomeController::class, 'lang']);

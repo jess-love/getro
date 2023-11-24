@@ -239,7 +239,7 @@
 
                                         </div>
                                         <div class="product-btn px-3">
-                                            <a href="#" class="btn btn-primary btn-sm w-75 add-btn"><i
+                                            <a href="{{route('ProductToCart',$produit->id)}}" class="btn btn-primary btn-sm w-75 add-btn"><i
                                                     class="mdi mdi-cart me-1"></i> Add to cart
                                             </a>
                                         </div>

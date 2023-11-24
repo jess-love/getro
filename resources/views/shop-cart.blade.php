@@ -6,6 +6,8 @@
     <!-- extra css -->
 @endsection
 @section('content')
+
+
     <section class="page-wrapper bg-primary">
         <div class="container">
             <div class="row">
@@ -45,248 +47,109 @@
                         <h5 class="mb-0 flex-grow-1 fw-medium">There are <span class="fw-bold product-count"></span>
                             products in your cart</h5>
                         <div class="flex-shrink-0">
-                            <a href="#!" class="text-decoration-underline link-secondary">Clear Cart</a>
+                            <a href="{{route('clear.cart')}}" class="text-decoration-underline link-secondary">Clear Cart</a>
                         </div>
                     </div>
+
  <!----------------------------------------le panier commence ici------------------------------------------------------->
-                    <div class="card product">
-                        <div class="card-body p-4">
-                            <div class="row gy-3">
-                                <div class="col-sm-auto">
-                                    <div class="avatar-lg h-100">
-                                        <div class="avatar-title bg-danger-subtle rounded py-3">
-                                            <img src="{{ URL::asset('build/images/products/img-12.png') }}" alt=""
-                                                class="avatar-md">
+<<<<<<< HEAD
+                    @php $total = 0 @endphp
+                    @foreach((array) session('cart') as $id => $details)
+                        @php
+                            $total += $details['price']*$details['quantity'];
+                        @endphp
+
+=======
+                    @foreach($content as $produitcart)
+>>>>>>> 8780b187cc0e946068ed7f43c27d5a585ae70ec4
+                        <div class="card product">
+                            <div class="card-body p-4">
+                                <div class="row gy-3">
+                                    <div class="col-sm-auto">
+                                        <div class="avatar-lg h-100">
+                                            <div class="avatar-title bg-danger-subtle rounded py-3">
+<<<<<<< HEAD
+                                                <img src="{{ URL::asset('build/images/products/'.$details['image']) }}" alt=""
+=======
+                                                <img src="{{ URL::asset('build/images/products/'.$produitcart->options->image) }}" alt=""
+>>>>>>> 8780b187cc0e946068ed7f43c27d5a585ae70ec4
+                                                     class="avatar-md">
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-sm">
-                                    <a href="#!">
-                                        <h5 class="fs-16 lh-base mb-1">Branded Smart Chair Red</h5>
-                                    </a>
-                                    <ul class="list-inline text-muted fs-13 mb-3">
-                                        <li class="list-inline-item">Color : <span class="fw-medium">Red</span></li>
-                                        <li class="list-inline-item">Size : <span class="fw-medium">M</span></li>
-                                    </ul>
-                                    <div class="input-step">
-                                        <button type="button" class="minus">–</button>
-                                        <input type="number" class="product-quantity" value="3" min="0"
-                                            max="100" readonly>
-                                        <button type="button" class="plus">+</button>
+                                    <div class="col-sm">
+                                        <a href="#!">
+<<<<<<< HEAD
+                                            <h5 class="fs-16 lh-base mb-1">{{$details['title']}}</h5>
+                                        </a>
+                                        <ul class="list-inline text-muted fs-13 mb-3">
+                                            <li class="list-inline-item">Color : <span class="fw-medium">Red</span></li>
+                                            <li class="list-inline-item">Size : <span class="fw-medium">M</span></li>
+                                        </ul>
+                                        <div class="input-step">
+                                            <button type="button" class="minus">–</button>
+                                            <input type="number" class="product-quantity" value="3" min="0"
+=======
+                                            <h5 class="fs-16 lh-base mb-1">{{$produitcart->name}}</h5>
+                                        </a>
+                                        <ul class="list-inline text-muted fs-13 mb-3">
+                                            <li class="list-inline-item">Color : <span class="fw-medium">{{$produitcart->options->Color}}</span></li>
+                                            <li class="list-inline-item">Size : <span class="fw-medium">{{$produitcart->options->size}}</span></li>
+                                        </ul>
+                                        <div class="input-step">
+                                            <button type="button" class="minus">–</button>
+                                            <input type="number" class="product-quantity" value="{{$produitcart->qty}}" min="0"
+>>>>>>> 8780b187cc0e946068ed7f43c27d5a585ae70ec4
+                                                   max="100" readonly>
+                                            <button type="button" class="plus">+</button>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-sm-auto">
-                                    <div class="text-lg-end">
-                                        <p class="text-muted mb-1 fs-12">Item Price:</p>
-                                        <h5 class="fs-16">$<span class="product-price">89.99</span></h5>
+                                    <div class="col-sm-auto">
+                                        <div class="text-lg-end">
+                                            <p class="text-muted mb-1 fs-12">Item Price:</p>
+<<<<<<< HEAD
+                                            <h5 class="fs-16">$<span class="product-price">{{$details['price']}}</span></h5>
+=======
+                                            <h5 class="fs-16">$<span class="product-price">{{$produitcart->price}}</span></h5>
+>>>>>>> 8780b187cc0e946068ed7f43c27d5a585ae70ec4
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="card-footer">
-                            <div class="row align-items-center gy-3">
-                                <div class="col-sm">
-                                    <div class="d-flex flex-wrap my-n1">
-                                        <div>
-                                            <a href="#!" class="d-block text-body p-1 px-2" data-bs-toggle="modal"
-                                                data-bs-target="#removeItemModal"><i
-                                                    class="ri-delete-bin-fill text-muted align-bottom me-1"></i> Remove</a>
-                                        </div>
-                                        <div>
-                                            <a href="#!" class="d-block text-body p-1 px-2"><i
-                                                    class="ri-star-fill text-muted align-bottom me-1"></i> Add Wishlist</a>
+                            <div class="card-footer">
+                                <div class="row align-items-center gy-3">
+                                    <div class="col-sm">
+                                        <div class="d-flex flex-wrap my-n1">
+                                            <div>
+<<<<<<< HEAD
+                                                <a href="#!" class="d-block text-body p-1 px-2" data-bs-toggle="modal"
+=======
+                                                <a href="" class="d-block text-body p-1 px-2" data-bs-toggle="modal"
+>>>>>>> 8780b187cc0e946068ed7f43c27d5a585ae70ec4
+                                                   data-bs-target="#removeItemModal"><i
+                                                        class="ri-delete-bin-fill text-muted align-bottom me-1"></i> Remove</a>
+                                            </div>
+                                            <div>
+                                                <a href="#!" class="d-block text-body p-1 px-2"><i
+                                                        class="ri-star-fill text-muted align-bottom me-1"></i> Add Wishlist</a>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-sm-auto">
-                                    <div class="d-flex align-items-center gap-2 text-muted">
-                                        <div>Total :</div>
-                                        <h5 class="fs-14 mb-0">$<span class="product-line-price">269.97</span></h5>
+                                    <div class="col-sm-auto">
+                                        <div class="d-flex align-items-center gap-2 text-muted">
+                                            <div>Total :</div>
+<<<<<<< HEAD
+                                            <h5 class="fs-14 mb-0">$<span class="product-line-price">{{$details['price']*$details['quantity']}}</span></h5>
+=======
+                                            <h5 class="fs-14 mb-0">$<span class="product-line-price">269.97</span></h5>
+>>>>>>> 8780b187cc0e946068ed7f43c27d5a585ae70ec4
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+                            <!-- end card footer -->
                         </div>
-                        <!-- end card footer -->
-                    </div>
-                    <!--end card-->
-                    <div class="card product">
-                        <div class="card-body p-4">
-                            <div class="row gy-3">
-                                <div class="col-sm-auto">
-                                    <div class="avatar-lg h-100">
-                                        <div class="avatar-title bg-secondary-subtle rounded py-3">
-                                            <img src="{{ URL::asset('build/images/products/img-15.png') }}" alt=""
-                                                class="avatar-md">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm">
-                                    <a href="#!">
-                                        <h5 class="fs-16 lh-base mb-1">Like Style Women Black Handbag</h5>
-                                    </a>
-                                    <ul class="list-inline text-muted fs-13 mb-3">
-                                        <li class="list-inline-item">Color : <span class="fw-medium">Brown</span></li>
-                                    </ul>
-                                    <div class="input-step">
-                                        <button type="button" class="minus">–</button>
-                                        <input type="number" class="product-quantity" value="1" min="0"
-                                            max="100" readonly>
-                                        <button type="button" class="plus">+</button>
-                                    </div>
-                                </div>
-                                <div class="col-sm-auto">
-                                    <div class="text-lg-end">
-                                        <p class="text-muted mb-1 fs-12">Item Price:</p>
-                                        <h5 class="fs-16">$<span class="product-price">742.00</span></h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-footer">
-                            <div class="row align-items-center gy-3">
-                                <div class="col-sm">
-                                    <div class="d-flex flex-wrap my-n1">
-                                        <div>
-                                            <a href="#!" class="d-block text-body p-1 px-2" data-bs-toggle="modal"
-                                                data-bs-target="#removeItemModal"><i
-                                                    class="ri-delete-bin-fill text-muted align-bottom me-1"></i> Remove</a>
-                                        </div>
-                                        <div>
-                                            <a href="#!" class="d-block text-body p-1 px-2"><i
-                                                    class="ri-star-fill text-muted align-bottom me-1"></i> Add Wishlist</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-auto">
-                                    <div class="d-flex align-items-center gap-2 text-muted">
-                                        <div>Total :</div>
-                                        <h5 class="fs-14 mb-0">$<span class="product-line-price">742.00</span></h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- end card footer -->
-                    </div>
-                    <!--end card-->
-                    <div class="card product">
-                        <div class="card-body p-4">
-                            <div class="row gy-3">
-                                <div class="col-sm-auto">
-                                    <div class="avatar-lg h-100">
-                                        <div class="avatar-title bg-warning-subtle rounded py-3">
-                                            <img src="{{ URL::asset('build/images/products/img-6.png') }}" alt=""
-                                                class="avatar-md">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm">
-                                    <a href="#!">
-                                        <h5 class="fs-16 lh-base mb-1">Striped High Neck Casual Men Orange Sweater</h5>
-                                    </a>
-                                    <ul class="list-inline text-muted fs-13 mb-3">
-                                        <li class="list-inline-item">Color : <span class="fw-medium">Orange</span></li>
-                                        <li class="list-inline-item">Size : <span class="fw-medium">XL</span></li>
-                                    </ul>
-                                    <div class="input-step">
-                                        <button type="button" class="minus">–</button>
-                                        <input type="number" class="product-quantity" value="5" min="0"
-                                            max="100" readonly>
-                                        <button type="button" class="plus">+</button>
-                                    </div>
-                                </div>
-                                <div class="col-sm-auto">
-                                    <div class="text-lg-end">
-                                        <p class="text-muted mb-1 fs-12">Item Price:</p>
-                                        <h5 class="fs-16">$<span class="product-price">62.40</span></h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-footer">
-                            <div class="row align-items-center gy-3">
-                                <div class="col-sm">
-                                    <div class="d-flex flex-wrap my-n1">
-                                        <div>
-                                            <a href="#!" class="d-block text-body p-1 px-2" data-bs-toggle="modal"
-                                                data-bs-target="#removeItemModal"><i
-                                                    class="ri-delete-bin-fill text-muted align-bottom me-1"></i> Remove</a>
-                                        </div>
-                                        <div>
-                                            <a href="#!" class="d-block text-body p-1 px-2"><i
-                                                    class="ri-star-fill text-muted align-bottom me-1"></i> Add Wishlist</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-auto">
-                                    <div class="d-flex align-items-center gap-2 text-muted">
-                                        <div>Total :</div>
-                                        <h5 class="fs-14 mb-0">$<span class="product-line-price">312.00</span></h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- end card footer -->
-                    </div>
-                    <!--end card-->
-                    <div class="card product">
-                        <div class="card-body p-4">
-                            <div class="row gy-3">
-                                <div class="col-sm-auto">
-                                    <div class="avatar-lg h-100">
-                                        <div class="avatar-title bg-dark-subtle rounded py-3">
-                                            <img src="{{ URL::asset('build/images/products/img-9.png') }}" alt=""
-                                                class="avatar-md">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm">
-                                    <a href="#!">
-                                        <h5 class="fs-16 lh-base mb-1">Borosil Paper Cup</h5>
-                                    </a>
-                                    <ul class="list-inline text-muted fs-13 mb-3">
-                                        <li class="list-inline-item">Color : <span class="fw-medium">White</span></li>
-                                    </ul>
-                                    <div class="input-step">
-                                        <button type="button" class="minus">–</button>
-                                        <input type="number" class="product-quantity" value="1" min="0"
-                                            max="100" readonly>
-                                        <button type="button" class="plus">+</button>
-                                    </div>
-                                </div>
-                                <div class="col-sm-auto">
-                                    <div class="text-lg-end">
-                                        <p class="text-muted mb-1 fs-12">Item Price:</p>
-                                        <h5 class="fs-16">$<span class="product-price">38.00</span></h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-footer">
-                            <div class="row align-items-center gy-3">
-                                <div class="col-sm">
-                                    <div class="d-flex flex-wrap my-n1">
-                                        <div>
-                                            <a href="#!" class="d-block text-body p-1 px-2" data-bs-toggle="modal"
-                                                data-bs-target="#removeItemModal"><i
-                                                    class="ri-delete-bin-fill text-muted align-bottom me-1"></i> Remove</a>
-                                        </div>
-                                        <div>
-                                            <a href="#!" class="d-block text-body p-1 px-2"><i
-                                                    class="ri-star-fill text-muted align-bottom me-1"></i> Add Wishlist</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-auto">
-                                    <div class="d-flex align-items-center gap-2 text-muted">
-                                        <div>Total :</div>
-                                        <h5 class="fs-14 mb-0">$<span class="product-line-price">38.00</span></h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- end card footer -->
-                    </div>
-                    <!--end card-->
+                    @endforeach
                 </div>
 <!----------------------------------------fin produits du panier------------------------------------------------------->
                 <!--end col-->
@@ -332,7 +195,7 @@
                                             <tr class="table-active">
                                                 <th>Total (USD) :</th>
                                                 <td class="text-end">
-                                                    <span class="fw-semibold cart-total"></span>
+                                                    <span class="fw-semibold cart-total">${{$total}}</span>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -408,7 +271,7 @@
                                 <h5 class="mb-0">$209.99</h5>
                             </div>
                             <div class="mt-3">
-                                <a href="#!" class="btn btn-primary w-100 add-btn"><i class="mdi mdi-cart me-1"></i>
+                                <a href="#" class="btn btn-primary w-100 add-btn"><i class="mdi mdi-cart me-1"></i>
                                     Add To Cart</a>
                             </div>
                         </div>
