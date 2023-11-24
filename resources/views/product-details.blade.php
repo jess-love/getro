@@ -183,9 +183,9 @@
                             <div class="d-flex align-items-center mb-4">
                                 <h5 class="fs-15 mb-0">Quantity:</h5>
                                 <div class="input-step ms-2">
-                                    <button type="button" class="minus decrement-btn" >–</button>
-                                        <input name="quantity " type="number" class="product- qty-input" value="1" min="0"max="100" readonly="">
-                                    <button type="button" class="plus increment-btn">+</button>
+                                        <button type="button" class="minus">–</button>
+                                        <input type="number" class="product-quantity" value="1" >
+                                        <button type="button" class="plus">+</button>
                                 </div>
                             </div>
                             <div class="row gy-3">
@@ -1037,6 +1037,7 @@
 @section('scripts')
     <!--Swiper slider js-->
     <script src="{{ URL::asset('build/libs/swiper/swiper-bundle.min.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 
     <script src="{{ URL::asset('build/js/frontend/product-details.init.js') }}"></script>
 
@@ -1044,22 +1045,37 @@
     <script src="{{ URL::asset('build/js/frontend/menu.init.js') }}"></script>
 @endsection
 
-@section('scripts')
-    <script>
+ 
+    {{-- <script>
         $(document).ready(function (){
-            $('.increment-btn').click(function (e){
+            $('.plus').click(function (e){
                 e.preventDefault();
 
-                var inc_value =$('.qty-input').val();
-                var value = parseInt(inc_value,10);
-                value = isNaN(value)? 0:value;
-                if(value<10)
+                var inc_value =$('.product-quantity').val();
+                var value = parseInt(inc_value,100);
+                value = isNaN(value)? 0 : value;
+                if(value < 10)
                 {
                     value++;
-                    $('.qty-input').val(value);
+                    $('.product-quantity').val(value);
+                }
+            });
+
+
+
+             $('.minus').click(function (e){
+                e.preventDefault();
+
+                var dec_value =$('.product-quantity').val();
+                var value = parseInt(dec_value,100);
+                value = isNaN(value)? 0 : value;
+                if(value > 1)
+                {
+                    value--;
+                    $('.product-quantity').val(value);
                 }
             });
         });
 
-    </script>
-@endsection
+    </script> --}}
+

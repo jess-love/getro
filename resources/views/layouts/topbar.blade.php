@@ -315,7 +315,7 @@
                                     </div>
                                     <div class="input-step">
                                         <button type="button" class="minus">–</button>
-                                        <input type="number" class="product-quantity" value="2" min="0" max="100" readonly>
+                                        <input type="number" class="product-quantity" value="1" min ="0", max ="100">
                                         <button type="button" class="plus">+</button>
                                     </div>
                                 </div>
@@ -621,3 +621,36 @@
         </div>
     </div>
 </div>
+
+    <script>
+        $(document).ready(function (){
+            $('.plus').click(function (e){
+                e.preventDefault();
+
+                var inc_value =$('.product-quantity').val();
+                var value = parseInt(inc_value,10);
+                value = isNaN(value)? 0 : value;
+                if(value < 10)
+                {
+                    value++;
+                    $('.product-quantity').val(value);
+                }
+            });
+
+
+             $('.minus').click(function (e){
+                e.preventDefault();
+
+                var dec_value =$('.product-quantity').val();
+                var value = parseInt(dec_value,10);
+                value = isNaN(value)? 0 : value;
+                if(value > 1)
+                {
+                    value--;
+                    $('.product-quantity').val(value);
+                }
+            });
+        });
+
+    </script>
+
