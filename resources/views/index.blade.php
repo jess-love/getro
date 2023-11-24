@@ -267,7 +267,7 @@
 
 
                     <div class="mt-4 text-center">
-                        <a href="product-list-defualt" class="btn btn-soft-primary btn-hover">View All Products <i
+                        <a href="#" class="btn btn-soft-primary btn-hover">View All Products <i
                                 class="mdi mdi-arrow-right align-middle ms-1"></i></a>
                     </div>
                 </div>
