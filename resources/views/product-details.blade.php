@@ -2,8 +2,12 @@
 @section('title')
     Product Details
 @endsection
+@push('styles')
+    <link id="color-link" rel="stylesheet" type="text/css" href={{assert('build/css/demo2.css')}}>
+@endpush
+
 @section('css')
-    <!-- extra css -->
+    <!---- extra css ---->
     <link href="{{ URL::asset('build/libs/swiper/swiper-bundle.min.css') }}" rel="stylesheet" type="text/css">
 @endsection
 @section('content')
@@ -180,14 +184,16 @@
   <!---------------------------------------form panier----------------------------------------------------------->
                         <form method="POST" action="{{route('post_add',['id'=>$products->id])}}" id="add_to_cart">
                             @csrf
+
                             <div class="d-flex align-items-center mb-4">
                                 <h5 class="fs-15 mb-0">Quantity:</h5>
-                                <div class="input-step ms-2">
-                                        <button type="button" class="minus">–</button>
-                                        <input type="number" class="product-quantity" value="1" >
-                                        <button type="button" class="plus">+</button>
+                                <div class="input-step ms-2 quantity">
+                                    <button type="button" class="btn decrement-btn" >–</button>
+                                         <input type="number" class="qty-input" value="1" name="" max="100" value="1">
+                                    <button type="button" class="btn increment-btn" >+</button>
                                 </div>
                             </div>
+
                             <div class="row gy-3">
                                 <div class="col-md-6">
                                     <div>
@@ -495,9 +501,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="flex-shrink-0">
-                                                    <p class="mb-0 text-muted"><i
-                                                            class="ri-calendar-event-fill me-2 align-middle"></i>Aug 16,
-                                                        2022</p>
+                                                    <p class="mb-0 text-muted"><i class="ri-calendar-event-fill me-2 align-middle"></i>Aug 16,2022</p>
                                                 </div>
                                             </div>
                                             <div>
@@ -522,9 +526,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="flex-shrink-0">
-                                                            <p class="mb-0 text-muted"><i
-                                                                    class="ri-calendar-event-fill me-2 align-middle"></i>Aug
-                                                                16, 2022</p>
+                                                            <p class="mb-0 text-muted"><i class="ri-calendar-event-fill me-2 align-middle"></i>Aug  16, 2022</p>
                                                         </div>
                                                     </div>
                                                     <p class="mb-0">
@@ -1033,6 +1035,34 @@
         </div>
         <!--end container-->
     </section>
+    <script>
+        $(document).ready(function () {
+
+            $('.increment-btn').click(function (e) {
+                e.preventDefault();
+                var incre_value = $(this).parents('.quantity').find('.qty-input').val();
+                var value = parseInt(incre_value, 10);
+                value = isNaN(value) ? 0 : value;
+                if(value<100){
+                    value++;
+                    $(this).parents('.quantity').find('.qty-input').val(value);
+                }
+
+            });
+
+            $('.decrement-btn').click(function (e) {
+                e.preventDefault();
+                var decre_value = $(this).parents('.quantity').find('.qty-input').val();
+                var value = parseInt(decre_value, 10);
+                value = isNaN(value) ? 0 : value;
+                if(value>1){
+                    value--;
+                    $(this).parents('.quantity').find('.qty-input').val(value);
+                }
+            });
+
+        });
+    </script>
 @endsection
 @section('scripts')
     <!--Swiper slider js-->
@@ -1045,37 +1075,6 @@
     <script src="{{ URL::asset('build/js/frontend/menu.init.js') }}"></script>
 @endsection
 
- 
-    {{-- <script>
-        $(document).ready(function (){
-            $('.plus').click(function (e){
-                e.preventDefault();
-
-                var inc_value =$('.product-quantity').val();
-                var value = parseInt(inc_value,100);
-                value = isNaN(value)? 0 : value;
-                if(value < 10)
-                {
-                    value++;
-                    $('.product-quantity').val(value);
-                }
-            });
 
 
-
-             $('.minus').click(function (e){
-                e.preventDefault();
-
-                var dec_value =$('.product-quantity').val();
-                var value = parseInt(dec_value,100);
-                value = isNaN(value)? 0 : value;
-                if(value > 1)
-                {
-                    value--;
-                    $('.product-quantity').val(value);
-                }
-            });
-        });
-
-    </script> --}}
 

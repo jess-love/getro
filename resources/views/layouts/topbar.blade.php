@@ -302,7 +302,7 @@
 <!------------------------------------------------------------------------cart ---------------------------------------------------------------------------------------------------->
 <div class="offcanvas offcanvas-end product-list" tabindex="-1" id="ecommerceCart" aria-labelledby="ecommerceCartLabel">
     <div class="offcanvas-header border-bottom">
-        <h5 class="offcanvas-title" id="ecommerceCartLabel">My Cart <span class="badge bg-danger align-middle ms-1 cartitem-badge">{{Cart::count()}}</span></h5>
+        <h5 class="offcanvas-title" id="ecommerceCartLabel">My Cart <span class="badge bg-danger align-middle ms-1 cartitem-badge">{{count((array) session('cart'))}}</span></h5>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body px-0">
@@ -328,10 +328,10 @@
                                         <div class="vr"></div>
                                         <span class="text-success fw-medium">In Stock</span>
                                     </div>
-                                    <div class="input-step">
-                                        <button type="button" class="minus">–</button>
-                                        <input type="number" class="product-quantity" value="1" min ="0", max ="100">
-                                        <button type="button" class="plus">+</button>
+                                    <div class="input-step ms-2 quantity">
+                                        <button type="button" class="btn decrement-btn" >–</button>
+                                        <input type="number" class="qty-input" value="1" name="" max="100" value="1">
+                                        <button type="button" class="btn increment-btn" >+</button>
                                     </div>
                                 </div>
                                 <div class="flex-shrink-0 d-flex flex-column justify-content-between align-items-end">
@@ -637,35 +637,32 @@
     </div>
 </div>
 
-    <script>
-        $(document).ready(function (){
-            $('.plus').click(function (e){
-                e.preventDefault();
+<script>
+    $(document).ready(function () {
 
-                var inc_value =$('.product-quantity').val();
-                var value = parseInt(inc_value,10);
-                value = isNaN(value)? 0 : value;
-                if(value < 10)
-                {
-                    value++;
-                    $('.product-quantity').val(value);
-                }
-            });
+        $('.increment-btn').click(function (e) {
+            e.preventDefault();
+            var incre_value = $(this).parents('.quantity').find('.qty-input').val();
+            var value = parseInt(incre_value, 10);
+            value = isNaN(value) ? 0 : value;
+            if(value<100){
+                value++;
+                $(this).parents('.quantity').find('.qty-input').val(value);
+            }
 
-
-             $('.minus').click(function (e){
-                e.preventDefault();
-
-                var dec_value =$('.product-quantity').val();
-                var value = parseInt(dec_value,10);
-                value = isNaN(value)? 0 : value;
-                if(value > 1)
-                {
-                    value--;
-                    $('.product-quantity').val(value);
-                }
-            });
         });
 
-    </script>
+        $('.decrement-btn').click(function (e) {
+            e.preventDefault();
+            var decre_value = $(this).parents('.quantity').find('.qty-input').val();
+            var value = parseInt(decre_value, 10);
+            value = isNaN(value) ? 0 : value;
+            if(value>1){
+                value--;
+                $(this).parents('.quantity').find('.qty-input').val(value);
+            }
+        });
+
+    });
+</script>
 
