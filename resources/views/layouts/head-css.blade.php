@@ -8,3 +8,4 @@
 <link href="{{ URL::asset('build/css/app.min.css') }}" rel="stylesheet" type="text/css">
 <!-- custom Css-->
 <link href="{{ URL::asset('build/css/custom.min.css') }}" rel="stylesheet" type="text/css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>

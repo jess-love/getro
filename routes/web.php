@@ -27,10 +27,16 @@ Route::get('/products-category', [App\Http\Controllers\HomeController::class, 'V
 
 
 
+Route::get('/products-category', [App\Http\Controllers\ViewCategoryController::class, 'ViewCategory'])->name('CategoryProduct');
+Route::get('/category', [App\Http\Controllers\CategoryIndexPage::class, 'CategoryIndexpage'])->name('Category');
+Route::get('/categoryMenu',[App\Http\Controllers\ViewCategoryController::class, 'viewcategoryinMenu']);
+
+
 //Route::get('/sub/category', [App\Http\Controllers\CategoryController::class, 'sub'])->name('sub');
 
 Route::get('/products-category', [App\Http\Controllers\ViewCategoryController::class, 'ViewCategory'])->name('CategoryProduct');
 Route::get('/categoryMenu',[App\Http\Controllers\ViewCategoryController::class, 'viewcategoryinMenu']);      //->name('CategoryMenu');
+
 
 
 Route::get('categoryMenu',[App\Http\Controllers\ViewCategoryController::class, 'viewcategoryinMenu']);
@@ -58,7 +64,7 @@ Route::post('/cart/{id}',[App\Http\Controllers\CartController::class,'add'])->na
 Route::get('/panier/index',[App\Http\Controllers\CartController::class,'index'])->name('cart_index');
 
 //route pour remove item
-Route::delete('/panier/remove',[App\Http\Controllers\CartController::class,'removeItem'])->name('remove.item');
+Route::delete('/remove',[App\Http\Controllers\CartController::class,'removeItem'])->name('remove.item');
 //route pour delete all items from cart
 Route::delete('/panier/clear',[App\Http\Controllers\CartController::class,'clearCart'])->name('clear.cart');
 

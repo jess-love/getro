@@ -29,7 +29,7 @@ class CartController extends Controller
         session()->put('cart',$cart);
         return redirect()->back()->with('success','Product add to cart succssfully!');
     }
-    
+
 
 
     public function countItem(){
@@ -39,12 +39,24 @@ class CartController extends Controller
     }
 
     public function removeItem(Request $request){
-        $itemremove = Cart::remove($request->id);
-        return redirect()->route('remove.item');
-    }
+       if($request->id){
+           $cart = session()->get('cart');
+           if(isset($cart[$request->id])){
+               unset($cart[$request->id]);
+               session()->put('cart',$cart);
+           }
+           return redirect()->back()->with('success','Product reccessfully removed!');
+           //session()->flash('success','Product reccessfully removed');
+       }
+     }
+
 
     public function clearCart(){
         Cart::destroy();
         return redirect()->route('clear.cart');
+    }
+
+    public function shopcart(){
+        return view('shop-cart');
     }
 }

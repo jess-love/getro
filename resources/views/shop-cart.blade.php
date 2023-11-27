@@ -75,10 +75,10 @@
                                                 <li class="list-inline-item">Size : <span class="fw-medium">M</span></li>
                                             </ul>
 
-                                            <div class="input-step">
-                                                <button type="button" class="minus">–</button>
-                                                <input type="number" class="product-quantity" value="{{$details['quantity']}}" min="0" max="100" readonly>
-                                                <button type="button" class="plus">+</button>
+                                            <div class="input-step ms-2 quantity">
+                                                <button type="button" class="btn decrement-btn" >–</button>
+                                                    <input type="number" class="qty-input" value="{{$details['quantity']}}" name="" max="100" value="1">
+                                                <button type="button" class="btn increment-btn" >+</button>
                                             </div>
                                         </div>
                                         <div class="col-sm-auto">
@@ -456,6 +456,34 @@
         </div>
         <!--end container-->
     </section>
+    <script>
+        $(document).ready(function () {
+
+            $('.increment-btn').click(function (e) {
+                e.preventDefault();
+                var incre_value = $(this).parents('.quantity').find('.qty-input').val();
+                var value = parseInt(incre_value, 10);
+                value = isNaN(value) ? 0 : value;
+                if(value<100){
+                    value++;
+                    $(this).parents('.quantity').find('.qty-input').val(value);
+                }
+
+            });
+
+            $('.decrement-btn').click(function (e) {
+                e.preventDefault();
+                var decre_value = $(this).parents('.quantity').find('.qty-input').val();
+                var value = parseInt(decre_value, 10);
+                value = isNaN(value) ? 0 : value;
+                if(value>1){
+                    value--;
+                    $(this).parents('.quantity').find('.qty-input').val(value);
+                }
+            });
+
+        });
+    </script>
 @endsection
 @section('scripts')
     <!-- landing-index js -->
