@@ -483,7 +483,7 @@
                 </div>
                 <div class="d-flex gap-2 justify-content-center mt-4 mb-2">
                     <button type="button" class="btn w-sm btn-light" data-bs-dismiss="modal">Close</button>
-                    <a href="{{route('remove.item')}}" class="btn w-sm btn-danger" id="remove-product">Yes, Delete It!</a>
+                    <a href="" class="btn w-sm btn-danger" id="remove-product">Yes, Delete It!</a>
                 </div>
             </div>
 
