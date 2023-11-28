@@ -182,9 +182,9 @@
                             </ul>
                         </div>
   <!---------------------------------------form panier----------------------------------------------------------->
-                        <form method="POST" action="{{route('post_add',['id'=>$products->id])}}" id="add_to_cart">
+                        <form method="POST" action="{{route('ProductToCart',['id'=>$products->id])}}" id="add_to_cart">
                             @csrf
-
+                            <input type="hidden" name="product_id" value="{{$products->id}}">
                             <div class="d-flex align-items-center mb-4">
                                 <h5 class="fs-15 mb-0">Quantity:</h5>
                                 <div class="input-step ms-2 quantity">

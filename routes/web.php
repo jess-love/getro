@@ -45,10 +45,6 @@ Route::get('/produitToCart/{id}',[App\Http\Controllers\CartController::class,'ad
 
 Route::get('categoryMenu',[App\Http\Controllers\ViewCategoryController::class, 'viewcategoryinMenu']);
 
-
-//route add to cart
-
-
 Route::get('/produitToCart/{id}',[App\Http\Controllers\CartController::class,'addProductToCart'])->name('ProductToCart');
 //Route to shop-cart view
 Route::get('/shop-cart',[App\Http\Controllers\CartController::class,'shopcart'])->name('shopCart');
