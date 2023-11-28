@@ -38,15 +38,14 @@ class CartController extends Controller
         return view('index',compact('item'));
     }
 
-    public function removeItem(Request $request){
+    public function remove(Request $request){
        if($request->id){
            $cart = session()->get('cart');
            if(isset($cart[$request->id])){
                unset($cart[$request->id]);
                session()->put('cart',$cart);
            }
-            return redirect('shop-cart')->with('success','Product reccessfully removed');
-            //session()->flash('success','Product reccessfully removed');
+           session()->flash('success','Product reccessfully removed');
        }
      }
 

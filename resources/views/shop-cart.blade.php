@@ -55,6 +55,7 @@
                 $total += $details['price']*$details['quantity'];
              @endphp
              <div class="card product">
+                 <tr data-id ='{{$id}}'>
                                 <div class="card-body p-4">
                                     <div class="row gy-3">
                                         <div class="col-sm-auto">
@@ -118,6 +119,7 @@
                                 <!-- end card footer -->
                             </div>
                 <!--end card-->
+                        </tr>
             @endforeach
 
                 </div>
@@ -485,7 +487,25 @@
         });
 
 
+        $('.cart_remove').click(function (e) {
+            e.preventDefault();
+            var ele = $(this);
+            var value = parseInt(incre_value, 10);
+            if(confirm("Do you really want to remove")){
+                $.ajax({
+                    url: '{{route('remove.item')}}',
+                    method: "DELETE",
+                    data:{
+                        _token: '{{csrf_token()}}',
+                        id: ele.parent("tr").attr("data-id")
+                    },
+                    success: function (response){
+                        window.location.reload();
+                    }
+                });
+            }
 
+        });
 
     </script>
 @endsection

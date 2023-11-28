@@ -474,7 +474,7 @@
                 </div>
                 <div class="d-flex gap-2 justify-content-center mt-4 mb-2">
                     <button type="button" class="btn w-sm btn-light" data-bs-dismiss="modal">Close</button>
-                    <a href="{{route('remove.item')}}" class="btn w-sm btn-danger" id="remove-product">Yes, Delete It!</a>
+                    <a href="" class="btn w-sm btn-danger cart_remove" id="remove-product">Yes, Delete It!</a>
                 </div>
             </div>
 
@@ -653,6 +653,25 @@
                 $(this).parents('.quantity').find('.qty-input').val(value);
             }
         });
+
+    });
+
+    $('.cart_remove').click(function (e) {
+        e.preventDefault();
+        var ele = $(this);
+        if(confirm("Do you really want to remove")){
+            $.ajax({
+                url: '{{route('remove.item')}}',
+                method: "DELETE",
+                data:{
+                    _token: '{{csrf_token()}}',
+                    id: ele.parent("tr").attr("data-id")
+                },
+                success: function (response){
+                    window.location.reload();
+                }
+            });
+        }
 
     });
 </script>
