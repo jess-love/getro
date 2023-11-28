@@ -28,15 +28,6 @@
                         <img src="{{ URL::asset('build/images/logo-light.png') }}" alt="" height="25" class="card-logo-light mx-auto">
                     </a>
                 </li>
-
-               <li class="nav-item dropdown ">
-                   <a class="nav-link" href="{{route('index')}}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                       ACCUEIL
-                   </a>
-                </li>
-
-
-
                 <li class="nav-item dropdown dropdown-mega-full dropdown-hover">
                     <a class="nav-link dropdown-toggle" data-key="t-catalog" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         CATEGORIE
@@ -53,7 +44,7 @@
                                     </div>
                                 </div>
                             </div>
-                            {{-- @if ($cat_and_sub)
+                             @if ($cat_and_sub)
                                 @foreach($cat_and_sub as $categoryId => $subCategories)
                                     <div class="col-lg-2">
                                         <ul class="dropdown-menu-list list-unstyled mb-0 py-3">
@@ -75,7 +66,7 @@
                                 @endforeach
                             @else
                                 <p>No variable available.</p>
-                            @endif --}}
+                            @endif
 
 
                             <div class="col-lg-2 d-none d-lg-block">
