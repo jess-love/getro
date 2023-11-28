@@ -29,14 +29,6 @@
                     </a>
                 </li>
 
-               <li class="nav-item dropdown ">
-                   <a class="nav-link" href="{{route('index')}}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                       ACCUEIL
-                   </a>
-                </li>
-
-
-
                 <li class="nav-item dropdown dropdown-mega-full dropdown-hover">
                     <a class="nav-link dropdown-toggle" data-key="t-catalog" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         CATEGORIE
