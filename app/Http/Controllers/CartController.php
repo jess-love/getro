@@ -45,8 +45,8 @@ class CartController extends Controller
                unset($cart[$request->id]);
                session()->put('cart',$cart);
            }
-           return redirect()->back()->with('success','Product reccessfully removed!');
-           //session()->flash('success','Product reccessfully removed');
+            return redirect('shop-cart')->with('success','Product reccessfully removed');
+            //session()->flash('success','Product reccessfully removed');
        }
      }
 

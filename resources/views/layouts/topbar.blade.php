@@ -306,7 +306,7 @@
                                 <div class="flex-shrink-0">
                                     <div class="avatar-md" style="height: 100%;">
                                         <div class="avatar-title bg-warning-subtle rounded-3">
-                                            <img src="{{ URL::asset('build/images/products/'.$details['image']) }}" alt="" class="avatar-sm">
+                                            <img src="{{ URL::asset('build/images/products/'.$details['image'])}}" alt="" class="avatar-sm">
                                         </div>
                                     </div>
                                 </div>
@@ -321,7 +321,7 @@
                                     </div>
                                     <div class="input-step ms-2 quantity">
                                         <button type="button" class="btn decrement-btn" >–</button>
-                                        <input type="number" class="qty-input" value="1" name="" max="100" value="1">
+                                        <input type="number" class="qty-input" value="1" name="" max="100">
                                         <button type="button" class="btn increment-btn" >+</button>
                                     </div>
                                 </div>
@@ -474,7 +474,7 @@
                 </div>
                 <div class="d-flex gap-2 justify-content-center mt-4 mb-2">
                     <button type="button" class="btn w-sm btn-light" data-bs-dismiss="modal">Close</button>
-                    <a href="" class="btn w-sm btn-danger" id="remove-product">Yes, Delete It!</a>
+                    <a href="{{route('remove.item')}}" class="btn w-sm btn-danger" id="remove-product">Yes, Delete It!</a>
                 </div>
             </div>
 

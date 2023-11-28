@@ -483,6 +483,10 @@
             });
 
         });
+
+
+
+
     </script>
 @endsection
 @section('scripts')
