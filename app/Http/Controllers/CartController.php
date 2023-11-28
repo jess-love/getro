@@ -31,13 +31,6 @@ class CartController extends Controller
     }
 
 
-
-    public function countItem(){
-        $item = Cart::count();
-
-        return view('index',compact('item'));
-    }
-
     public function remove(Request $request){
        if($request->id){
            $cart = session()->get('cart');
@@ -49,13 +42,4 @@ class CartController extends Controller
        }
      }
 
-
-    public function clearCart(){
-        Cart::destroy();
-        return redirect()->route('clear.cart');
-    }
-
-    public function shopcart(){
-        return view('shop-cart');
-    }
 }

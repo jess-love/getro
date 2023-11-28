@@ -98,8 +98,8 @@
                                             <div class="d-flex flex-wrap my-n1">
                                                 <div>
 
-                                                    <a href="" class="d-block text-body p-1 px-2" data-bs-toggle="modal"data-bs-target="#removeItemModal"><i
-                                                            class="ri-delete-bin-fill text-muted align-bottom me-1"></i> Remove</a>
+                                                    <a href="" class="d-block text-body p-1 px-2 cart_remove" data-bs-toggle="modal"data-bs-target="#removeItemModal">
+                                                    <i class="ri-delete-bin-fill text-muted align-bottom me-1 "></i> Remove</a>
                                                 </div>
                                                 <div>
                                                     <a href="#!" class="d-block text-body p-1 px-2"><i class="ri-star-fill text-muted align-bottom me-1"></i> Add Wishlist</a>
@@ -490,7 +490,6 @@
         $('.cart_remove').click(function (e) {
             e.preventDefault();
             var ele = $(this);
-            var value = parseInt(incre_value, 10);
             if(confirm("Do you really want to remove")){
                 $.ajax({
                     url: '{{route('remove.item')}}',
