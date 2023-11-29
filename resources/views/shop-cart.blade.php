@@ -59,7 +59,9 @@
              @php
                 $total += $details['price']*$details['quantity'];
              @endphp
-             <div class="card product">
+             <tr data-id ="{{$id}}">
+                <div class="card product">
+
                                 <div class="card-body p-4">
                                     <div class="row gy-3">
                                         <div class="col-sm-auto">
@@ -122,6 +124,7 @@
                                 </div>
                                 <!-- end card footer -->
                             </div>
+             </tr>
                 <!--end card-->
             @endforeach
 
@@ -463,6 +466,23 @@
     </section>
     <script>
 
+        $('.cart_update').change(function (e) {
+            e.preventDefault();
+            var ele = $(this);
+            $.ajax({
+                url: '{{route('update_cart')}}',
+                method: "patch",
+                data:{
+                    _token: '{{csrf_token()}}',
+                    id: ele.parents("tr").attr("data-id"),
+                    quantity: ele.parents("tr").find(".quantity").val()
+                },
+                success: function (response){
+                    window.location.reload();
+                }
+            });
+
+        });
 
 
         $(document).ready(function () {
@@ -488,26 +508,6 @@
                     value--;
                     $(this).parents('.quantity').find('.qty-input').val(value);
                 }
-            });
-
-
-
-            $('.cart_update').change(function (e) {
-                e.preventDefault();
-                var ele = $(this);
-                $.ajax({
-                    url: '{{route('update_cart')}}',
-                    method: "patch",
-                    data:{
-                        _token: '{{csrf_token()}}',
-                        id: ele.parents("tr").attr("data-id"),
-                        quantity: ele.parents("div").find(".quantity").val()
-                    },
-                    success: function (response){
-                        window.location.reload();
-                    }
-                });
-
             });
 
         });
