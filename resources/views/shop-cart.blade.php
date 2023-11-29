@@ -40,6 +40,11 @@
 <!----------------------------------------les produits du panier------------------------------------------------------->
 
 <!----------------------------------------le panier commence ici------------------------------------------------------->
+            @if(session('success'))
+                <di class="alert alert-success">
+                    {{session('success')}}
+                </di>
+            @endif
             <div class="row product-list justify-content-center">
                 <div class="col-lg-8">
                     <div class="d-flex align-items-center mb-4">
@@ -77,7 +82,7 @@
 
                                             <div class="input-step ms-2 quantity">
                                                 <button type="button" class="btn decrement-btn" >–</button>
-                                                    <input type="number" class="qty-input" value="{{$details['quantity']}}" name="" max="100" value="1">
+                                                    <input type="number" class="qty-input cart_update quantity" value="{{$details['quantity']}}" name="" max="100" min="1">
                                                 <button type="button" class="btn increment-btn" >+</button>
                                             </div>
                                         </div>
@@ -173,7 +178,7 @@
                             </div>
                         </div>
                         <div class="hstack gap-2 justify-content-end">
-                            <button type="button" class="btn btn-hover btn-danger">Continue Shopping</button>
+                            <a href="{{url('/')}}" class="btn btn-hover btn-danger">Continue Shopping</a>
                             <button type="button" class="btn btn-hover btn-success">Check Out <i
                                     class="ri-logout-box-r-line align-bottom ms-1"></i></button>
                         </div>
@@ -457,6 +462,23 @@
         <!--end container-->
     </section>
     <script>
+        $('.cart_update').change(function (e) {
+            e.preventDefault();
+            var ele = $(this);
+           $.ajax({
+               url: '{{route('update_cart')}}',
+               method: "patch",
+               data:{
+                   _token: '{{csrf_token()}}',
+                   id: ele.parents("tr").find(".quantity").val()
+               },
+               success: function (response){
+                   window.location.reload();
+               }
+           });
+
+        });
+
         $(document).ready(function () {
 
             $('.increment-btn').click(function (e) {

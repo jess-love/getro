@@ -61,6 +61,7 @@ Route::get('/panier/index',[App\Http\Controllers\CartController::class,'index'])
 
 //route pour remove item
 Route::delete('/remove',[App\Http\Controllers\CartController::class,'removeItem'])->name('remove.item');
+Route::patch('/update-cart',[App\Http\Controllers\CartController::class,'update'])->name('update_cart');
 //route pour delete all items from cart
 Route::delete('/panier/clear',[App\Http\Controllers\CartController::class,'clearCart'])->name('clear.cart');
 
