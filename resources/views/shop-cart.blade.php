@@ -462,22 +462,8 @@
         <!--end container-->
     </section>
     <script>
-        $('.cart_update').change(function (e) {
-            e.preventDefault();
-            var ele = $(this);
-           $.ajax({
-               url: '{{route('update_cart')}}',
-               method: "patch",
-               data:{
-                   _token: '{{csrf_token()}}',
-                   id: ele.parents("tr").find(".quantity").val()
-               },
-               success: function (response){
-                   window.location.reload();
-               }
-           });
 
-        });
+
 
         $(document).ready(function () {
 
@@ -502,6 +488,26 @@
                     value--;
                     $(this).parents('.quantity').find('.qty-input').val(value);
                 }
+            });
+
+
+
+            $('.cart_update').change(function (e) {
+                e.preventDefault();
+                var ele = $(this);
+                $.ajax({
+                    url: '{{route('update_cart')}}',
+                    method: "patch",
+                    data:{
+                        _token: '{{csrf_token()}}',
+                        id: ele.parents("tr").attr("data-id"),
+                        quantity: ele.parents("div").find(".quantity").val()
+                    },
+                    success: function (response){
+                        window.location.reload();
+                    }
+                });
+
             });
 
         });
