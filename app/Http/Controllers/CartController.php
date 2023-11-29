@@ -25,11 +25,6 @@ class CartController extends Controller
                 'size' =>"XL",
                 'quantity' =>2,
             ];
-            Cart::create([
-                'user_id' =>Auth::user()->id,
-                'product_id' =>$product->id,
-                'qty' =>$cart['quantity']
-            ]);
         }
         session()->put('cart',$cart);
         return redirect()->back()->with('success','Product add to cart succssfully!');
