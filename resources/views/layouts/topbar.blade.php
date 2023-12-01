@@ -28,15 +28,6 @@
                         <img src="{{ URL::asset('build/images/logo-light.png') }}" alt="" height="25" class="card-logo-light mx-auto">
                     </a>
                 </li>
-
-               <li class="nav-item dropdown ">
-                   <a class="nav-link" href="{{route('index')}}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                       ACCUEIL
-                   </a>
-                </li>
-
-
-
                 <li class="nav-item dropdown dropdown-mega-full dropdown-hover">
                     <a class="nav-link dropdown-toggle" data-key="t-catalog" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         CATEGORIE
@@ -53,7 +44,7 @@
                                     </div>
                                 </div>
                             </div>
-                            {{-- @if ($cat_and_sub)
+                             @if ($cat_and_sub)
                                 @foreach($cat_and_sub as $categoryId => $subCategories)
                                     <div class="col-lg-2">
                                         <ul class="dropdown-menu-list list-unstyled mb-0 py-3">
@@ -75,7 +66,7 @@
                                 @endforeach
                             @else
                                 <p>No variable available.</p>
-                            @endif --}}
+                            @endif
 
 
                             <div class="col-lg-2 d-none d-lg-block">
@@ -310,12 +301,12 @@
             <ul class="list-group list-group-flush cartlist">
                 @if(session('cart'))
                     @foreach(session('cart') as $id=>$details)
-                        <li class="list-group-item product">
+                        <li class="list-group-item product" data-id ='{{$id}}'>
                             <div class="d-flex gap-3">
                                 <div class="flex-shrink-0">
                                     <div class="avatar-md" style="height: 100%;">
                                         <div class="avatar-title bg-warning-subtle rounded-3">
-                                            <img src="{{ URL::asset('build/images/products/'.$details['image']) }}" alt="" class="avatar-sm">
+                                            <img src="{{ URL::asset('build/images/products/'.$details['image'])}}" alt="" class="avatar-sm">
                                         </div>
                                     </div>
                                 </div>
@@ -330,12 +321,12 @@
                                     </div>
                                     <div class="input-step ms-2 quantity">
                                         <button type="button" class="btn decrement-btn" >–</button>
-                                        <input type="number" class="qty-input" value="1" name="" max="100" value="1">
+                                            <input type="number" class="qty-input" value="1" name="" max="100">
                                         <button type="button" class="btn increment-btn" >+</button>
                                     </div>
                                 </div>
                                 <div class="flex-shrink-0 d-flex flex-column justify-content-between align-items-end">
-                                    <button type="button" class="btn btn-icon btn-sm btn-ghost-secondary remove-item-btn" data-bs-toggle="modal" data-bs-target="#removeItemModal"><i class="ri-close-fill fs-16"></i></button>
+                                    <button type="button" class="btn btn-icon btn-sm btn-ghost-secondary remove-item-btn cart_remove" data-bs-toggle="modal" ><i class="ri-close-fill fs-16"></i></button>
                                     <div class="fw-medium mb-0 fs-16">$<span class="product-line-price">{{$details['price']*$details['quantity']}}</span></div>
                                 </div>
                             </div>
@@ -349,11 +340,11 @@
                     <tbody>
                     <tr>
                         <td>Sub Total :</td>
-                        <td class="text-end cart-subtotal">$1183.57</td>
+                        <td class="text-end cart-subtotal">${{$total}}</td>
                     </tr>
                     <tr>
                         <td>Discount <span class="text-muted">(Toner15)</span>:</td>
-                        <td class="text-end cart-discount">- $177.54</td>
+                        <td class="text-end cart-discount">- 0</td>
                     </tr>
                     <tr>
                         <td>Shipping Charge :</td>
@@ -361,7 +352,7 @@
                     </tr>
                     <tr>
                         <td>Estimated Tax (12.5%) : </td>
-                        <td class="text-end cart-tax">$147.95</td>
+                        <td class="text-end cart-tax">${{0,125*$total}}</td>
                     </tr>
                     </tbody>
                 </table>
@@ -372,7 +363,7 @@
         <div class="d-flex justify-content-between align-items-center mb-3">
             <h6 class="m-0 fs-16 text-muted">Total:</h6>
             <div class="px-2">
-                <h6 class="m-0 fs-16 cart-total">${{$total}}</h6>
+                <h6 class="m-0 fs-16 cart-total">${{$total-0,125*$total}}</h6>
             </div>
         </div>
         <div class="row g-2">
@@ -392,7 +383,7 @@
         <div class="modal-content rounded">
             <div class="modal-header p-3">
                 <div class="position-relative w-100">
-                    <input type="text" class="form-control form-control-lg border-2" placeholder="Search for Toner..." autocomplete="off" id="search-options" value="">
+                    <input type="text" class="form-control form-control-lg border-2" placeholder="Rechercher dans Bel Mache..." autocomplete="off" id="search-options" value="">
                     <span class="bi bi-search search-widget-icon fs-17"></span>
                     <a href="javascript:void(0);" class="search-widget-icon fs-14 link-secondary text-decoration-underline search-widget-icon-close d-none" id="search-close-options">Clear</a>
                 </div>
@@ -483,7 +474,7 @@
                 </div>
                 <div class="d-flex gap-2 justify-content-center mt-4 mb-2">
                     <button type="button" class="btn w-sm btn-light" data-bs-dismiss="modal">Close</button>
-                    <a href="" class="btn w-sm btn-danger" id="remove-product">Yes, Delete It!</a>
+                    <a href="" class="btn w-sm btn-danger cart_remove" id="remove-product">Yes, Delete It!</a>
                 </div>
             </div>
 
@@ -662,6 +653,25 @@
                 $(this).parents('.quantity').find('.qty-input').val(value);
             }
         });
+
+    });
+
+    $('.cart_remove').click(function (e) {
+        e.preventDefault();
+        var ele = $(this);
+        if(confirm("Do you really want to remove")){
+            $.ajax({
+                url: '{{route('remove.item')}}',
+                method: "DELETE",
+                data:{
+                    _token: '{{csrf_token()}}',
+                    id: ele.parent("li").attr("data-id")
+                },
+                success: function (response){
+                    window.location.reload();
+                }
+            });
+        }
 
     });
 </script>

@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Cart;
 use App\Models\Product;
+use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
-use Auth;
 
 class CartController extends Controller
 {
+    //
+
 
     public function addProductToCart($id){
 
@@ -53,7 +54,7 @@ class CartController extends Controller
 
     public function clearCart(){
         Cart::destroy();
-        return redirect()->route('clear.cart');
+        return view('shop-cart');
     }
 
     public function shopcart(){

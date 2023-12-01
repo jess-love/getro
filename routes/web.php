@@ -20,6 +20,10 @@ Route::get('/login', function () {
     return view('auth.login');
 });
 
+Route::post('/session',[App\Http\Controllers\StripeController::class,'session'])->name('session');
+Route::get('/success',[App\Http\Controllers\StripeController::class,'success'])->name('success');
+Route::get('/cancel',[App\Http\Controllers\StripeController::class,'cancel'])->name('cancel');
+
 
 Route::get('/product-list-details', [App\Http\Controllers\ProductListDefaultController::class, 'index'])->name('product-list-details');
 Route::get('/product-details/{id}', [App\Http\Controllers\ProductdetailController::class, 'ViewProduitDetail'])->name('view_product');
@@ -53,6 +57,7 @@ Route::get('/shop-cart',[App\Http\Controllers\CartController::class,'shopcart'])
 
 //route pour produit en liaison avec les sous-categories
 Route::get('/products/{sub_category_id}', [App\Http\Controllers\ProductController::class, 'product'])->name('products_nav');
+
 //Route::get('/produits', [App\Http\Controllers\ProductController::class, 'ViewAllProduct'])->name('view_all_products');
 Route::get('/souscategories', [App\Http\Controllers\ProductController::class, 'Sub_Categories'])->name('sub_categories');
 
@@ -63,9 +68,20 @@ Route::get('/panier/index',[App\Http\Controllers\CartController::class,'index'])
 Route::delete('/remove',[App\Http\Controllers\CartController::class,'removeItem'])->name('remove.item');
 Route::patch('/update-cart',[App\Http\Controllers\CartController::class,'update'])->name('update_cart');
 //route pour delete all items from cart
+Route::delete('/shop-cart',[App\Http\Controllers\CartController::class,'clearCart'])->name('clear_cart');
+
+Route::delete('/remove',[App\Http\Controllers\CartController::class,'removeItem'])->name('remove.item');
+
+Route::delete('/remove',[App\Http\Controllers\CartController::class,'remove'])->name('remove.item');
+
+//route pour delete all items from cart
 Route::delete('/panier/clear',[App\Http\Controllers\CartController::class,'clearCart'])->name('clear.cart');
 
+//recherche de produit
+Route::get('/search/{sub_category_id}', [App\Http\Controllers\ProductController::class, 'search'])->name('search');
 
+//abonnement au site  dans la page produit
+Route::post('/subscribe', [App\Http\Controllers\SubscriptionController::class, 'subscribe'])->name('subscribe');
 
 Route::get('index/{locale}', [App\Http\Controllers\HomeController::class, 'lang']);
 

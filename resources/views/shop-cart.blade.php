@@ -51,7 +51,7 @@
                         <h5 class="mb-0 flex-grow-1 fw-medium">There are <span class="fw-bold product-count"></span>
                             products in your cart</h5>
                         <div class="flex-shrink-0">
-                            <a href="#!" class="text-decoration-underline link-secondary">Clear Cart</a>
+                            <a href="{{route('clear_cart')}}" class="text-decoration-underline link-secondary">Clear Cart</a>
                         </div>
                     </div>
             @php $total = 0 @endphp
@@ -59,9 +59,9 @@
              @php
                 $total += $details['price']*$details['quantity'];
              @endphp
-             <tr data-id ="{{$id}}">
                 <div class="card product">
-
+             <div class="card product">
+                 <tr data-id ='{{$id}}'>
                                 <div class="card-body p-4">
                                     <div class="row gy-3">
                                         <div class="col-sm-auto">
@@ -74,7 +74,6 @@
                                         </div>
                                         <div class="col-sm">
                                             <a href="#!">
-
                                                 <h5 class="fs-16 lh-base mb-1">{{$details['title']}}</h5>
                                             </a>
                                             <ul class="list-inline text-muted fs-13 mb-3">
@@ -104,8 +103,8 @@
                                             <div class="d-flex flex-wrap my-n1">
                                                 <div>
 
-                                                    <a href="" class="d-block text-body p-1 px-2" data-bs-toggle="modal"data-bs-target="#removeItemModal"><i
-                                                            class="ri-delete-bin-fill text-muted align-bottom me-1"></i> Remove</a>
+                                                    <a href="" class="d-block text-body p-1 px-2 cart_remove" data-bs-toggle="modal">
+                                                    <i class="ri-delete-bin-fill text-muted align-bottom me-1 "></i> Remove</a>
                                                 </div>
                                                 <div>
                                                     <a href="#!" class="d-block text-body p-1 px-2"><i class="ri-star-fill text-muted align-bottom me-1"></i> Add Wishlist</a>
@@ -124,7 +123,7 @@
                                 </div>
                                 <!-- end card footer -->
                             </div>
-             </tr>
+
                 <!--end card-->
             @endforeach
 
@@ -180,11 +179,24 @@
                                 <!-- end table-responsive -->
                             </div>
                         </div>
+<<<<<<< HEAD
                         <div class="hstack gap-2 justify-content-end">
                             <a href="{{url('/')}}" class="btn btn-hover btn-danger">Continue Shopping</a>
                             <button type="button" class="btn btn-hover btn-success">Check Out <i
                                     class="ri-logout-box-r-line align-bottom ms-1"></i></button>
                         </div>
+=======
+                        <form action="/session" method="POST">
+                            <div class="hstack gap-2 justify-content-end">
+                                <a  href="{{'/'}}" class="btn btn-hover btn-danger">Continue Shopping</a>
+                                <input type="hidden" name="_token" value="{{csrf_token()}}">
+                                <button type="submit" class="btn btn-hover btn-success">Check Out
+                                    <i class="ri-logout-box-r-line align-bottom ms-1"></i>
+                                </button>
+                            </div>
+                        </form>
+
+>>>>>>> 9a00fe6ad56d10b534b3f4cd7e60c2a4920f0608
                     </div>
                     <!-- end stickey -->
                 </div>
@@ -511,6 +523,27 @@
             });
 
         });
+
+
+        $('.cart_remove').click(function (e) {
+            e.preventDefault();
+            var ele = $(this);
+            if(confirm("Do you really want to remove")){
+                $.ajax({
+                    url: '{{route('remove.item')}}',
+                    method: "DELETE",
+                    data:{
+                        _token: '{{csrf_token()}}',
+                        id: ele.parent("tr").attr("data-id")
+                    },
+                    success: function (response){
+                        window.location.reload();
+                    }
+                });
+            }
+
+        });
+
     </script>
 @endsection
 @section('scripts')
