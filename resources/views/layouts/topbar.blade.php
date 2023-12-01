@@ -628,51 +628,51 @@
     </div>
 </div>
 
-<script>
-    $(document).ready(function () {
+{{--<script>--}}
+{{--    $(document).ready(function () {--}}
 
-        $('.increment-btn').click(function (e) {
-            e.preventDefault();
-            var incre_value = $(this).parents('.quantity').find('.qty-input').val();
-            var value = parseInt(incre_value, 10);
-            value = isNaN(value) ? 0 : value;
-            if(value<100){
-                value++;
-                $(this).parents('.quantity').find('.qty-input').val(value);
-            }
+{{--        $('.increment-btn').click(function (e) {--}}
+{{--            e.preventDefault();--}}
+{{--            var incre_value = $(this).parents('.quantity').find('.qty-input').val();--}}
+{{--            var value = parseInt(incre_value, 10);--}}
+{{--            value = isNaN(value) ? 0 : value;--}}
+{{--            if(value<100){--}}
+{{--                value++;--}}
+{{--                $(this).parents('.quantity').find('.qty-input').val(value);--}}
+{{--            }--}}
 
-        });
+{{--        });--}}
 
-        $('.decrement-btn').click(function (e) {
-            e.preventDefault();
-            var decre_value = $(this).parents('.quantity').find('.qty-input').val();
-            var value = parseInt(decre_value, 10);
-            value = isNaN(value) ? 0 : value;
-            if(value>1){
-                value--;
-                $(this).parents('.quantity').find('.qty-input').val(value);
-            }
-        });
+{{--        $('.decrement-btn').click(function (e) {--}}
+{{--            e.preventDefault();--}}
+{{--            var decre_value = $(this).parents('.quantity').find('.qty-input').val();--}}
+{{--            var value = parseInt(decre_value, 10);--}}
+{{--            value = isNaN(value) ? 0 : value;--}}
+{{--            if(value>1){--}}
+{{--                value--;--}}
+{{--                $(this).parents('.quantity').find('.qty-input').val(value);--}}
+{{--            }--}}
+{{--        });--}}
 
-    });
+{{--    });--}}
 
-    $('.cart_remove').click(function (e) {
-        e.preventDefault();
-        var ele = $(this);
-        if(confirm("Do you really want to remove")){
-            $.ajax({
-                url: '{{route('remove.item')}}',
-                method: "DELETE",
-                data:{
-                    _token: '{{csrf_token()}}',
-                    id: ele.parent("li").attr("data-id")
-                },
-                success: function (response){
-                    window.location.reload();
-                }
-            });
-        }
+{{--    $('.cart_remove').click(function (e) {--}}
+{{--        e.preventDefault();--}}
+{{--        var ele = $(this);--}}
+{{--        if(confirm("Do you really want to remove")){--}}
+{{--            $.ajax({--}}
+{{--                url: '{{route('remove.item')}}',--}}
+{{--                method: "DELETE",--}}
+{{--                data:{--}}
+{{--                    _token: '{{csrf_token()}}',--}}
+{{--                    id: ele.parent("li").attr("data-id")--}}
+{{--                },--}}
+{{--                success: function (response){--}}
+{{--                    window.location.reload();--}}
+{{--                }--}}
+{{--            });--}}
+{{--        }--}}
 
-    });
-</script>
+{{--    });--}}
+{{--</script>--}}
 

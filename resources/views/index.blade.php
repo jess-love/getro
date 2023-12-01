@@ -239,9 +239,10 @@
 
                                         </div>
                                         <div class="product-btn px-3">
-                                            <a href="{{route('ProductToCart',$produit->id)}}" class="btn btn-primary btn-sm w-75 add-btn"><i
-                                                    class="mdi mdi-cart me-1"></i> Add to cart
+                                            <a href="javascript:void(0);" onclick="AddToCart({{$produit->id}});"  class="btn btn-primary btn-sm w-75 add-btn">
+                                                <i class="mdi mdi-cart me-1"></i> Add to cart
                                             </a>
+{{--                                            href="{{route('ProductToCart',$produit->id)}}"--}}
                                         </div>
 
                                     </div>
@@ -824,4 +825,21 @@
     <script src="{{ URL::asset('build/js/frontend/landing-index.init.js') }}"></script>
 
     <script src="{{ URL::asset('build/js/frontend/menu.init.js') }}"></script>
+
+    <script type="text/javascript">
+        function AddToCart(id){
+
+            $.ajax({
+                url: '{{route("addToCart")}}',
+                type: 'post',
+                data: {id:id},
+                datatype: 'json',
+                success: function (respons){
+
+                }
+            })
+        }
+
+    </script>
 @endsection
+
