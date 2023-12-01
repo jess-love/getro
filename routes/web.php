@@ -65,7 +65,10 @@ Route::post('/cart/{id}',[App\Http\Controllers\CartController::class,'add'])->na
 Route::get('/panier/index',[App\Http\Controllers\CartController::class,'index'])->name('cart_index');
 
 //route pour remove item
+
 Route::delete('/remove',[App\Http\Controllers\CartController::class,'removeItem'])->name('remove.item');
+
+Route::delete('/remove',[App\Http\Controllers\CartController::class,'remove'])->name('remove.item');
 
 //route pour delete all items from cart
 Route::delete('/panier/clear',[App\Http\Controllers\CartController::class,'clearCart'])->name('clear.cart');

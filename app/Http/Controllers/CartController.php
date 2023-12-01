@@ -31,32 +31,15 @@ class CartController extends Controller
     }
 
 
-
-    public function countItem(){
-        $item = Cart::count();
-
-        return view('index',compact('item'));
-    }
-
-    public function removeItem(Request $request){
+    public function remove(Request $request){
        if($request->id){
            $cart = session()->get('cart');
            if(isset($cart[$request->id])){
                unset($cart[$request->id]);
                session()->put('cart',$cart);
            }
-           return redirect()->back()->with('success','Product reccessfully removed!');
-           //session()->flash('success','Product reccessfully removed');
+           session()->flash('success','Product reccessfully removed');
        }
      }
 
-
-    public function clearCart(){
-        Cart::destroy();
-        return redirect()->route('clear.cart');
-    }
-
-    public function shopcart(){
-        return view('shop-cart');
-    }
 }

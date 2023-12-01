@@ -12,6 +12,7 @@
 
     <!-- head css -->
     @include('layouts.head-css')
+    @livewireStyles
 </head>
 
 <body>
@@ -20,7 +21,6 @@
     @include('layouts.top-tagbar')
     <!-- topbar -->
     @include('layouts.topbar')
-{{--    @include('layouts.topbar', ['category'=>$categories])--}}
 
 
     @yield('content')
@@ -29,6 +29,8 @@
     @include('layouts.footer')
     <!-- scripts -->
     @include('layouts.vendor-scripts')
+
+    @livewireScripts
 
 </body>
 
