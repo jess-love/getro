@@ -28,15 +28,6 @@
                         <img src="{{ URL::asset('build/images/logo-light.png') }}" alt="" height="25" class="card-logo-light mx-auto">
                     </a>
                 </li>
-
-               <li class="nav-item dropdown ">
-                   <a class="nav-link" href="{{route('index')}}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                       ACCUEIL
-                   </a>
-                </li>
-
-
-
                 <li class="nav-item dropdown dropdown-mega-full dropdown-hover">
                     <a class="nav-link dropdown-toggle" data-key="t-catalog" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         CATEGORIE
@@ -53,7 +44,7 @@
                                     </div>
                                 </div>
                             </div>
-                            {{-- @if ($cat_and_sub)
+                             @if ($cat_and_sub)
                                 @foreach($cat_and_sub as $categoryId => $subCategories)
                                     <div class="col-lg-2">
                                         <ul class="dropdown-menu-list list-unstyled mb-0 py-3">
@@ -75,7 +66,7 @@
                                 @endforeach
                             @else
                                 <p>No variable available.</p>
-                            @endif --}}
+                            @endif
 
 
                             <div class="col-lg-2 d-none d-lg-block">
@@ -315,7 +306,7 @@
                                 <div class="flex-shrink-0">
                                     <div class="avatar-md" style="height: 100%;">
                                         <div class="avatar-title bg-warning-subtle rounded-3">
-                                            <img src="{{ URL::asset('build/images/products/'.$details['image']) }}" alt="" class="avatar-sm">
+                                            <img src="{{ URL::asset('build/images/products/'.$details['image'])}}" alt="" class="avatar-sm">
                                         </div>
                                     </div>
                                 </div>
@@ -330,7 +321,7 @@
                                     </div>
                                     <div class="input-step ms-2 quantity">
                                         <button type="button" class="btn decrement-btn" >–</button>
-                                        <input type="number" class="qty-input" value="1" name="" max="100" value="1">
+                                        <input type="number" class="qty-input" value="1" name="" max="100">
                                         <button type="button" class="btn increment-btn" >+</button>
                                     </div>
                                 </div>
@@ -392,9 +383,11 @@
         <div class="modal-content rounded">
             <div class="modal-header p-3">
                 <div class="position-relative w-100">
-                    <input type="text" class="form-control form-control-lg border-2" placeholder="Search for Toner..." autocomplete="off" id="search-options" value="">
+{{--                    <form action="{{ route('search') }}" method="GET" class="input-group">--}}
+                    <input type="text" name="query" class="form-control form-control-lg border-2" placeholder="Rechercher dans Bel Mache..." autocomplete="off" id="search-options" value="">
                     <span class="bi bi-search search-widget-icon fs-17"></span>
                     <a href="javascript:void(0);" class="search-widget-icon fs-14 link-secondary text-decoration-underline search-widget-icon-close d-none" id="search-close-options">Clear</a>
+{{--                    </form>--}}
                 </div>
             </div>
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end p-0 overflow-hidden" id="search-dropdown">
@@ -483,7 +476,7 @@
                 </div>
                 <div class="d-flex gap-2 justify-content-center mt-4 mb-2">
                     <button type="button" class="btn w-sm btn-light" data-bs-dismiss="modal">Close</button>
-                    <a href="" class="btn w-sm btn-danger" id="remove-product">Yes, Delete It!</a>
+                    <a href="" class="btn w-sm btn-danger cart_remove" id="remove-product">Yes, Delete It!</a>
                 </div>
             </div>
 
@@ -662,6 +655,25 @@
                 $(this).parents('.quantity').find('.qty-input').val(value);
             }
         });
+
+    });
+
+    $('.cart_remove').click(function (e) {
+        e.preventDefault();
+        var ele = $(this);
+        if(confirm("Do you really want to remove")){
+            $.ajax({
+                url: '{{route('remove.item')}}',
+                method: "DELETE",
+                data:{
+                    _token: '{{csrf_token()}}',
+                    id: ele.parent("tr").attr("data-id")
+                },
+                success: function (response){
+                    window.location.reload();
+                }
+            });
+        }
 
     });
 </script>

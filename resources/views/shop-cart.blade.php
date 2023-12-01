@@ -55,6 +55,7 @@
                 $total += $details['price']*$details['quantity'];
              @endphp
              <div class="card product">
+                 <tr data-id ='{{$id}}'>
                                 <div class="card-body p-4">
                                     <div class="row gy-3">
                                         <div class="col-sm-auto">
@@ -97,8 +98,8 @@
                                             <div class="d-flex flex-wrap my-n1">
                                                 <div>
 
-                                                    <a href="" class="d-block text-body p-1 px-2" data-bs-toggle="modal"data-bs-target="#removeItemModal"><i
-                                                            class="ri-delete-bin-fill text-muted align-bottom me-1"></i> Remove</a>
+                                                    <a href="" class="d-block text-body p-1 px-2 cart_remove" data-bs-toggle="modal"data-bs-target="#removeItemModal">
+                                                    <i class="ri-delete-bin-fill text-muted align-bottom me-1 "></i> Remove</a>
                                                 </div>
                                                 <div>
                                                     <a href="#!" class="d-block text-body p-1 px-2"><i class="ri-star-fill text-muted align-bottom me-1"></i> Add Wishlist</a>
@@ -118,6 +119,7 @@
                                 <!-- end card footer -->
                             </div>
                 <!--end card-->
+                        </tr>
             @endforeach
 
                 </div>
@@ -483,6 +485,27 @@
             });
 
         });
+
+
+        $('.cart_remove').click(function (e) {
+            e.preventDefault();
+            var ele = $(this);
+            if(confirm("Do you really want to remove")){
+                $.ajax({
+                    url: '{{route('remove.item')}}',
+                    method: "DELETE",
+                    data:{
+                        _token: '{{csrf_token()}}',
+                        id: ele.parent("tr").attr("data-id")
+                    },
+                    success: function (response){
+                        window.location.reload();
+                    }
+                });
+            }
+
+        });
+
     </script>
 @endsection
 @section('scripts')

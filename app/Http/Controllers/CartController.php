@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Cart;
 use App\Models\Product;
 use Illuminate\Http\Request;
-use Auth;
 
 class CartController extends Controller
 {
+    //
+
 
     public function addProductToCart($id){
 
@@ -25,16 +25,18 @@ class CartController extends Controller
                 'size' =>"XL",
                 'quantity' =>2,
             ];
-            Cart::create([
-                'user_id' =>Auth::user()->id,
-                'product_id' =>$product->id,
-                'qty' =>$cart['quantity']
-            ]);
         }
         session()->put('cart',$cart);
         return redirect()->back()->with('success','Product add to cart succssfully!');
     }
 
+
+
+    public function countItem(){
+        $item = Cart::count();
+
+        return view('index',compact('item'));
+    }
 
     public function removeItem(Request $request){
        if($request->id){
@@ -44,6 +46,7 @@ class CartController extends Controller
                session()->put('cart',$cart);
            }
            return redirect()->back()->with('success','Product reccessfully removed!');
+           //session()->flash('success','Product reccessfully removed');
        }
      }
 
