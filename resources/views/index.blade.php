@@ -835,7 +835,11 @@
                 data: {id:id},
                 datatype: 'json',
                 success: function (respons){
-
+                    if(response.status == true){
+                        window.location.href="{{route('Cart')}}";
+                    }else{
+                        window.location.href="{{route('addToCart')}}";
+                    }
                 }
             })
         }

@@ -21,13 +21,27 @@ class CartController extends Controller
             ]);
         }
         if (Cart::count() > 0){
-            echo "product already in cart";
+            $cartContent = Cart::content();
+            $produitAlreadyExist = false;
+
+            foreach ($cartContent as  $item){
+                if ($item->id == $product->id){
+                    $produitAlreadyExist = true;
+                }
+            }
+            if ($produitAlreadyExist == false){
+                Cart::add($product->id, $product->title, 1, $product->unit_price, ['size' => 'large']);
+
+                $status = true;
+                $message = $product->title.'added in cart';
+            }else{
+                $status = false;
+                $message = $product->title.'already added in cart';
+            }
 
         }else{
-            echo "cart is empty ";
             //cart is empty
             Cart::add($product->id, $product->title, 1, $product->unit_price, ['size' => 'large']);
-            //Cart::add($product->id, $product->title, 1, $product->price,$product->main_pic,['qty' =>1]);
             $status = true;
             $message = $product->title.'added in cart';
         }
