@@ -46,7 +46,7 @@
                         <h5 class="mb-0 flex-grow-1 fw-medium">There are <span class="fw-bold product-count"></span>
                             products in your cart</h5>
                         <div class="flex-shrink-0">
-                            <a href="#!" class="text-decoration-underline link-secondary">Clear Cart</a>
+                            <a href="{{route('clear_cart')}}" class="text-decoration-underline link-secondary">Clear Cart</a>
                         </div>
                     </div>
             @php $total = 0 @endphp
@@ -68,7 +68,6 @@
                                         </div>
                                         <div class="col-sm">
                                             <a href="#!">
-
                                                 <h5 class="fs-16 lh-base mb-1">{{$details['title']}}</h5>
                                             </a>
                                             <ul class="list-inline text-muted fs-13 mb-3">
@@ -98,7 +97,7 @@
                                             <div class="d-flex flex-wrap my-n1">
                                                 <div>
 
-                                                    <a href="" class="d-block text-body p-1 px-2 cart_remove" data-bs-toggle="modal"data-bs-target="#removeItemModal">
+                                                    <a href="" class="d-block text-body p-1 px-2 cart_remove" data-bs-toggle="modal">
                                                     <i class="ri-delete-bin-fill text-muted align-bottom me-1 "></i> Remove</a>
                                                 </div>
                                                 <div>
@@ -174,11 +173,16 @@
                                 <!-- end table-responsive -->
                             </div>
                         </div>
-                        <div class="hstack gap-2 justify-content-end">
-                            <button type="button" class="btn btn-hover btn-danger">Continue Shopping</button>
-                            <button type="button" class="btn btn-hover btn-success">Check Out <i
-                                    class="ri-logout-box-r-line align-bottom ms-1"></i></button>
-                        </div>
+                        <form action="/session" method="POST">
+                            <div class="hstack gap-2 justify-content-end">
+                                <a  href="{{'/'}}" class="btn btn-hover btn-danger">Continue Shopping</a>
+                                <input type="hidden" name="_token" value="{{csrf_token()}}">
+                                <button type="submit" class="btn btn-hover btn-success">Check Out
+                                    <i class="ri-logout-box-r-line align-bottom ms-1"></i>
+                                </button>
+                            </div>
+                        </form>
+
                     </div>
                     <!-- end stickey -->
                 </div>
