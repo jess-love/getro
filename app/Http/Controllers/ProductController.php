@@ -25,19 +25,20 @@ class ProductController extends Controller
         $products = $products->paginate(16);
         $sub_cat = sub_category::all();
 
-        return view('product-list-right', compact('products', 'sub_cat'),  ['sub_category_id' => $sub_category_id]);
+        return view('product-list-right', ['sub_category_id' => $sub_category_id, 'products' => $products, 'sub_cat' => $sub_cat]);
     }
 
-    public function search(Request $request)
+    public function search($sub_category_id, Request $request)
     {
         $query = $request->input('query');
         $sub_cat = sub_category::all();
 
         $products = Product::where('title', 'like', '%' . $query . '%')
+            ->where('sub_category_id', $sub_category_id)
             ->orWhere('description', 'like', '%' . $query . '%')
             ->paginate(16);
 
-        return view('product-list-right', compact('products', 'query', 'sub_cat'));
+        return view('product-list-right', compact('products', 'query', 'sub_cat', 'sub_category_id'));
     }
 
     public function Sub_Categories(){
