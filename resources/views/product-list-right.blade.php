@@ -1,27 +1,8 @@
 @extends('layouts.master')
+
 @section('title')
     List Right Sidebar
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            // Écoutez l'événement de saisie de l'utilisateur
-            $('#searchProductList').on('input', function () {
-                // Récupérez le terme de recherche
-                var searchTerm = $(this).val().toLowerCase();
-
-                // Récupérez l'identifiant de la sous-catégorie
-                var subCategoryId = $('#currentSubCategoryId').val();
-
-                // Masquez tous les produits de la sous-catégorie actuelle
-                $('.product-item.sub-category-' + subCategoryId).hide();
-
-                // Affichez uniquement les produits qui correspondent au terme de recherche
-                $('.product-item.sub-category-' + subCategoryId).filter(function () {
-                    return $(this).text().toLowerCase().includes(searchTerm);
-                }).show();
-            });
-        });
-    </script>
 @endsection
 
 @section('css')
@@ -51,46 +32,65 @@
             <div class="ecommerce-product gap-4">
                 <div class="flex-grow-1">
                     <div class="d-flex align-items-center justify-content-between gap-2 mb-4">
+
+                        {{--Start Research--}}
                         <div class="search-box">
-                            <input type="text" class="form-control" id="searchProductList" autocomplete="off"
-                                   placeholder="Search Products...">
-                            <i class="ri-search-line search-icon"></i>
+                            <form action="{{ route('search') }}" method="GET" class="input-group">
+                                <input type="text" name="query" class="form-control" id="searchProductList" autocomplete="off" placeholder="Rechercher Produits...">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="ri-search-line search-icon text-white"></i>
+                                </button>
+                            </form>
                         </div>
+
+                        {{--End Research--}}
+
+                        {{--Start Sort By--}}
                         <div class="flex-shrink-0 d-flex gap-2">
                             <div class="d-flex gap-2">
                                 <div class="flex-shrink-0">
-                                    <label for="sort-elem" class="col-form-label">Sort By:</label>
+                                    <label for="sort-elem" class="col-form-label">Trier par Prix:</label>
                                 </div>
                                 <div class="flex-shrink-0">
-                                    <select class="form-select w-md" id="sort-elem">
-                                        <option value="">All</option>
-                                        <option value="low_to_high">Low to High</option>
-                                        <option value="high_to_low">High to Low</option>
-                                    </select>
+                                    <form action="{{ route('products_nav', ['sub_category_id' => $sub_category_id]) }}" method="GET">
+                                        <select class="form-select w-md" id="sort-elem" name="sortType" onchange="this.form.submit()">
+                                            <option value="">All</option>
+                                            <option value="low_to_high" {{ request('sortType') == 'low_to_high' ? 'selected' : '' }}>Bas vers Haut</option>
+                                            <option value="high_to_low" {{ request('sortType') == 'high_to_low' ? 'selected' : '' }}>Haut vers Bas</option>
+                                        </select>
+                                    </form>
                                 </div>
                             </div>
                         </div>
+                        {{--End Sort By--}}
+
                     </div>
                     {{--Start Product List--}}
                     <div class="row">
-                        {{--                        <div class="col-xl-12"><div id="product-list"></div></div>--}}
-                        <div class="row">
-                            @foreach(array_chunk($products->toArray(), 4) as $row)
-                                <div class="row">
-                                    {{--                                    @foreach($row as $produit)--}}
-                                    {{--                                        <div class="element-item col-xxl-4 col-xl-4 col-sm-12 seller hot arrival" data-category="hot arrival">--}}
-                                    {{--                                            <div class="card overflow-hidden">--}}
-                                    @foreach($row as $produit)
-                                        <div class="element-item col-xxl-3 col-xl-4 col-sm-6 seller hot arrival"
+                        @if ($products->isEmpty())
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="text-center py-5">
+                                        <div class="avatar-lg mx-auto mb-4">
+                                            <div class="avatar-title bg-primary-subtle text-primary rounded-circle fs-24">
+                                                <i class="bi bi-search"></i>
+                                            </div>
+                                        </div>
+                                        <h5>No matching records found</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        @else
+                            @foreach($products as $produit)
+                                <div class="element-item col-xxl-3 col-xl-4 col-sm-6 seller hot arrival"
                                              data-category="hot arrival">
                                             <div class="card overflow-hidden">
                                                 <div class="bg-warning-subtle rounded-top py-4">
                                                     <div class="gallery-product">
-                                                        <a href="{{ route('products_nav', ['sub_category_id' => $produit['sub_category_id']]) }}">
-                                                            <img src="{{ asset('build/images/products/'.$produit['main_pic']) }}" alt=""
-                                                                 style="max-height: 215px;max-width: 100%;" class="mx-auto d-block">
+                                                        <a href="{{ route('products_nav', ['sub_category_id' => $produit->sub_category_id]) }}">
+                                                            <img src="{{ asset('build/images/products/'.$produit->main_pic) }}" alt=""
+                                                                 style="max-height: 215px; max-width: 100%;" class="mx-auto d-block">
                                                         </a>
-
                                                     </div>
                                                     <p class="fs-11 fw-medium badge bg-primary py-2 px-3 product-lable mb-0">{{$produit['tag']}}
                                                     </p>
@@ -133,64 +133,32 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    @endforeach
-                                    {{--                                            </div>--}}
-                                    {{--                                        </div>--}}
-                                    {{--                                    @endforeach--}}
-                                </div>
                             @endforeach
-                        </div>
-
+                        @endif
                     </div>
                     {{--End Product List--}}
 
                     {{--Start Pagination--}}
-                    <div class="row" id="pagination-element">
-                        <div class="col-lg-12">
-                            <div
-                                class="pagination-block pagination pagination-separated justify-content-center justify-content-sm-end mb-sm-0">
-                                <div class="page-item">
-                                    <a href="javascript:void(0);" class="page-link" id="page-prev">Previous</a>
-                                </div>
-                                <span id="page-num" class="pagination"></span>
-                                <div class="page-item">
-                                    <a href="javascript:void(0);" class="page-link" id="page-next">Next</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+{{--                    <div class="toto" >--}}
+{{--                       <form><div class="pagination page-item" >--}}
+{{--                               {{ $products->appends(request()->except('page'))->links() }}--}}
+{{--                        </div></form>--}}
+{{--                    </div>--}}
                     {{--End Pagination--}}
-
-                    {{--Start Research--}}
-                    <div class="row d-none" id="search-result-elem">
-                        <div class="col-lg-12">
-                            <div class="text-center py-5">
-                                <div class="avatar-lg mx-auto mb-4">
-                                    <div class="avatar-title bg-primary-subtle text-primary rounded-circle fs-24">
-                                        <i class="bi bi-search"></i>
-                                    </div>
-                                </div>
-
-                                <h5>No matching records found</h5>
-                            </div>
-                        </div>
-                    </div>
-                    {{--End Research--}}
                 </div>
+
                 <div class="sidebar small-sidebar flex-shrink-0">
                     <div class="card overflow-hidden">
                         <div class="card-header">
                             <div class="d-flex align-items-center">
                                 <div class="flex-grow-1">
-                                    <h5 class="fs-16 mb-0">Filters</h5>
+                                    <h5 class="fs-16 mb-0">Filtrer par</h5>
                                 </div>
-                                <div class="flex-shrink-0">
-                                    <a href="#" class="text-decoration-underline" id="clearall">Clear All</a>
-                                </div>
+{{--                                <div class="flex-shrink-0">--}}
+{{--                                    <a href="#" class="text-decoration-underline" id="clearall">Clear All</a>--}}
+{{--                                </div>--}}
                             </div>
                         </div>
-
-
 
                         <div class="accordion accordion-flush filter-accordion">
                             <div class="card-body border-bottom">
@@ -537,6 +505,12 @@
                             </div>
                             <!-- end accordion-item -->
                         </div>
+
+                    </div>
+                    <div class="toto" >
+                        <form><div class="pagination page-item" >
+                                {{ $products->appends(request()->except('page'))->links() }}
+                            </div></form>
                     </div>
                     <!-- end card -->
                 </div>
@@ -550,16 +524,28 @@
             <div class="row align-items-center justify-content-between">
                 <div class="col-lg-6">
                     <div>
-                        <p class="fs-15 text-uppercase fw-medium"><span class="fw-semibold text-danger">25% Up to</span>
-                            off all Products</p>
-                        <h1 class="lh-base text-capitalize mb-3">Stay home & get your daily needs from our shop</h1>
-                        <p class="fs-15 mb-4 pb-2">Start You'r Daily Shopping with <a href="#!"
-                                                                                      class="link-info fw-medium">Toner</a></p>
-                        <form action="#!">
+                        <p class="fs-15 text-uppercase fw-medium"><span class="fw-semibold text-danger">Jusqu'a 25%</span>
+                            de reduction sur tous nos produits</p>
+                        <h1 class="lh-base text-capitalize mb-3">Restez à la maison et obtenez vos besoins quotidiens dans notre boutique</h1>
+                        <p class="fs-15 mb-4 pb-2">Commencez vos achats quotidiens avec <a href="#!"
+                                                                                      class="link-info fw-medium">Bel Mache</a></p>
+                        @if(session('success'))
+                            <div class="alert alert-success" role="alert">
+                                {{ session('success') }}
+                            </div>
+                        @endif
+{{--                        <form action="{{ route('subscribe') }}" method="POST">--}}
+{{--                            @csrf--}}
+{{--                            <div class="position-relative ecommerce-subscript">--}}
+{{--                                <input type="email" name="email" class="form-control rounded-pill" placeholder="Entrer votre email" required>--}}
+{{--                                <button type="submit" class="btn btn-primary btn-hover rounded-pill">Abonnez-vous Maintenant</button>--}}
+{{--                            </div>--}}
+{{--                        </form>--}}
+                        <form id="subscribe-form" action="{{ route('subscribe') }}" method="POST">
+                            @csrf
                             <div class="position-relative ecommerce-subscript">
-                                <input type="email" class="form-control rounded-pill" placeholder="Enter your email">
-                                <button type="submit" class="btn btn-primary btn-hover rounded-pill">Subscript
-                                    Now</button>
+                                <input type="email" name="email" class="form-control rounded-pill" placeholder="Entrer votre email" required>
+                                <button type="submit" class="btn btn-primary btn-hover rounded-pill">Abonnez-vous Maintenant</button>
                             </div>
                         </form>
                     </div>
@@ -586,8 +572,8 @@
                             <img src="{{ URL::asset('build/images/ecommerce/fast-delivery.png') }}" alt="" class="avatar-sm">
                         </div>
                         <div class="flex-grow-1">
-                            <h5 class="fs-15">Fast &amp; Secure Delivery</h5>
-                            <p class="text-muted mb-0">Tell about your service.</p>
+                            <h5 class="fs-15">Livraison rapide &amp; sécurisée.</h5>
+                            <p class="text-muted mb-0">Parlez de votre service.</p>
                         </div>
                     </div>
                 </div>
@@ -598,8 +584,8 @@
                             <img src="{{ URL::asset('build/images/ecommerce/returns.png') }}" alt="" class="avatar-sm">
                         </div>
                         <div class="flex-grow-1">
-                            <h5 class="fs-15">2 Days Return Policy</h5>
-                            <p class="text-muted mb-0">No question ask.</p>
+                            <h5 class="fs-15">Politique de retour sous 2 jours</h5>
+                            <p class="text-muted mb-0">Aucune question à poser.</p>
                         </div>
                     </div>
                 </div>
@@ -611,8 +597,8 @@
                                  class="avatar-sm">
                         </div>
                         <div class="flex-grow-1">
-                            <h5 class="fs-15">Money Back Guarantee</h5>
-                            <p class="text-muted mb-0">Within 5 business days</p>
+                            <h5 class="fs-15">Garantie de remboursement</h5>
+                            <p class="text-muted mb-0">Dans les 5 jours ouvrables</p>
                         </div>
                     </div>
                 </div>
@@ -623,8 +609,8 @@
                             <img src="{{ URL::asset('build/images/ecommerce/24-hours-support.png') }}" alt="" class="avatar-sm">
                         </div>
                         <div class="flex-grow-1">
-                            <h5 class="fs-15">24 X 7 Service</h5>
-                            <p class="text-muted mb-0">Online service for customer</p>
+                            <h5 class="fs-15">24 X 7 de Service</h5>
+                            <p class="text-muted mb-0">Service en ligne pour le client</p>
                         </div>
                     </div>
                 </div>

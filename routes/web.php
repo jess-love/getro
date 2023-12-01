@@ -67,8 +67,10 @@ Route::get('/panier/index',[App\Http\Controllers\CartController::class,'index'])
 Route::delete('/remove',[App\Http\Controllers\CartController::class,'removeItem'])->name('remove.item');
 //route pour delete all items from cart
 Route::delete('/panier/clear',[App\Http\Controllers\CartController::class,'clearCart'])->name('clear.cart');
-
-
+//recherche de produit
+Route::get('/search', [App\Http\Controllers\ProductController::class, 'search'])->name('search');
+//abonnement au site  dans la page produit
+Route::post('/subscribe', [App\Http\Controllers\SubscriptionController::class, 'subscribe'])->name('subscribe');
 
 Route::get('index/{locale}', [App\Http\Controllers\HomeController::class, 'lang']);
 
