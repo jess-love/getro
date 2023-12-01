@@ -4,11 +4,61 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Gloudemans\Shoppingcart\Facades\Cart;
+use http\Env\Response;
 use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
     //
+
+    public function AddToCart(Request $request){
+
+        $product = Product::find($request->id);
+        if ($product == null){
+            return Response()->json([
+                'status' => false,
+                'message' => 'Product not found'
+            ]);
+        }
+        if (Cart::count() > 0){
+            $cartContent = Cart::content();
+            $produitAlreadyExist = false;
+
+            foreach ($cartContent as  $item){
+                if ($item->id == $product->id){
+                    $produitAlreadyExist = true;
+                }
+            }
+            if ($produitAlreadyExist == false){
+                Cart::add($product->id, $product->title, 1, $product->unit_price, ['size' => 'large']);
+
+                $status = true;
+                $message = $product->title.'added in cart';
+            }else{
+                $status = false;
+                $message = $product->title.'already added in cart';
+            }
+
+        }else{
+            //cart is empty
+            Cart::add($product->id, $product->title, 1, $product->unit_price, ['size' => 'large']);
+            $status = true;
+            $message = $product->title.'added in cart';
+        }
+        return Response()->json([
+            'status' => $status,
+            'message' => $message
+        ]);
+
+    }
+
+    public function Cart(){
+
+        dd(Cart::content());
+
+
+        //return view('shop-cart');
+    }
 
 
     public function addProductToCart($id){

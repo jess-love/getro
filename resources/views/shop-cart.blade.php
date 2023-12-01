@@ -6,6 +6,7 @@
     <!-- extra css -->
 @endsection
 @section('content')
+    {{ dd(Cart::content())}}
     <section class="page-wrapper bg-primary">
         <div class="container">
             <div class="row">
@@ -37,96 +38,254 @@
                     </div>
                 </div>
             </div>
-<!----------------------------------------les produits du panier------------------------------------------------------->
-
-<!----------------------------------------le panier commence ici------------------------------------------------------->
-            @if(session('success'))
-                <di class="alert alert-success">
-                    {{session('success')}}
-                </di>
-            @endif
             <div class="row product-list justify-content-center">
                 <div class="col-lg-8">
                     <div class="d-flex align-items-center mb-4">
                         <h5 class="mb-0 flex-grow-1 fw-medium">There are <span class="fw-bold product-count"></span>
                             products in your cart</h5>
                         <div class="flex-shrink-0">
-                            <a href="{{route('clear_cart')}}" class="text-decoration-underline link-secondary">Clear Cart</a>
+                            <a href="#!" class="text-decoration-underline link-secondary">Clear Cart</a>
                         </div>
                     </div>
-            @php $total = 0 @endphp
-            @foreach((array) session('cart') as $id => $details)
-             @php
-                $total += $details['price']*$details['quantity'];
-             @endphp
-                <div class="card product">
-             <div class="card product">
-                 <tr data-id ='{{$id}}'>
-                                <div class="card-body p-4">
-                                    <div class="row gy-3">
-                                        <div class="col-sm-auto">
-                                            <div class="avatar-lg h-100">
-                                                <div class="avatar-title bg-danger-subtle rounded py-3">
-
-                                                    <img src="{{ URL::asset('build/images/products/'.$details['image']) }}" alt="" class="avatar-md">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm">
-                                            <a href="#!">
-                                                <h5 class="fs-16 lh-base mb-1">{{$details['title']}}</h5>
-                                            </a>
-                                            <ul class="list-inline text-muted fs-13 mb-3">
-                                                <li class="list-inline-item">Color : <span class="fw-medium">Red</span></li>
-                                                <li class="list-inline-item">Size : <span class="fw-medium">M</span></li>
-                                            </ul>
-
-                                            <div class="input-step ms-2 quantity">
-                                                <button type="button" class="btn decrement-btn" >–</button>
-                                                    <input type="number" class="qty-input cart_update quantity" value="{{$details['quantity']}}" name="" max="100" min="1">
-                                                <button type="button" class="btn increment-btn" >+</button>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-auto">
-                                            <div class="text-lg-end">
-                                                <p class="text-muted mb-1 fs-12">Item Price:</p>
-
-                                                <h5 class="fs-16">$<span class="product-price">{{$details['price']}}</span></h5>
-
-                                            </div>
+                    <div class="card product">
+                        <div class="card-body p-4">
+                            <div class="row gy-3">
+                                <div class="col-sm-auto">
+                                    <div class="avatar-lg h-100">
+                                        <div class="avatar-title bg-danger-subtle rounded py-3">
+                                            <img src="{{ URL::asset('build/images/products/img-12.png') }}" alt=""
+                                                 class="avatar-md">
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card-footer">
-                                    <div class="row align-items-center gy-3">
-                                        <div class="col-sm">
-                                            <div class="d-flex flex-wrap my-n1">
-                                                <div>
-
-                                                    <a href="" class="d-block text-body p-1 px-2 cart_remove" data-bs-toggle="modal">
-                                                    <i class="ri-delete-bin-fill text-muted align-bottom me-1 "></i> Remove</a>
-                                                </div>
-                                                <div>
-                                                    <a href="#!" class="d-block text-body p-1 px-2"><i class="ri-star-fill text-muted align-bottom me-1"></i> Add Wishlist</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-auto">
-                                            <div class="d-flex align-items-center gap-2 text-muted">
-                                                <div>Total :</div>
-
-                                                <h5 class="fs-14 mb-0">$<span class="product-line-price">{{$details['price']*$details['quantity']}}</span></h5>
-
-                                            </div>
-                                        </div>
+                                <div class="col-sm">
+                                    <a href="#!">
+                                        <h5 class="fs-16 lh-base mb-1">Branded Smart Chair Red</h5>
+                                    </a>
+                                    <ul class="list-inline text-muted fs-13 mb-3">
+                                        <li class="list-inline-item">Color : <span class="fw-medium">Red</span></li>
+                                        <li class="list-inline-item">Size : <span class="fw-medium">M</span></li>
+                                    </ul>
+                                    <div class="input-step">
+                                        <button type="button" class="minus">–</button>
+                                        <input type="number" class="product-quantity" value="3" min="0"
+                                               max="100" readonly>
+                                        <button type="button" class="plus">+</button>
                                     </div>
                                 </div>
-                                <!-- end card footer -->
+                                <div class="col-sm-auto">
+                                    <div class="text-lg-end">
+                                        <p class="text-muted mb-1 fs-12">Item Price:</p>
+                                        <h5 class="fs-16">$<span class="product-price">89.99</span></h5>
+                                    </div>
+                                </div>
                             </div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="row align-items-center gy-3">
+                                <div class="col-sm">
+                                    <div class="d-flex flex-wrap my-n1">
+                                        <div>
+                                            <a href="#!" class="d-block text-body p-1 px-2" data-bs-toggle="modal"
+                                               data-bs-target="#removeItemModal"><i
+                                                    class="ri-delete-bin-fill text-muted align-bottom me-1"></i> Remove</a>
+                                        </div>
+                                        <div>
+                                            <a href="#!" class="d-block text-body p-1 px-2"><i
+                                                    class="ri-star-fill text-muted align-bottom me-1"></i> Add Wishlist</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-auto">
+                                    <div class="d-flex align-items-center gap-2 text-muted">
+                                        <div>Total :</div>
+                                        <h5 class="fs-14 mb-0">$<span class="product-line-price">269.97</span></h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end card footer -->
+                    </div>
+                    <!--end card-->
 
-                <!--end card-->
-            @endforeach
-
+                    <div class="card product">
+                        <div class="card-body p-4">
+                            <div class="row gy-3">
+                                <div class="col-sm-auto">
+                                    <div class="avatar-lg h-100">
+                                        <div class="avatar-title bg-secondary-subtle rounded py-3">
+                                            <img src="{{ URL::asset('build/images/products/img-15.png') }}" alt=""
+                                                 class="avatar-md">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm">
+                                    <a href="#!">
+                                        <h5 class="fs-16 lh-base mb-1">Like Style Women Black Handbag</h5>
+                                    </a>
+                                    <ul class="list-inline text-muted fs-13 mb-3">
+                                        <li class="list-inline-item">Color : <span class="fw-medium">Brown</span></li>
+                                    </ul>
+                                    <div class="input-step">
+                                        <button type="button" class="minus">–</button>
+                                        <input type="number" class="product-quantity" value="1" min="0"
+                                               max="100" readonly>
+                                        <button type="button" class="plus">+</button>
+                                    </div>
+                                </div>
+                                <div class="col-sm-auto">
+                                    <div class="text-lg-end">
+                                        <p class="text-muted mb-1 fs-12">Item Price:</p>
+                                        <h5 class="fs-16">$<span class="product-price">742.00</span></h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="row align-items-center gy-3">
+                                <div class="col-sm">
+                                    <div class="d-flex flex-wrap my-n1">
+                                        <div>
+                                            <a href="#!" class="d-block text-body p-1 px-2" data-bs-toggle="modal"
+                                               data-bs-target="#removeItemModal"><i
+                                                    class="ri-delete-bin-fill text-muted align-bottom me-1"></i> Remove</a>
+                                        </div>
+                                        <div>
+                                            <a href="#!" class="d-block text-body p-1 px-2"><i
+                                                    class="ri-star-fill text-muted align-bottom me-1"></i> Add Wishlist</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-auto">
+                                    <div class="d-flex align-items-center gap-2 text-muted">
+                                        <div>Total :</div>
+                                        <h5 class="fs-14 mb-0">$<span class="product-line-price">742.00</span></h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end card footer -->
+                    </div>
+                    <!--end card-->
+                    <div class="card product">
+                        <div class="card-body p-4">
+                            <div class="row gy-3">
+                                <div class="col-sm-auto">
+                                    <div class="avatar-lg h-100">
+                                        <div class="avatar-title bg-warning-subtle rounded py-3">
+                                            <img src="{{ URL::asset('build/images/products/img-6.png') }}" alt=""
+                                                 class="avatar-md">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm">
+                                    <a href="#!">
+                                        <h5 class="fs-16 lh-base mb-1">Striped High Neck Casual Men Orange Sweater</h5>
+                                    </a>
+                                    <ul class="list-inline text-muted fs-13 mb-3">
+                                        <li class="list-inline-item">Color : <span class="fw-medium">Orange</span></li>
+                                        <li class="list-inline-item">Size : <span class="fw-medium">XL</span></li>
+                                    </ul>
+                                    <div class="input-step">
+                                        <button type="button" class="minus">–</button>
+                                        <input type="number" class="product-quantity" value="5" min="0"
+                                               max="100" readonly>
+                                        <button type="button" class="plus">+</button>
+                                    </div>
+                                </div>
+                                <div class="col-sm-auto">
+                                    <div class="text-lg-end">
+                                        <p class="text-muted mb-1 fs-12">Item Price:</p>
+                                        <h5 class="fs-16">$<span class="product-price">62.40</span></h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="row align-items-center gy-3">
+                                <div class="col-sm">
+                                    <div class="d-flex flex-wrap my-n1">
+                                        <div>
+                                            <a href="#!" class="d-block text-body p-1 px-2" data-bs-toggle="modal"
+                                               data-bs-target="#removeItemModal"><i
+                                                    class="ri-delete-bin-fill text-muted align-bottom me-1"></i> Remove</a>
+                                        </div>
+                                        <div>
+                                            <a href="#!" class="d-block text-body p-1 px-2"><i
+                                                    class="ri-star-fill text-muted align-bottom me-1"></i> Add Wishlist</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-auto">
+                                    <div class="d-flex align-items-center gap-2 text-muted">
+                                        <div>Total :</div>
+                                        <h5 class="fs-14 mb-0">$<span class="product-line-price">312.00</span></h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end card footer -->
+                    </div>
+                    <!--end card-->
+                    <div class="card product">
+                        <div class="card-body p-4">
+                            <div class="row gy-3">
+                                <div class="col-sm-auto">
+                                    <div class="avatar-lg h-100">
+                                        <div class="avatar-title bg-dark-subtle rounded py-3">
+                                            <img src="{{ URL::asset('build/images/products/img-9.png') }}" alt=""
+                                                 class="avatar-md">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm">
+                                    <a href="#!">
+                                        <h5 class="fs-16 lh-base mb-1">Borosil Paper Cup</h5>
+                                    </a>
+                                    <ul class="list-inline text-muted fs-13 mb-3">
+                                        <li class="list-inline-item">Color : <span class="fw-medium">White</span></li>
+                                    </ul>
+                                    <div class="input-step">
+                                        <button type="button" class="minus">–</button>
+                                        <input type="number" class="product-quantity" value="1" min="0"
+                                               max="100" readonly>
+                                        <button type="button" class="plus">+</button>
+                                    </div>
+                                </div>
+                                <div class="col-sm-auto">
+                                    <div class="text-lg-end">
+                                        <p class="text-muted mb-1 fs-12">Item Price:</p>
+                                        <h5 class="fs-16">$<span class="product-price">38.00</span></h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="row align-items-center gy-3">
+                                <div class="col-sm">
+                                    <div class="d-flex flex-wrap my-n1">
+                                        <div>
+                                            <a href="#!" class="d-block text-body p-1 px-2" data-bs-toggle="modal"
+                                               data-bs-target="#removeItemModal"><i
+                                                    class="ri-delete-bin-fill text-muted align-bottom me-1"></i> Remove</a>
+                                        </div>
+                                        <div>
+                                            <a href="#!" class="d-block text-body p-1 px-2"><i
+                                                    class="ri-star-fill text-muted align-bottom me-1"></i> Add Wishlist</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-auto">
+                                    <div class="d-flex align-items-center gap-2 text-muted">
+                                        <div>Total :</div>
+                                        <h5 class="fs-14 mb-0">$<span class="product-line-price">38.00</span></h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end card footer -->
+                    </div>
+                    <!--end card-->
                 </div>
                 <!--end col-->
                 <div class="col-lg-4">
@@ -170,7 +329,7 @@
                                         <tr class="table-active">
                                             <th>Total (USD) :</th>
                                             <td class="text-end">
-                                                <span class="fw-semibold cart-total">{{$total}}</span>
+                                                <span class="fw-semibold cart-total"></span>
                                             </td>
                                         </tr>
                                         </tbody>
@@ -179,24 +338,11 @@
                                 <!-- end table-responsive -->
                             </div>
                         </div>
-<<<<<<< HEAD
                         <div class="hstack gap-2 justify-content-end">
-                            <a href="{{url('/')}}" class="btn btn-hover btn-danger">Continue Shopping</a>
+                            <button type="button" class="btn btn-hover btn-danger">Continue Shopping</button>
                             <button type="button" class="btn btn-hover btn-success">Check Out <i
                                     class="ri-logout-box-r-line align-bottom ms-1"></i></button>
                         </div>
-=======
-                        <form action="/session" method="POST">
-                            <div class="hstack gap-2 justify-content-end">
-                                <a  href="{{'/'}}" class="btn btn-hover btn-danger">Continue Shopping</a>
-                                <input type="hidden" name="_token" value="{{csrf_token()}}">
-                                <button type="submit" class="btn btn-hover btn-success">Check Out
-                                    <i class="ri-logout-box-r-line align-bottom ms-1"></i>
-                                </button>
-                            </div>
-                        </form>
-
->>>>>>> 9a00fe6ad56d10b534b3f4cd7e60c2a4920f0608
                     </div>
                     <!-- end stickey -->
                 </div>
@@ -476,75 +622,6 @@
         </div>
         <!--end container-->
     </section>
-    <script>
-
-        $('.cart_update').change(function (e) {
-            e.preventDefault();
-            var ele = $(this);
-            $.ajax({
-                url: '{{route('update_cart')}}',
-                method: "patch",
-                data:{
-                    _token: '{{csrf_token()}}',
-                    id: ele.parents("tr").attr("data-id"),
-                    quantity: ele.parents("tr").find(".quantity").val()
-                },
-                success: function (response){
-                    window.location.reload();
-                }
-            });
-
-        });
-
-
-        $(document).ready(function () {
-
-            $('.increment-btn').click(function (e) {
-                e.preventDefault();
-                var incre_value = $(this).parents('.quantity').find('.qty-input').val();
-                var value = parseInt(incre_value, 10);
-                value = isNaN(value) ? 0 : value;
-                if(value<100){
-                    value++;
-                    $(this).parents('.quantity').find('.qty-input').val(value);
-                }
-
-            });
-
-            $('.decrement-btn').click(function (e) {
-                e.preventDefault();
-                var decre_value = $(this).parents('.quantity').find('.qty-input').val();
-                var value = parseInt(decre_value, 10);
-                value = isNaN(value) ? 0 : value;
-                if(value>1){
-                    value--;
-                    $(this).parents('.quantity').find('.qty-input').val(value);
-                }
-            });
-
-        });
-
-
-        $('.cart_remove').click(function (e) {
-            e.preventDefault();
-            var ele = $(this);
-            if(confirm("Do you really want to remove")){
-                $.ajax({
-                    url: '{{route('remove.item')}}',
-                    method: "DELETE",
-                    data:{
-                        _token: '{{csrf_token()}}',
-                        id: ele.parent("tr").attr("data-id")
-                    },
-                    success: function (response){
-                        window.location.reload();
-                    }
-                });
-            }
-
-        });
-
-    </script>
 @endsection
 @section('scripts')
     <!-- landing-index js -->
