@@ -60,4 +60,13 @@ class CartController extends Controller
     public function shopcart(){
         return view('shop-cart');
     }
+
+    public function update(Request $request){
+        if($request->id && $request->quantity){
+            $cart = session()->get('cart');
+            $cart[$request->id]["quantity"] = $request->quantity;
+            session()->put('cart',$cart);
+            session()->flash('success','cart successfully update');
+        }
+    }
 }

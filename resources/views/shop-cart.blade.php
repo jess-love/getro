@@ -40,6 +40,11 @@
 <!----------------------------------------les produits du panier------------------------------------------------------->
 
 <!----------------------------------------le panier commence ici------------------------------------------------------->
+            @if(session('success'))
+                <di class="alert alert-success">
+                    {{session('success')}}
+                </di>
+            @endif
             <div class="row product-list justify-content-center">
                 <div class="col-lg-8">
                     <div class="d-flex align-items-center mb-4">
@@ -54,6 +59,7 @@
              @php
                 $total += $details['price']*$details['quantity'];
              @endphp
+                <div class="card product">
              <div class="card product">
                  <tr data-id ='{{$id}}'>
                                 <div class="card-body p-4">
@@ -77,7 +83,7 @@
 
                                             <div class="input-step ms-2 quantity">
                                                 <button type="button" class="btn decrement-btn" >–</button>
-                                                    <input type="number" class="qty-input" value="{{$details['quantity']}}" name="" max="100" value="1">
+                                                    <input type="number" class="qty-input cart_update quantity" value="{{$details['quantity']}}" name="" max="100" min="1">
                                                 <button type="button" class="btn increment-btn" >+</button>
                                             </div>
                                         </div>
@@ -117,8 +123,8 @@
                                 </div>
                                 <!-- end card footer -->
                             </div>
+
                 <!--end card-->
-                        </tr>
             @endforeach
 
                 </div>
@@ -173,6 +179,13 @@
                                 <!-- end table-responsive -->
                             </div>
                         </div>
+<<<<<<< HEAD
+                        <div class="hstack gap-2 justify-content-end">
+                            <a href="{{url('/')}}" class="btn btn-hover btn-danger">Continue Shopping</a>
+                            <button type="button" class="btn btn-hover btn-success">Check Out <i
+                                    class="ri-logout-box-r-line align-bottom ms-1"></i></button>
+                        </div>
+=======
                         <form action="/session" method="POST">
                             <div class="hstack gap-2 justify-content-end">
                                 <a  href="{{'/'}}" class="btn btn-hover btn-danger">Continue Shopping</a>
@@ -183,6 +196,7 @@
                             </div>
                         </form>
 
+>>>>>>> 9a00fe6ad56d10b534b3f4cd7e60c2a4920f0608
                     </div>
                     <!-- end stickey -->
                 </div>
@@ -463,6 +477,26 @@
         <!--end container-->
     </section>
     <script>
+
+        $('.cart_update').change(function (e) {
+            e.preventDefault();
+            var ele = $(this);
+            $.ajax({
+                url: '{{route('update_cart')}}',
+                method: "patch",
+                data:{
+                    _token: '{{csrf_token()}}',
+                    id: ele.parents("tr").attr("data-id"),
+                    quantity: ele.parents("tr").find(".quantity").val()
+                },
+                success: function (response){
+                    window.location.reload();
+                }
+            });
+
+        });
+
+
         $(document).ready(function () {
 
             $('.increment-btn').click(function (e) {
