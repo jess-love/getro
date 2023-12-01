@@ -20,6 +20,10 @@ Route::get('/login', function () {
     return view('auth.login');
 });
 
+Route::post('/session',[App\Http\Controllers\StripeController::class,'session'])->name('session');
+Route::get('/success',[App\Http\Controllers\StripeController::class,'success'])->name('success');
+Route::get('/cancel',[App\Http\Controllers\StripeController::class,'cancel'])->name('cancel');
+
 
 Route::get('/product-list-details', [App\Http\Controllers\ProductListDefaultController::class, 'index'])->name('product-list-details');
 Route::get('/product-details/{id}', [App\Http\Controllers\ProductdetailController::class, 'ViewProduitDetail'])->name('view_product');
@@ -45,10 +49,6 @@ Route::get('/produitToCart/{id}',[App\Http\Controllers\CartController::class,'ad
 
 Route::get('categoryMenu',[App\Http\Controllers\ViewCategoryController::class, 'viewcategoryinMenu']);
 
-
-//route add to cart
-
-
 Route::get('/produitToCart/{id}',[App\Http\Controllers\CartController::class,'addProductToCart'])->name('ProductToCart');
 //Route to shop-cart view
 Route::get('/shop-cart',[App\Http\Controllers\CartController::class,'shopcart'])->name('shopCart');
@@ -65,6 +65,9 @@ Route::post('/cart/{id}',[App\Http\Controllers\CartController::class,'add'])->na
 Route::get('/panier/index',[App\Http\Controllers\CartController::class,'index'])->name('cart_index');
 
 //route pour remove item
+Route::delete('/remove',[App\Http\Controllers\CartController::class,'removeItem'])->name('remove.item');
+//route pour delete all items from cart
+Route::delete('/shop-cart',[App\Http\Controllers\CartController::class,'clearCart'])->name('clear_cart');
 
 Route::delete('/remove',[App\Http\Controllers\CartController::class,'removeItem'])->name('remove.item');
 

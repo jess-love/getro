@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 
 class CartController extends Controller
@@ -31,15 +32,32 @@ class CartController extends Controller
     }
 
 
-    public function remove(Request $request){
+
+    public function countItem(){
+        $item = Cart::count();
+
+        return view('index',compact('item'));
+    }
+
+    public function removeItem(Request $request){
        if($request->id){
            $cart = session()->get('cart');
            if(isset($cart[$request->id])){
                unset($cart[$request->id]);
                session()->put('cart',$cart);
            }
-           session()->flash('success','Product reccessfully removed');
+           return redirect()->back()->with('success','Product reccessfully removed!');
+           //session()->flash('success','Product reccessfully removed');
        }
      }
 
+
+    public function clearCart(){
+        Cart::destroy();
+        return view('shop-cart');
+    }
+
+    public function shopcart(){
+        return view('shop-cart');
+    }
 }

@@ -301,7 +301,7 @@
             <ul class="list-group list-group-flush cartlist">
                 @if(session('cart'))
                     @foreach(session('cart') as $id=>$details)
-                        <li class="list-group-item product">
+                        <li class="list-group-item product" data-id ='{{$id}}'>
                             <div class="d-flex gap-3">
                                 <div class="flex-shrink-0">
                                     <div class="avatar-md" style="height: 100%;">
@@ -321,12 +321,12 @@
                                     </div>
                                     <div class="input-step ms-2 quantity">
                                         <button type="button" class="btn decrement-btn" >–</button>
-                                        <input type="number" class="qty-input" value="1" name="" max="100">
+                                            <input type="number" class="qty-input" value="1" name="" max="100">
                                         <button type="button" class="btn increment-btn" >+</button>
                                     </div>
                                 </div>
                                 <div class="flex-shrink-0 d-flex flex-column justify-content-between align-items-end">
-                                    <button type="button" class="btn btn-icon btn-sm btn-ghost-secondary remove-item-btn" data-bs-toggle="modal" data-bs-target="#removeItemModal"><i class="ri-close-fill fs-16"></i></button>
+                                    <button type="button" class="btn btn-icon btn-sm btn-ghost-secondary remove-item-btn cart_remove" data-bs-toggle="modal" ><i class="ri-close-fill fs-16"></i></button>
                                     <div class="fw-medium mb-0 fs-16">$<span class="product-line-price">{{$details['price']*$details['quantity']}}</span></div>
                                 </div>
                             </div>
@@ -340,11 +340,11 @@
                     <tbody>
                     <tr>
                         <td>Sub Total :</td>
-                        <td class="text-end cart-subtotal">$1183.57</td>
+                        <td class="text-end cart-subtotal">${{$total}}</td>
                     </tr>
                     <tr>
                         <td>Discount <span class="text-muted">(Toner15)</span>:</td>
-                        <td class="text-end cart-discount">- $177.54</td>
+                        <td class="text-end cart-discount">- 0</td>
                     </tr>
                     <tr>
                         <td>Shipping Charge :</td>
@@ -352,7 +352,7 @@
                     </tr>
                     <tr>
                         <td>Estimated Tax (12.5%) : </td>
-                        <td class="text-end cart-tax">$147.95</td>
+                        <td class="text-end cart-tax">${{0,125*$total}}</td>
                     </tr>
                     </tbody>
                 </table>
@@ -363,7 +363,7 @@
         <div class="d-flex justify-content-between align-items-center mb-3">
             <h6 class="m-0 fs-16 text-muted">Total:</h6>
             <div class="px-2">
-                <h6 class="m-0 fs-16 cart-total">${{$total}}</h6>
+                <h6 class="m-0 fs-16 cart-total">${{$total-0,125*$total}}</h6>
             </div>
         </div>
         <div class="row g-2">
@@ -665,7 +665,7 @@
                 method: "DELETE",
                 data:{
                     _token: '{{csrf_token()}}',
-                    id: ele.parent("tr").attr("data-id")
+                    id: ele.parent("li").attr("data-id")
                 },
                 success: function (response){
                     window.location.reload();
