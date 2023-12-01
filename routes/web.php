@@ -57,6 +57,7 @@ Route::get('/shop-cart',[App\Http\Controllers\CartController::class,'shopcart'])
 
 //route pour produit en liaison avec les sous-categories
 Route::get('/products/{sub_category_id}', [App\Http\Controllers\ProductController::class, 'product'])->name('products_nav');
+
 //Route::get('/produits', [App\Http\Controllers\ProductController::class, 'ViewAllProduct'])->name('view_all_products');
 Route::get('/souscategories', [App\Http\Controllers\ProductController::class, 'Sub_Categories'])->name('sub_categories');
 
@@ -65,10 +66,13 @@ Route::get('/panier/index',[App\Http\Controllers\CartController::class,'index'])
 
 //route pour remove item
 Route::delete('/remove',[App\Http\Controllers\CartController::class,'removeItem'])->name('remove.item');
+
 //route pour delete all items from cart
 Route::delete('/panier/clear',[App\Http\Controllers\CartController::class,'clearCart'])->name('clear.cart');
+
 //recherche de produit
-Route::get('/search', [App\Http\Controllers\ProductController::class, 'search'])->name('search');
+Route::get('/search/{sub_category_id}', [App\Http\Controllers\ProductController::class, 'search'])->name('search');
+
 //abonnement au site  dans la page produit
 Route::post('/subscribe', [App\Http\Controllers\SubscriptionController::class, 'subscribe'])->name('subscribe');
 
