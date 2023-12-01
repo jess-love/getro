@@ -35,8 +35,8 @@
 
                         {{--Start Research--}}
                         <div class="search-box">
-                            <form action="{{ route('search') }}" method="GET" class="input-group">
-                                <input type="text" name="query" class="form-control" id="searchProductList" autocomplete="off" placeholder="Rechercher Produits...">
+                            <form action="{{ route('search', ['sub_category_id' => $sub_category_id]) }}" method="GET" class="input-group">
+                            <input type="text" name="query" class="form-control" id="searchProductList" autocomplete="off" placeholder="Rechercher Produits...">
                                 <button type="submit" class="btn btn-primary">
                                     <i class="ri-search-line search-icon text-white"></i>
                                 </button>
@@ -59,6 +59,7 @@
                                             <option value="high_to_low" {{ request('sortType') == 'high_to_low' ? 'selected' : '' }}>Haut vers Bas</option>
                                         </select>
                                     </form>
+
                                 </div>
                             </div>
                         </div>
@@ -534,13 +535,6 @@
                                 {{ session('success') }}
                             </div>
                         @endif
-{{--                        <form action="{{ route('subscribe') }}" method="POST">--}}
-{{--                            @csrf--}}
-{{--                            <div class="position-relative ecommerce-subscript">--}}
-{{--                                <input type="email" name="email" class="form-control rounded-pill" placeholder="Entrer votre email" required>--}}
-{{--                                <button type="submit" class="btn btn-primary btn-hover rounded-pill">Abonnez-vous Maintenant</button>--}}
-{{--                            </div>--}}
-{{--                        </form>--}}
                         <form id="subscribe-form" action="{{ route('subscribe') }}" method="POST">
                             @csrf
                             <div class="position-relative ecommerce-subscript">
