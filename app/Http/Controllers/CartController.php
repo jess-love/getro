@@ -36,13 +36,6 @@ class CartController extends Controller
     }
 
 
-
-    public function countItem(){
-        $item = Cart::count();
-
-        return view('index',compact('item'));
-    }
-
     public function removeItem(Request $request){
        if($request->id){
            $cart = session()->get('cart');
@@ -51,7 +44,6 @@ class CartController extends Controller
                session()->put('cart',$cart);
            }
            return redirect()->back()->with('success','Product reccessfully removed!');
-           //session()->flash('success','Product reccessfully removed');
        }
      }
 
