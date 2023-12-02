@@ -30,7 +30,7 @@ class CartController extends Controller
                 }
             }
             if ($produitAlreadyExist == false){
-                Cart::add($product->id, $product->title, 1, $product->unit_price, ['size' => 'large']);
+                Cart::add($product->id, $product->title, 1, $product->unit_price, ['productImage' => (!empty($product->product_images)) ? $product->product_images->first() : '']);
 
                 $status = true;
                 $message = $product->title.'added in cart';
