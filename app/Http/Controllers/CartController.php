@@ -13,7 +13,7 @@ class CartController extends Controller
 
     public function AddToCart(Request $request){
 
-        $product = Product::find($request->id);
+        $product = Product::with('color_products')->find($request->id);
         if ($product == null){
             return Response()->json([
                 'status' => false,
