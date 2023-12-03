@@ -27,22 +27,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-
-        $produits = Product::all()->take(12);
-
+        $produits = Product::with('product_images')
+                            ->where('status',1)->get()->take(12);
         return view('index',compact('produits'));
     }
-
-
-
-    public function product(Request $request){
-
-        $produit = Product::all()->find($request->id);
-
-        return view('product-details',compact('produit'));
-
-    }
-
 
 
   public function lang($locale) {

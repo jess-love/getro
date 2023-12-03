@@ -8,7 +8,10 @@ use Illuminate\Http\Request;
 class ProductdetailController extends Controller
 {
     public  function ViewProduitDetail(Request $request){
-
-        return view('Product-details',['products' =>Product::all()->find($request->id)]);
+        $products = Product::with('product_images')
+                            ->where('status',1)
+                            ->get()
+                            ->find($request->id);
+        return view('Product-details',compact('products'));
     }
 }

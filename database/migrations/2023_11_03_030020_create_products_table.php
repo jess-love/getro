@@ -15,13 +15,16 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('sub_category_id');
             $table->string('title');
-            $table->string('tag');
+            $table->string('slog');
             $table->string('description');
             $table->string('manufacturer_name');
             $table->string('manufacturer_brand');
             $table->float('unit_price');
             $table->float('discount');
-            $table->string('main_pic');
+            $table->string('barcode')->nullable();
+            $table->enum('track_qty',['Yes','No'])->default('Yes');
+            $table->integer('qty')->nullable();
+            $table->integer('status')->default(1);
             $table->timestamps();
         });
     }

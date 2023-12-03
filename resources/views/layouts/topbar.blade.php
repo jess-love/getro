@@ -245,7 +245,7 @@
             <div class="topbar-head-dropdown ms-1 header-item">
                 <button type="button" class="btn btn-icon btn-topbar btn-ghost-dark rounded-circle text-muted" data-bs-toggle="offcanvas" data-bs-target="#ecommerceCart" aria-controls="ecommerceCart">
                     <i class="ph-shopping-cart fs-18"></i>
-                    <span class="position-absolute topbar-badge cartitem-badge fs-10 translate-middle badge rounded-pill bg-danger">{{count((array) session('cart'))}}</span>
+                    <span class="position-absolute topbar-badge cartitem-badge fs-10 translate-middle badge rounded-pill bg-danger">{{Cart::count()}}</span>
                 </button>
             </div>
 
