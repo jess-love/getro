@@ -43,7 +43,7 @@
                             <div thumbsSlider="" class="swiper productSwiper mb-3 mb-lg-0">
                                 <div class="swiper-wrapper">
 
-                                    @if($products->isNotEmpty())
+                                    @if(!empty($products))
                                         @foreach($products as $product)
                                             @php
                                                 $productImage = $product->product_images->first();
