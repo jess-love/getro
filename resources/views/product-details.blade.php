@@ -42,29 +42,37 @@
                         <div class="col-md-2">
                             <div thumbsSlider="" class="swiper productSwiper mb-3 mb-lg-0">
                                 <div class="swiper-wrapper">
-                                    <div class="swiper-slide">
-                                        <div class="product-thumb rounded cursor-pointer">
-                                            <img src="{{ asset('build/images/products/'.$products->main_pic) }}" alt=""
-                                                class="img-fluid" />
-                                        </div>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <div class="product-thumb rounded cursor-pointer">
-                                            <img src="{{ asset('build/images/products/'.$products->main_pic) }}" alt=""
-                                                class="img-fluid" />
-                                        </div>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <div class="product-thumb rounded cursor-pointer">
-                                            <img src="{{ asset('build/images/products/'.$products->main_pic) }}" alt=""
-                                                class="img-fluid" />
-                                        </div>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <div class="product-thumb rounded cursor-pointer">
-                                            <img src="{{ asset('build/images/products/'.$products->main_pic) }}" alt=""
-                                                class="img-fluid" />
-                                        </div>
+
+                                    @if($products->isNotEmpty())
+                                        @foreach($products as $product)
+                                            @php
+                                                $productImage = $product->product_images->first();
+                                            @endphp
+                                            <div class="swiper-slide">
+                                                <div class="product-thumb rounded cursor-pointer">
+                                                    <img src="{{ asset('build/images/products/'.$productImage->image) }}" alt=""
+                                                         class="img-fluid" />
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    @endif
+{{--                                    <div class="swiper-slide">--}}
+{{--                                        <div class="product-thumb rounded cursor-pointer">--}}
+{{--                                            <img src="{{ asset('build/images/products/'.$products->main_pic) }}" alt=""--}}
+{{--                                                class="img-fluid" />--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="swiper-slide">--}}
+{{--                                        <div class="product-thumb rounded cursor-pointer">--}}
+{{--                                            <img src="{{ asset('build/images/products/'.$products->main_pic) }}" alt=""--}}
+{{--                                                class="img-fluid" />--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="swiper-slide">--}}
+{{--                                        <div class="product-thumb rounded cursor-pointer">--}}
+{{--                                            <img src="{{ asset('build/images/products/'.$products->main_pic) }}" alt=""--}}
+{{--                                                class="img-fluid" />--}}
+{{--                                        </div>--}}
                                     </div>
 
                                 </div>
