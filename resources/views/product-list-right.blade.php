@@ -140,11 +140,7 @@
                     {{--End Product List--}}
 
                     {{--Start Pagination--}}
-{{--                    <div class="toto" >--}}
-{{--                       <form><div class="pagination page-item" >--}}
-{{--                               {{ $products->appends(request()->except('page'))->links() }}--}}
-{{--                        </div></form>--}}
-{{--                    </div>--}}
+{{--
                     {{--End Pagination--}}
                 </div>
 

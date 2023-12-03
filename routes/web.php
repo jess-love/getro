@@ -40,6 +40,7 @@ Route::get('/souscategories', [App\Http\Controllers\ProductController::class, 'S
 
 //recherche de produit
 Route::get('/search/{sub_category_id}', [App\Http\Controllers\ProductController::class, 'search'])->name('search');
+Route::get('/search/index/', [App\Http\Controllers\HomeController::class, 'SearchTopbar'])->name('search_topbar');
 
 //abonnement au site  dans la page produit
 Route::post('/subscribe', [App\Http\Controllers\SubscriptionController::class, 'subscribe'])->name('subscribe');
