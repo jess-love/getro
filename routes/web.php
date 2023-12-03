@@ -49,6 +49,8 @@ Route::post('/subscribe', [App\Http\Controllers\SubscriptionController::class, '
 //------------------cart----------------------------------------
 Route::get('/shop-cart',[App\Http\Controllers\CartController::class,'shopcart'])->name('shopCart');
 Route::post('/add-to-cart',[App\Http\Controllers\CartController::class,'AddToCart'])->name('addToCart');
+Route::post('/update-cart',[App\Http\Controllers\CartController::class,'updateCart'])->name('cart_update');
+Route::post('/delete-item',[App\Http\Controllers\CartController::class,'deleteItem'])->name('delete_item');
 
 
 //Route::get('/produits', [App\Http\Controllers\ProductController::class, 'ViewAllProduct'])->name('view_all_products');

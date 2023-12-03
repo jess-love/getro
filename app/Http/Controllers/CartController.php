@@ -60,6 +60,61 @@ class CartController extends Controller
     }
 
 
+
+    public function updateCart(Request $request){
+
+        $rowId = $request->rowId;
+        $qty = $request->qty;
+
+        $itemInfo = Cart::get($rowId);
+
+        $product = Product::find($itemInfo->id);
+
+        if($product->track_qty == 'Yes'){
+            if($qty <= $product->qty){
+                Cart::update($rowId,$qty);
+                $message = 'Cart updated successfully';
+                $status = true;
+                session()->flash('success',$message);
+            }else{
+                $message = 'Request qty('.$qty.') not available in stock.';
+                $status = false;
+                session()->flash('error',$message);
+            }
+        }else{
+            Cart::update($rowId,$qty);
+            $message = 'Cart updated successfully';
+            $status = true;
+            session()->flash('success',$message);
+        }
+        return response()->json([
+            'status' => $status,
+            'message' => $message
+        ]);
+    }
+
+
+    public function deleteItem(Request $request){
+        $rowId = $request->rowId;
+        $itemInfo = Cart::get($rowId);
+        if($itemInfo == null){
+            $errorMessage = 'Item not found in Cart';
+            session()->flash('error',$errorMessage);
+            return response()->json([
+                'status' => false,
+                'message' => $errorMessage
+            ]);
+
+        }
+
+        Cart::remove($request->rowId);
+        $message = 'Item remove successfully';
+        session()->flash('success',$message);
+        return response()->json([
+            'status' => true,
+            'message' => $message
+        ]);
+    }
 //    public function addProductToCart($id){
 //
 //        $product = Product::findOrFail($id);

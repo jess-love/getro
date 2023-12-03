@@ -45,9 +45,24 @@
                         <div class="flex-shrink-0">
                             <a href="#!" class="text-decoration-underline link-secondary">Clear Cart</a>
                         </div>
+
                     </div>
+                    @if(Session::has('success'))
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            {{Session::get('success')}}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    @endif
+
+                    @if(Session::has('error'))
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            {{Session::get('error')}}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    @endif
+
 {{--                    {{dd($cartContent)}}--}}
-                   @if(!empty($cartContent))
+                   @if( Gloudemans\Shoppingcart\Facades\Cart::count() > 0)
                        @foreach($cartContent as $item)
                             <div class="card product">
                         <div class="card-body p-4">
@@ -78,11 +93,11 @@
                                     </ul>
 
                                         <div class="input-step ">
-                                            <button class=" sub">-</button>
+                                            <button class=" sub" data-id="{{$item->rowId}}">-</button>
                                         </div>
                                              <input type="number" value="{{$item->qty}}" class="input-step p-1 pt-2 text-center" style="width: 40px">
                                         <div class="input-step ">
-                                            <button class=" add">+</button>
+                                            <button class=" add" data-id="{{$item->rowId}}">+</button>
                                         </div>
 
                                 </div>
@@ -100,7 +115,7 @@
                                     <div class="d-flex flex-wrap my-n1">
                                         <div>
                                             <a href="#!" class="d-block text-body p-1 px-2" data-bs-toggle="modal"
-                                               data-bs-target="#removeItemModal"><i
+                                                onclick="deleteItem('{{$item->rowId}}')"><i
                                                     class="ri-delete-bin-fill text-muted align-bottom me-1"></i> Remove</a>
                                         </div>
                                         <div>
@@ -120,6 +135,18 @@
                         <!-- end card footer -->
                     </div>
                         @endforeach
+                    @else
+                       <div class="col-md-12">
+                           <div class="card">
+                               <div class="card-body">
+                                   <h4>
+                                       Your Cart is empty!
+                                   </h4>
+
+                               </div>
+
+                           </div>
+                       </div>
                     @endif
                     <!--end card-->
                 </div>
@@ -470,6 +497,9 @@
             var qtyValue = parseInt(qtyElement.val());
             if (qtyValue < 100) {
                 qtyElement.val(qtyValue+1);
+                var rowId = $(this).data('id');
+                var newQty = qtyElement.val();
+                updateCart(rowId, newQty);
             }
         });
 
@@ -478,11 +508,38 @@
             var qtyValue = parseInt(qtyElement.val());
             if (qtyValue > 1) {
                 qtyElement.val(qtyValue-1);
+                var rowId = $(this).data('id');
+                var newQty = qtyElement.val();
+                updateCart(rowId, newQty);
             }
         });
 
         function updateCart(rowId, qty){
-            $.ajax()
+            $.ajax({
+                url: '{{route("cart_update")}}',
+                type: 'post',
+                data: {rowId:rowId, qty:qty},
+                dataType: 'json',
+                success: function (response){
+
+                    window.location.href='{{ route("shopCart") }}';
+                }
+            });
+        }
+
+        function deleteItem(rowId){
+            if(confirm('are you sure you want to delete?')) {
+                $.ajax({
+                    url: '{{route("delete_item")}}',
+                    type: 'post',
+                    data: {rowId: rowId},
+                    dataType: 'json',
+                    success: function (response) {
+
+                        window.location.href = '{{ route("shopCart") }}';
+                    }
+                });
+            }
         }
     </script>
 
