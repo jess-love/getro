@@ -37,9 +37,6 @@
                     </div>
                 </div>
             </div>
-<!----------------------------------------les produits du panier------------------------------------------------------->
-
-<!----------------------------------------le panier commence ici------------------------------------------------------->
             <div class="row product-list justify-content-center">
                 <div class="col-lg-8">
                     <div class="d-flex align-items-center mb-4">
@@ -48,80 +45,110 @@
                         <div class="flex-shrink-0">
                             <a href="#!" class="text-decoration-underline link-secondary">Clear Cart</a>
                         </div>
+
                     </div>
-            @php $total = 0 @endphp
-            @foreach((array) session('cart') as $id => $details)
-             @php
-                $total += $details['price']*$details['quantity'];
-             @endphp
-             <div class="card product">
-                 <tr data-id ='{{$id}}'>
-                                <div class="card-body p-4">
-                                    <div class="row gy-3">
-                                        <div class="col-sm-auto">
-                                            <div class="avatar-lg h-100">
-                                                <div class="avatar-title bg-danger-subtle rounded py-3">
+                    @if(Session::has('success'))
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            {{Session::get('success')}}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    @endif
 
-                                                    <img src="{{ URL::asset('build/images/products/'.$details['image']) }}" alt="" class="avatar-md">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm">
-                                            <a href="#!">
+                    @if(Session::has('error'))
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            {{Session::get('error')}}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    @endif
 
-                                                <h5 class="fs-16 lh-base mb-1">{{$details['title']}}</h5>
+{{--                    {{dd($cartContent)}}--}}
+                   @if( Gloudemans\Shoppingcart\Facades\Cart::count() > 0)
+                       @foreach($cartContent as $item)
+                            <div class="card product">
+                        <div class="card-body p-4">
+                            <div class="row gy-3">
+                                <div class="col-sm-auto">
+                                    <div class="avatar-lg h-100">
+                                        <div class="avatar-title bg-danger-subtle rounded py-3">
+
+                                            <a href="">
+                                                @if(!empty($item->options->productImage->image))
+                                                    <img src="{{ asset('build/images/products/'.$item->options->productImage->image) }}" alt=""
+                                                         style="max-height: 215px;max-width: 100%;" class="mx-auto d-block">
+                                                @else
+                                                    <img src="{{ asset('build/images/products/default.png')}}" alt=""
+                                                         style="max-height: 215px;max-width: 100%;" class="mx-auto d-block">
+                                                @endif
                                             </a>
-                                            <ul class="list-inline text-muted fs-13 mb-3">
-                                                <li class="list-inline-item">Color : <span class="fw-medium">Red</span></li>
-                                                <li class="list-inline-item">Size : <span class="fw-medium">M</span></li>
-                                            </ul>
-
-                                            <div class="input-step ms-2 quantity">
-                                                <button type="button" class="btn decrement-btn" >–</button>
-                                                    <input type="number" class="qty-input" value="{{$details['quantity']}}" name="" max="100" value="1">
-                                                <button type="button" class="btn increment-btn" >+</button>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-auto">
-                                            <div class="text-lg-end">
-                                                <p class="text-muted mb-1 fs-12">Item Price:</p>
-
-                                                <h5 class="fs-16">$<span class="product-price">{{$details['price']}}</span></h5>
-
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card-footer">
-                                    <div class="row align-items-center gy-3">
-                                        <div class="col-sm">
-                                            <div class="d-flex flex-wrap my-n1">
-                                                <div>
+                                <div class="col-sm">
+                                    <a href="#!">
+                                        <h5 class="fs-16 lh-base mb-1">{{$item->name}}</h5>
+                                    </a>
+                                    <ul class="list-inline text-muted fs-13 mb-3">
+                                        <li class="list-inline-item">Color : <span class="fw-medium">Red</span></li>
+                                        <li class="list-inline-item">Size : <span class="fw-medium">M</span></li>
+                                    </ul>
 
-                                                    <a href="" class="d-block text-body p-1 px-2 cart_remove" data-bs-toggle="modal"data-bs-target="#removeItemModal">
-                                                    <i class="ri-delete-bin-fill text-muted align-bottom me-1 "></i> Remove</a>
-                                                </div>
-                                                <div>
-                                                    <a href="#!" class="d-block text-body p-1 px-2"><i class="ri-star-fill text-muted align-bottom me-1"></i> Add Wishlist</a>
-                                                </div>
-                                            </div>
+                                        <div class="input-step ">
+                                            <button class=" sub" data-id="{{$item->rowId}}">-</button>
                                         </div>
-                                        <div class="col-sm-auto">
-                                            <div class="d-flex align-items-center gap-2 text-muted">
-                                                <div>Total :</div>
-
-                                                <h5 class="fs-14 mb-0">$<span class="product-line-price">{{$details['price']*$details['quantity']}}</span></h5>
-
-                                            </div>
+                                             <input type="number" value="{{$item->qty}}" class="input-step p-1 pt-2 text-center" style="width: 40px">
+                                        <div class="input-step ">
+                                            <button class=" add" data-id="{{$item->rowId}}">+</button>
                                         </div>
+
+                                </div>
+                                <div class="col-sm-auto">
+                                    <div class="text-lg-end">
+                                        <p class="text-muted mb-1 fs-12">Item Price:</p>
+                                        <h5 class="fs-16">$<span class="product-price">{{$item->price}}</span></h5>
                                     </div>
                                 </div>
-                                <!-- end card footer -->
                             </div>
-                <!--end card-->
-                        </tr>
-            @endforeach
+                        </div>
+                        <div class="card-footer">
+                            <div class="row align-items-center gy-3">
+                                <div class="col-sm">
+                                    <div class="d-flex flex-wrap my-n1">
+                                        <div>
+                                            <a href="#!" class="d-block text-body p-1 px-2" data-bs-toggle="modal"
+                                                onclick="deleteItem('{{$item->rowId}}')"><i
+                                                    class="ri-delete-bin-fill text-muted align-bottom me-1"></i> Remove</a>
+                                        </div>
+                                        <div>
+                                            <a href="#!" class="d-block text-body p-1 px-2"><i
+                                                    class="ri-star-fill text-muted align-bottom me-1"></i> Add Wishlist</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-auto">
+                                    <div class="d-flex align-items-center gap-2 text-muted">
+                                        <div>Total :</div>
+                                        <h5 class="fs-14 mb-0">$<span class="product-line-price">{{$item->price*$item->qty}}</span></h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end card footer -->
+                    </div>
+                        @endforeach
+                    @else
+                       <div class="col-md-12">
+                           <div class="card">
+                               <div class="card-body d-flex justify-content-center align-items-center">
+                                   <h4>
+                                       Your Cart is empty!
+                                   </h4>
 
+                               </div>
+
+                           </div>
+                       </div>
+                    @endif
+                    <!--end card-->
                 </div>
                 <!--end col-->
                 <div class="col-lg-4">
@@ -148,24 +175,24 @@
                                         <tbody>
                                         <tr>
                                             <td>Sub Total :</td>
-                                            <td class="text-end cart-subtotal"></td>
+                                            <td class="text-end cart-subtotal">$ {{\Gloudemans\Shoppingcart\Facades\Cart::subtotal()}}</td>
                                         </tr>
                                         <tr>
                                             <td>Discount <span class="text-muted">(Toner15)</span>:</td>
-                                            <td class="text-end cart-discount"></td>
+                                            <td class="text-end cart-discount">0</td>
                                         </tr>
                                         <tr>
                                             <td>Shipping Charge :</td>
-                                            <td class="text-end cart-shipping"></td>
+                                            <td class="text-end cart-shipping">0</td>
                                         </tr>
                                         <tr>
                                             <td>Estimated Tax (12.5%) : </td>
-                                            <td class="text-end cart-tax"></td>
+                                            <td class="text-end cart-tax">0</td>
                                         </tr>
                                         <tr class="table-active">
                                             <th>Total (USD) :</th>
                                             <td class="text-end">
-                                                <span class="fw-semibold cart-total">{{$total}}</span>
+                                                <span class="fw-semibold cart-total">$ {{\Gloudemans\Shoppingcart\Facades\Cart::subtotal()}}</span>
                                             </td>
                                         </tr>
                                         </tbody>
@@ -458,57 +485,62 @@
         </div>
         <!--end container-->
     </section>
-    <script>
-        $(document).ready(function () {
-
-            $('.increment-btn').click(function (e) {
-                e.preventDefault();
-                var incre_value = $(this).parents('.quantity').find('.qty-input').val();
-                var value = parseInt(incre_value, 10);
-                value = isNaN(value) ? 0 : value;
-                if(value<100){
-                    value++;
-                    $(this).parents('.quantity').find('.qty-input').val(value);
-                }
-
-            });
-
-            $('.decrement-btn').click(function (e) {
-                e.preventDefault();
-                var decre_value = $(this).parents('.quantity').find('.qty-input').val();
-                var value = parseInt(decre_value, 10);
-                value = isNaN(value) ? 0 : value;
-                if(value>1){
-                    value--;
-                    $(this).parents('.quantity').find('.qty-input').val(value);
-                }
-            });
-
-        });
-
-
-        $('.cart_remove').click(function (e) {
-            e.preventDefault();
-            var ele = $(this);
-            if(confirm("Do you really want to remove")){
-                $.ajax({
-                    url: '{{route('remove.item')}}',
-                    method: "DELETE",
-                    data:{
-                        _token: '{{csrf_token()}}',
-                        id: ele.parent("tr").attr("data-id")
-                    },
-                    success: function (response){
-                        window.location.reload();
-                    }
-                });
-            }
-
-        });
-
-    </script>
 @endsection
+
 @section('scripts')
     <!-- landing-index js -->
     <script src="{{ URL::asset('build/js/frontend/menu.init.js') }}"></script>
+    <script type="text/javascript">
+
+        $('.add').click(function(){
+            var qtyElement = $(this).parent().prev(); // Qty Input
+            var qtyValue = parseInt(qtyElement.val());
+            if (qtyValue < 100) {
+                qtyElement.val(qtyValue+1);
+                var rowId = $(this).data('id');
+                var newQty = qtyElement.val();
+                updateCart(rowId, newQty);
+            }
+        });
+
+        $('.sub').click(function(){
+            var qtyElement = $(this).parent().next();
+            var qtyValue = parseInt(qtyElement.val());
+            if (qtyValue > 1) {
+                qtyElement.val(qtyValue-1);
+                var rowId = $(this).data('id');
+                var newQty = qtyElement.val();
+                updateCart(rowId, newQty);
+            }
+        });
+
+        function updateCart(rowId, qty){
+            $.ajax({
+                url: '{{route("cart_update")}}',
+                type: 'post',
+                data: {rowId:rowId, qty:qty},
+                dataType: 'json',
+                success: function (response){
+
+                    window.location.href='{{ route("shopCart") }}';
+                }
+            });
+        }
+
+        function deleteItem(rowId){
+            if(confirm('are you sure you want to delete?')) {
+                $.ajax({
+                    url: '{{route("delete_item")}}',
+                    type: 'post',
+                    data: {rowId: rowId},
+                    dataType: 'json',
+                    success: function (response) {
+
+                        window.location.href = '{{ route("shopCart") }}';
+                    }
+                });
+            }
+        }
+    </script>
+
 @endsection

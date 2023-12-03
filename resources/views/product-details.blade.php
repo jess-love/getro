@@ -42,29 +42,37 @@
                         <div class="col-md-2">
                             <div thumbsSlider="" class="swiper productSwiper mb-3 mb-lg-0">
                                 <div class="swiper-wrapper">
-                                    <div class="swiper-slide">
-                                        <div class="product-thumb rounded cursor-pointer">
-                                            <img src="{{ asset('build/images/products/'.$products->main_pic) }}" alt=""
-                                                class="img-fluid" />
-                                        </div>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <div class="product-thumb rounded cursor-pointer">
-                                            <img src="{{ asset('build/images/products/'.$products->main_pic) }}" alt=""
-                                                class="img-fluid" />
-                                        </div>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <div class="product-thumb rounded cursor-pointer">
-                                            <img src="{{ asset('build/images/products/'.$products->main_pic) }}" alt=""
-                                                class="img-fluid" />
-                                        </div>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <div class="product-thumb rounded cursor-pointer">
-                                            <img src="{{ asset('build/images/products/'.$products->main_pic) }}" alt=""
-                                                class="img-fluid" />
-                                        </div>
+
+                                    @if(!empty($products))
+                                        @foreach($products as $product)
+                                            @php
+                                                $productImage = $product->product_images->first();
+                                            @endphp
+                                            <div class="swiper-slide">
+                                                <div class="product-thumb rounded cursor-pointer">
+                                                    <img src="{{ asset('build/images/products/'.$productImage->image) }}" alt=""
+                                                         class="img-fluid" />
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    @endif
+{{--                                    <div class="swiper-slide">--}}
+{{--                                        <div class="product-thumb rounded cursor-pointer">--}}
+{{--                                            <img src="{{ asset('build/images/products/'.$products->main_pic) }}" alt=""--}}
+{{--                                                class="img-fluid" />--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="swiper-slide">--}}
+{{--                                        <div class="product-thumb rounded cursor-pointer">--}}
+{{--                                            <img src="{{ asset('build/images/products/'.$products->main_pic) }}" alt=""--}}
+{{--                                                class="img-fluid" />--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="swiper-slide">--}}
+{{--                                        <div class="product-thumb rounded cursor-pointer">--}}
+{{--                                            <img src="{{ asset('build/images/products/'.$products->main_pic) }}" alt=""--}}
+{{--                                                class="img-fluid" />--}}
+{{--                                        </div>--}}
                                     </div>
 
                                 </div>
@@ -182,9 +190,9 @@
                             </ul>
                         </div>
   <!---------------------------------------form panier----------------------------------------------------------->
-                        <form method="POST" action="{{route('post_add',['id'=>$products->id])}}" id="add_to_cart">
+                        <form method="POST" action="{{route('ProductToCart',['id'=>$products->id])}}" id="add_to_cart">
                             @csrf
-
+                            <input type="hidden" name="product_id" value="{{$products->id}}">
                             <div class="d-flex align-items-center mb-4">
                                 <h5 class="fs-15 mb-0">Quantity:</h5>
                                 <div class="input-step ms-2 quantity">

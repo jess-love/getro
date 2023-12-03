@@ -27,11 +27,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-
-        $produits = Product::all()->take(12);
-
+        $produits = Product::with('product_images')
+                            ->where('status',1)->get()->take(12);
         return view('index',compact('produits'));
     }
+
 
 
 
