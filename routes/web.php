@@ -57,7 +57,7 @@ Route::post('/add-to-cart',[App\Http\Controllers\CartController::class,'AddToCar
 //Route::get('/success',[App\Http\Controllers\StripeController::class,'success'])->name('success');
 //Route::get('/cancel',[App\Http\Controllers\StripeController::class,'cancel'])->name('cancel');
 
-//Route::get('/produitToCart/{id}',[App\Http\Controllers\CartController::class,'addProductToCart'])->name('ProductToCart');
+Route::get('/produitToCart/{id}',[App\Http\Controllers\CartController::class,'addProductToCart'])->name('ProductToCart');
 
 //Route::get('/sub/category', [App\Http\Controllers\CategoryController::class, 'sub'])->name('sub');
 //Route::get('/produitToCart/{id}',[App\Http\Controllers\CartController::class,'addProductToCart'])->name('ProductToCart');

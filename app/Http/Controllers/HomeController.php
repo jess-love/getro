@@ -28,7 +28,8 @@ class HomeController extends Controller
     public function index()
     {
 
-        $produits = Product::where('status',1)->with('product_images')->first();
+        $produits = Product::with('product_images')
+                            ->where('status',1)->get();
         //all()->take(12);
 
         return view('index',compact('produits'));
