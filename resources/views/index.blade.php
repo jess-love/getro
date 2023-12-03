@@ -836,9 +836,9 @@
                 datatype: 'json',
                 success: function (respons){
                     if(response.status == true){
-                        window.location.href="{{route('Cart')}}";
+                       // window.location.href="";
                     }else{
-                        window.location.href="{{route('addToCart')}}";
+                        //window.location.href="";
                     }
                 }
             })

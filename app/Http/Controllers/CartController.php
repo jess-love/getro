@@ -13,7 +13,7 @@ class CartController extends Controller
 
     public function AddToCart(Request $request){
 
-        $product = Product::with('color_products')->find($request->id);
+        $product = Product::with('product_images')->find($request->id);
         if ($product == null){
             return Response()->json([
                 'status' => false,
@@ -41,7 +41,7 @@ class CartController extends Controller
 
         }else{
             //cart is empty
-            Cart::add($product->id, $product->title, 1, $product->unit_price, ['size' => 'large']);
+            Cart::add($product->id, $product->title, 1, $product->unit_price, ['productImage' => (!empty($product->product_images)) ? $product->product_images->first() : '']);
             $status = true;
             $message = $product->title.'added in cart';
         }
