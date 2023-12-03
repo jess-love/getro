@@ -33,7 +33,8 @@ class AppServiceProvider extends ServiceProvider
             [
                 'contact-us', 'about-us', 'index','products-category','Product-details',
                 'product-grid-sidebar-banner', 'product-list-defualt', 'topbar','account',
-                'ecommerce-faq', 'track-order', 'order-history', 'products-category.blade'
+                'ecommerce-faq', 'track-order', 'order-history', 'products-category.blade',
+                'product-list-right'
             ]
             , HeaderComposer::class);
 

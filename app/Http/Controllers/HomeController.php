@@ -43,6 +43,17 @@ class HomeController extends Controller
 
     }
 
+    public function SearchTopbar(Request $request){
+
+        $queries = $request->input('queries');
+        $produits = Product::where('title', 'like', '%' . $queries . '%')
+            ->orWhere('description', 'like', '%' . $queries . '%');
+
+        return view('index',compact('produits'));
+
+
+    }
+
 
 
   public function lang($locale) {
