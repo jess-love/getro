@@ -25,7 +25,7 @@ Route::get('/product-details/{id}', [App\Http\Controllers\ProductdetailControlle
 Route::get('/products-category', [App\Http\Controllers\HomeController::class, 'ViewCategory'])->name('CategoryProduct');
 
 Route::get('/products-category', [App\Http\Controllers\ViewCategoryController::class, 'ViewCategory'])->name('CategoryProduct');
-Route::get('/category', [App\Http\Controllers\CategoryIndexPage::class, 'CategoryIndexpage'])->name('Category');
+//Route::get('/category', [App\Http\Controllers\CategoryIndexPage::class, 'CategoryIndexpage'])->name('Category');
 Route::get('/categoryMenu',[App\Http\Controllers\ViewCategoryController::class, 'viewcategoryinMenu']);
 
 Route::get('/products-category', [App\Http\Controllers\ViewCategoryController::class, 'ViewCategory'])->name('CategoryProduct');
@@ -47,7 +47,7 @@ Route::post('/subscribe', [App\Http\Controllers\SubscriptionController::class, '
 
 
 //------------------cart----------------------------------------
-Route::get('/shop-cart',[App\Http\Controllers\CartController::class,'Cart'])->name('Cart');
+Route::get('/shop-cart',[App\Http\Controllers\CartController::class,'shopcart'])->name('shopCart');
 Route::post('/add-to-cart',[App\Http\Controllers\CartController::class,'AddToCart'])->name('addToCart');
 
 
@@ -62,7 +62,7 @@ Route::get('/produitToCart/{id}',[App\Http\Controllers\CartController::class,'ad
 //Route::get('/sub/category', [App\Http\Controllers\CategoryController::class, 'sub'])->name('sub');
 //Route::get('/produitToCart/{id}',[App\Http\Controllers\CartController::class,'addProductToCart'])->name('ProductToCart');
 //Route to shop-cart view
-Route::get('/shop-cart',[App\Http\Controllers\CartController::class,'shopcart'])->name('shopCart');
+
 //route pour shoppingcart
 
 //Route::post('/cart/{id}',[App\Http\Controllers\CartController::class,'add'])->name('post_add');

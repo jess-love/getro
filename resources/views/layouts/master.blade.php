@@ -42,4 +42,22 @@
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
+
+    function AddToCart(id){
+        $.ajax({
+            url: '{{route("addToCart")}}',
+            type: 'post',
+            data: {id:id},
+            datatype: 'json',
+            success: function (response){
+                if(response.status === true){
+                    window.location.href='{{ route("shopCart") }}';
+                }else{
+                    alert(response.message);
+                    //window.location.href="";
+                }
+            }
+        })
+    }
+
 </script>

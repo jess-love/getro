@@ -836,24 +836,25 @@
 
     <script src="{{ URL::asset('build/js/frontend/menu.init.js') }}"></script>
 
-    <script type="text/javascript">
-        function AddToCart(id){
+{{--    <script type="text/javascript">--}}
+{{--        function AddToCart(id){--}}
 
-            $.ajax({
-                url: '{{route("addToCart")}}',
-                type: 'post',
-                data: {id:id},
-                datatype: 'json',
-                success: function (respons){
-                    if(response.status == true){
-                       // window.location.href="";
-                    }else{
-                        //window.location.href="";
-                    }
-                }
-            })
-        }
+{{--            $.ajax({--}}
+{{--                url: '{{route("addToCart")}}',--}}
+{{--                type: 'post',--}}
+{{--                data: {id:id},--}}
+{{--                datatype: 'json',--}}
+{{--                success: function (response){--}}
+{{--                    if(response.status === true){--}}
+{{--                        window.location.href='{{ route("shopCart") }}';--}}
+{{--                    }else{--}}
+{{--                        alert(response.message);--}}
+{{--                        //window.location.href="";--}}
+{{--                    }--}}
+{{--                }--}}
+{{--            })--}}
+{{--        }--}}
 
-    </script>
+{{--    </script>--}}
 @endsection
 
