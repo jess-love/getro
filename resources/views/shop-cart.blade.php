@@ -404,7 +404,7 @@
                         <p class="fs-15 text-uppercase fw-medium"><span class="fw-semibold text-danger">25% Up to</span>
                             off all Products</p>
                         <h1 class="lh-base text-capitalize mb-3">Stay home & get your daily needs from our shop</h1>
-                        <p class="fs-15 mb-4 pb-2">Start You'r Daily Shopping with <a href="#!"
+                        <p class="fs-15 mb-4 pb-2">Start You're Daily Shopping with <a href="#!"
                                                                                       class="link-primary text-decoration-underline fw-medium">Toner</a></p>
                         <form action="#!">
                             <div class="position-relative ecommerce-subscript">

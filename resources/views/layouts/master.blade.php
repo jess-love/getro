@@ -60,4 +60,55 @@
         })
     }
 
+
+    $('.add').click(function(){
+        var qtyElement = $(this).parent().prev(); // Qty Input
+        var qtyValue = parseInt(qtyElement.val());
+        if (qtyValue < 100) {
+            qtyElement.val(qtyValue+1);
+            var rowId = $(this).data('id');
+            var newQty = qtyElement.val();
+            updateCart(rowId, newQty);
+        }
+    });
+
+    $('.sub').click(function(){
+        var qtyElement = $(this).parent().next();
+        var qtyValue = parseInt(qtyElement.val());
+        if (qtyValue > 1) {
+            qtyElement.val(qtyValue-1);
+            var rowId = $(this).data('id');
+            var newQty = qtyElement.val();
+            updateCart(rowId, newQty);
+        }
+    });
+
+    function updateCart(rowId, qty){
+        $.ajax({
+            url: '{{route("cart_update")}}',
+            type: 'post',
+            data: {rowId:rowId, qty:qty},
+            dataType: 'json',
+            success: function (response){
+
+                window.location.href='{{ route("shopCart") }}';
+            }
+        });
+    }
+
+    function deleteItem(rowId){
+        if(confirm('are you sure you want to delete?')) {
+            $.ajax({
+                url: '{{route("delete_item")}}',
+                type: 'post',
+                data: {rowId: rowId},
+                dataType: 'json',
+                success: function (response) {
+
+                    window.location.href = '{{ route("shopCart") }}';
+                }
+            });
+        }
+    }
+
 </script>
