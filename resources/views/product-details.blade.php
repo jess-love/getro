@@ -42,39 +42,31 @@
                         <div class="col-md-2">
                             <div thumbsSlider="" class="swiper productSwiper mb-3 mb-lg-0">
                                 <div class="swiper-wrapper">
-
-                                    @if(!empty($products))
-                                        @foreach($products as $product)
-                                            @php
-                                                $productImage = $product->product_images->first();
-                                            @endphp
-                                            <div class="swiper-slide">
-                                                <div class="product-thumb rounded cursor-pointer">
-                                                    <img src="{{ asset('build/images/products/'.$productImage->image) }}" alt=""
-                                                         class="img-fluid" />
-                                                </div>
-                                            </div>
-                                        @endforeach
-                                    @endif
+                                    @foreach($products->product_images as $productImg)
+                                        <div class="swiper-slide">
+                                           <div class="product-thumb rounded cursor-pointer">
+                                              <img src="{{ asset('build/images/products/'.$productImg->image) }}" alt="" class="img-fluid" />
+                                           </div>
+                                       </div>
+                                    @endforeach
 {{--                                    <div class="swiper-slide">--}}
 {{--                                        <div class="product-thumb rounded cursor-pointer">--}}
-{{--                                            <img src="{{ asset('build/images/products/'.$products->main_pic) }}" alt=""--}}
+{{--                                            <img src="{{ asset('build/images/products/'.$image) }}" alt=""--}}
 {{--                                                class="img-fluid" />--}}
 {{--                                        </div>--}}
 {{--                                    </div>--}}
 {{--                                    <div class="swiper-slide">--}}
 {{--                                        <div class="product-thumb rounded cursor-pointer">--}}
-{{--                                            <img src="{{ asset('build/images/products/'.$products->main_pic) }}" alt=""--}}
+{{--                                            <img src="{{ asset('build/images/products/'.$image) }}" alt=""--}}
 {{--                                                class="img-fluid" />--}}
 {{--                                        </div>--}}
 {{--                                    </div>--}}
 {{--                                    <div class="swiper-slide">--}}
 {{--                                        <div class="product-thumb rounded cursor-pointer">--}}
-{{--                                            <img src="{{ asset('build/images/products/'.$products->main_pic) }}" alt=""--}}
+{{--                                            <img src="{{ asset('build/images/products/'.$image) }}" alt=""--}}
 {{--                                                class="img-fluid" />--}}
 {{--                                        </div>--}}
-                                    </div>
-
+{{--                                    </div>--}}
                                 </div>
                             </div>
                         </div>
@@ -85,29 +77,21 @@
                                     <span class="trending-ribbon-text">Trending</span> <i
                                         class="ri-flashlight-fill text-white align-bottom float-end ms-1"></i>
                                 </div>
-                                <div class="swiper productSwiper2">
-                                    <div class="swiper-wrapper">
 
-                                        <div class="swiper-slide">
-                                            <img src="{{ asset('build/images/products/'.$products->main_pic) }}" alt=""
-                                                class="img-fluid" />
+                                @foreach($products->product_images as $productImage)
+                                    <div class="swiper productSwiper2">
+                                        <div class="swiper-wrapper">
+
+                                            <div class="swiper-slide">
+                                                <img src="{{ asset('build/images/products/'.$productImage->image) }}" alt=""
+                                                     class="img-fluid" />
+                                            </div>
                                         </div>
-                                        <div class="swiper-slide">
-                                            <img src="{{ asset('build/images/products/'.$products->main_pic) }}" alt=""
-                                                class="img-fluid" />
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <img src="{{ asset('build/images/products/'.$products->main_pic) }}" alt=""
-                                                class="img-fluid" />
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <img src="{{ asset('build/images/products/'.$products->main_pic) }}" alt=""
-                                                class="img-fluid" />
-                                        </div>
+                                        <div class="swiper-button-next bg-transparent"></div>
+                                        <div class="swiper-button-prev bg-transparent"></div>
                                     </div>
-                                    <div class="swiper-button-next bg-transparent"></div>
-                                    <div class="swiper-button-prev bg-transparent"></div>
-                                </div>
+                                @endforeach
+
                             </div>
                         </div>
                         <!--end col-->

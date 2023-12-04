@@ -61,7 +61,6 @@
                         </div>
                     @endif
 
-{{--                    {{dd($cartContent)}}--}}
                    @if( Gloudemans\Shoppingcart\Facades\Cart::count() > 0)
                        @foreach($cartContent as $item)
                             <div class="card product">
