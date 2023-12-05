@@ -30,7 +30,7 @@ class CartController extends Controller
                 }
             }
             if ($produitAlreadyExist == false){
-                Cart::add($product->id, $product->title, $product->qty, $product->unit_price, ['productImage' => (!empty($product->product_images)) ? $product->product_images->first() : '']);
+                Cart::add($product->id, $product->title, $product->qty, $product->unit_price, ['productImage' => (!empty($product->product_images)) ? $product->product_images->first() : '',]);
 
                 $status = true;
                 $message = $product->title.'added in cart';
@@ -54,7 +54,6 @@ class CartController extends Controller
 
     public function shopcart(){
         $cartContent = Cart::content();
-        //dd($cartContent);
         $data['cartContent'] = $cartContent;
         return view('shop-cart', $data);
     }
@@ -65,6 +64,7 @@ class CartController extends Controller
 
         $rowId = $request->rowId;
         $qty = $request->qty;
+        $color = "Rouge";
 
         $itemInfo = Cart::get($rowId);
 

@@ -42,39 +42,31 @@
                         <div class="col-md-2">
                             <div thumbsSlider="" class="swiper productSwiper mb-3 mb-lg-0">
                                 <div class="swiper-wrapper">
-
-                                    @if(!empty($products))
-                                        @foreach($products as $product)
-                                            @php
-                                                $productImage = $product->product_images->first();
-                                            @endphp
-                                            <div class="swiper-slide">
-                                                <div class="product-thumb rounded cursor-pointer">
-                                                    <img src="{{ asset('build/images/products/'.$productImage->image) }}" alt=""
-                                                         class="img-fluid" />
-                                                </div>
-                                            </div>
-                                        @endforeach
-                                    @endif
+                                    @foreach($products->product_images as $productImg)
+                                        <div class="swiper-slide">
+                                           <div class="product-thumb rounded cursor-pointer">
+                                              <img src="{{ asset('build/images/products/'.$productImg->image) }}" alt="" class="img-fluid" />
+                                           </div>
+                                       </div>
+                                    @endforeach
 {{--                                    <div class="swiper-slide">--}}
 {{--                                        <div class="product-thumb rounded cursor-pointer">--}}
-{{--                                            <img src="{{ asset('build/images/products/'.$products->main_pic) }}" alt=""--}}
+{{--                                            <img src="{{ asset('build/images/products/'.$image) }}" alt=""--}}
 {{--                                                class="img-fluid" />--}}
 {{--                                        </div>--}}
 {{--                                    </div>--}}
 {{--                                    <div class="swiper-slide">--}}
 {{--                                        <div class="product-thumb rounded cursor-pointer">--}}
-{{--                                            <img src="{{ asset('build/images/products/'.$products->main_pic) }}" alt=""--}}
+{{--                                            <img src="{{ asset('build/images/products/'.$image) }}" alt=""--}}
 {{--                                                class="img-fluid" />--}}
 {{--                                        </div>--}}
 {{--                                    </div>--}}
 {{--                                    <div class="swiper-slide">--}}
 {{--                                        <div class="product-thumb rounded cursor-pointer">--}}
-{{--                                            <img src="{{ asset('build/images/products/'.$products->main_pic) }}" alt=""--}}
+{{--                                            <img src="{{ asset('build/images/products/'.$image) }}" alt=""--}}
 {{--                                                class="img-fluid" />--}}
 {{--                                        </div>--}}
-                                    </div>
-
+{{--                                    </div>--}}
                                 </div>
                             </div>
                         </div>
@@ -85,29 +77,21 @@
                                     <span class="trending-ribbon-text">Trending</span> <i
                                         class="ri-flashlight-fill text-white align-bottom float-end ms-1"></i>
                                 </div>
-                                <div class="swiper productSwiper2">
-                                    <div class="swiper-wrapper">
 
-                                        <div class="swiper-slide">
-                                            <img src="{{ asset('build/images/products/'.$products->main_pic) }}" alt=""
-                                                class="img-fluid" />
+                                @foreach($products->product_images as $productImage)
+                                    <div class="swiper productSwiper2">
+                                        <div class="swiper-wrapper">
+
+                                            <div class="swiper-slide">
+                                                <img src="{{ asset('build/images/products/'.$productImage->image) }}" alt=""
+                                                     class="img-fluid" />
+                                            </div>
                                         </div>
-                                        <div class="swiper-slide">
-                                            <img src="{{ asset('build/images/products/'.$products->main_pic) }}" alt=""
-                                                class="img-fluid" />
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <img src="{{ asset('build/images/products/'.$products->main_pic) }}" alt=""
-                                                class="img-fluid" />
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <img src="{{ asset('build/images/products/'.$products->main_pic) }}" alt=""
-                                                class="img-fluid" />
-                                        </div>
+                                        <div class="swiper-button-next bg-transparent"></div>
+                                        <div class="swiper-button-prev bg-transparent"></div>
                                     </div>
-                                    <div class="swiper-button-next bg-transparent"></div>
-                                    <div class="swiper-button-prev bg-transparent"></div>
-                                </div>
+                                @endforeach
+
                             </div>
                         </div>
                         <!--end col-->
@@ -116,7 +100,7 @@
                             <div class="mt-3">
                                 <div class="hstack gap-2">
 
-                                    <button type="submit" class="btn btn-success btn-hover w-100" form="add_to_cart">
+                                    <button type="submit" class="btn btn-success btn-hover w-100" form="add_to_cart" onclick="AddToCart({{$products->id}});">
                                         <i class="bi bi-basket2 me-2"></i> Add To Cart
                                     </button>
                                     <button type="button" class="btn btn-primary btn-hover w-100">
@@ -154,8 +138,14 @@
                             <h5 class="fs-24 mb-4">{{$products->unit_price}}$ <span class="text-muted fs-14"><del>{{$products->discount}}$</del></span> <span
                                     class="fs-14 ms-2 text-danger"> (50% off)</span></h5>
                             <ul class="list-unstyled vstack gap-2">
-                                <li class=""><i class="bi bi-check2-circle me-2 align-middle text-success"></i>In
-                                    stock</li>
+                                @if($products->qty > 0)
+                                    <li class=""><i class="bi bi-check2-circle me-2 align-middle text-success"></i>In
+                                        stock</li>
+                                @else
+                                    <li class=""><i class="bi bi-check2-circle me-2 align-middle text-danger"></i>
+                                        Out of stock</li>
+                                @endif
+
                                 <li class=""><i class="bi bi-check2-circle me-2 align-middle text-success"></i>Free
                                     delivery available</li>
                                 <li class=""><i class="bi bi-check2-circle me-2 align-middle text-success"></i>Sales

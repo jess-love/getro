@@ -283,51 +283,54 @@
     </div>
 </nav>
 
-{{--@php $total = 0 @endphp--}}
-{{--@foreach((array) session('cart') as $id => $details)--}}
-{{--    @php--}}
-{{--        $total += $details['price']*$details['quantity'];--}}
-{{--    @endphp--}}
-{{--@endforeach--}}
-
 <!------------------------------------------------------------------------cart ---------------------------------------------------------------------------------------------------->
 <div class="offcanvas offcanvas-end product-list" tabindex="-1" id="ecommerceCart" aria-labelledby="ecommerceCartLabel">
     <div class="offcanvas-header border-bottom">
-        <h5 class="offcanvas-title" id="ecommerceCartLabel">My Cart <span class="badge bg-danger align-middle ms-1 cartitem-badge">9</span></h5>
+        <h5 class="offcanvas-title" id="ecommerceCartLabel">My Cart <span class="badge bg-danger align-middle ms-1 cartitem-badge">{{\Gloudemans\Shoppingcart\Facades\Cart::count()}}</span></h5>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body px-0">
         <div data-simplebar  class="h-100">
             <ul class="list-group list-group-flush cartlist">
-                @if(session('cart'))
-                    @foreach(session('cart') as $id=>$details)
-                        <li class="list-group-item product" data-id ='{{$id}}'>
+                    @if( Gloudemans\Shoppingcart\Facades\Cart::count() > 0)
+                       @foreach(Gloudemans\Shoppingcart\Facades\Cart::content() as $item)
+                        <li class="list-group-item product">
                             <div class="d-flex gap-3">
                                 <div class="flex-shrink-0">
                                     <div class="avatar-md" style="height: 100%;">
                                         <div class="avatar-title bg-warning-subtle rounded-3">
-{{--                                            <img src="{{ URL::asset('build/images/products/'.$details['image'])}}" alt="" class="avatar-sm">--}}
+                                            @if(!empty($item->options->productImage->image))
+                                                    <img src="{{ asset('build/images/products/'.$item->options->productImage->image) }}" alt=""
+                                                         style="max-height: 215px;max-width: 100%;" class="mx-auto d-block">
+                                                @else
+                                                    <img src="{{ asset('build/images/products/default.png')}}" alt=""
+                                                         style="max-height: 215px;max-width: 100%;" class="mx-auto d-block">
+                                                @endif
                                         </div>
                                     </div>
                                 </div>
                                 <div class="flex-grow-1">
                                     <a href="#!">
-{{--                                        <h5 class="fs-15">{{$details['title']}}</h5>--}}
+                                       <h5 class="fs-15">{{$item->name}}</h5>
                                     </a>
                                     <div class="d-flex mb-3 gap-2">
-{{--                                        <div class="text-muted fw-medium mb-0">$<span class="product-price">{{$details['price']}}</span></div>--}}
+                                       <div class="text-muted fw-medium mb-0">$<span class="product-price">${{$item->price}}</span></div>
                                         <div class="vr"></div>
                                         <span class="text-success fw-medium">In Stock</span>
                                     </div>
-                                    <div class="input-step ms-2 quantity">
-                                        <button type="button" class="btn decrement-btn" >–</button>
-                                            <input type="number" class="qty-input" value="1" name="" max="100">
-                                        <button type="button" class="btn increment-btn" >+</button>
+
+                                    <div class="input-step ">
+                                        <button class=" sub" data-id="{{$item->rowId}}">-</button>
                                     </div>
+                                        <input type="number" value="{{$item->qty}}" class="input-step p-1 pt-2 text-center" style="width: 40px">
+                                    <div class="input-step ">
+                                        <button class=" add" data-id="{{$item->rowId}}">+</button>
+                                    </div>
+
                                 </div>
                                 <div class="flex-shrink-0 d-flex flex-column justify-content-between align-items-end">
-                                    <button type="button" class="btn btn-icon btn-sm btn-ghost-secondary remove-item-btn cart_remove" data-bs-toggle="modal" ><i class="ri-close-fill fs-16"></i></button>
-{{--                                    <div class="fw-medium mb-0 fs-16">$<span class="product-line-price">{{$details['price']*$details['quantity']}}</span></div>--}}
+                                    <button type="button" class="btn btn-icon btn-sm btn-ghost-secondary remove-item-btn cart_remove" data-bs-toggle="modal" onclick="deleteItem('{{$item->rowId}}')"><i class="ri-close-fill fs-16"></i></button>
+                                   <div class="fw-medium mb-0 fs-16">$<span class="product-line-price">{{$item->price*$item->qty}}</span></div>
                                 </div>
                             </div>
                         </li>
@@ -340,7 +343,7 @@
                     <tbody>
                     <tr>
                         <td>Sub Total :</td>
-{{--                        <td class="text-end cart-subtotal">${{$total}}</td>--}}
+                       <td class="text-end cart-subtotal">$ {{\Gloudemans\Shoppingcart\Facades\Cart::subtotal()}}</td>
                     </tr>
                     <tr>
                         <td>Discount <span class="text-muted">(Toner15)</span>:</td>
@@ -352,7 +355,7 @@
                     </tr>
                     <tr>
                         <td>Estimated Tax (12.5%) : </td>
-{{--                        <td class="text-end cart-tax">${{0,125*$total}}</td>--}}
+{{--                        <td class="text-end cart-tax">$ {{\Gloudemans\Shoppingcart\Facades\Cart::subtotal()}}</td>--}}
                     </tr>
                     </tbody>
                 </table>
@@ -363,7 +366,7 @@
         <div class="d-flex justify-content-between align-items-center mb-3">
             <h6 class="m-0 fs-16 text-muted">Total:</h6>
             <div class="px-2">
-{{--                <h6 class="m-0 fs-16 cart-total">${{$total-0,125*$total}}</h6>--}}
+               <h6 class="m-0 fs-16 cart-total">$ {{\Gloudemans\Shoppingcart\Facades\Cart::subtotal()}}</h6>
             </div>
         </div>
         <div class="row g-2">

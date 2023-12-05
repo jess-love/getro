@@ -47,43 +47,18 @@ Route::post('/subscribe', [App\Http\Controllers\SubscriptionController::class, '
 
 
 
-//------------------cart----------------------------------------
+//------------------cart route----------------------------------------
 Route::get('/shop-cart',[App\Http\Controllers\CartController::class,'shopcart'])->name('shopCart');
 Route::post('/add-to-cart',[App\Http\Controllers\CartController::class,'AddToCart'])->name('addToCart');
 Route::post('/update-cart',[App\Http\Controllers\CartController::class,'updateCart'])->name('cart_update');
 Route::post('/delete-item',[App\Http\Controllers\CartController::class,'deleteItem'])->name('delete_item');
 
+//------------------end route cart----------------------------------------
 
 //Route::get('/produits', [App\Http\Controllers\ProductController::class, 'ViewAllProduct'])->name('view_all_products');
 
-//::post('/session',[App\Http\Controllers\StripeController::class,'session'])->name('session');
-//Route::get('/success',[App\Http\Controllers\StripeController::class,'success'])->name('success');
-//Route::get('/cancel',[App\Http\Controllers\StripeController::class,'cancel'])->name('cancel');
 
 Route::get('/produitToCart/{id}',[App\Http\Controllers\CartController::class,'addProductToCart'])->name('ProductToCart');
-
-//Route::get('/sub/category', [App\Http\Controllers\CategoryController::class, 'sub'])->name('sub');
-//Route::get('/produitToCart/{id}',[App\Http\Controllers\CartController::class,'addProductToCart'])->name('ProductToCart');
-//Route to shop-cart view
-
-//route pour shoppingcart
-
-//Route::post('/cart/{id}',[App\Http\Controllers\CartController::class,'add'])->name('post_add');
-//Route::get('/panier/index',[App\Http\Controllers\CartController::class,'index'])->name('cart_index');
-
-//route pour remove item
-//Route::delete('/remove',[App\Http\Controllers\CartController::class,'removeItem'])->name('remove.item');
-//Route::patch('/update-cart',[App\Http\Controllers\CartController::class,'update'])->name('update_cart');
-//route pour delete all items from cart
-//Route::delete('/shop-cart',[App\Http\Controllers\CartController::class,'clearCart'])->name('clear_cart');
-
-//Route::delete('/remove',[App\Http\Controllers\CartController::class,'removeItem'])->name('remove.item');
-
-//Route::delete('/remove',[App\Http\Controllers\CartController::class,'remove'])->name('remove.item');
-
-//route pour delete all items from cart
-//Route::delete('/panier/clear',[App\Http\Controllers\CartController::class,'clearCart'])->name('clear.cart');
-
 
 
 Route::get('index/{locale}', [App\Http\Controllers\HomeController::class, 'lang']);

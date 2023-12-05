@@ -54,6 +54,7 @@
     },
     "dependencies": {
         "autoprefixer": "^10.4.13",
+        "slick-carousel": "^1.8.1",
         "vite-plugin-static-copy": "^0.13.0"
     }
 }
