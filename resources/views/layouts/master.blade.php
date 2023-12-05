@@ -51,7 +51,8 @@
             datatype: 'json',
             success: function (response){
                 if(response.status === true){
-                    window.location.href='{{ route("shopCart") }}';
+                    window.location.reload();
+                    {{-- href='{{ route("shopCart") }}'; --}}
                 }else{
                     alert(response.message);
                     //window.location.href="";
@@ -91,7 +92,8 @@
             dataType: 'json',
             success: function (response){
 
-                window.location.href='{{ route("shopCart") }}';
+                window.location.reload();
+                {{-- location.href='{{ route("shopCart") }}'; --}}
             }
         });
     }
@@ -105,7 +107,8 @@
                 dataType: 'json',
                 success: function (response) {
 
-                    window.location.href = '{{ route("shopCart") }}';
+                    window.location.reload();
+                    {{-- location.href = '{{ route("shopCart") }}'; --}}
                 }
             });
         }
