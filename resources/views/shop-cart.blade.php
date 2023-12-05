@@ -88,7 +88,7 @@
                                     </a>
                                     <ul class="list-inline text-muted fs-13 mb-3">
                                         <li class="list-inline-item">Color : <span class="fw-medium">Red</span></li>
-                                        <li class="list-inline-item">Size : <span class="fw-medium">M</span></li>
+                                        <li class="list-inline-item">Size : <span class="fw-medium">{{$item->options->productImage->size}}</span></li>
                                     </ul>
 
                                         <div class="input-step ">
@@ -491,7 +491,7 @@
     <script src="{{ URL::asset('build/js/frontend/menu.init.js') }}"></script>
     <script type="text/javascript">
 
-        $('.add').click(function(){
+        {{-- $('.add').click(function(){
             var qtyElement = $(this).parent().prev(); // Qty Input
             var qtyValue = parseInt(qtyElement.val());
             if (qtyValue < 100) {
@@ -539,7 +539,7 @@
                     }
                 });
             }
-        }
+        } --}}
     </script>
 
 @endsection

@@ -100,7 +100,7 @@
                             <div class="mt-3">
                                 <div class="hstack gap-2">
 
-                                    <button type="submit" class="btn btn-success btn-hover w-100" form="add_to_cart">
+                                    <button type="submit" class="btn btn-success btn-hover w-100" form="add_to_cart" onclick="AddToCart({{$products->id}});">
                                         <i class="bi bi-basket2 me-2"></i> Add To Cart
                                     </button>
                                     <button type="button" class="btn btn-primary btn-hover w-100">
