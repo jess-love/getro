@@ -138,8 +138,14 @@
                             <h5 class="fs-24 mb-4">{{$products->unit_price}}$ <span class="text-muted fs-14"><del>{{$products->discount}}$</del></span> <span
                                     class="fs-14 ms-2 text-danger"> (50% off)</span></h5>
                             <ul class="list-unstyled vstack gap-2">
-                                <li class=""><i class="bi bi-check2-circle me-2 align-middle text-success"></i>In
-                                    stock</li>
+                                @if($products->qty > 0)
+                                    <li class=""><i class="bi bi-check2-circle me-2 align-middle text-success"></i>In
+                                        stock</li>
+                                @else
+                                    <li class=""><i class="bi bi-check2-circle me-2 align-middle text-danger"></i>
+                                        Out of stock</li>
+                                @endif
+
                                 <li class=""><i class="bi bi-check2-circle me-2 align-middle text-success"></i>Free
                                     delivery available</li>
                                 <li class=""><i class="bi bi-check2-circle me-2 align-middle text-success"></i>Sales
