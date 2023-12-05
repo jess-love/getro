@@ -315,8 +315,16 @@
                                     </a>
                                     <div class="d-flex mb-3 gap-2">
                                        <div class="text-muted fw-medium mb-0">$<span class="product-price">${{$item->price}}</span></div>
-                                        <div class="vr"></div>
+                                        
+                                    @if($item->qty > 0)
                                         <span class="text-success fw-medium">In Stock</span>
+                                    @else
+                                        <span class="text-success fw-medium">Out of stock</span>
+                                    @endif
+
+
+
+                                        
                                     </div>
 
                                     <div class="input-step ">
