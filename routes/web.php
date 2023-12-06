@@ -25,7 +25,6 @@ Route::get('/product-details/{id}', [App\Http\Controllers\ProductdetailControlle
 Route::get('/products-category', [App\Http\Controllers\HomeController::class, 'ViewCategory'])->name('CategoryProduct');
 
 Route::get('/products-category', [App\Http\Controllers\ViewCategoryController::class, 'ViewCategory'])->name('CategoryProduct');
-//Route::get('/category', [App\Http\Controllers\CategoryIndexPage::class, 'CategoryIndexpage'])->name('Category');
 Route::get('/categoryMenu',[App\Http\Controllers\ViewCategoryController::class, 'viewcategoryinMenu']);
 
 Route::get('/products-category', [App\Http\Controllers\ViewCategoryController::class, 'ViewCategory'])->name('CategoryProduct');
@@ -34,13 +33,14 @@ Route::get('/categoryMenu',[App\Http\Controllers\ViewCategoryController::class, 
 Route::get('categoryMenu',[App\Http\Controllers\ViewCategoryController::class, 'viewcategoryinMenu']);
 
 //route pour produit en liaison avec les sous-categories
-Route::get('/products/{sub_category_id}', [App\Http\Controllers\ProductController::class, 'product'])->name('products_nav');
+Route::get('/products/{sub_category_id}', [App\Http\Controllers\ProductController::class, 'product_list_right'])->name('products_nav');
+Route::get('/products', [App\Http\Controllers\ProductController::class, 'product_list_left'])->name('products_left');
 
-Route::get('/souscategories', [App\Http\Controllers\ProductController::class, 'Sub_Categories'])->name('sub_categories');
+Route::get('/souscategories', [App\Http\Controllers\ProductController::class, 'Sub_Categories_Product_list_Right'])->name('sub_categories');
 
 //recherche de produit
 Route::get('/search/{sub_category_id}', [App\Http\Controllers\ProductController::class, 'search'])->name('search');
-Route::get('/search/index/', [App\Http\Controllers\HomeController::class, 'SearchTopbar'])->name('search_topbar');
+Route::get('/searches', [App\Http\Controllers\ProductController::class, 'Search_list_left'])->name('search_list_left');
 
 //abonnement au site  dans la page produit
 Route::post('/subscribe', [App\Http\Controllers\SubscriptionController::class, 'subscribe'])->name('subscribe');
@@ -53,9 +53,11 @@ Route::post('/add-to-cart',[App\Http\Controllers\CartController::class,'AddToCar
 Route::post('/update-cart',[App\Http\Controllers\CartController::class,'updateCart'])->name('cart_update');
 Route::post('/delete-item',[App\Http\Controllers\CartController::class,'deleteItem'])->name('delete_item');
 
+
 //------------------end route cart----------------------------------------
 
 //Route::get('/produits', [App\Http\Controllers\ProductController::class, 'ViewAllProduct'])->name('view_all_products');
+
 
 
 Route::get('/produitToCart/{id}',[App\Http\Controllers\CartController::class,'addProductToCart'])->name('ProductToCart');

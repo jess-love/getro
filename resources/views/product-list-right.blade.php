@@ -20,7 +20,21 @@
             <div class="row justify-content-center">
                 <div class="col-lg-6">
                     <div class="text-center">
-                        <h1 class="text-white mb-0">PRODUITS</h1>
+                        <h1 class="text-white mb-0">PRODUITS PAR CATEGORIE</h1>
+                        <nav aria-label="breadcrumb">
+                            <form action="{{ route('products_nav', ['sub_category_id' => $sub_category_id]) }}" method="GET">
+                                <ol class="breadcrumb breadcrumb-light justify-content-center mt-4">
+                                    <li class="breadcrumb-item large-bold" style="color: white; font-size: 20px; display: inline-block; vertical-align: middle;"><a href="{{ route('products_left') }}">Produits</a></li>
+                                    @if(isset($sub_category))
+{{--                                        <li class="breadcrumb-item small-italic" style="color: white; font-size: 20px; display: inline-block; vertical-align: middle; margin: 0 10px;">&gt;</li>--}}
+                                        <li class="breadcrumb-item small-italic" style="color: white; font-size: 16px; display: inline-block; vertical-align: middle; line-height: 20px;">
+                                            {{ $sub_category->title }}
+                                        </li>
+                                    @endif
+                                </ol>
+
+                            </form>
+                        </nav>
                     </div>
                 </div>
             </div>
@@ -29,8 +43,8 @@
 
     <section class="section">
         <div class="container">
-            <div class="ecommerce-product gap-4">
-                <div class="flex-grow-1">
+            <div class="ecommerce-product ">
+                <div class="flex-grow-1" style="overflow-x: hidden;">
                     <div class="d-flex align-items-center justify-content-between gap-2 mb-4">
 
                         {{--Start Research--}}
@@ -82,61 +96,75 @@
                                 </div>
                             </div>
                         @else
-                            @foreach($products as $produit)
-                                <div class="element-item col-xxl-3 col-xl-4 col-sm-6 seller hot arrival"
-                                             data-category="hot arrival">
-                                            <div class="card overflow-hidden">
-                                                <div class="bg-warning-subtle rounded-top py-4">
-                                                    <div class="gallery-product">
-                                                        <a href="{{ route('products_nav', ['sub_category_id' => $produit->sub_category_id]) }}">
-                                                            <img src="{{ asset('build/images/products/'.$produit->main_pic) }}" alt=""
-                                                                 style="max-height: 215px; max-width: 100%;" class="mx-auto d-block">
-                                                        </a>
-                                                    </div>
-                                                    <p class="fs-11 fw-medium badge bg-primary py-2 px-3 product-lable mb-0">{{$produit['tag']}}
-                                                    </p>
-                                                    <div class="gallery-product-actions">
-                                                        <div class="mb-2">
-                                                            <button type="button" class="btn btn-danger btn-sm custom-toggle"
-                                                                    data-bs-toggle="button">
+                            <div class="row">
+                            @if($products->isNotEmpty())
+                                @foreach($products as $produit)
+                                    @php
+                                        $productImage = $produit->product_images->first();
+                                    @endphp
+                                    <div class="element-item col-md-3 col-sm-3  seller hot arrival"
+                                         data-category="hot arrival">
+                                        <div class="card overflow-hidden">
+                                            <div class="bg-warning-subtle rounded-top py-4">
+                                                <div class="gallery-product">
+
+                                                    <a href="{{route('view_product',['id'=>$produit->id]) }}">
+                                                        @if(!empty($productImage->image))
+                                                            <img src="{{ asset('build/images/products/'.$productImage->image) }}" alt=""
+                                                                 style="max-height: 215px;max-width: 100%; width: auto;" class="mx-auto d-block">
+                                                        @else
+                                                            <img src="{{ asset('build/images/products/default.png')}}" alt=""
+                                                                style="max-height: 215px; max-width: 100%; width: auto;" class="mx-auto d-block">
+                                                        @endif
+                                                    </a>
+                                                </div>
+                                                <p class="fs-11 fw-medium badge bg-primary py-2 px-3 product-lable mb-0">{{$produit->slog}}
+                                                </p>
+                                                <div class="gallery-product-actions">
+                                                    <div class="mb-2">
+                                                        <button type="button" class="btn btn-danger btn-sm custom-toggle"
+                                                                data-bs-toggle="button">
                                                     <span class="icon-on"><i
                                                             class="mdi mdi-heart-outline align-bottom fs-15"></i></span>
-                                                                <span class="icon-off"><i
-                                                                        class="mdi mdi-heart align-bottom fs-15"></i></span>
-                                                            </button>
-                                                        </div>
-
-
-                                                        <div>
-                                                            <a href="{{route('products_nav',['sub_category_id' => $produit['sub_category_id']]) }}" class="btn btn-sm btn-outline-secondary"><i class="mdi mdi-eye align-bottom fs-15"></i></a>
-                                                        </div>
-
+                                                            <span class="icon-off"><i
+                                                                    class="mdi mdi-heart align-bottom fs-15"></i></span>
+                                                        </button>
                                                     </div>
-                                                    <div class="product-btn px-3">
-                                                        <a href="#" class="btn btn-primary btn-sm w-75 add-btn"><i
-                                                                class="mdi mdi-cart me-1"></i> Add to cart
-                                                        </a>
+
+
+                                                    <div>
+                                                        <a href="{{route('view_product',['id'=>$produit->id]) }}" class="btn btn-sm btn-outline-secondary"><i class="mdi mdi-eye align-bottom fs-15"></i></a>
                                                     </div>
 
                                                 </div>
-                                                <div class="card-body">
-                                                    <div>
-                                                        <a href="product-details">
-                                                            <h6 class="fs-15 lh-base text-truncate mb-0"> </b> {{$produit['title']}} </b> <br> <span style="font-weight:normal;"> {{$produit['description']}} </span> </h6>
-                                                        </a>
-                                                        <div class="mt-3">
+                                                <div class="product-btn px-3">
+                                                    <a href="javascript:void(0);" onclick="AddToCart({{$produit->id}});"  class="btn btn-primary btn-sm w-75 add-btn">
+                                                        <i class="mdi mdi-cart me-1"></i> Add to cart
+                                                    </a>
+                                                </div>
+
+                                            </div>
+                                            <div class="card-body">
+                                                <div>
+                                                    <a href="product-details">
+                                                        <h6 class="fs-15 lh-base text-truncate mb-0"> </b> {{$produit->title}} </b> <br> <span style="font-weight:normal;"> {{$produit->description}} </span> </h6>
+                                                    </a>
+                                                    <div class="mt-3">
                                                 <span class="float-end">4.9 <i
                                                         class="ri-star-half-fill text-warning align-bottom"></i></span>
-                                                            <h5 class="mb-0">{{number_format($produit['unit_price'],2) }}$ <span>   </span><span
-                                                                    class="text-muted fs-12"><del>{{number_format($produit['discount'],2)}}$</del></span></h5>
-                                                        </div>
+                                                        <h5 class="mb-0">{{number_format($produit->unit_price,2) }}$ <span>   </span><span
+                                                                class="text-muted fs-12"><del>{{number_format($produit->discount,2)}}$</del></span></h5>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                            @endforeach
+                                    </div>
+                                @endforeach
+                            @endif
+                            </div>
+
                         @endif
-                    </div>
+                </div>
                     {{--End Product List--}}
 
                     {{--Start Pagination--}}
@@ -504,7 +532,7 @@
                         </div>
 
                     </div>
-                    <div class="toto" >
+                    <div class="" >
                         <form><div class="pagination page-item" >
                                 {{ $products->appends(request()->except('page'))->links() }}
                             </div></form>
@@ -603,6 +631,7 @@
                             <p class="text-muted mb-0">Service en ligne pour le client</p>
                         </div>
                     </div>
+
                 </div>
                 <!--end col-->
             </div>

@@ -394,15 +394,12 @@
         <div class="modal-content rounded">
             <div class="modal-header p-3">
                 <div class="position-relative w-100">
-                    <form action="{{ route('search_topbar') }}" method="GET" class="input-group">
-{{--                    <input type="text" name="queries" class="form-control form-control-lg border-2" placeholder="Rechercher dans Bel Mache..." autocomplete="off" id="search-options" value="">--}}
-{{--                    <span class="bi bi-search search-widget-icon fs-17"></span>--}}
-{{--                    <a href="javascript:void(0);" class="search-widget-icon fs-14 link-secondary text-decoration-underline search-widget-icon-close d-none" id="search-close-options">Clear</a>--}}
-                        <input type="text" name="queries" class="form-control" autocomplete="off" placeholder="Rechercher Produits...">
+{{--                    <form action="{{ route('search_topbar') }}" method="GET" class="input-group">--}}
+                        <input type="text" name="query" class="form-control" autocomplete="off" placeholder="Rechercher Produits...">
                         <button type="submit" class="btn btn-primary">
                             <i class="ri-search-line search-icon text-white"></i>
                         </button>
-                    </form>
+{{--                    </form>--}}
                 </div>
             </div>
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end p-0 overflow-hidden" id="search-dropdown">
