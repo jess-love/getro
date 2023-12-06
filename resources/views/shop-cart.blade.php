@@ -61,7 +61,6 @@
                         </div>
                     @endif
 
-{{--                    {{dd($cartContent)}}--}}
                    @if( Gloudemans\Shoppingcart\Facades\Cart::count() > 0)
                        @foreach($cartContent as $item)
                             <div class="card product">
@@ -89,7 +88,7 @@
                                     </a>
                                     <ul class="list-inline text-muted fs-13 mb-3">
                                         <li class="list-inline-item">Color : <span class="fw-medium">Red</span></li>
-                                        <li class="list-inline-item">Size : <span class="fw-medium">M</span></li>
+                                        <li class="list-inline-item">Size : <span class="fw-medium">{{$item->options->productImage->size}}</span></li>
                                     </ul>
 
                                         <div class="input-step ">
@@ -404,7 +403,7 @@
                         <p class="fs-15 text-uppercase fw-medium"><span class="fw-semibold text-danger">25% Up to</span>
                             off all Products</p>
                         <h1 class="lh-base text-capitalize mb-3">Stay home & get your daily needs from our shop</h1>
-                        <p class="fs-15 mb-4 pb-2">Start You'r Daily Shopping with <a href="#!"
+                        <p class="fs-15 mb-4 pb-2">Start You're Daily Shopping with <a href="#!"
                                                                                       class="link-primary text-decoration-underline fw-medium">Toner</a></p>
                         <form action="#!">
                             <div class="position-relative ecommerce-subscript">
@@ -492,7 +491,7 @@
     <script src="{{ URL::asset('build/js/frontend/menu.init.js') }}"></script>
     <script type="text/javascript">
 
-        $('.add').click(function(){
+        {{-- $('.add').click(function(){
             var qtyElement = $(this).parent().prev(); // Qty Input
             var qtyValue = parseInt(qtyElement.val());
             if (qtyValue < 100) {
@@ -540,7 +539,7 @@
                     }
                 });
             }
-        }
+        } --}}
     </script>
 
 @endsection
