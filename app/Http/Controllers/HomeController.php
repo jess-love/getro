@@ -33,8 +33,6 @@ class HomeController extends Controller
     }
 
 
-
-
     public function product(Request $request){
 
         $produit = Product::all()->find($request->id);
@@ -42,19 +40,6 @@ class HomeController extends Controller
         return view('product-details',compact('produit'));
 
     }
-
-    public function SearchTopbar(Request $request){
-
-        $queries = $request->input('queries');
-        $produits = Product::where('title', 'like', '%' . $queries . '%')
-            ->orWhere('description', 'like', '%' . $queries . '%');
-
-        return view('index',compact('produits'));
-
-
-    }
-
-
 
   public function lang($locale) {
 

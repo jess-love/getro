@@ -213,7 +213,7 @@
                                     @php
                                         $productImage = $produit->product_images->first();
                                     @endphp
-                                    <div class="element-item col-xxl-3 col-xl-4 col-sm-6 seller hot arrival"
+                                    <div class="element-item col-lg-3 col-md-4 col-sm-6 seller hot arrival"
                                          data-category="hot arrival">
                                         <div class="card overflow-hidden">
                                             <div class="bg-warning-subtle rounded-top py-4">
@@ -229,7 +229,7 @@
                                                             @endif
                                                         </a>
                                                 </div>
-                                                <p class="fs-11 fw-medium badge bg-primary py-2 px-3 product-lable mb-0">{{$produit->tag}}
+                                                <p class="fs-11 fw-medium badge bg-primary py-2 px-3 product-lable mb-0">{{$produit->slog}}
                                                 </p>
                                                 <div class="gallery-product-actions">
                                                     <div class="mb-2">
@@ -277,7 +277,7 @@
 <!----------------------------------------------end getro code------------------------------------------------------------------------------------->
 
                     <div class="mt-4 text-center">
-                        <a href="#" class="btn btn-soft-primary btn-hover">View All Products
+                        <a href="{{route('products_left') }}" class="btn btn-soft-primary btn-hover">View All Products
                             <i class="mdi mdi-arrow-right align-middle ms-1"></i>
                         </a>
                     </div>
