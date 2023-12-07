@@ -229,7 +229,7 @@
                                                             @endif
                                                         </a>
                                                 </div>
-                                                <p class="fs-11 fw-medium badge bg-primary py-2 px-3 product-lable mb-0">{{$produit->tag}}
+                                                <p class="fs-11 fw-medium badge bg-primary py-2 px-3 product-lable mb-0">{{$produit->slog}}
                                                 </p>
                                                 <div class="gallery-product-actions">
                                                     <div class="mb-2">
