@@ -78,19 +78,19 @@
                                         class="ri-flashlight-fill text-white align-bottom float-end ms-1"></i>
                                 </div>
 
-                                @foreach($products->product_images as $productImage)
-                                    <div class="swiper productSwiper2">
-                                        <div class="swiper-wrapper">
+{{--                                @foreach($products->product_images as $productImage)--}}
+{{--                                    <div class="swiper productSwiper2">--}}
+{{--                                        <div class="swiper-wrapper">--}}
 
-                                            <div class="swiper-slide">
-                                                <img src="{{ asset('build/images/products/'.$productImage->image) }}" alt=""
-                                                     class="img-fluid" />
-                                            </div>
-                                        </div>
-                                        <div class="swiper-button-next bg-transparent"></div>
-                                        <div class="swiper-button-prev bg-transparent"></div>
-                                    </div>
-                                @endforeach
+{{--                                            <div class="swiper-slide">--}}
+{{--                                                <img src="{{ asset('build/images/products/'.$productImage->image) }}" alt=""--}}
+{{--                                                     class="img-fluid" />--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="swiper-button-next bg-transparent"></div>--}}
+{{--                                        <div class="swiper-button-prev bg-transparent"></div>--}}
+{{--                                    </div>--}}
+{{--                                @endforeach--}}
 
                             </div>
                         </div>
