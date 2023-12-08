@@ -10,10 +10,10 @@
     <meta name="csrf-token" content="{{csrf_token()}}">
     <!-- App favicon -->
     <link rel="shortcut icon" href="{{ URL::asset('build/images/favicon.ico') }}">
+    <link rel="stylesheet" type="text/css" href={{assert('build/jquery.exzoom.css')}}>
 
     <!-- head css -->
     @include('layouts.head-css')
-    @livewireStyles
 </head>
 
 <body>
@@ -30,13 +30,22 @@
     @include('layouts.footer')
     <!-- scripts -->
     @include('layouts.vendor-scripts')
+    <script src="{{ URL::asset('build/jquery.exzoom.js') }}"></script>
 
-    @livewireScripts
 
 </body>
 
 </html>
 <script>
+    $(function(){
+
+        $("#exzoom").exzoom({
+            // options here
+        });
+
+    });
+
+
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

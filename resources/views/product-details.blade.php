@@ -2,17 +2,13 @@
 @section('title')
     Product Details
 @endsection
-@push('styles')
-    <link id="color-link" rel="stylesheet" type="text/css" href={{assert('build/css/demo2.css')}}>
-@endpush
-
 @section('css')
-    <!---- extra css ---->
+    <!-- extra css -->
     <link href="{{ URL::asset('build/libs/swiper/swiper-bundle.min.css') }}" rel="stylesheet" type="text/css">
 @endsection
 @section('content')
     <section class="ecommerce-about"
-        style="background-image: url('build/images/profile-bg.jpg'); background-size: cover;background-position: center;">
+             style="background-image: url('build/images/profile-bg.jpg'); background-size: cover;background-position: center;">
         <div class="bg-overlay bg-primary" style="opacity: 0.85;"></div>
         <div class="container">
             <div class="row justify-content-center">
@@ -41,33 +37,21 @@
                     <div class="row">
                         <div class="col-md-2">
                             <div thumbsSlider="" class="swiper productSwiper mb-3 mb-lg-0">
-                                <div class="swiper-wrapper">
-                                    @foreach($products->product_images as $productImg)
+
+<!--------------------image swaper----------------------------------------------------------------->
+
+                                    <div class="swiper-wrapper">
+                                        @foreach($products->product_images as $productImg)
                                         <div class="swiper-slide">
-                                           <div class="product-thumb rounded cursor-pointer">
-                                              <img src="{{ asset('build/images/products/'.$productImg->image) }}" alt="" class="img-fluid" />
-                                           </div>
-                                       </div>
-                                    @endforeach
-{{--                                    <div class="swiper-slide">--}}
-{{--                                        <div class="product-thumb rounded cursor-pointer">--}}
-{{--                                            <img src="{{ asset('build/images/products/'.$image) }}" alt=""--}}
-{{--                                                class="img-fluid" />--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="swiper-slide">--}}
-{{--                                        <div class="product-thumb rounded cursor-pointer">--}}
-{{--                                            <img src="{{ asset('build/images/products/'.$image) }}" alt=""--}}
-{{--                                                class="img-fluid" />--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="swiper-slide">--}}
-{{--                                        <div class="product-thumb rounded cursor-pointer">--}}
-{{--                                            <img src="{{ asset('build/images/products/'.$image) }}" alt=""--}}
-{{--                                                class="img-fluid" />--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-                                </div>
+                                            <div class="product-thumb rounded cursor-pointer">
+                                                <img src="{{ asset('build/images/products/'.$productImg->image) }}" alt="" class="img-fluid" />
+                                            </div>
+                                        </div>
+                                        @endforeach
+                                    </div>
+
+
+
                             </div>
                         </div>
                         <!--end col-->
@@ -77,43 +61,36 @@
                                     <span class="trending-ribbon-text">Trending</span> <i
                                         class="ri-flashlight-fill text-white align-bottom float-end ms-1"></i>
                                 </div>
-
-{{--                                @foreach($products->product_images as $productImage)--}}
-{{--                                    <div class="swiper productSwiper2">--}}
-{{--                                        <div class="swiper-wrapper">--}}
-
-{{--                                            <div class="swiper-slide">--}}
-{{--                                                <img src="{{ asset('build/images/products/'.$productImage->image) }}" alt=""--}}
-{{--                                                     class="img-fluid" />--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                        <div class="swiper-button-next bg-transparent"></div>--}}
-{{--                                        <div class="swiper-button-prev bg-transparent"></div>--}}
-{{--                                    </div>--}}
-{{--                                @endforeach--}}
-
+                                <div class="swiper productSwiper2">
+                                    <div class="swiper-wrapper">
+                                        @foreach($products->product_images as $productImg)
+                                        <div class="swiper-slide ">
+                                            <img src="{{ asset('build/images/products/'.$productImg->image) }}" alt="" class="img-fluid" />
+                                        </div>
+                                        @endforeach
+                                    </div>
+                                    <div class="swiper-button-next bg-transparent"></div>
+                                    <div class="swiper-button-prev bg-transparent"></div>
+                                </div>
                             </div>
                         </div>
+<!--------------------end image swaper----------------------------------------------------------------->
                         <!--end col-->
-<!------------------------------------------------------------------------------------add to cart----------------------->
                         <div class="col-lg-12">
                             <div class="mt-3">
                                 <div class="hstack gap-2">
-
-                                    <button type="submit" class="btn btn-success btn-hover w-100" form="add_to_cart" onclick="AddToCart({{$products->id}});">
+                                    <a href="javascript:void(0);" onclick="AddToCart({{$products->id}});" class="btn btn-success btn-hover w-100">
                                         <i class="bi bi-basket2 me-2"></i> Add To Cart
-                                    </button>
+                                    </a>
                                     <button type="button" class="btn btn-primary btn-hover w-100">
                                         <i class="bi bi-cart2 me-2"></i> Buy Now
                                     </button>
                                     <button class="btn btn-soft-danger custom-toggle btn-hover" data-bs-toggle="button"
-                                        aria-pressed="true"> <span class="icon-on"><i class="ri-heart-line"></i></span>
-                                        <span class="icon-off"><i class="ri-heart-fill"></i></span>
-                                    </button>
+                                            aria-pressed="true"> <span class="icon-on"><i class="ri-heart-line"></i></span>
+                                        <span class="icon-off"><i class="ri-heart-fill"></i></span> </button>
                                 </div>
                             </div>
                         </div>
-<!------------------------------------------------------------------------------------end add to cart----------------------->
                         <!--end col-->
                     </div>
                     <!--end row-->
@@ -132,19 +109,22 @@
                                 </div>
                                 <span class="fw-medium"> (50 Review)</span>
                             </div>
-                            <h4 class="lh-base mb-1">{{$products->description}}</h4>
-                            <p class="text-muted mb-4"><a href="javascript:void(0);"
-                                    class="link-info">Read More</a></p>
-                            <h5 class="fs-24 mb-4">{{$products->unit_price}}$ <span class="text-muted fs-14"><del>{{$products->discount}}$</del></span> <span
+                            <h4 class="lh-base mb-1">{{$products->title}}</h4>
+                            <p class="text-muted mb-4">{{$products->description}}<a href="javascript:void(0);"
+                                                                                class="link-info">Read More</a></p>
+                            <h5 class="fs-24 mb-4">${{$products->unit_price}} <span class="text-muted fs-14"><del>${{$products->discount}}</del></span> <span
                                     class="fs-14 ms-2 text-danger"> (50% off)</span></h5>
                             <ul class="list-unstyled vstack gap-2">
+
                                 @if($products->qty > 0)
                                     <li class=""><i class="bi bi-check2-circle me-2 align-middle text-success"></i>In
                                         stock</li>
                                 @else
-                                    <li class=""><i class="bi bi-check2-circle me-2 align-middle text-danger"></i>
-                                        Out of stock</li>
+                                    <li class=""><i class="bi bi-check2-square me-2 align-middle text-danger"></i>Out of
+                                        stock now</li>
                                 @endif
+
+
 
                                 <li class=""><i class="bi bi-check2-circle me-2 align-middle text-success"></i>Free
                                     delivery available</li>
@@ -161,7 +141,7 @@
                                         <div class="flex-grow-1">
                                             <b>Bank Offer</b> 10% instant discount on Federal Bank Debit Cards, up to ₹3000
                                             on orders of ₹5,000 and above <a href="#!" data-bs-toggle="tooltip"
-                                                data-bs-title="Terms & Conditions">T&C</a>
+                                                                             data-bs-title="Terms & Conditions">T&C</a>
                                         </div>
                                     </div>
                                 </li>
@@ -173,72 +153,65 @@
                                         <div class="flex-grow-1">
                                             <b>Bank Offer</b> 10% instant discount on Federal Bank Debit Cards, up to ₹3000
                                             on orders of ₹5,000 and above <a href="#!" data-bs-toggle="tooltip"
-                                                data-bs-title="Terms & Conditions">T&C</a>
+                                                                             data-bs-title="Terms & Conditions">T&C</a>
                                         </div>
                                     </div>
                                 </li>
                             </ul>
                         </div>
-  <!---------------------------------------form panier----------------------------------------------------------->
-                        <form method="POST" action="{{route('ProductToCart',['id'=>$products->id])}}" id="add_to_cart">
-                            @csrf
-                            <input type="hidden" name="product_id" value="{{$products->id}}">
-                            <div class="d-flex align-items-center mb-4">
-                                <h5 class="fs-15 mb-0">Quantity:</h5>
-                                <div class="input-step ms-2 quantity">
-                                    <button type="button" class="btn decrement-btn" >–</button>
-                                         <input type="number" class="qty-input" value="1" name="" max="100" value="1">
-                                    <button type="button" class="btn increment-btn" >+</button>
-                                </div>
+                        <div class="d-flex align-items-center mb-4">
+                            <h5 class="fs-15 mb-0">Quantity:</h5>
+                            <div class="input-step ms-2">
+                                <button type="button" class="minus">–</button>
+                                <input type="number" class="product-quantity1" value="1" min="0"
+                                       max="100" readonly="">
+                                <button type="button" class="plus">+</button>
                             </div>
-
-                            <div class="row gy-3">
-                                <div class="col-md-6">
-                                    <div>
-                                        <h6 class="fs-14 fw-medium text-muted">Sizes:</h6>
-
-                                        <ul class="clothe-size list-unstyled hstack gap-2 mb-0 flex-wrap">
-                                            <li> <input value="S" type="radio" name="sizes7" id="product-color-72"> <label
-                                                    class="avatar-xs btn btn-soft-primary text-uppercase p-0 fs-12 d-flex align-items-center justify-content-center rounded-circle"
-                                                    for="product-color-72">s</label> </li>
-                                            <li> <input value="M" type="radio" name="sizes7" id="product-color-73"> <label
-                                                    class="avatar-xs btn btn-soft-primary text-uppercase p-0 fs-12 d-flex align-items-center justify-content-center rounded-circle"
-                                                    for="product-color-73">m</label> </li>
-                                            <li> <input value="L" type="radio" name="sizes7" checked id="product-color-74"> <label
-                                                    class="avatar-xs btn btn-soft-primary text-uppercase p-0 fs-12 d-flex align-items-center justify-content-center rounded-circle"
-                                                    for="product-color-74">l</label> </li>
-                                            <li> <input value="xl" type="radio" name="sizes7" id="product-color-75"> <label
-                                                    class="avatar-xs btn btn-soft-primary text-uppercase p-0 fs-12 d-flex align-items-center justify-content-center rounded-circle"
-                                                    for="product-color-75">xl</label> </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <h6 class="fs-14 fw-medium text-muted">Colors: </h6>
-                                    <ul class="clothe-colors list-unstyled hstack gap-1 mb-0 flex-wrap ms-2">
-                                        <li>
-                                            <input value="Vert" type="radio" name="color" id="product-color-2">
-                                            <label
-                                                class="avatar-xs btn btn-info p-0 d-flex align-items-center justify-content-center rounded-circle"
-                                                for="product-color-2"></label>
-                                        </li>
-                                        <li>
-                                            <input value="Gris" type="radio" name="color" id="product-color-3">
-                                            <label
-                                                class="avatar-xs btn btn-light p-0 d-flex align-items-center justify-content-center rounded-circle"
-                                                for="product-color-3"></label>
-                                        </li>
-                                        <li>
-                                            <input value="Blue" type="radio" name="color" id="product-color-4" checked>
-                                            <label
-                                                class="avatar-xs btn btn-primary p-0 d-flex align-items-center justify-content-center rounded-circle"
-                                                for="product-color-4"></label>
-                                        </li>
+                        </div>
+                        <div class="row gy-3">
+                            <div class="col-md-6">
+                                <div>
+                                    <h6 class="fs-14 fw-medium text-muted">Sizes:</h6>
+                                    <ul class="clothe-size list-unstyled hstack gap-2 mb-0 flex-wrap">
+                                        <li> <input type="radio" name="sizes7" id="product-color-72"> <label
+                                                class="avatar-xs btn btn-soft-primary text-uppercase p-0 fs-12 d-flex align-items-center justify-content-center rounded-circle"
+                                                for="product-color-72">s</label> </li>
+                                        <li> <input type="radio" name="sizes7" id="product-color-73"> <label
+                                                class="avatar-xs btn btn-soft-primary text-uppercase p-0 fs-12 d-flex align-items-center justify-content-center rounded-circle"
+                                                for="product-color-73">m</label> </li>
+                                        <li> <input type="radio" name="sizes7" checked id="product-color-74"> <label
+                                                class="avatar-xs btn btn-soft-primary text-uppercase p-0 fs-12 d-flex align-items-center justify-content-center rounded-circle"
+                                                for="product-color-74">l</label> </li>
+                                        <li> <input type="radio" name="sizes7" id="product-color-75"> <label
+                                                class="avatar-xs btn btn-soft-primary text-uppercase p-0 fs-12 d-flex align-items-center justify-content-center rounded-circle"
+                                                for="product-color-75">xl</label> </li>
                                     </ul>
                                 </div>
                             </div>
-                        </form>
- <!---------------------------------------end form panier----------------------------------------------------------->
+                            <div class="col-md-6">
+                                <h6 class="fs-14 fw-medium text-muted">Colors: </h6>
+                                <ul class="clothe-colors list-unstyled hstack gap-1 mb-0 flex-wrap ms-2">
+                                    <li>
+                                        <input type="radio" name="sizes" id="product-color-2">
+                                        <label
+                                            class="avatar-xs btn btn-info p-0 d-flex align-items-center justify-content-center rounded-circle"
+                                            for="product-color-2"></label>
+                                    </li>
+                                    <li>
+                                        <input type="radio" name="sizes" id="product-color-3">
+                                        <label
+                                            class="avatar-xs btn btn-light p-0 d-flex align-items-center justify-content-center rounded-circle"
+                                            for="product-color-3"></label>
+                                    </li>
+                                    <li>
+                                        <input type="radio" name="sizes" id="product-color-4" checked>
+                                        <label
+                                            class="avatar-xs btn btn-primary p-0 d-flex align-items-center justify-content-center rounded-circle"
+                                            for="product-color-4"></label>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <!--end col-->
@@ -264,7 +237,7 @@
                             </a>
                         </li>
                     </ul>
-<!-----------------------------details sur produits-------------------------------------------------------------------------------->
+
                     <!-- Tab panes -->
                     <div class="tab-content text-muted">
                         <div class="tab-pane active" id="home1" role="tabpanel">
@@ -372,8 +345,8 @@
                                                 <div>
                                                     <div class="progress animated-progress progress-sm">
                                                         <div class="progress-bar bg-primary" role="progressbar"
-                                                            style="width: 50.16%" aria-valuenow="50.16" aria-valuemin="0"
-                                                            aria-valuemax="100"></div>
+                                                             style="width: 50.16%" aria-valuenow="50.16" aria-valuemin="0"
+                                                             aria-valuemax="100"></div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -394,8 +367,8 @@
                                                 <div>
                                                     <div class="progress animated-progress progress-sm">
                                                         <div class="progress-bar bg-success" role="progressbar"
-                                                            style="width: 29.32%" aria-valuenow="29.32" aria-valuemin="0"
-                                                            aria-valuemax="100"></div>
+                                                             style="width: 29.32%" aria-valuenow="29.32" aria-valuemin="0"
+                                                             aria-valuemax="100"></div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -416,8 +389,8 @@
                                                 <div>
                                                     <div class="progress animated-progress progress-sm">
                                                         <div class="progress-bar bg-info" role="progressbar"
-                                                            style="width: 18.12%" aria-valuenow="18.12" aria-valuemin="0"
-                                                            aria-valuemax="100"></div>
+                                                             style="width: 18.12%" aria-valuenow="18.12" aria-valuemin="0"
+                                                             aria-valuemax="100"></div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -438,8 +411,8 @@
                                                 <div>
                                                     <div class="progress animated-progress progress-sm">
                                                         <div class="progress-bar bg-secondary" role="progressbar"
-                                                            style="width: 4.98%" aria-valuenow="4.98" aria-valuemin="0"
-                                                            aria-valuemax="100"></div>
+                                                             style="width: 4.98%" aria-valuenow="4.98" aria-valuemin="0"
+                                                             aria-valuemax="100"></div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -460,8 +433,8 @@
                                                 <div>
                                                     <div class="progress animated-progress progress-sm">
                                                         <div class="progress-bar bg-danger" role="progressbar"
-                                                            style="width: 7.42%" aria-valuenow="7.42" aria-valuemin="0"
-                                                            aria-valuemax="100"></div>
+                                                             style="width: 7.42%" aria-valuenow="7.42" aria-valuemin="0"
+                                                             aria-valuemax="100"></div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -477,7 +450,7 @@
                                     <div class="d-flex p-3 border-bottom border-bottom-dashed">
                                         <div class="flex-shrink-0 me-3">
                                             <img class="avatar-xs rounded-circle"
-                                                src="{{ URL::asset('build/images/users/avatar-5.jpg') }}" alt="">
+                                                 src="{{ URL::asset('build/images/users/avatar-5.jpg') }}" alt="">
                                         </div>
                                         <div class="flex-grow-1">
                                             <div class="d-flex mb-3">
@@ -499,7 +472,9 @@
                                                     </div>
                                                 </div>
                                                 <div class="flex-shrink-0">
-                                                    <p class="mb-0 text-muted"><i class="ri-calendar-event-fill me-2 align-middle"></i>Aug 16,2022</p>
+                                                    <p class="mb-0 text-muted"><i
+                                                            class="ri-calendar-event-fill me-2 align-middle"></i>Aug 16,
+                                                        2022</p>
                                                 </div>
                                             </div>
                                             <div>
@@ -513,7 +488,7 @@
                                             <div class="d-flex mt-4">
                                                 <div class="flex-shrink-0 me-3">
                                                     <img class="avatar-xs rounded-circle"
-                                                        src="{{ URL::asset('build/images/users/avatar-1.jpg') }}" alt="">
+                                                         src="{{ URL::asset('build/images/users/avatar-1.jpg') }}" alt="">
                                                 </div>
                                                 <div class="flex-grow-1">
                                                     <div class="d-flex mb-3">
@@ -524,7 +499,9 @@
                                                             </div>
                                                         </div>
                                                         <div class="flex-shrink-0">
-                                                            <p class="mb-0 text-muted"><i class="ri-calendar-event-fill me-2 align-middle"></i>Aug  16, 2022</p>
+                                                            <p class="mb-0 text-muted"><i
+                                                                    class="ri-calendar-event-fill me-2 align-middle"></i>Aug
+                                                                16, 2022</p>
                                                         </div>
                                                     </div>
                                                     <p class="mb-0">
@@ -537,7 +514,7 @@
                                     <div class="d-flex p-3 border-bottom border-bottom-dashed">
                                         <div class="flex-shrink-0 me-3">
                                             <img class="avatar-xs rounded-circle"
-                                                src="{{ URL::asset('build/images/users/avatar-3.jpg') }}" alt="">
+                                                 src="{{ URL::asset('build/images/users/avatar-3.jpg') }}" alt="">
                                         </div>
                                         <div class="flex-grow-1">
                                             <div class="d-flex mb-3">
@@ -578,7 +555,7 @@
                                     <div class="d-flex p-3 border-bottom border-bottom-dashed mb-3">
                                         <div class="flex-shrink-0 me-3">
                                             <img class="avatar-xs rounded-circle"
-                                                src="{{ URL::asset('build/images/users/avatar-8.jpg') }}" alt="">
+                                                 src="{{ URL::asset('build/images/users/avatar-8.jpg') }}" alt="">
                                         </div>
                                         <div class="flex-grow-1">
                                             <div class="d-flex mb-3">
@@ -616,7 +593,7 @@
                                             <div class="d-flex mt-4">
                                                 <div class="flex-shrink-0 me-3">
                                                     <img class="avatar-xs rounded-circle"
-                                                        src="{{ URL::asset('build/images/users/avatar-1.jpg') }}" alt="">
+                                                         src="{{ URL::asset('build/images/users/avatar-1.jpg') }}" alt="">
                                                 </div>
                                                 <div class="flex-grow-1">
                                                     <div class="d-flex mb-3">
@@ -661,14 +638,14 @@
                                             </div>
                                             <div class="mb-3">
                                                 <input class="form-control" name="your-name" placeholder="Title"
-                                                    type="text">
+                                                       type="text">
                                             </div>
                                             <div class="mb-3">
                                                 <textarea class="form-control" name="your-comment" placeholder="Enter your comments & reviews" rows="4"></textarea>
                                             </div>
                                             <div class="text-end">
                                                 <button class="btn btn-primary btn-hover" type="submit"
-                                                    value="Submit">Send Review <i
+                                                        value="Submit">Send Review <i
                                                         class="ri-send-plane-2-line align-bottom ms-1"></i></button>
                                             </div>
                                         </form>
@@ -678,7 +655,6 @@
                         </div>
                     </div>
                 </div>
-<!----------------------------------------fin details sur produits----------------------------------------------------->
                 <!--end col-->
             </div>
             <!--end row-->
@@ -700,7 +676,7 @@
                         <div class="row g-0">
                             <div class="col-sm-4">
                                 <img src="{{ URL::asset('build/images/ecommerce/img-5.jpg') }}"
-                                    class="img-fluid rounded-start h-100 object-fit-cover" alt="...">
+                                     class="img-fluid rounded-start h-100 object-fit-cover" alt="...">
                             </div>
                             <div class="col-sm-8">
                                 <div class="card-body h-100 d-flex flex-column">
@@ -721,7 +697,7 @@
                         <div class="row g-0">
                             <div class="col-sm-4">
                                 <img src="{{ URL::asset('build/images/ecommerce/img-2.jpg') }}"
-                                    class="img-fluid rounded-start h-100 object-fit-cover" alt="...">
+                                     class="img-fluid rounded-start h-100 object-fit-cover" alt="...">
                             </div>
                             <div class="col-sm-8">
                                 <div class="card-body h-100 d-flex flex-column">
@@ -741,7 +717,7 @@
                         <div class="row g-0">
                             <div class="col-sm-4">
                                 <img src="{{ URL::asset('build/images/ecommerce/img-3.jpg') }}"
-                                    class="img-fluid rounded-start h-100 object-fit-cover" alt="...">
+                                     class="img-fluid rounded-start h-100 object-fit-cover" alt="...">
                             </div>
                             <div class="col-sm-8">
                                 <div class="card-body h-100 d-flex flex-column">
@@ -784,10 +760,10 @@
                         class="card ecommerce-product-widgets border-0 rounded-0 shadow-none overflow-hidden card-animate">
                         <div class="bg-light bg-opacity-50 rounded py-4 position-relative">
                             <img src="{{ URL::asset('build/images/products/img-12.png') }}" alt=""
-                                style="max-height: 200px;max-width: 100%;" class="mx-auto d-block rounded-2">
+                                 style="max-height: 200px;max-width: 100%;" class="mx-auto d-block rounded-2">
                             <div class="action vstack gap-2">
                                 <button class="btn btn-danger avatar-xs p-0 btn-soft-warning custom-toggle product-action"
-                                    data-bs-toggle="button"><span class="icon-on"><i
+                                        data-bs-toggle="button"><span class="icon-on"><i
                                             class="ri-heart-line"></i></span><span class="icon-off"><i
                                             class="ri-heart-fill"></i></span></button>
                             </div>
@@ -828,10 +804,10 @@
                         class="card ecommerce-product-widgets border-0 rounded-0 shadow-none overflow-hidden card-animate">
                         <div class="bg-light bg-opacity-50 rounded py-4 position-relative">
                             <img src="{{ URL::asset('build/images/products/img-7.png') }}" alt=""
-                                style="max-height: 200px;max-width: 100%;" class="mx-auto d-block rounded-2">
+                                 style="max-height: 200px;max-width: 100%;" class="mx-auto d-block rounded-2">
                             <div class="action vstack gap-2">
                                 <button class="btn btn-danger avatar-xs p-0 btn-soft-warning custom-toggle product-action "
-                                    data-bs-toggle="button"><span class="icon-on"><i
+                                        data-bs-toggle="button"><span class="icon-on"><i
                                             class="ri-heart-line"></i></span><span class="icon-off"><i
                                             class="ri-heart-fill"></i></span></button>
                             </div>
@@ -865,10 +841,10 @@
                         class="card ecommerce-product-widgets border-0 rounded-0 shadow-none overflow-hidden card-animate">
                         <div class="bg-light bg-opacity-50 rounded py-4 position-relative">
                             <img src="{{ URL::asset('build/images/products/img-3.png') }}" alt=""
-                                style="max-height: 200px;max-width: 100%;" class="mx-auto d-block rounded-2">
+                                 style="max-height: 200px;max-width: 100%;" class="mx-auto d-block rounded-2">
                             <div class="action vstack gap-2">
                                 <button class="btn btn-danger avatar-xs p-0 btn-soft-warning custom-toggle product-action "
-                                    data-bs-toggle="button"><span class="icon-on"><i
+                                        data-bs-toggle="button"><span class="icon-on"><i
                                             class="ri-heart-line"></i></span><span class="icon-off"><i
                                             class="ri-heart-fill"></i></span></button>
                             </div>
@@ -906,10 +882,10 @@
                         class="card ecommerce-product-widgets border-0 rounded-0 shadow-none overflow-hidden card-animate">
                         <div class="bg-light bg-opacity-50 rounded py-4 position-relative">
                             <img src="{{ URL::asset('build/images/products/img-2.png') }}" alt=""
-                                style="max-height: 200px;max-width: 100%;" class="mx-auto d-block rounded-2">
+                                 style="max-height: 200px;max-width: 100%;" class="mx-auto d-block rounded-2">
                             <div class="action vstack gap-2">
                                 <button class="btn btn-danger avatar-xs p-0 btn-soft-warning custom-toggle product-action "
-                                    data-bs-toggle="button"><span class="icon-on"><i
+                                        data-bs-toggle="button"><span class="icon-on"><i
                                             class="ri-heart-line"></i></span><span class="icon-off"><i
                                             class="ri-heart-fill"></i></span></button>
                             </div>
@@ -944,7 +920,7 @@
     </section>
 
     <section class="section bg-light bg-opacity-25"
-        style="background-image: url('build/images/ecommerce/bg-effect.png');background-position: center; background-size: cover;">
+             style="background-image: url('build/images/ecommerce/bg-effect.png');background-position: center; background-size: cover;">
         <div class="container">
             <div class="row align-items-center justify-content-between">
                 <div class="col-lg-6">
@@ -952,9 +928,9 @@
                         <p class="fs-15 text-uppercase fw-medium"><span class="fw-semibold text-danger">25% Up to</span>
                             off all Products</p>
                         <h1 class="lh-base text-capitalize mb-3">Stay home & get your daily needs from our shop</h1>
-                        <p class="fs-15 mb-4 pb-2">Start you're daily shopping with <a href="#!"
-                                class="link-info fw-medium">Toner</a></p>
-                        <form >
+                        <p class="fs-15 mb-4 pb-2">Start you'r daily shopping with <a href="#!"
+                                                                                      class="link-info fw-medium">Toner</a></p>
+                        <form action="#!">
                             <div class="position-relative ecommerce-subscript">
                                 <input type="email" class="form-control rounded-pill" placeholder="Enter your email">
                                 <button type="submit" class="btn btn-primary btn-hover rounded-pill">Subscript
@@ -1007,10 +983,10 @@
                     <div class="d-flex align-items-center gap-3">
                         <div class="flex-shrink-0">
                             <img src="{{ URL::asset('build/images/ecommerce/guarantee-certificate.png') }}" alt=""
-                                class="avatar-sm">
+                                 class="avatar-sm">
                         </div>
                         <div class="flex-grow-1">
-                            <h5 class="fs-15"> Money Back Guarantee </h5>
+                            <h5 class="fs-15">Money Back Guarantee</h5>
                             <p class="text-muted mb-0">Within 5 business days</p>
                         </div>
                     </div>
@@ -1033,46 +1009,13 @@
         </div>
         <!--end container-->
     </section>
-    <script>
-        $(document).ready(function () {
-
-            $('.increment-btn').click(function (e) {
-                e.preventDefault();
-                var incre_value = $(this).parents('.quantity').find('.qty-input').val();
-                var value = parseInt(incre_value, 10);
-                value = isNaN(value) ? 0 : value;
-                if(value<100){
-                    value++;
-                    $(this).parents('.quantity').find('.qty-input').val(value);
-                }
-
-            });
-
-            $('.decrement-btn').click(function (e) {
-                e.preventDefault();
-                var decre_value = $(this).parents('.quantity').find('.qty-input').val();
-                var value = parseInt(decre_value, 10);
-                value = isNaN(value) ? 0 : value;
-                if(value>1){
-                    value--;
-                    $(this).parents('.quantity').find('.qty-input').val(value);
-                }
-            });
-
-        });
-    </script>
 @endsection
 @section('scripts')
     <!--Swiper slider js-->
     <script src="{{ URL::asset('build/libs/swiper/swiper-bundle.min.js') }}"></script>
-    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 
     <script src="{{ URL::asset('build/js/frontend/product-details.init.js') }}"></script>
 
     <!-- landing-index js -->
     <script src="{{ URL::asset('build/js/frontend/menu.init.js') }}"></script>
 @endsection
-
-
-
-
