@@ -25,12 +25,11 @@ Route::get('/product-details/{id}', [App\Http\Controllers\ProductdetailControlle
 Route::get('/products-category', [App\Http\Controllers\HomeController::class, 'ViewCategory'])->name('CategoryProduct');
 
 Route::get('/products-category', [App\Http\Controllers\ViewCategoryController::class, 'ViewCategory'])->name('CategoryProduct');
-Route::get('/categoryMenu',[App\Http\Controllers\ViewCategoryController::class, 'viewcategoryinMenu']);
+Route::get('/categories',[App\Http\Controllers\ViewCategoryController::class, 'viewcategories'])->name('VoirCategories');
 
 Route::get('/products-category', [App\Http\Controllers\ViewCategoryController::class, 'ViewCategory'])->name('CategoryProduct');
-Route::get('/categoryMenu',[App\Http\Controllers\ViewCategoryController::class, 'viewcategoryinMenu']);
+Route::get('/products-sub-category', [App\Http\Controllers\ViewCategoryController::class, 'view_sub_categories'])->name('SubCategoryProduct');
 
-Route::get('categoryMenu',[App\Http\Controllers\ViewCategoryController::class, 'viewcategoryinMenu']);
 
 //route pour produit en liaison avec les sous-categories
 Route::get('/products/{sub_category_id}', [App\Http\Controllers\ProductController::class, 'product_list_right'])->name('products_nav');
