@@ -13,7 +13,9 @@ class HeaderComposer
     public function compose(View $view){
 
         $catAndSub = sub_category::with('CategoryFunc')->get()->groupBy('category_id');
-        $view->with('cat_and_sub', $catAndSub);
+        $categories = Category::all();
+        $view->with('cat_and_sub', $catAndSub)->with('categories', $categories);
+
 
     }
 

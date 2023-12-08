@@ -152,8 +152,20 @@
                     {{--End Product List--}}
 
                     {{--Start Pagination--}}
-                    {{--
-                                        {{--End Pagination--}}
+{{--                    <div class="" >--}}
+{{--                        <form><div class="pagination page-item" >--}}
+{{--                                {{ $products->appends(request()->except('page'))->links() }}--}}
+{{--                            </div></form>--}}
+{{--                    </div>--}}
+                    <div class="">
+                        <form class="custom-pagination-form">
+                            <div class="pagination page-item">
+                                {{ $products->appends(request()->except('page'))->links() }}
+                            </div>
+                        </form>
+                    </div>
+
+                    {{--End Pagination--}}
                 </div>
 
 

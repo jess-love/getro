@@ -43,7 +43,7 @@ class ProductController extends Controller
             $products->orderBy('unit_price', 'desc');
         }
 
-        $products = $products->paginate(16);
+        $products = $products->paginate(32);
         $sub_cat = sub_category::all();
 
         return view('product-list-left', ['products' => $products, 'sub_cat' => $sub_cat]);

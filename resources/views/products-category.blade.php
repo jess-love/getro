@@ -16,7 +16,7 @@
                 <div class="col-lg-6">
                     <div class="text-center">
                         <h1 class="text-white lh-base text-capitalize">Categories</h1>
-                        <p class="text-white-75 fs-15 mb-0">Our all categories wise product available here.</p>
+                        <p class="text-white-75 fs-15 mb-0">Tous nos sous catégories classé par catégories sont disponibles ici.</p>
                     </div>
                 </div>
                 <!--end col-->
@@ -31,28 +31,26 @@
             <!--end row-->
             <br>
             <br>
-<!-------------------------------------category--------------------------------------------------------------------------->
+            <!-------------------------------------category--------------------------------------------------------------------------->
             <div class="row">
                 @foreach ($categories as $category)
-                <div class="col-lg-2 col-md-3 col-sm-6">
-                    <div class="text-center">
-                        <img src="{{ asset('build/images/products/'.$category->image) }}" alt=""
-                             class="img-fluid rounded-circle bg-warning-subtle border border-20 border-warning border-opacity-8 p-15">
-                        <div class="mt-4">
-                            <a href="{{route('CategoryProduct')}} " class="stretched-link">
-                                <h5 class="fs-15 mb-0">{{$category->title}}</h5>
-                            </a><br>
-                            <h6 class="fs-15 mb-0">{{$category->description}}</h6>
+                    <div class="col-lg-2 col-md-3 col-sm-6">
+                        <div class="text-center">
+                            <img src="{{ asset('build/images/products/'.$category->image) }}" alt=""
+                                 class="img-fluid rounded-circle bg-warning-subtle border border-20 border-warning border-opacity-8 p-15">
+                            <div class="mt-4">
+                                    <h5 class="fs-15 mb-0">{{$category->title}}</h5>
+                               <br>
+                                <h6 class="fs-15 mb-0">{{$category->description}}</h6>
+                            </div>
                         </div>
                     </div>
-                </div>
                 @endforeach
                 <!--end col-->
             </div>
-<!-------------------------------------------end category------------------------------------------------------------------>
+            <!-------------------------------------------end category------------------------------------------------------------------>
         </div><!--end conatiner-->
     </section>
-
     <section class="section pt-0">
         <div class="container">
             <div class="row justify-content-center">
@@ -60,8 +58,8 @@
                     <div class="mb-5 text-center">
                         <br>
                         <br>
-                        <h2 class="mb-3">Default</h2>
-                        <p class="text-muted fs-15 mb-0">Browser the collection of top categories.</p>
+                        <h2 class="mb-3">TOP PRODUITS PARMIS NOS CATEGORIES</h2>
+                        <p class="text-muted fs-15 mb-0">Naviguer dans la collection des principales catégories.</p>
                     </div>
                 </div>
                 <!--end col-->
@@ -72,44 +70,44 @@
         <div class="container-fluid">
             <div class="row gy-4">
                 <div class="col-xxl-4 col-md-6">
-                    <a href="product-list-defualt"
+                    <a href="{{route('products_left')}}"
                        class="product-banner-1 mt-4 mt-lg-0 rounded overflow-hidden position-relative d-block">
                         <img src="{{ URL::asset('build/images/ecommerce/features/img-3.jpg') }}" class="img-fluid rounded" alt="">
                         <div class="bg-overlay blue"></div>
                         <div class="product-content p-4">
-                            <p class="text-uppercase fw-semibold text-white fs-15 mb-2">Up to 50-70%</p>
-                            <h1 class="text-white lh-base ff-secondary display-5"> Women's Sportwere Sales</h1>
+                            <p class="text-uppercase fw-semibold text-white fs-15 mb-2">Jusqu'a 50-70% de reduction</p>
+                            <h1 class="text-white lh-base ff-secondary display-5">Vetement de sport pour Femme en vente</h1>
                             <div class="product-btn text-white mt-4">
-                                Shop Now <i class="bi bi-arrow-right ms-2"></i>
+                                Acheter Maintenant <i class="bi bi-arrow-right ms-2"></i>
                             </div>
                         </div>
                     </a>
                 </div>
                 <!--end col-->
                 <div class="col-xxl-4 col-md-6">
-                    <a href="product-list-defualt"
+                    <a href="{{route('products_left')}}"
                        class="product-banner-1 mt-4 mt-lg-0 rounded overflow-hidden position-relative d-block right">
                         <img src="{{ URL::asset('build/images/ecommerce/features/img-2.jpg') }}" class="img-fluid rounded" alt="">
                         <div class="bg-overlay"></div>
                         <div class="product-content p-4 text-end">
                             <p class="text-uppercase text-white fw-semibold fs-15 mb-2">MEGA SALE</p>
-                            <h1 class="text-white lh-base ff-secondary display-5">Running Shoes Sales Up to 50%</h1>
+                            <h1 class="text-white lh-base ff-secondary display-5">Basket pour courir jusqu'a 50% de reduction</h1>
                             <div class="product-btn mt-4 text-white">
-                                Shop Now <i class="bi bi-arrow-right ms-2"></i>
+                                Acheter Maintenant <i class="bi bi-arrow-right ms-2"></i>
                             </div>
                         </div>
                     </a>
                 </div>
                 <!--end col-->
                 <div class="col-xxl-4 col-md-6">
-                    <a href="product-grid-defualt"
+                    <a href="{{route('products_left')}}"
                        class="product-banner-1 mt-4 mt-lg-0 rounded overflow-hidden position-relative d-block">
                         <img src="{{ URL::asset('build/images/ecommerce/features/img-1.jpg') }}" class="img-fluid rounded" alt="">
                         <div class="product-content p-4">
                             <p class="text-uppercase fw-semibold text-secondary fs-15 mb-2">Summer Sales</p>
-                            <h1 class="lh-base ff-secondary display-5">Trendy Fashion Clothes</h1>
+                            <h1 class="lh-base ff-secondary display-5">Vêtements à la mode</h1>
                             <div class="product-btn text-primary mt-4">
-                                Shop Now <i class="bi bi-arrow-right ms-2"></i>
+                                Acheter Maintenant <i class="bi bi-arrow-right ms-2"></i>
                             </div>
                         </div>
                     </a>
@@ -121,218 +119,55 @@
         <!--end container-fluid-->
     </section>
 
-    <section>
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-12">
-                    <div class="mb-5 text-center">
-                        <h3 class="mb-3">Ellips</h3>
-                        <p class="text-muted fs-14 mb-0">Browser the collection of top categories.</p>
-                    </div>
-                </div>
-                <!--end col-->
-            </div>
-            <!--end row-->
-            <!-------------------------------------category pour des moments occasionnels-------------------------------------------------->
-            <div class="row">
-                <div class="col-lg-2 col-md-3 col-sm-6">
-                    <div class="text-center">
-                        <img src="{{ URL::asset('build/images/products/img-6.png') }}" alt=""
-                             class="img-fluid rounded-circle bg-warning-subtle border border-2 border-warning border-opacity-10 p-4">
-                        <div class="mt-4">
-                            <a href="#!">
-                                <h5 class="mb-2 fs-15">Clothes</h5>
-                            </a>
-                            <p class="text-muted fs-12">96 Products</p>
-                        </div>
-                    </div>
-                </div>
-                <!--end col-->
-                <div class="col-lg-2 col-md-3 col-sm-6">
-                    <div class="text-center">
-                        <img src="{{ URL::asset('build/images/products/img-20.png') }}" alt=""
-                             class="img-fluid rounded-circle bg-dark-subtle border border-2 border-dark border-opacity-10 p-4">
-                        <div class="mt-4">
-                            <a href="#!">
-                                <h5 class="mb-2 fs-15">Electronics</h5>
-                            </a>
-                            <p class="text-muted fs-12">25 Products</p>
-                        </div>
-                    </div>
-                </div>
-                <!--end col-->
-                <div class="col-lg-2 col-md-3 col-sm-6">
-                    <div class="text-center">
-                        <img src="{{ URL::asset('build/images/products/img-18.png') }}" alt=""
-                             class="img-fluid rounded-circle bg-warning-subtle border border-2 border-warning border-opacity-10 p-4">
-                        <div class="mt-4">
-                            <a href="#!">
-                                <h5 class="mb-2 fs-15">Cosmetic</h5>
-                            </a>
-                            <p class="text-muted fs-12">10 Products</p>
-                        </div>
-                    </div>
-                </div>
-                <!--end col-->
-                <div class="col-lg-2 col-md-3 col-sm-6">
-                    <div class="text-center">
-                        <img src="{{ URL::asset('build/images/products/img-1.png') }}" alt=""
-                             class="img-fluid rounded-circle bg-danger-subtle border border-2 border-danger border-opacity-10 p-4">
-                        <div class="mt-4">
-                            <a href="#!">
-                                <h5 class="mb-2 fs-15">Bags</h5>
-                            </a>
-                            <p class="text-muted fs-12">58 Products</p>
-                        </div>
-                    </div>
-                </div>
-                <!--end col-->
-                <div class="col-lg-2 col-md-3 col-sm-6">
-                    <div class="text-center">
-                        <img src="{{ URL::asset('build/images/products/img-15.png') }}" alt=""
-                             class="img-fluid rounded-circle bg-info-subtle border border-2 border-info border-opacity-10 p-4">
-                        <div class="mt-4">
-                            <a href="#!">
-                                <h5 class="mb-2 fs-15">Handbags & Clutches</h5>
-                            </a>
-                            <p class="text-muted fs-12">64 Products</p>
-                        </div>
-                    </div>
-                </div>
-                <!--end col-->
-                <div class="col-lg-2 col-md-3 col-sm-6">
-                    <div class="text-center">
-                        <img src="{{ URL::asset('build/images/products/img-5.png') }}" alt=""
-                             class="img-fluid rounded-circle bg-danger-subtle border border-2 border-danger border-opacity-10 p-4">
-                        <div class="mt-4">
-                            <a href="#!">
-                                <h5 class="mb-2 fs-15">Footwear</h5>
-                            </a>
-                            <p class="text-muted fs-12">342 Products</p>
-                        </div>
-                    </div>
-                </div>
-                <!--end col-->
-            </div>
-            <!--end row-->
-            <!-------------------------------------------end category--------------------------------------------------------------------------->
-        </div>
-        <!--end conatiner-->
-    </section>
 
     <section class="section pb-0">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-12">
                     <div class="mb-5 text-center">
-                        <h3 class="mb-3">Slider Products</h3>
-                        <p class="text-muted fs-14 mb-0">Browser the collection of top categories.</p>
+                        <h3 class="mb-3">Slider Sous Categories</h3>
+                        <p class="text-muted fs-14 mb-0">Naviguer parmis nos top categories.</p>
                     </div>
                 </div>
                 <!--end col-->
             </div>
             <!--end row-->
+
             <div class="row">
                 <div class="col-lg-12">
                     <div class="swiper mySwiper" dir="ltr">
-                        <div class="swiper-wrapper py-4">
-                            <div class="swiper-slide">
-                                <div class="card card-animate overflow-hidden">
-                                    <div class="bg-dark-subtle rounded-top py-4">
-                                        <div class="gallery-product">
-                                            <img src="{{ URL::asset('build/images/products/img-15.png') }}" alt=""
-                                                 style="max-height: 215px;max-width: 100%;" class="mx-auto d-block">
+
+                                                <div class="swiper-wrapper py-4">
+{{--                            @foreach($sub_cat as $subCategory)--}}
+                                @foreach($sous_categories as $sous_category)
+                                    <div class="swiper-slide">
+                                        <div class="card card-animate overflow-hidden">
+                                            <div class="bg-dark-subtle rounded-top py-4">
+                                                <div class="gallery-product">
+                                                    <a href="{{ route('products_nav', ['sub_category_id' => $sous_category->id]) }}" class="d-flex py-1 align-items-center custom-link">
+                                                        <img src="{{ URL::asset('build/images/products/'.$sous_category->image) }}" alt=""
+                                                             style="max-height: 215px; max-width: 100%;" class="mx-auto d-block">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="card-body text-center">
+                                                <a href="{{ route('products_nav', ['sub_category_id' => $sous_category->id]) }}" class="stretched-link">
+                                                    <h6 class="fs-16 lh-base text-truncate">{{$sous_category->title}}</h6>
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="card-body text-center">
-                                        <a href="product-list" class="stretched-link">
-                                            <h6 class="fs-16 lh-base text-truncate">Handbags & Clutches</h6>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="card card-animate overflow-hidden">
-                                    <div class="bg-dark-subtle rounded-top py-4">
-                                        <div class="gallery-product">
-                                            <img src="{{ URL::asset('build/images/products/img-17.png') }}" alt=""
-                                                 style="max-height: 215px;max-width: 100%;" class="mx-auto d-block">
-                                        </div>
-                                    </div>
-                                    <div class="card-body text-center">
-                                        <a href="product-list" class="stretched-link">
-                                            <h6 class="fs-16 lh-base text-truncate">Electronics</h6>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="card card-animate overflow-hidden">
-                                    <div class="bg-success-subtle rounded-top py-4">
-                                        <div class="gallery-product">
-                                            <img src="{{ URL::asset('build/images/products/img-4.png') }}" alt=""
-                                                 style="max-height: 215px;max-width: 100%;" class="mx-auto d-block">
-                                        </div>
-                                    </div>
-                                    <div class="card-body text-center">
-                                        <a href="product-list" class="stretched-link">
-                                            <h6 class="fs-16 lh-base text-truncate">Footwear</h6>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="card card-animate overflow-hidden">
-                                    <div class="bg-danger-subtle rounded-top py-4">
-                                        <div class="gallery-product">
-                                            <img src="{{ URL::asset('build/images/products/img-12.png') }}" alt=""
-                                                 style="max-height: 215px;max-width: 100%;" class="mx-auto d-block">
-                                        </div>
-                                    </div>
-                                    <div class="card-body text-center">
-                                        <a href="product-list" class="stretched-link">
-                                            <h6 class="fs-16 lh-base text-truncate">Furniture & Decor</h6>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="card card-animate overflow-hidden">
-                                    <div class="bg-warning-subtle rounded-top py-4">
-                                        <div class="gallery-product">
-                                            <img src="{{ URL::asset('build/images/products/img-18.png') }}" alt=""
-                                                 style="max-height: 215px;max-width: 100%;" class="mx-auto d-block">
-                                        </div>
-                                    </div>
-                                    <div class="card-body text-center">
-                                        <a href="product-list" class="stretched-link">
-                                            <h6 class="fs-16 lh-base text-truncate">Beauty, Health, Grocery</h6>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="card card-animate overflow-hidden">
-                                    <div class="bg-dark-subtle rounded-top py-4">
-                                        <div class="gallery-product">
-                                            <img src="{{ URL::asset('build/images/products/img-9.png') }}" alt=""
-                                                 style="max-height: 215px;max-width: 100%;" class="mx-auto d-block">
-                                        </div>
-                                    </div>
-                                    <div class="card-body text-center">
-                                        <a href="product-list" class="stretched-link">
-                                            <h6 class="fs-16 lh-base text-truncate">Men's Accessories</h6>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
+                                @endforeach
+{{--                            @endforeach--}}
                         </div>
+
                         <div class="swiper-button-next"></div>
                         <div class="swiper-button-prev"></div>
                     </div>
                 </div>
                 <!--end col-->
             </div>
+
             <!--end row-->
         </div>
         <!--end conatiner-->
@@ -343,8 +178,8 @@
             <div class="row justify-content-center">
                 <div class="col-lg-12">
                     <div class="mb-5 text-center">
-                        <h2 class="mb-3">Masonry</h2>
-                        <p class="text-muted fs-15 mb-0">Browser the collection of top categories.</p>
+                        <h2 class="mb-3">Les plus demandees</h2>
+                        <p class="text-muted fs-15 mb-0">Naviguer a travers nos top categories.</p>
                     </div>
                 </div>
                 <!--end col-->
@@ -353,7 +188,7 @@
             <div class="row g-2">
                 <div class="col-lg-7">
                     <div class="card card-height-100">
-                        <a href="product-list-defualt" class="insta-img categrory-box rounded-3">
+                        <a href="{{route('products_left')}}" class="insta-img categrory-box rounded-3">
                             <div class="categrory-content text-center">
                                 <span class="categrory-text text-white fs-18">Electronics</span>
                             </div>
@@ -367,9 +202,9 @@
                     <div class="row g-2">
                         <div class="col-lg-12">
                             <div class="card mb-0">
-                                <a href="product-list-defualt" class="insta-img categrory-box rounded-3">
+                                <a href="{{route('products_left')}}" class="insta-img categrory-box rounded-3">
                                     <div class="categrory-content text-center">
-                                        <span class="categrory-text text-white fs-18">Cosmetics</span>
+                                        <span class="categrory-text text-white fs-18">Beauty</span>
                                     </div>
                                     <img src="{{ URL::asset('build/images/ecommerce/instagram/img-2.jpg') }}"
                                          class="w-100 object-fit-cover" alt="" style="max-height: 318px;">
@@ -378,9 +213,9 @@
                         </div>
                         <div class="col-lg-12">
                             <div class="card mb-0">
-                                <a href="product-list-defualt" class="insta-img categrory-box rounded-3">
+                                <a href="{{route('products_left')}}" class="insta-img categrory-box rounded-3">
                                     <div class="categrory-content text-center">
-                                        <span class="categrory-text text-white fs-18">Handbags & Clutches</span>
+                                        <span class="categrory-text text-white fs-18">Clothes</span>
                                     </div>
                                     <img src="{{ URL::asset('build/images/ecommerce/instagram/img-5.jpg') }}"
                                          class="w-100 object-fit-cover" alt="" style="max-height: 318px;">
@@ -399,14 +234,14 @@
             <div class="row justify-content-center">
                 <div class="col-lg-6">
                     <div class="text-center">
-                        <h1 class="text-white lh-base text-capitalize">Don't miss out on special offers</h1>
-                        <p class="text-white-75 fs-15 mb-4 pb-2">Never Miss Anything From Toner By Signing Up To Our
-                            Newsletter.</p>
-                        <form action="#!">
+                        <h1 class="text-white lh-base text-capitalize">Ne manquez pas nos offres speciaux</h1>
+                        <p class="text-white-75 fs-15 mb-4 pb-2">Ne manquez rien de Bel Mache En signat a notre
+                            boite de nouvelle.</p>
+                        <form id="subscribe-form" action="{{ route('subscribe') }}" method="POST">
+                            @csrf
                             <div class="position-relative ecommerce-subscript">
-                                <input type="email" class="form-control rounded-pill border-0"
-                                       placeholder="Enter your email">
-                                <button type="submit" class="btn btn-darken-primary rounded-pill">Subscript Now</button>
+                                <input type="email" name="email" class="form-control rounded-pill" placeholder="Entrer votre email" required>
+                                <button type="submit" class="btn btn-primary btn-hover rounded-pill">Abonnez-vous Maintenant</button>
                             </div>
                         </form>
                     </div>
