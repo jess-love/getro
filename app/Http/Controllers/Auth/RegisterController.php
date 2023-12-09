@@ -81,6 +81,7 @@ class RegisterController extends Controller
             $avatar->move($avatarPath, $avatarName);
         }
         return User::create([
+            'state_id' => 1,
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],
             'email' => $data['email'],
