@@ -15,12 +15,12 @@
                                             class="img-fluid">
                                     </div>
                                     <div class="col-lg-8 col-9">
-                                        <h1 class="text-white lh-base fw-lighter">Join Our Toner Store</h1>
+                                        <h1 class="text-white lh-base fw-lighter">Rejoigner notre Store Bel Mache</h1>
                                     </div>
                                 </div>
                             </div>
                             <div class="card-body">
-                                <p class="text-muted fs-15">Sign in to continue to Toner.</p>
+                                <p class="text-muted fs-15">Sign in pour continuer avec Bel Mache.</p>
                                 <div class="p-2">
                                     <form method="POST" action="{{ route('login') }}">
                                         @csrf
@@ -29,7 +29,7 @@
                                             <label for="email" class="form-label">Email</label>
                                             <input id="email" type="email"
                                                 class="form-control @error('email') is-invalid @enderror" name="email"
-                                                value="admin@themesbrand.com" required autocomplete="email" autofocus
+                                                value="" required autocomplete="email" autofocus
                                                 placeholder="Enter your email">
                                             @error('email')
                                                 <span class="invalid-feedback" role="alert">
@@ -46,7 +46,7 @@
                                             <div class="position-relative auth-pass-inputgroup mb-3">
                                                 <input id="password" type="password"
                                                     class="form-control password-input @error('password') is-invalid @enderror"
-                                                    name="password" required autocomplete="current-password" placeholder="Enter your password" value="12345678">
+                                                    name="password" required autocomplete="current-password" placeholder="Enter your password" value="">
                                                 <button
                                                     class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon"
                                                     type="button" id="password-addon"><i

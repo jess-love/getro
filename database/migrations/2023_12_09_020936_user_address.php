@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('user_address', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('user');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->unsignedBigInteger('address_id');
             $table->foreign('address_id')->references('id')->on('address');
             $table->timestamps();
@@ -29,3 +29,6 @@ return new class extends Migration
         Schema::dropIfExists('user_address');
     }
 };
+
+
+
