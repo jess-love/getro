@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Cart as Cart;
+use App\Models\Cart;
 use App\Models\Product;
 use http\Env\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use function Laravel\Prompts\alert;
 
 class CartController extends Controller
 {
@@ -37,20 +38,27 @@ class CartController extends Controller
 
             }
         }
-        
+
 
     }
 
-    
-    
-    
-    
-    
-    public function shopcart(){
-        $cartContent = Cart::content();
-        $data['cartContent'] = $cartContent;
-        return view('shop-cart', $data);
+    public function ViewCart(){
+
+        $cartContent = Cart::where('user_id', Auth::id())->get();
+        return view('shop-cart',compact('cartContent'));
     }
+
+
+
+
+
+
+
+//    public function shopcart(){
+//        $cartContent = Cart::content();
+//        $data['cartContent'] = $cartContent;
+//        return view('shop-cart', $data);
+//    }
 
 
 
@@ -89,25 +97,18 @@ class CartController extends Controller
 
 
     public function deleteItem(Request $request){
-        $rowId = $request->rowId;
-        $itemInfo = Cart::get($rowId);
-        if($itemInfo == null){
-            $errorMessage = 'Item not found in Cart';
-            session()->flash('error',$errorMessage);
-            return response()->json([
-                'status' => false,
-                'message' => $errorMessage
-            ]);
+        if(Auth::check()){
+            $prod_id = $request->input('prod_id');
+            if(Cart::where('product_id',$prod_id)->where('user_id',Auth::id())->exists()){
+                $cartItem = Cart::where('product_id',$prod_id)->where('user_id',Auth::id())->first();
+                $cartItem->delete();
 
+                return response()->json(['status'=> "Product Deleted successfully"]);
+            }
+
+        }else{
+            return response()->json(['status',"login to continue"]);
         }
-
-        Cart::remove($request->rowId);
-        $message = 'Item remove successfully';
-        session()->flash('success',$message);
-        return response()->json([
-            'status' => true,
-            'message' => $message
-        ]);
     }
 
 }

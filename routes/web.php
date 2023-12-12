@@ -47,10 +47,10 @@ Route::post('/subscribe', [App\Http\Controllers\SubscriptionController::class, '
 
 
 //------------------cart route----------------------------------------
-Route::get('/shop-cart',[App\Http\Controllers\CartController::class,'shopcart'])->name('shopCart');
+//Route::get('/shop-cart',[App\Http\Controllers\CartController::class,'shopcart'])->name('shopCart');
 
 Route::post('/update-cart',[App\Http\Controllers\CartController::class,'updateCart'])->name('cart_update');
-Route::post('/delete-item',[App\Http\Controllers\CartController::class,'deleteItem'])->name('delete_item');
+Route::post('/delete-item',[App\Http\Controllers\CartController::class,'deleteItem'])->name('delete-item');
 
 
 //------------------end route cart----------------------------------------
@@ -72,6 +72,7 @@ Route::middleware(['auth'])->group(function () {
 
 
     Route::post('/add-to-cart',[App\Http\Controllers\CartController::class,'AddToCart'])->name('addToCart');
+    Route::get('/shop-cart',[App\Http\Controllers\CartController::class,'ViewCart'])->name('shopCart');
 
     Route::get('{any}', [TonerController::class, 'index']);
 });

@@ -13,7 +13,7 @@
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <div class="ecommerce-home bg-danger-subtle"
-                        style="background-image: url('{{ URL::asset('build/images/ecommerce/home/img-1.png')}}');">
+                         style="background-image: url('{{ URL::asset('build/images/ecommerce/home/img-1.png')}}');">
                         <div class="container">
                             <div class="row justify-content-end">
                                 <div class="col-lg-7">
@@ -34,7 +34,7 @@
                 </div>
                 <div class="carousel-item">
                     <div class="ecommerce-home bg-primary-subtle"
-                        style="background-image: url('{{ URL::asset('build/images/ecommerce/home/img-2.png')}}');">
+                         style="background-image: url('{{ URL::asset('build/images/ecommerce/home/img-2.png')}}');">
                         <div class="container">
                             <div class="row">
                                 <div class="col-lg-6">
@@ -55,7 +55,7 @@
                 </div>
                 <div class="carousel-item">
                     <div class="ecommerce-home"
-                        style="background-image: url('{{ URL::asset('build/images/ecommerce/home/img-6.jpg') }}');background-size: cover;">
+                         style="background-image: url('{{ URL::asset('build/images/ecommerce/home/img-6.jpg') }}');background-size: cover;">
                         <div class="container">
                             <div class="row justify-content-end">
                                 <div class="col-lg-6">
@@ -115,7 +115,7 @@
                     <div class="d-flex align-items-center gap-3">
                         <div class="flex-shrink-0">
                             <img src="{{ URL::asset('build/images/ecommerce/guarantee-certificate.png') }}" alt=""
-                                class="avatar-sm">
+                                 class="avatar-sm">
                         </div>
                         <div class="flex-grow-1">
                             <h5 class="fs-15">Money Back Guarantee</h5>
@@ -143,9 +143,9 @@
             <div class="row">
                 <div class="col-lg-6">
                     <a href="#!"
-                        class="product-banner-1 mt-4 mt-lg-0 rounded overflow-hidden position-relative d-block">
+                       class="product-banner-1 mt-4 mt-lg-0 rounded overflow-hidden position-relative d-block">
                         <img src="{{ URL::asset('build/images/ecommerce/features/img-3.jpg') }}" class="img-fluid rounded"
-                            alt="">
+                             alt="">
                         <div class="bg-overlay blue"></div>
                         <div class="product-content p-4">
                             <p class="text-uppercase text-white mb-2">Up to 50-70%</p>
@@ -158,9 +158,9 @@
                 </div>
                 <div class="col-lg-6">
                     <a href="#!"
-                        class="product-banner-1 mt-4 mt-lg-0 rounded overflow-hidden position-relative d-block">
+                       class="product-banner-1 mt-4 mt-lg-0 rounded overflow-hidden position-relative d-block">
                         <img src="{{ URL::asset('build/images/ecommerce/features/img-1.jpg') }}" class="img-fluid rounded"
-                            alt="">
+                             alt="">
                         <div class="product-content p-4">
                             <p class="text-uppercase fw-medium text-secondary mb-2">Summer Sales</p>
                             <h1 class="lh-base ff-secondary text-dark">Trendy Fashion Clothes</h1>
@@ -206,90 +206,75 @@
                         </di>
                     @endif
 
-                        <div class="row gallery-wrapper mt-4 pt-2">
-<!----------------------------------------------getro------------------------------------------------------------------------------------->
+                    <div class="row gallery-wrapper mt-4 pt-2">
+                        <!----------------------------------------------getro------------------------------------------------------------------------------------->
+                        @if($produits->isNotEmpty())
+                            @foreach($produits as $produit)
+                                @php
+                                    $productImage = $produit->product_images->first();
+                                @endphp
+                                <div class="element-item col-lg-3 col-md-4 col-sm-6 seller hot arrival"
+                                     data-category="hot arrival">
+                                    <div class="card overflow-hidden">
+                                        <div class="bg-warning-subtle rounded-top py-4">
+                                            <div class="gallery-product">
 
-    @if($produits->isNotEmpty())
-      @foreach($produits as $produit)
-      @php
-       $productImage = $produit->product_images->first();
-     @endphp
-    <div class="element-item col-xxl-3 col-xl-4 col-sm-6 seller hot arrival" data-category="hot arrival">
-       <div class="card overflow-hidden">
-         <div class="bg-warning-subtle rounded-top py-4">
-           <div class="gallery-product">
-                <a href="{{route('view_product',['id'=>$produit->id]) }}">
-                    @if(!empty($productImage->image))
-                      <img src="{{ asset('build/images/products/'.$productImage->image) }}" alt=""
-
-                           @if($produits->isNotEmpty())
-                                @foreach($produits as $produit)
-                                    @php
-                                        $productImage = $produit->product_images->first();
-                                    @endphp
-                                    <div class="element-item col-lg-3 col-md-4 col-sm-6 seller hot arrival"
-                                         data-category="hot arrival">
-                                        <div class="card overflow-hidden">
-                                            <div class="bg-warning-subtle rounded-top py-4">
-                                                <div class="gallery-product">
-
-                                                        <a href="{{route('view_product',['id'=>$produit->id]) }}">
-                                                            @if(!empty($productImage->image))
-                                                                <img src="{{ asset('build/images/products/'.$productImage->image) }}" alt=""
-
-                                                                 style="max-height: 215px;max-width: 100%;" class="mx-auto d-block">
-                      @else
-                      <img src="{{ asset('build/images/products/default.png')}}" alt=""
-                                                                style="max-height: 215px;max-width: 100%;" class="mx-auto d-block">
-                       @endif
-                </a>
-           </div>
-            <p class="fs-11 fw-medium badge bg-primary py-2 px-3 product-lable mb-0">{{$produit->slog}}
-                                                </p>
-             <div class="gallery-product-actions">
-               <div class="mb-2">
-                 <button type="button" class="btn btn-danger btn-sm custom-toggle"
-                                                                data-bs-toggle="button">
-                     <span class="icon-on"><i
+                                                <a href="{{route('view_product',['id'=>$produit->id]) }}">
+                                                    @if(!empty($productImage->image))
+                                                        <img src="{{ asset('build/images/products/'.$productImage->image) }}" alt=""
+                                                             style="max-height: 215px;max-width: 100%;" class="mx-auto d-block">
+                                                    @else
+                                                        <img src="{{ asset('build/images/products/default.png')}}" alt=""
+                                                             style="max-height: 215px;max-width: 100%;" class="mx-auto d-block">
+                                                    @endif
+                                                </a>
+                                            </div>
+                                            <p class="fs-11 fw-medium badge bg-primary py-2 px-3 product-lable mb-0">{{$produit->slog}}
+                                            </p>
+                                            <div class="gallery-product-actions">
+                                                <div class="mb-2">
+                                                    <button type="button" class="btn btn-danger btn-sm custom-toggle"
+                                                            data-bs-toggle="button">
+                                                    <span class="icon-on"><i
                                                             class="mdi mdi-heart-outline align-bottom fs-15"></i></span>
-                                                            <span class="icon-off"><i
-                                                                    class="mdi mdi-heart align-bottom fs-15"></i></span>
-                                                        </button>
-                                                    </div>
-
-
-                                                    <div>
-                                                        <a href="{{route('view_product',['id'=>$produit->id]) }}" class="btn btn-sm btn-outline-secondary"><i class="mdi mdi-eye align-bottom fs-15"></i></a>
-                                                    </div>
-
+                                                        <span class="icon-off"><i
+                                                                class="mdi mdi-heart align-bottom fs-15"></i></span>
+                                                    </button>
                                                 </div>
-                                                <div class="product-btn px-3">
-                                                    <a href="javascript:void(0);" onclick="AddToCart({{$produit->id}});"  class="btn btn-primary btn-sm w-75 add-btn AddToCart">
-                                                        <i class="mdi mdi-cart me-1"></i> Add to cart
-                                                    </a>
+
+
+                                                <div>
+                                                    <a href="{{route('view_product',['id'=>$produit->id]) }}" class="btn btn-sm btn-outline-secondary"><i class="mdi mdi-eye align-bottom fs-15"></i></a>
                                                 </div>
 
                                             </div>
-                                            <div class="card-body">
-                                                <div>
-                                                    <a href="product-details">
-                                                        <h6 class="fs-15 lh-base text-truncate mb-0"> </b> {{$produit->title}} </b> <br> <span style="font-weight:normal;"> {{$produit->description}} </span> </h6>
-                                                    </a>
-                                                    <div class="mt-3">
+                                            <div class="product-btn px-3">
+                                                <a href="javascript:void(0);" onclick="AddToCart({{$produit->id}});"  class="btn btn-primary btn-sm w-75 add-btn">
+                                                    <i class="mdi mdi-cart me-1"></i> Add to cart
+                                                </a>
+                                            </div>
+
+                                        </div>
+                                        <div class="card-body">
+                                            <div>
+                                                <a href="product-details">
+                                                    <h6 class="fs-15 lh-base text-truncate mb-0"> </b> {{$produit->title}} </b> <br> <span style="font-weight:normal;"> {{$produit->description}} </span> </h6>
+                                                </a>
+                                                <div class="mt-3">
                                                 <span class="float-end">4.9 <i
                                                         class="ri-star-half-fill text-warning align-bottom"></i></span>
-                                                        <h5 class="mb-0">{{number_format($produit->unit_price,2) }}$ <span>   </span><span
-                                                                class="text-muted fs-12"><del>{{number_format($produit->discount,2)}}$</del></span></h5>
-                                                    </div>
+                                                    <h5 class="mb-0">{{number_format($produit->unit_price,2) }}$ <span>   </span><span
+                                                            class="text-muted fs-12"><del>{{number_format($produit->discount,2)}}$</del></span></h5>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                @endforeach
-                           @endif
-                            <!-- end col -->
-                        </div>
-<!----------------------------------------------end getro code------------------------------------------------------------------------------------->
+                                </div>
+                            @endforeach
+                        @endif
+                        <!-- end col -->
+                    </div>
+                    <!----------------------------------------------end getro code------------------------------------------------------------------------------------->
 
                     <div class="mt-4 text-center">
                         <a href="{{route('products_left') }}" class="btn btn-soft-primary btn-hover">View All Products
@@ -362,7 +347,7 @@
                                     <div class="bg-dark-subtle rounded-top py-4">
                                         <div class="gallery-product">
                                             <img src="{{ URL::asset('build/images/products/img-9.png') }}" alt=""
-                                                style="max-height: 215px;max-width: 100%;" class="mx-auto d-block">
+                                                 style="max-height: 215px;max-width: 100%;" class="mx-auto d-block">
                                         </div>
                                     </div>
                                     <div class="card-body">
@@ -390,7 +375,7 @@
                                     <div class="bg-warning-subtle rounded-top py-4">
                                         <div class="gallery-product">
                                             <img src="{{ URL::asset('build/images/products/img-10.png') }}" alt=""
-                                                style="max-height: 215px;max-width: 100%;" class="mx-auto d-block">
+                                                 style="max-height: 215px;max-width: 100%;" class="mx-auto d-block">
                                         </div>
                                     </div>
                                     <div class="card-body">
@@ -418,7 +403,7 @@
                                     <div class="bg-primary-subtle rounded-top py-4">
                                         <div class="gallery-product">
                                             <img src="{{ URL::asset('build/images/products/img-11.png') }}" alt=""
-                                                style="max-height: 215px;max-width: 100%;" class="mx-auto d-block">
+                                                 style="max-height: 215px;max-width: 100%;" class="mx-auto d-block">
                                         </div>
                                     </div>
                                     <div class="card-body">
@@ -447,7 +432,7 @@
                                     <div class="bg-danger-subtle rounded-top py-4">
                                         <div class="gallery-product">
                                             <img src="{{ URL::asset('build/images/products/img-12.png') }}" alt=""
-                                                style="max-height: 215px;max-width: 100%;" class="mx-auto d-block">
+                                                 style="max-height: 215px;max-width: 100%;" class="mx-auto d-block">
                                         </div>
                                     </div>
                                     <div class="card-body">
@@ -475,7 +460,7 @@
                                     <div class="bg-secondary-subtle rounded-top py-4">
                                         <div class="gallery-product">
                                             <img src="{{ URL::asset('build/images/products/img-14.png') }}" alt=""
-                                                style="max-height: 215px;max-width: 100%;" class="mx-auto d-block">
+                                                 style="max-height: 215px;max-width: 100%;" class="mx-auto d-block">
                                         </div>
                                     </div>
                                     <div class="card-body">
@@ -537,7 +522,7 @@
                                     <div class="pt-4">
                                         <div class="d-flex align-items-center mt-4 pt-1">
                                             <img src="{{ URL::asset('build/images/users/avatar-2.jpg') }}" alt=""
-                                                class="avatar-sm rounded">
+                                                 class="avatar-sm rounded">
                                             <div class="flex-grow-1 ms-3">
                                                 <h5 class="mb-2 fs-16">George Obrien</h5>
                                                 <p class="text-muted mb-0">Velzon User</p>
@@ -556,7 +541,7 @@
                                     <div class="pt-4">
                                         <div class="d-flex align-items-center mt-4 pt-1">
                                             <img src="{{ URL::asset('build/images/users/avatar-7.jpg') }}" alt=""
-                                                class="avatar-sm rounded">
+                                                 class="avatar-sm rounded">
                                             <div class="flex-grow-1 ms-3">
                                                 <h5 class="mb-2 fs-16">Chadwick A. Scott</h5>
                                                 <p class="text-muted mb-0">Velzon User</p>
@@ -576,7 +561,7 @@
                                     <div class="pt-4">
                                         <div class="d-flex align-items-center mt-4 pt-1">
                                             <img src="{{ URL::asset('build/images/users/avatar-8.jpg') }}" alt=""
-                                                class="avatar-sm rounded">
+                                                 class="avatar-sm rounded">
                                             <div class="flex-grow-1 ms-3">
                                                 <h5 class="mb-2 fs-16">Tommy Moreno</h5>
                                                 <p class="text-muted mb-0">Skote User</p>
@@ -595,7 +580,7 @@
                                     <div class="pt-4">
                                         <div class="d-flex align-items-center mt-4 pt-1">
                                             <img src="{{ URL::asset('build/images/users/avatar-10.jpg') }}" alt=""
-                                                class="avatar-sm rounded">
+                                                 class="avatar-sm rounded">
                                             <div class="flex-grow-1 ms-3">
                                                 <h5 class="mb-2 fs-16">Mary Atkinson</h5>
                                                 <p class="text-muted mb-0">Velzon User</p>
@@ -616,7 +601,7 @@
                     <div class="client-images">
                         <a href="#!">
                             <img src="{{ URL::asset('build/images/clients/paypal.svg') }}" alt="client-img"
-                                class="mx-auto img-fluid d-block">
+                                 class="mx-auto img-fluid d-block">
                         </a>
                     </div>
                 </div>
@@ -624,7 +609,7 @@
                     <div class="client-images">
                         <a href="#!">
                             <img src="{{ URL::asset('build/images/clients/walmart.svg') }}" alt="client-img"
-                                class="mx-auto img-fluid d-block">
+                                 class="mx-auto img-fluid d-block">
                         </a>
                     </div>
                 </div>
@@ -632,7 +617,7 @@
                     <div class="client-images">
                         <a href="#!">
                             <img src="{{ URL::asset('build/images/clients/spotify.svg') }}" alt="client-img"
-                                class="mx-auto img-fluid d-block">
+                                 class="mx-auto img-fluid d-block">
                         </a>
                     </div>
                 </div>
@@ -640,7 +625,7 @@
                     <div class="client-images">
                         <a href="#!">
                             <img src="{{ URL::asset('build/images/clients/shopify.svg') }}" alt="client-img"
-                                class="mx-auto img-fluid d-block">
+                                 class="mx-auto img-fluid d-block">
                         </a>
                     </div>
                 </div>
@@ -648,7 +633,7 @@
                     <div class="client-images">
                         <a href="#!">
                             <img src="{{ URL::asset('build/images/clients/lenovo.svg') }}" alt="client-img"
-                                class="mx-auto img-fluid d-block">
+                                 class="mx-auto img-fluid d-block">
                         </a>
                     </div>
                 </div>
@@ -851,6 +836,25 @@
 
     <script src="{{ URL::asset('build/js/frontend/menu.init.js') }}"></script>
 
+    {{--    <script type="text/javascript">--}}
+    {{--        function AddToCart(id){--}}
 
+    {{--            $.ajax({--}}
+    {{--                url: '{{route("addToCart")}}',--}}
+    {{--                type: 'post',--}}
+    {{--                data: {id:id},--}}
+    {{--                datatype: 'json',--}}
+    {{--                success: function (response){--}}
+    {{--                    if(response.status === true){--}}
+    {{--                        window.location.href='{{ route("shopCart") }}';--}}
+    {{--                    }else{--}}
+    {{--                        alert(response.message);--}}
+    {{--                        //window.location.href="";--}}
+    {{--                    }--}}
+    {{--                }--}}
+    {{--            })--}}
+    {{--        }--}}
+
+    {{--    </script>--}}
 @endsection
 

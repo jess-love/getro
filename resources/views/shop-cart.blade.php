@@ -54,25 +54,26 @@
                         </div>
                     @endif
 
-                    @if(Session::has('error'))
-                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                            {{Session::get('error')}}
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
-                    @endif
+{{--                    @if(Session::has('error'))--}}
+{{--                        <div class="alert alert-danger alert-dismissible fade show" role="alert">--}}
+{{--                            {{Session::get('error')}}--}}
+{{--                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>--}}
+{{--                        </div>--}}
+{{--                    @endif--}}
 
-                   @if( Gloudemans\Shoppingcart\Facades\Cart::count() > 0)
+                   @if( !empty($cartContent))
+{{--                        {{dd($cartContent )}}--}}
                        @foreach($cartContent as $item)
-                            <div class="card product">
-                        <div class="card-body p-4">
+                     <div class="card product product_data">
+                        <div class="card-body p-4 ">
                             <div class="row gy-3">
                                 <div class="col-sm-auto">
                                     <div class="avatar-lg h-100">
                                         <div class="avatar-title bg-danger-subtle rounded py-3">
 
                                             <a href="">
-                                                @if(!empty($item->options->productImage->image))
-                                                    <img src="{{ asset('build/images/products/'.$item->options->productImage->image) }}" alt=""
+                                                @if(!empty($item->products->product->image))
+                                                    <img src="{{ asset('build/images/products/'.$item->products->product->image) }}" alt=""
                                                          style="max-height: 215px;max-width: 100%;" class="mx-auto d-block">
                                                 @else
                                                     <img src="{{ asset('build/images/products/default.png')}}" alt=""
@@ -84,26 +85,26 @@
                                 </div>
                                 <div class="col-sm">
                                     <a href="#!">
-                                        <h5 class="fs-16 lh-base mb-1">{{$item->name}}</h5>
+                                        <h5 class="fs-16 lh-base mb-1">{{$item->products->title}}</h5>
                                     </a>
                                     <ul class="list-inline text-muted fs-13 mb-3">
                                         <li class="list-inline-item">Color : <span class="fw-medium">Red</span></li>
-                                        <li class="list-inline-item">Size : <span class="fw-medium">{{$item->options->productImage->size}}</span></li>
+                                        <li class="list-inline-item">Size : <span class="fw-medium">{{$item->products->size}}</span></li>
                                     </ul>
 
-                                        <div class="input-step ">
-                                            <button class=" sub" data-id="{{$item->rowId}}">-</button>
-                                        </div>
-                                             <input type="number" value="{{$item->qty}}" class="input-step p-1 pt-2 text-center" style="width: 40px">
-                                        <div class="input-step ">
-                                            <button class=" add" data-id="{{$item->rowId}}">+</button>
-                                        </div>
+                                    <div class="input-step ms-2">
+                                        {{ csrf_field() }}
+                                        <input type="hidden" value="{{$item->id}}" class="prod_id">
+                                        <button class="decrement-btn">–</button>
+                                            <input name="quantity" type="number" class="qty-input" value="{{$item->quantity}}" min="0" max="100">
+                                        <button class="increment-btn">+</button>
+                                    </div>
 
                                 </div>
                                 <div class="col-sm-auto">
                                     <div class="text-lg-end">
                                         <p class="text-muted mb-1 fs-12">Item Price:</p>
-                                        <h5 class="fs-16">$<span class="product-price">{{$item->price}}</span></h5>
+                                        <h5 class="fs-16">$<span class="product-price">{{$item->products->unit_price}}</span></h5>
                                     </div>
                                 </div>
                             </div>
@@ -113,9 +114,9 @@
                                 <div class="col-sm">
                                     <div class="d-flex flex-wrap my-n1">
                                         <div>
-                                            <a href="#!" class="d-block text-body p-1 px-2" data-bs-toggle="modal"
-                                                onclick="deleteItem('{{$item->rowId}}')"><i
-                                                    class="ri-delete-bin-fill text-muted align-bottom me-1"></i> Remove</a>
+                                            <a href="" class="d-block text-body p-1 px-2 btn-delete-item" data-bs-toggle="modal">
+                                                <i class="ri-delete-bin-fill text-muted align-bottom me-1"></i> Remove
+                                            </a>
                                         </div>
                                         <div>
                                             <a href="#!" class="d-block text-body p-1 px-2"><i
@@ -126,7 +127,7 @@
                                 <div class="col-sm-auto">
                                     <div class="d-flex align-items-center gap-2 text-muted">
                                         <div>Total :</div>
-                                        <h5 class="fs-14 mb-0">$<span class="product-line-price">{{$item->price*$item->qty}}</span></h5>
+                                        <h5 class="fs-14 mb-0">$<span class="product-line-price">{{$item->products->unit_price*$item->quantity}}</span></h5>
                                     </div>
                                 </div>
                             </div>
