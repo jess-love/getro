@@ -32,7 +32,7 @@
 
     <section class="section">
         <div class="container">
-            <div class="row gx-2">
+            <div class="row gx-2 product_data">
                 <div class="col-lg-6">
                     <div class="row">
                         <div class="col-md-2">
@@ -79,7 +79,7 @@
                         <div class="col-lg-12">
                             <div class="mt-3">
                                 <div class="hstack gap-2">
-                                    <a href="javascript:void(0);" onclick="AddToCart({{$products->id}});" class="btn btn-success btn-hover w-100">
+                                    <a href="" class="btn btn-success btn-hover w-100 AddToCart">
                                         <i class="bi bi-basket2 me-2"></i> Add To Cart
                                     </a>
                                     <button type="button" class="btn btn-primary btn-hover w-100">
@@ -96,7 +96,7 @@
                     <!--end row-->
                 </div>
                 <!--end col-->
-                <div class="col-lg-5 ms-auto">
+                <div class="col-lg-5 ms-auto ">
                     <div class="ecommerce-product-widgets mt-4 mt-lg-0">
                         <div class="mb-4">
                             <div class="d-flex gap-3 mb-2">
@@ -160,13 +160,15 @@
                             </ul>
                         </div>
                         <div class="d-flex align-items-center mb-4">
+                            <input type="hidden" value="{{$products->id}}" class="prod_id">
                             <h5 class="fs-15 mb-0">Quantity:</h5>
+
                             <div class="input-step ms-2">
-                                <button type="button" class="minus">–</button>
-                                <input type="number" class="product-quantity1" value="1" min="0"
-                                       max="100" readonly="">
-                                <button type="button" class="plus">+</button>
+                                <button class="decrement-btn">–</button>
+                                    <input name="quantity" type="number" class="qty-input" value="1" min="0" max="100">
+                                <button class="increment-btn">+</button>
                             </div>
+
                         </div>
                         <div class="row gy-3">
                             <div class="col-md-6">
@@ -792,7 +794,7 @@
                                 <h5 class="mb-0">$209.99</h5>
                             </div>
                             <div class="mt-3">
-                                <a href="shop-cart" class="btn btn-primary w-100 add-btn"><i
+                                <a href="shop-cart" class="btn btn-primary w-100 add-btn AddToCart"><i
                                         class="mdi mdi-cart me-1"></i> Add To Cart</a>
                             </div>
                         </div>
@@ -1018,4 +1020,36 @@
 
     <!-- landing-index js -->
     <script src="{{ URL::asset('build/js/frontend/menu.init.js') }}"></script>
+    <link href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
+
+
+   <script >
+    $(document).ready(function (){
+        $(".AddToCart").click(function (e){
+            e.preventDefault();
+
+            var product_id = $(this).closest('.product_data').find('.prod_id').val();
+            var product_qty = $(this).closest('.product_data').find('.qty-input').val();
+
+            $.ajax({
+                method: 'POST',
+                url: "/add-to-cart",
+                data: {
+                    product_id: product_id,
+                    product_qty: product_qty,
+                },
+                success: function(response) {
+                    Swal.fire(response.status);
+                },
+            });
+
+
+        });
+    });
+   </script>
 @endsection
+
+
+
+
