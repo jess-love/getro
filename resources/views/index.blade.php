@@ -247,7 +247,7 @@
 
                                                 </div>
                                                 <div class="product-btn px-3">
-                                                    <a href="javascript:void(0);" onclick="AddToCart({{$produit->id}});"  class="btn btn-primary btn-sm w-75 add-btn">
+                                                    <a href="javascript:void(0);" onclick="AddToCart({{$produit->id}});"  class="btn btn-primary btn-sm w-75 add-btn AddToCart">
                                                         <i class="mdi mdi-cart me-1"></i> Add to cart
                                                     </a>
                                                 </div>
@@ -834,25 +834,6 @@
 
     <script src="{{ URL::asset('build/js/frontend/menu.init.js') }}"></script>
 
-{{--    <script type="text/javascript">--}}
-{{--        function AddToCart(id){--}}
 
-{{--            $.ajax({--}}
-{{--                url: '{{route("addToCart")}}',--}}
-{{--                type: 'post',--}}
-{{--                data: {id:id},--}}
-{{--                datatype: 'json',--}}
-{{--                success: function (response){--}}
-{{--                    if(response.status === true){--}}
-{{--                        window.location.href='{{ route("shopCart") }}';--}}
-{{--                    }else{--}}
-{{--                        alert(response.message);--}}
-{{--                        //window.location.href="";--}}
-{{--                    }--}}
-{{--                }--}}
-{{--            })--}}
-{{--        }--}}
-
-{{--    </script>--}}
 @endsection
 

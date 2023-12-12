@@ -37,14 +37,6 @@
 
 </html>
 <script>
-    $(function(){
-
-        $("#exzoom").exzoom({
-            // options here
-        });
-
-    });
-
 
     $.ajaxSetup({
         headers: {
@@ -52,75 +44,89 @@
         }
     });
 
-    function AddToCart(id){
-        $.ajax({
-            url: '{{route("addToCart")}}',
-            type: 'post',
-            data: {id:id},
-            datatype: 'json',
-            success: function (response){
-                if(response.status === true){
-                    window.location.reload();
-                    {{-- href='{{ route("shopCart") }}'; --}}
-                }else{
-                    alert(response.message);
-                    //window.location.href="";
-                }
-            }
-        })
-    }
+    $(document).ready(function (){
+        $('.increment_btn').click(function (e){
+            e.preventDefault();
 
-
-    $('.add').click(function(){
-        var qtyElement = $(this).parent().prev(); // Qty Input
-        var qtyValue = parseInt(qtyElement.val());
-        if (qtyValue < 100) {
-            qtyElement.val(qtyValue+1);
-            var rowId = $(this).data('id');
-            var newQty = qtyElement.val();
-            updateCart(rowId, newQty);
-        }
-    });
-
-    $('.sub').click(function(){
-        var qtyElement = $(this).parent().next();
-        var qtyValue = parseInt(qtyElement.val());
-        if (qtyValue > 1) {
-            qtyElement.val(qtyValue-1);
-            var rowId = $(this).data('id');
-            var newQty = qtyElement.val();
-            updateCart(rowId, newQty);
-        }
-    });
-
-    function updateCart(rowId, qty){
-        $.ajax({
-            url: '{{route("cart_update")}}',
-            type: 'post',
-            data: {rowId:rowId, qty:qty},
-            dataType: 'json',
-            success: function (response){
-
-                window.location.reload();
-                {{-- location.href='{{ route("shopCart") }}'; --}}
-            }
+             var inc_value = $('.qty_input').val();
+             var value = parseInt(inc_value,10);
+             value = isNaN(value) ? 0: value;
+             if(value<10){
+                 value++;
+                 $('qty_input').val(value);
+             }
         });
-    }
+    });
 
-    function deleteItem(rowId){
-        if(confirm('are you sure you want to delete?')) {
-            $.ajax({
-                url: '{{route("delete_item")}}',
-                type: 'post',
-                data: {rowId: rowId},
-                dataType: 'json',
-                success: function (response) {
+    {{--function AddToCart(id){--}}
+    {{--    $.ajax({--}}
+    {{--        url: '{{route("addToCart")}}',--}}
+    {{--        type: 'post',--}}
+    {{--        data: {id:id},--}}
+    {{--        datatype: 'json',--}}
+    {{--        success: function (response){--}}
+    {{--            if(response.status === true){--}}
+    {{--                window.location.reload();--}}
+    {{--                --}}{{-- href='{{ route("shopCart") }}'; --}}
+    {{--            }else{--}}
+    {{--                alert(response.message);--}}
+    {{--                //window.location.href="";--}}
+    {{--            }--}}
+    {{--        }--}}
+    {{--    })--}}
+    {{--}--}}
 
-                    window.location.reload();
-                    {{-- location.href = '{{ route("shopCart") }}'; --}}
-                }
-            });
-        }
-    }
+
+    {{--$('.add').click(function(){--}}
+    {{--    var qtyElement = $(this).parent().prev(); // Qty Input--}}
+    {{--    var qtyValue = parseInt(qtyElement.val());--}}
+    {{--    if (qtyValue < 100) {--}}
+    {{--        qtyElement.val(qtyValue+1);--}}
+    {{--        var rowId = $(this).data('id');--}}
+    {{--        var newQty = qtyElement.val();--}}
+    {{--        updateCart(rowId, newQty);--}}
+    {{--    }--}}
+    {{--});--}}
+
+    {{--$('.minus').click(function(){--}}
+    {{--    var qtyElement = $(this).parent().next();--}}
+    {{--    var qtyValue = parseInt(qtyElement.val());--}}
+    {{--    if (qtyValue > 1) {--}}
+    {{--        qtyElement.val(qtyValue-1);--}}
+    {{--        var rowId = $(this).data('id');--}}
+    {{--        var newQty = qtyElement.val();--}}
+    {{--        updateCart(rowId, newQty);--}}
+    {{--    }--}}
+    {{--});--}}
+
+    {{--function updateCart(rowId, qty){--}}
+    {{--    $.ajax({--}}
+    {{--        url: '{{route("cart_update")}}',--}}
+    {{--        type: 'post',--}}
+    {{--        data: {rowId:rowId, qty:qty},--}}
+    {{--        dataType: 'json',--}}
+    {{--        success: function (response){--}}
+
+    {{--            window.location.reload();--}}
+    {{--            --}}{{-- location.href='{{ route("shopCart") }}'; --}}
+    {{--        }--}}
+    {{--    });--}}
+    {{--}--}}
+
+    {{--function deleteItem(rowId){--}}
+    {{--    if(confirm('are you sure you want to delete?')) {--}}
+    {{--        $.ajax({--}}
+    {{--            url: '{{route("delete_item")}}',--}}
+    {{--            type: 'post',--}}
+    {{--            data: {rowId: rowId},--}}
+    {{--            dataType: 'json',--}}
+    {{--            success: function (response) {--}}
+
+    {{--                window.location.reload();--}}
+    {{--                --}}{{-- location.href = '{{ route("shopCart") }}'; --}}
+    {{--            }--}}
+    {{--        });--}}
+    {{--    }--}}
+    {{--}--}}
 
 </script>
