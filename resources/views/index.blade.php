@@ -208,6 +208,7 @@
 
                         <div class="row gallery-wrapper mt-4 pt-2">
 <!----------------------------------------------getro------------------------------------------------------------------------------------->
+
     @if($produits->isNotEmpty())
       @foreach($produits as $produit)
       @php
@@ -220,6 +221,22 @@
                 <a href="{{route('view_product',['id'=>$produit->id]) }}">
                     @if(!empty($productImage->image))
                       <img src="{{ asset('build/images/products/'.$productImage->image) }}" alt=""
+
+                           @if($produits->isNotEmpty())
+                                @foreach($produits as $produit)
+                                    @php
+                                        $productImage = $produit->product_images->first();
+                                    @endphp
+                                    <div class="element-item col-lg-3 col-md-4 col-sm-6 seller hot arrival"
+                                         data-category="hot arrival">
+                                        <div class="card overflow-hidden">
+                                            <div class="bg-warning-subtle rounded-top py-4">
+                                                <div class="gallery-product">
+
+                                                        <a href="{{route('view_product',['id'=>$produit->id]) }}">
+                                                            @if(!empty($productImage->image))
+                                                                <img src="{{ asset('build/images/products/'.$productImage->image) }}" alt=""
+
                                                                  style="max-height: 215px;max-width: 100%;" class="mx-auto d-block">
                       @else
                       <img src="{{ asset('build/images/products/default.png')}}" alt=""
@@ -275,7 +292,7 @@
 <!----------------------------------------------end getro code------------------------------------------------------------------------------------->
 
                     <div class="mt-4 text-center">
-                        <a href="#" class="btn btn-soft-primary btn-hover">View All Products
+                        <a href="{{route('products_left') }}" class="btn btn-soft-primary btn-hover">View All Products
                             <i class="mdi mdi-arrow-right align-middle ms-1"></i>
                         </a>
                     </div>

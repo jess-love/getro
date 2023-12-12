@@ -33,6 +33,14 @@ class HomeController extends Controller
     }
 
 
+    public function product(Request $request){
+
+        $produit = Product::all()->find($request->id);
+
+        return view('product-details',compact('produit'));
+
+    }
+
   public function lang($locale) {
 
         if ($locale) {

@@ -7,43 +7,53 @@
                     <img src="{{ URL::asset('build/images/logo2.png') }}" alt="" height="28%" width="160" class="logo-dark">
                     <p class="footer-desc mt-4 mb-2 me-3">Bel Mache offre la meilleure expérience de mode pour hommes et femmes au meilleur prix. Nous suivons la nouvelle approche de la mode pour donner la meilleure sensation haut de gamme.</p>
 
+{{--                    <div class="footer-social mt-4">--}}
+{{--                        <ul class="list-inline mb-0">--}}
+{{--                            <li class="list-inline-item">--}}
+{{--                                <a href="#!" class="text-reset"><i class="mdi mdi-facebook"></i></a>--}}
+{{--                            </li>--}}
+{{--                            <li class="list-inline-item">--}}
+{{--                                <a href="#!" class="text-reset"><i class="mdi mdi-twitter"></i></a>--}}
+{{--                            </li>--}}
+{{--                            <li class="list-inline-item">--}}
+{{--                                <a href="#!" class="text-reset"><i class="mdi mdi-google"></i></a>--}}
+{{--                            </li>--}}
+{{--                            <li class="list-inline-item">--}}
+{{--                                <a href="#!" class="text-reset"><i class="mdi mdi-pinterest"></i></a>--}}
+{{--                            </li>--}}
+{{--                        </ul>--}}
+{{--                    </div>--}}
                     <div class="footer-social mt-4">
                         <ul class="list-inline mb-0">
                             <li class="list-inline-item">
-                                <a href="#!" class="text-reset"><i class="mdi mdi-facebook"></i></a>
+                                <a href="https://www.facebook.com/mariejessy.bouquet" class="text-reset" target="_blank">
+                                    <i class="mdi mdi-facebook"></i>
+                                </a>
                             </li>
                             <li class="list-inline-item">
-                                <a href="#!" class="text-reset"><i class="mdi mdi-twitter"></i></a>
+                                <a href="https://twitter.com/jessy_bouq6820" class="text-reset" target="_blank">
+                                    <i class="mdi mdi-twitter"></i></a>
                             </li>
                             <li class="list-inline-item">
-                                <a href="#!" class="text-reset"><i class="mdi mdi-google"></i></a>
+                                <a href="https://www.instagram.com/cestm3jess/" class="text-reset" target="_blank">
+                                    <i class="mdi mdi-instagram"></i></a>
                             </li>
                             <li class="list-inline-item">
-                                <a href="#!" class="text-reset"><i class="mdi mdi-pinterest"></i></a>
+                                <a href="https://mail.google.com/mail/u/2/" class="text-reset" target="_blank">
+                                    <i class="mdi mdi-google"></i></a>
                             </li>
                         </ul>
                     </div>
+
                 </div>
             </div>
             <div class="col-lg-8">
                 <div class="row pl-0 pl-lg-3">
                     <div class="col-md-3">
                         <div class="mt-lg-0 mt-4">
-                            <h5 class="footer-title">Categories</h5>
-                            <ul class="list-unstyled footer-link mt-3">
-                                <li><a href="#!">Homme/Femme</a></li>
-                                <li><a href="#!">Bijoux</a></li>
-                                <li><a href="#!">Accessoires</a></li>
-                                <li><a href="#!">Vetements</a></li>
-                                <li><a href="#!">Beaute</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="mt-lg-0 mt-4">
                             <h5 class="footer-title">Information</h5>
                             <ul class="list-unstyled footer-link mt-3">
-                                <li><a href="#!">Service personnalisé</a></li>
+                                <li><a href="{{route("CategoryProduct")}}">Catégories</a></li>
                                 <li><a href="#!">FAQs</a></li>
                                 <li><a href="#!">Commande</a></li>
                                 <li><a href="#!">Suivi</a></li>
