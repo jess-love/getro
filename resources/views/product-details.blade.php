@@ -96,7 +96,7 @@
                     <!--end row-->
                 </div>
                 <!--end col-->
-                <div class="col-lg-5 ms-auto">
+                <div class="col-lg-5 ms-auto product_data">
                     <div class="ecommerce-product-widgets mt-4 mt-lg-0">
                         <div class="mb-4">
                             <div class="d-flex gap-3 mb-2">
@@ -160,6 +160,7 @@
                             </ul>
                         </div>
                         <div class="d-flex align-items-center mb-4">
+                            <input type="hidden" value="{{$products->id}}" class="prod_id">
                             <h5 class="fs-15 mb-0">Quantity:</h5>
 
                             <div class="input-step ms-2">
@@ -793,7 +794,7 @@
                                 <h5 class="mb-0">$209.99</h5>
                             </div>
                             <div class="mt-3">
-                                <a href="shop-cart" class="btn btn-primary w-100 add-btn"><i
+                                <a href="shop-cart" class="btn btn-primary w-100 add-btn AddToCart"><i
                                         class="mdi mdi-cart me-1"></i> Add To Cart</a>
                             </div>
                         </div>
