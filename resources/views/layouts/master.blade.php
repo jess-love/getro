@@ -39,18 +39,6 @@
 <script>
 
 
-    $(document).ready(function (){
-        $(".AddToCart").click(function (e){
-            e.preventDefault();
-
-            var product_id = $(this).closest('.product_data').find('.prod_id').val();
-            var product_qty = $(this).closest('.product_data').find('.qty-input').val();
-
-
-        });
-    });
-
-
       $(document).ready(function (){
         $(".increment-btn").click(function (e){
             e.preventDefault();

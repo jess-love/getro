@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cart as Cart;
 use App\Models\Product;
-use Gloudemans\Shoppingcart\Facades\Cart;
 use http\Env\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,50 +13,39 @@ class CartController extends Controller
     //
 
     public function AddToCart(Request $request){
-        if (Auth::check()){
-            $product = Product::with('product_images')->find($request->id);
-            if ($product == null){
-                return Response()->json([
-                    'status' => false,
-                    'message' => 'Product not found'
-                ]);
-            }
-            if (Cart::count() > 0){
-                $cartContent = Cart::content();
-                $produitAlreadyExist = false;
 
-                foreach ($cartContent as  $item){
-                    if ($item->id == $product->id){
-                        $produitAlreadyExist = true;
-                    }
-                }
-                if ($produitAlreadyExist === false){
-                    Cart::add($product->id, $product->title, $product->qty, $product->unit_price, ['productImage' => (!empty($product->product_images)) ? $product->product_images->first() : '',]);
+        $product_id = $request->input('product_id');
+        $product_qty = $request->input('product_qty');
 
-                    $status = true;
-                    $message = $product->title.'added in cart';
+        if(Auth::check()){
+            $prod_check = Product::where('id', $product_id)->first();
+
+            if($prod_check){
+                if(Cart::where('product_id',$product_id)->where('user_id',Auth::id())->exists()){
+
+                    return response()->json(['status' =>$prod_check->title."  Already added To Cart"]);
+
                 }else{
-                    $status = false;
-                    $message = $product->title.'already added in cart';
+                    $cartItem = new Cart();
+                    $cartItem->product_id = $product_id;
+                    $cartItem->user_id = Auth::id();
+                    $cartItem->quantity = $product_qty;
+                    $cartItem->save();
+                    return response()->json(['status' =>$prod_check->title." added To Cart"]);
+
                 }
 
-            }else{
-                //cart is empty
-                Cart::add($product->id, $product->title, $product->qty, $product->unit_price, ['productImage' => (!empty($product->product_images)) ? $product->product_images->first() : '']);
-                $status = true;
-                $message = $product->title.'added in cart';
             }
-            return Response()->json([
-                'status' => $status,
-                'message' => $message
-            ]);
-        }else{
-
-            return redirect('/login');
         }
+        
 
     }
 
+    
+    
+    
+    
+    
     public function shopcart(){
         $cartContent = Cart::content();
         $data['cartContent'] = $cartContent;

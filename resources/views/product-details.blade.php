@@ -32,7 +32,7 @@
 
     <section class="section">
         <div class="container">
-            <div class="row gx-2">
+            <div class="row gx-2 product_data">
                 <div class="col-lg-6">
                     <div class="row">
                         <div class="col-md-2">
@@ -79,7 +79,7 @@
                         <div class="col-lg-12">
                             <div class="mt-3">
                                 <div class="hstack gap-2">
-                                    <a href="javascript:void(0);" onclick="AddToCart({{$products->id}});" class="btn btn-success btn-hover w-100">
+                                    <a href="" class="btn btn-success btn-hover w-100 AddToCart">
                                         <i class="bi bi-basket2 me-2"></i> Add To Cart
                                     </a>
                                     <button type="button" class="btn btn-primary btn-hover w-100">
@@ -96,7 +96,7 @@
                     <!--end row-->
                 </div>
                 <!--end col-->
-                <div class="col-lg-5 ms-auto product_data">
+                <div class="col-lg-5 ms-auto ">
                     <div class="ecommerce-product-widgets mt-4 mt-lg-0">
                         <div class="mb-4">
                             <div class="d-flex gap-3 mb-2">
@@ -1020,23 +1020,34 @@
 
     <!-- landing-index js -->
     <script src="{{ URL::asset('build/js/frontend/menu.init.js') }}"></script>
+    <link href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
 
 
-{{--    <script >--}}
-{{--        $(document).ready(function (){--}}
-{{--            $(".increment-btn").click(function (e){--}}
-{{--                e.preventDefault();--}}
+   <script >
+    $(document).ready(function (){
+        $(".AddToCart").click(function (e){
+            e.preventDefault();
 
-{{--                var inc_value = $(".qty-input").val();--}}
-{{--                var value = parseInt(inc_value,10);--}}
-{{--                value = isNaN(value) ? 0 : value;--}}
-{{--                if(value < 10){--}}
-{{--                    value++;--}}
-{{--                    $(".qty-input").val(value);--}}
-{{--                }--}}
-{{--            });--}}
-{{--        });--}}
-{{--    </script>--}}
+            var product_id = $(this).closest('.product_data').find('.prod_id').val();
+            var product_qty = $(this).closest('.product_data').find('.qty-input').val();
+
+            $.ajax({
+                method: 'POST',
+                url: "/add-to-cart",
+                data: {
+                    product_id: product_id,
+                    product_qty: product_qty,
+                },
+                success: function(response) {
+                    Swal.fire(response.status);
+                },
+            });
+
+
+        });
+    });
+   </script>
 @endsection
 
 
