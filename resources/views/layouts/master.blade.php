@@ -38,25 +38,58 @@
 </html>
 <script>
 
+
+      $(document).ready(function (){
+        $(".increment-btn").click(function (e){
+            e.preventDefault();
+
+            var inc_value = $(".qty-input").val();
+            var value = parseInt(inc_value,10);
+            value = isNaN(value) ? 0 : value;
+            if(value < 10){
+                value++;
+                $(".qty-input").val(value);
+            }
+        });
+     });
+
+
+      $(document).ready(function (){
+          $(".decrement-btn").click(function (e){
+              e.preventDefault();
+
+              var dec_value = $(".qty-input").val();
+              var value = parseInt(dec_value,10);
+              value = isNaN(value) ? 0 : value;
+              if(value > 1 ){
+                  value--;
+                  $(".qty-input").val(value);
+              }
+          });
+      });
+
+
+
+
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
 
-    $(document).ready(function (){
-        $('.increment_btn').click(function (e){
-            e.preventDefault();
-
-             var inc_value = $('.qty_input').val();
-             var value = parseInt(inc_value,10);
-             value = isNaN(value) ? 0: value;
-             if(value<10){
-                 value++;
-                 $('qty_input').val(value);
-             }
-        });
-    });
+    // $(document).ready(function (){
+    //     $('.increment_btn').click(function (e){
+    //         e.preventDefault();
+    //
+    //          var inc_value = $('.qty_input').val();
+    //          var value = parseInt(inc_value,10);
+    //          value = isNaN(value) ? 0: value;
+    //          if(value<10){
+    //              value++;
+    //              $('qty_input').val(value);
+    //          }
+    //     });
+    // });
 
     {{--function AddToCart(id){--}}
     {{--    $.ajax({--}}

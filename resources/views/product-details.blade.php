@@ -163,9 +163,9 @@
                             <h5 class="fs-15 mb-0">Quantity:</h5>
 
                             <div class="input-step ms-2">
-                                <button class="minus">–</button>
-                                    <input name="quantity" type="number" class="product-quantity1 qty_input" value="1" min="0" max="100">
-                                <button class="plus increment_btn">+</button>
+                                <button class="decrement-btn">–</button>
+                                    <input name="quantity" type="number" class="qty-input" value="1" min="0" max="100">
+                                <button class="increment-btn">+</button>
                             </div>
 
                         </div>
@@ -1019,22 +1019,25 @@
 
     <!-- landing-index js -->
     <script src="{{ URL::asset('build/js/frontend/menu.init.js') }}"></script>
+
+
+{{--    <script >--}}
+{{--        $(document).ready(function (){--}}
+{{--            $(".increment-btn").click(function (e){--}}
+{{--                e.preventDefault();--}}
+
+{{--                var inc_value = $(".qty-input").val();--}}
+{{--                var value = parseInt(inc_value,10);--}}
+{{--                value = isNaN(value) ? 0 : value;--}}
+{{--                if(value < 10){--}}
+{{--                    value++;--}}
+{{--                    $(".qty-input").val(value);--}}
+{{--                }--}}
+{{--            });--}}
+{{--        });--}}
+{{--    </script>--}}
 @endsection
 
 
-<script >
-    $(document).ready(function (){
-        $('.increment_btn').click(function (e){
-            e.preventDefault();
 
-           var inc_value = $('.qty_input').val();
-            var value = parseInt(inc_value,10);
-            value = isNaN(value) ? 0 : value;
-            if(value <10){
-                value++;
-                $('qty_input').val(value);
-            }
-        });
-    });
-</script>
 
