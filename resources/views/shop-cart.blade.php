@@ -53,18 +53,13 @@
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
                     @endif
-
-{{--                    @if(Session::has('error'))--}}
-{{--                        <div class="alert alert-danger alert-dismissible fade show" role="alert">--}}
-{{--                            {{Session::get('error')}}--}}
-{{--                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>--}}
-{{--                        </div>--}}
-{{--                    @endif--}}
-
-                   @if( !empty($cartContent))
-{{--                        {{dd($cartContent )}}--}}
-                       @foreach($cartContent as $item)
-                     <div class="card product product_data">
+                @if($cartContent->isNotEmpty())
+                    @foreach($cartContent as $item)
+                       @php
+                         $itemtotal = 0;
+                         $itemtotal += $item->products->unit_price * $item->quantity;
+                       @endphp
+                       <div class="card product product_data">
                         <div class="card-body p-4 ">
                             <div class="row gy-3">
                                 <div class="col-sm-auto">
@@ -83,6 +78,7 @@
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="col-sm">
                                     <a href="#!">
                                         <h5 class="fs-16 lh-base mb-1">{{$item->products->title}}</h5>
@@ -93,11 +89,11 @@
                                     </ul>
 
                                     <div class="input-step ms-2">
-                                        {{ csrf_field() }}
+{{--                                        {{ csrf_field() }}--}}
                                         <input type="hidden" value="{{$item->id}}" class="prod_id">
-                                        <button class="decrement-btn">–</button>
+                                        <button class="decrement-btn changeQty">–</button>
                                             <input name="quantity" type="number" class="qty-input" value="{{$item->quantity}}" min="0" max="100">
-                                        <button class="increment-btn">+</button>
+                                        <button class="increment-btn changeQty">+</button>
                                     </div>
 
                                 </div>
@@ -127,15 +123,15 @@
                                 <div class="col-sm-auto">
                                     <div class="d-flex align-items-center gap-2 text-muted">
                                         <div>Total :</div>
-                                        <h5 class="fs-14 mb-0">$<span class="product-line-price">{{$item->products->unit_price*$item->quantity}}</span></h5>
+                                        <h5 class="fs-14 mb-0">$<span class="product-line-price">{{$itemtotal}}</span></h5>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <!-- end card footer -->
                     </div>
-                        @endforeach
-                    @else
+                    @endforeach
+                @else
                        <div class="col-md-12">
                            <div class="card">
                                <div class="card-body d-flex justify-content-center align-items-center">
@@ -147,7 +143,7 @@
 
                            </div>
                        </div>
-                    @endif
+                @endif
                     <!--end card-->
                 </div>
                 <!--end col-->
@@ -175,7 +171,7 @@
                                         <tbody>
                                         <tr>
                                             <td>Sub Total :</td>
-                                            <td class="text-end cart-subtotal">$ {{\Gloudemans\Shoppingcart\Facades\Cart::subtotal()}}</td>
+                                            <td class="text-end cart-subtotal">$ {{$itemtotal}}</td>
                                         </tr>
                                         <tr>
                                             <td>Discount <span class="text-muted">(Toner15)</span>:</td>

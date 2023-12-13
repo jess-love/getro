@@ -206,7 +206,7 @@
                         </di>
                     @endif
 
-                    <div class="row gallery-wrapper mt-4 pt-2">
+                    <div class="row gallery-wrapper mt-4 pt-2 product_data">
                         <!----------------------------------------------getro------------------------------------------------------------------------------------->
                         @if($produits->isNotEmpty())
                             @foreach($produits as $produit)
@@ -249,7 +249,9 @@
 
                                             </div>
                                             <div class="product-btn px-3">
-                                                <a href="javascript:void(0);" onclick="AddToCart({{$produit->id}});"  class="btn btn-primary btn-sm w-75 add-btn">
+                                                <input type="hidden" value="1" class="qty-input">
+                                                <a href="" class="btn btn-primary btn-sm w-75 AddToCart">
+                                                    <input type="hidden" value="{{$produit->id}}" class="prod_id">
                                                     <i class="mdi mdi-cart me-1"></i> Add to cart
                                                 </a>
                                             </div>
@@ -836,25 +838,5 @@
 
     <script src="{{ URL::asset('build/js/frontend/menu.init.js') }}"></script>
 
-    {{--    <script type="text/javascript">--}}
-    {{--        function AddToCart(id){--}}
-
-    {{--            $.ajax({--}}
-    {{--                url: '{{route("addToCart")}}',--}}
-    {{--                type: 'post',--}}
-    {{--                data: {id:id},--}}
-    {{--                datatype: 'json',--}}
-    {{--                success: function (response){--}}
-    {{--                    if(response.status === true){--}}
-    {{--                        window.location.href='{{ route("shopCart") }}';--}}
-    {{--                    }else{--}}
-    {{--                        alert(response.message);--}}
-    {{--                        //window.location.href="";--}}
-    {{--                    }--}}
-    {{--                }--}}
-    {{--            })--}}
-    {{--        }--}}
-
-    {{--    </script>--}}
 @endsection
 

@@ -1020,33 +1020,11 @@
 
     <!-- landing-index js -->
     <script src="{{ URL::asset('build/js/frontend/menu.init.js') }}"></script>
-    <link href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
+
 
 
    <script >
-    $(document).ready(function (){
-        $(".AddToCart").click(function (e){
-            e.preventDefault();
 
-            var product_id = $(this).closest('.product_data').find('.prod_id').val();
-            var product_qty = $(this).closest('.product_data').find('.qty-input').val();
-
-            $.ajax({
-                method: 'POST',
-                url: "/add-to-cart",
-                data: {
-                    product_id: product_id,
-                    product_qty: product_qty,
-                },
-                success: function(response) {
-                    Swal.fire(response.status);
-                },
-            });
-
-
-        });
-    });
    </script>
 @endsection
 
