@@ -245,7 +245,7 @@
             <div class="topbar-head-dropdown ms-1 header-item">
                 <button type="button" class="btn btn-icon btn-topbar btn-ghost-dark rounded-circle text-muted" data-bs-toggle="offcanvas" data-bs-target="#ecommerceCart" aria-controls="ecommerceCart">
                     <i class="ph-shopping-cart fs-18"></i>
-                    <span class="position-absolute topbar-badge cartitem-badge fs-10 translate-middle badge rounded-pill bg-danger">{{Cart::count()}}</span>
+                    <span class="position-absolute topbar-badge cartitem-badge fs-10 translate-middle badge rounded-pill bg-danger">4</span>
                 </button>
             </div>
 
@@ -286,7 +286,7 @@
 <!------------------------------------------------------------------------cart ---------------------------------------------------------------------------------------------------->
 <div class="offcanvas offcanvas-end product-list" tabindex="-1" id="ecommerceCart" aria-labelledby="ecommerceCartLabel">
     <div class="offcanvas-header border-bottom">
-        <h5 class="offcanvas-title" id="ecommerceCartLabel">My Cart <span class="badge bg-danger align-middle ms-1 cartitem-badge">{{\Gloudemans\Shoppingcart\Facades\Cart::count()}}</span></h5>
+        <h5 class="offcanvas-title" id="ecommerceCartLabel">My Cart <span class="badge bg-danger align-middle ms-1 cartitem-badge">4</span></h5>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body px-0">
@@ -315,7 +315,7 @@
                                     </a>
                                     <div class="d-flex mb-3 gap-2">
                                        <div class="text-muted fw-medium mb-0">$<span class="product-price">${{$item->price}}</span></div>
-                                        
+
                                     @if($item->qty > 0)
                                         <span class="text-success fw-medium">In Stock</span>
                                     @else
@@ -324,7 +324,7 @@
 
 
 
-                                        
+
                                     </div>
 
                                     <div class="input-step ">

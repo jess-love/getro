@@ -12,6 +12,10 @@
     <link rel="shortcut icon" href="{{ URL::asset('build/images/favicon.ico') }}">
     <link rel="stylesheet" type="text/css" href={{assert('build/jquery.exzoom.css')}}>
 
+    <link href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
+
+
     <!-- head css -->
     @include('layouts.head-css')
 </head>
@@ -31,135 +35,9 @@
     <!-- scripts -->
     @include('layouts.vendor-scripts')
     <script src="{{ URL::asset('build/jquery.exzoom.js') }}"></script>
-
+    <script src="{{ URL::asset('build/js/Jess.js') }}"></script>
 
 </body>
 
 </html>
-<script>
 
-
-      $(document).ready(function (){
-        $(".increment-btn").click(function (e){
-            e.preventDefault();
-
-            var inc_value = $(".qty-input").val();
-            var value = parseInt(inc_value,10);
-            value = isNaN(value) ? 0 : value;
-            if(value < 10){
-                value++;
-                $(".qty-input").val(value);
-            }
-        });
-     });
-
-
-      $(document).ready(function (){
-          $(".decrement-btn").click(function (e){
-              e.preventDefault();
-
-              var dec_value = $(".qty-input").val();
-              var value = parseInt(dec_value,10);
-              value = isNaN(value) ? 0 : value;
-              if(value > 1 ){
-                  value--;
-                  $(".qty-input").val(value);
-              }
-          });
-      });
-
-
-
-
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-
-    // $(document).ready(function (){
-    //     $('.increment_btn').click(function (e){
-    //         e.preventDefault();
-    //
-    //          var inc_value = $('.qty_input').val();
-    //          var value = parseInt(inc_value,10);
-    //          value = isNaN(value) ? 0: value;
-    //          if(value<10){
-    //              value++;
-    //              $('qty_input').val(value);
-    //          }
-    //     });
-    // });
-
-    {{--function AddToCart(id){--}}
-    {{--    $.ajax({--}}
-    {{--        url: '{{route("addToCart")}}',--}}
-    {{--        type: 'post',--}}
-    {{--        data: {id:id},--}}
-    {{--        datatype: 'json',--}}
-    {{--        success: function (response){--}}
-    {{--            if(response.status === true){--}}
-    {{--                window.location.reload();--}}
-    {{--                --}}{{-- href='{{ route("shopCart") }}'; --}}
-    {{--            }else{--}}
-    {{--                alert(response.message);--}}
-    {{--                //window.location.href="";--}}
-    {{--            }--}}
-    {{--        }--}}
-    {{--    })--}}
-    {{--}--}}
-
-
-    {{--$('.add').click(function(){--}}
-    {{--    var qtyElement = $(this).parent().prev(); // Qty Input--}}
-    {{--    var qtyValue = parseInt(qtyElement.val());--}}
-    {{--    if (qtyValue < 100) {--}}
-    {{--        qtyElement.val(qtyValue+1);--}}
-    {{--        var rowId = $(this).data('id');--}}
-    {{--        var newQty = qtyElement.val();--}}
-    {{--        updateCart(rowId, newQty);--}}
-    {{--    }--}}
-    {{--});--}}
-
-    {{--$('.minus').click(function(){--}}
-    {{--    var qtyElement = $(this).parent().next();--}}
-    {{--    var qtyValue = parseInt(qtyElement.val());--}}
-    {{--    if (qtyValue > 1) {--}}
-    {{--        qtyElement.val(qtyValue-1);--}}
-    {{--        var rowId = $(this).data('id');--}}
-    {{--        var newQty = qtyElement.val();--}}
-    {{--        updateCart(rowId, newQty);--}}
-    {{--    }--}}
-    {{--});--}}
-
-    {{--function updateCart(rowId, qty){--}}
-    {{--    $.ajax({--}}
-    {{--        url: '{{route("cart_update")}}',--}}
-    {{--        type: 'post',--}}
-    {{--        data: {rowId:rowId, qty:qty},--}}
-    {{--        dataType: 'json',--}}
-    {{--        success: function (response){--}}
-
-    {{--            window.location.reload();--}}
-    {{--            --}}{{-- location.href='{{ route("shopCart") }}'; --}}
-    {{--        }--}}
-    {{--    });--}}
-    {{--}--}}
-
-    {{--function deleteItem(rowId){--}}
-    {{--    if(confirm('are you sure you want to delete?')) {--}}
-    {{--        $.ajax({--}}
-    {{--            url: '{{route("delete_item")}}',--}}
-    {{--            type: 'post',--}}
-    {{--            data: {rowId: rowId},--}}
-    {{--            dataType: 'json',--}}
-    {{--            success: function (response) {--}}
-
-    {{--                window.location.reload();--}}
-    {{--                --}}{{-- location.href = '{{ route("shopCart") }}'; --}}
-    {{--            }--}}
-    {{--        });--}}
-    {{--    }--}}
-    {{--}--}}
-
-</script>
