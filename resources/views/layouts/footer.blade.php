@@ -54,10 +54,9 @@
                             <h5 class="footer-title">Information</h5>
                             <ul class="list-unstyled footer-link mt-3">
                                 <li><a href="{{route("CategoryProduct")}}">Catégories</a></li>
-                                <li><a href="#!">FAQs</a></li>
-                                <li><a href="#!">Commande</a></li>
-                                <li><a href="#!">Suivi</a></li>
-                                <li><a href="#!">Contact</a></li>
+                                <li><a href="ecommerce-faq">FAQs</a></li>
+                                <li><a href="track-order">Commande</a></li>
+                                <li><a href="contact-us">Contact</a></li>
                             </ul>
                         </div>
                     </div>
@@ -66,7 +65,7 @@
                         <div class="mt-lg-0 mt-4">
                             <h5 class="footer-title">Mon Compte</h5>
                             <ul class="list-unstyled footer-link mt-3">
-                                <li><a href="#!">Connexion</a></li>
+                                <li><a href="account">Connexion</a></li>
                                 <li><a href="#!">Voir panier</a></li>
                                 <li><a href="#!">Ma liste</a></li>
                                 <li><a href="#!">Suivre ma commande</a></li>

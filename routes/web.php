@@ -44,6 +44,8 @@ Route::get('/searches', [App\Http\Controllers\ProductController::class, 'Search_
 //abonnement au site  dans la page produit
 Route::post('/subscribe', [App\Http\Controllers\SubscriptionController::class, 'subscribe'])->name('subscribe');
 
+//route pour gerer les informations du compte de l'utilisateur
+Route::get('/my_account', [App\Http\Controllers\UserController::class, 'MonCompte'])->name('myaccount');
 
 
 //------------------cart route----------------------------------------

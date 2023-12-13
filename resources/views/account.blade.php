@@ -20,7 +20,7 @@
                             <img src="{{ URL::asset('build/images/users/avatar-1.jpg') }}" alt=""
                                 class="avatar-xl rounded p-1 bg-light mt-n3">
                             <div>
-                                <h5 class="fs-18">Raquel Murillo</h5>
+                                <h5 class="fs-18">{{ @Auth::user()->last_name }} {{ @Auth::user()->first_name }}!</h5>
                                 <div class="text-muted">
                                     <i class="bi bi-geo-alt"></i> Phoenix, USA
                                 </div>
@@ -94,47 +94,37 @@
                                             <div class="table-responsive table-card px-1">
                                                 <table class="table table-borderless table-sm">
                                                     <tbody>
+                                                    @foreach($user as $User)
                                                         <tr>
-                                                            <td>
-                                                                Customer Name
-                                                            </td>
+                                                            <td> Customer Name </td>
                                                             <td class="fw-medium">
-                                                                Raquel Murillo
+                                                                {{$User->last_name}}
                                                             </td>
                                                         </tr>
                                                         <tr>
-                                                            <td>
-                                                                Mobile / Phone Number
-                                                            </td>
+                                                            <td> Mobile / Phone Number </td>
+                                                            <td class="fw-medium">  +(253) 01234 5678  </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Email Address </td>
                                                             <td class="fw-medium">
-                                                                +(253) 01234 5678
+                                                                {{ @Auth::user()->email }}
                                                             </td>
                                                         </tr>
                                                         <tr>
-                                                            <td>
-                                                                Email Address
-                                                            </td>
-                                                            <td class="fw-medium">
-                                                                raque@toner.com
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                Location
-                                                            </td>
+                                                            <td> Location</td>
                                                             <td class="fw-medium">
                                                                 Phoenix, USA
                                                             </td>
                                                         </tr>
                                                         <tr>
-                                                            <td>
-                                                                Since Member
-                                                            </td>
+                                                            <td> Since Member </td>
                                                             <td class="fw-medium">
                                                                 Aug, 2022
                                                             </td>
                                                         </tr>
                                                     </tbody>
+                                                    @endforeach
                                                 </table>
                                             </div>
 
