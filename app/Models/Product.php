@@ -10,4 +10,9 @@ class Product extends Model
     public function product_images(){
         return $this->hasMany(product_images::class);
     }
+
+    public function carts()
+    {
+        return $this->hasMany(Cart::class);
+    }
 }

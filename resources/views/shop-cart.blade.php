@@ -53,12 +53,12 @@
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
                     @endif
+
+                    {{dd($cartContent);}}
                 @if($cartContent->isNotEmpty())
+                
                     @foreach($cartContent as $item)
-                       @php
-                         $itemtotal = 0;
-                         $itemtotal += $item->products->unit_price * $item->quantity;
-                       @endphp
+                       
                        <div class="card product product_data">
                         <div class="card-body p-4 ">
                             <div class="row gy-3">
@@ -123,7 +123,7 @@
                                 <div class="col-sm-auto">
                                     <div class="d-flex align-items-center gap-2 text-muted">
                                         <div>Total :</div>
-                                        <h5 class="fs-14 mb-0">$<span class="product-line-price">{{$itemtotal}}</span></h5>
+                                        <h5 class="fs-14 mb-0">$<span class="product-line-price">8</span></h5>
                                     </div>
                                 </div>
                             </div>
@@ -171,7 +171,7 @@
                                         <tbody>
                                         <tr>
                                             <td>Sub Total :</td>
-                                            <td class="text-end cart-subtotal">$ {{$itemtotal}}</td>
+                                            <td class="text-end cart-subtotal">$ 9</td>
                                         </tr>
                                         <tr>
                                             <td>Discount <span class="text-muted">(Toner15)</span>:</td>
