@@ -54,7 +54,7 @@
                         </div>
                     @endif
 
-                    {{dd($cartContent);}}
+                    {{-- {{dd($cartContent);}} --}}
                 @if($cartContent->isNotEmpty())
                 
                     @foreach($cartContent as $item)
