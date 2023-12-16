@@ -9,43 +9,87 @@ use http\Env\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use function Laravel\Prompts\alert;
+use Illuminate\Support\Facades\Log;
 
 class CartController extends Controller
 {
     //
 
+
     public function AddToCart(Request $request){
-        $request->validate([
-            'product_id' => 'required',
-            'product_qty' => 'numeric|min:1',
-        ]);
+        try {
+            $request->validate([
+                'product_id' => 'required',
+                'product_qty' => 'numeric|min:1',
+            ]);
 
-        $product_id = $request->input('product_id');
-        $product_qty = $request->input('product_qty',1);
+            $product_id = $request->input('product_id');
+            $product_qty = $request->input('product_qty',1);
 
-        if(Auth::check()){
-            $prod_check = Product::where('id', $product_id)->first();
-
-            if($prod_check){
-                if(Cart::where('product_id',$product_id)->where('user_id',Auth::id())->exists()){
-
-                    return response()->json(['status' =>$prod_check->title."  Already added To Cart"]);
-
-                }else{
-                    $cartItem = new Cart();
-                    $cartItem->product_id = $product_id;
-                    $cartItem->user_id = Auth::id();
-                    $cartItem->quantity = $product_qty;
-                    $cartItem->save();
-                    return response()->json(['status' =>$prod_check->title." added To Cart"]);
-
-                }
-
+            if ($product_qty <= 0) {
+                return response()->json(['error' => 'Invalid quantity'], 400);
             }
+            if(Auth::check()){
+                $prod_check = Product::where('id', $product_id)->first();
+
+                if($prod_check){
+                    if(Cart::where('product_id', $product_id)->where('user_id', Auth::id())->exists()) {
+                        return response()->json(['status' => $prod_check->title."  Already added To Cart"]);
+                    } else {
+                        $cartItem = new Cart();
+                        $cartItem->product_id = $product_id;
+                        $cartItem->user_id = Auth::id();
+                        $cartItem->quantity = $product_qty;
+                        $cartItem->save();
+                        return response()->json(['status' => $prod_check->title." added To Cart"]);
+                    }
+                }
+            }
+
+            // Si le code atteint cette ligne, cela signifie que le bloc Auth::check() a échoué.
+            Log::error('Authentication check failed.');
+
+            return response()->json(['error' => 'Authentication check failed'], 500);
+        } catch (\Exception $e) {
+            // Capture et enregistrez l'exception
+            Log::error('Exception: ' . $e->getMessage());
+
+            return response()->json(['error' => $e->getMessage()], 500);
         }
-
-
     }
+
+//    public function AddToCart(Request $request){
+//        $request->validate([
+//            'product_id' => 'required',
+//            'product_qty' => 'numeric|min:1',
+//        ]);
+//
+//        $product_id = $request->input('product_id');
+//        $product_qty = $request->input('product_qty');
+//
+//        if(Auth::check()){
+//            $prod_check = Product::where('id', $product_id)->first();
+//
+//            if($prod_check){
+//                if(Cart::where('product_id',$product_id)->where('user_id',Auth::id())->exists()){
+//
+//                    return response()->json(['status' =>$prod_check->title."  Already added To Cart"]);
+//
+//                }else{
+//                    $cartItem = new Cart();
+//                    $cartItem->product_id = $product_id;
+//                    $cartItem->user_id = Auth::id();
+//                    $cartItem->quantity = $product_qty;
+//                    $cartItem->save();
+//                    return response()->json(['status' =>$prod_check->title." added To Cart"]);
+//
+//                }
+//
+//            }
+//        }
+//
+//
+//    }
 
 
     public function ViewCart() {
@@ -80,6 +124,7 @@ class CartController extends Controller
                     $cart = Cart::where('product_id', $prod_id)->where('user_id', Auth::id())->first();
                     $cart->quantity = $qty;
                     $cart->save();
+//                    \Log::info('Tentative de mise à jour de la quantité - Product ID: ' . $prod_id . ', Quantity: ' . $qty);
 
                     return response()->json(['status' => "quantity updated successfully"]);
                 }

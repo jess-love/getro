@@ -58,7 +58,7 @@
                         <div class="col-md-10">
                             <div class="bg-light rounded-2 position-relative ribbon-box overflow-hidden">
                                 <div class="ribbon ribbon-danger ribbon-shape trending-ribbon">
-                                    <span class="trending-ribbon-text">Trending</span> <i
+                                    <span class="trending-ribbon-text">{{$products->slog}}</span> <i
                                         class="ri-flashlight-fill text-white align-bottom float-end ms-1"></i>
                                 </div>
                                 <div class="swiper productSwiper2">
@@ -79,8 +79,12 @@
                         <div class="col-lg-12">
                             <div class="mt-3">
                                 <div class="hstack gap-2">
-                                    <a href="" class="btn btn-success btn-hover w-100 AddToCart">
-                                        <i class="bi bi-basket2 me-2"></i> Add To Cart
+{{--                                    <a href="" class="btn btn-success btn-hover w-100 AddToCart">--}}
+{{--                                        <i class="bi bi-basket2 me-2"></i> Add To Cart--}}
+{{--                                    </a>--}}
+                                    <a href="shop-cart" class="btn btn-primary w-100 add-btn AddToCart">
+                                        <input type="hidden" value="{{$products->id}}" class="prod_id">
+                                        <i class="mdi mdi-cart me-1"></i> Add To Cart
                                     </a>
                                     <button type="button" class="btn btn-primary btn-hover w-100">
                                         <i class="bi bi-cart2 me-2"></i> Buy Now
