@@ -117,11 +117,11 @@
                             <ul class="list-unstyled vstack gap-2">
 
                                 @if($products->qty > 0)
-                                    <li class=""><i class="bi bi-check2-circle me-2 align-middle text-success"></i>In
+                                    <li class=""><i class="bi bi-check2-circle me-2 align-middle text-success"></i>En
                                         stock</li>
                                 @else
-                                    <li class=""><i class="bi bi-check2-square me-2 align-middle text-danger"></i>Out of
-                                        stock now</li>
+                                    <li class=""><i class="bi bi-check2-square me-2 align-middle text-danger"></i>Pas en
+                                        stock maintenant</li>
                                 @endif
 
 
@@ -165,7 +165,7 @@
 
                             <div class="input-step ms-2">
                                 <button class="decrement-btn">–</button>
-                                    <input name="quantity" type="number" class="qty-input" value="1" min="0" max="100">
+                                    <input name="quantity" type="number" class="qty-input"  value="1" min="1" max="100">
                                 <button class="increment-btn">+</button>
                             </div>
 
