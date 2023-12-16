@@ -15,7 +15,6 @@ return new class extends Migration
             $table->string('phone')->after('city')->nullable();
         });
     }
-
     /**
      * Reverse the migrations.
      */

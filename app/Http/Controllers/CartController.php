@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cart;
 use App\Models\Product;
+use App\Models\product_images;
 use http\Env\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -14,9 +15,13 @@ class CartController extends Controller
     //
 
     public function AddToCart(Request $request){
+        $request->validate([
+            'product_id' => 'required',
+            'product_qty' => 'numeric|min:1',
+        ]);
 
         $product_id = $request->input('product_id');
-        $product_qty = $request->input('product_qty');
+        $product_qty = $request->input('product_qty',1);
 
         if(Auth::check()){
             $prod_check = Product::where('id', $product_id)->first();
@@ -42,31 +47,48 @@ class CartController extends Controller
 
     }
 
-    public function ViewCart(){
 
-        $cartContent = Cart::where('user_id', Auth::id())->get();
-        return view('shop-cart',compact('cartContent'));
+    public function ViewCart() {
+        $user = Auth::user();
+        $productsWithImages = Product::with(['product_images', 'cart'])->whereHas('cart', function($query) use ($user) {
+            $query->where('user_id', $user->id);
+        })->get();
+        $products = Product::with('product_images')
+            ->where('slog', 'New Arrival')
+            ->where('status', 1)
+            ->take(4)
+            ->get();
+//        dd($products);
+        return view('shop-cart', compact('productsWithImages', 'user', 'products'));
     }
 
 
 
-
-    public function updateCart(Request $request){
+    public function updateCart(Request $request)
+    {
+        $request->validate([
+            'product_id' => 'required',
+            'product_qty' => 'required|numeric|min:1',
+        ]);
 
         $prod_id = $request->input('product_id');
         $qty = $request->input('product_qty');
 
-        if(Auth::check()){
-            if(Cart::where('product_id',$prod_id)->where('user_id',Auth::id())->exists()){
-                $cart = Cart::where('product_id',$prod_id)->where('user_id',Auth::id())->first();
-                $cart->quantity = $qty;
-                $cart->update();
+        try {
+            if (Auth::check()) {
+                if (Cart::where('product_id', $prod_id)->where('user_id', Auth::id())->exists()) {
+                    $cart = Cart::where('product_id', $prod_id)->where('user_id', Auth::id())->first();
+                    $cart->quantity = $qty;
+                    $cart->save();
 
-                return response()->json(['status'=> "quantity updated successfully"]);
+                    return response()->json(['status' => "quantity updated successfully"]);
+                }
             }
-
-            }
+        } catch (\Exception $e) {
+            return response()->json(['status' => "error updating quantity"]);
+        }
     }
+
 
 
 
@@ -75,14 +97,39 @@ class CartController extends Controller
             $prod_id = $request->input('prod_id');
             if(Cart::where('product_id',$prod_id)->where('user_id',Auth::id())->exists()){
                 $cartItem = Cart::where('product_id',$prod_id)->where('user_id',Auth::id())->first();
-                $cartItem->delete();
-
-                return response()->json(['status'=> "Product Deleted successfully"]);
+                if ($cartItem) {
+                    $cartItem->delete();
+                    return response()->json(['status' => "Product Deleted successfully"]);
+                } else {
+                    return response()->json(['status' => "Product not found"]);
+                }
             }
 
         }else{
             return response()->json(['status',"login to continue"]);
         }
+    }
+
+    public function emptyCart(Request $request){
+        if(Auth::check()){
+            // Supprimez tous les éléments du panier pour l'utilisateur authentifié
+            Cart::where('user_id', Auth::id())->delete();
+            return response()->json(['status' => "Cart Emptied successfully"]);
+        } else {
+            return response()->json(['status',"Login to continue"]);
+        }
+    }
+
+
+
+    public function ProductInCart(){
+        $products = Product::with('product_images')
+            ->where('slog', 'New Arrival')
+            ->where('status', 1)
+            ->take(4)
+            ->get();
+//        dd($products);
+        return view('shop-cart',compact('products'));
     }
 
 }

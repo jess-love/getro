@@ -6,6 +6,7 @@
         background-color: yellow; /* Changez cette couleur selon vos préférences */
     }
 </style>
+
 </head>
 <nav class="navbar navbar-expand-lg ecommerce-navbar" id="navbar">
     <div class="container">
@@ -245,7 +246,11 @@
             <div class="topbar-head-dropdown ms-1 header-item">
                 <button type="button" class="btn btn-icon btn-topbar btn-ghost-dark rounded-circle text-muted" data-bs-toggle="offcanvas" data-bs-target="#ecommerceCart" aria-controls="ecommerceCart">
                     <i class="ph-shopping-cart fs-18"></i>
-                    <span class="position-absolute topbar-badge cartitem-badge fs-10 translate-middle badge rounded-pill bg-danger">4</span>
+                    @if(collect($productsWithImages)->isNotEmpty())
+                      <span class="position-absolute topbar-badge cartitem-badge fs-10 translate-middle badge rounded-pill bg-danger">{{ count($productsWithImages) }}</span>
+                    @else
+
+                    @endif
                 </button>
             </div>
 
@@ -284,23 +289,39 @@
 </nav>
 
 <!------------------------------------------------------------------------cart ---------------------------------------------------------------------------------------------------->
-<div class="offcanvas offcanvas-end product-list" tabindex="-1" id="ecommerceCart" aria-labelledby="ecommerceCartLabel">
-    <div class="offcanvas-header border-bottom">
-        <h5 class="offcanvas-title" id="ecommerceCartLabel">My Cart <span class="badge bg-danger align-middle ms-1 cartitem-badge">4</span></h5>
+<div class="offcanvas offcanvas-end product-list  product_data" tabindex="-1" id="ecommerceCart" aria-labelledby="ecommerceCartLabel">
+    <div class="offcanvas-header border-bottom ">
+{{--        <h5 class="offcanvas-title" id="ecommerceCartLabel">Mon Panier <span class="badge bg-danger align-middle ms-1 cartitem-badge">4</span></h5>--}}
+        @if(collect($productsWithImages)->isNotEmpty())
+            <h5 class="offcanvas-title" id="ecommerceCartLabel">Mon Panier <span class="badge bg-danger align-middle ms-1 cartitem-badge">{{ count($productsWithImages) }}</span></h5>
+        @else
+
+        @endif
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
-    <div class="offcanvas-body px-0">
-        <div data-simplebar  class="h-100">
-            <ul class="list-group list-group-flush cartlist">
-                    @if( Gloudemans\Shoppingcart\Facades\Cart::count() > 0)
-                       @foreach(Gloudemans\Shoppingcart\Facades\Cart::content() as $item)
+    <div class="offcanvas-body px-0 product_data">
+        <div data-simplebar  class="h-100 ">
+            <ul class="list-group list-group-flush cartlist ">
+                @php
+                    $totalAmount = 0;
+                @endphp
+                    @if(collect($productsWithImages)->isNotEmpty())
+                       @foreach($productsWithImages as $item)
+
+                        @php
+                            $itemtotal = 0;
+                            if ($item && $item->cart) {
+                                $itemtotal += $item->unit_price * $item->cart->quantity;
+                            }
+                            $totalAmount += $itemtotal;
+                        @endphp
                         <li class="list-group-item product">
                             <div class="d-flex gap-3">
                                 <div class="flex-shrink-0">
                                     <div class="avatar-md" style="height: 100%;">
                                         <div class="avatar-title bg-warning-subtle rounded-3">
-                                            @if(!empty($item->options->productImage->image))
-                                                    <img src="{{ asset('build/images/products/'.$item->options->productImage->image) }}" alt=""
+                                            @if(!empty($item->product_images->first()->image))
+                                                    <img src="{{ asset('build/images/products/'.$item->product_images->first()->image) }}" alt=""
                                                          style="max-height: 215px;max-width: 100%;" class="mx-auto d-block">
                                                 @else
                                                     <img src="{{ asset('build/images/products/default.png')}}" alt=""
@@ -311,34 +332,33 @@
                                 </div>
                                 <div class="flex-grow-1">
                                     <a href="#!">
-                                       <h5 class="fs-15">{{$item->name}}</h5>
+                                       <h5 class="fs-15">{{ $item->title}}</h5>
                                     </a>
                                     <div class="d-flex mb-3 gap-2">
-                                       <div class="text-muted fw-medium mb-0">$<span class="product-price">${{$item->price}}</span></div>
+                                       <div class="text-muted fw-medium mb-0">HTG<span class="product-price">{{ $item->unit_price ?? 'N/A' }}</span></div>
 
                                     @if($item->qty > 0)
                                         <span class="text-success fw-medium">In Stock</span>
                                     @else
                                         <span class="text-success fw-medium">Out of stock</span>
                                     @endif
-
-
-
-
                                     </div>
 
-                                    <div class="input-step ">
-                                        <button class=" sub" data-id="{{$item->rowId}}">-</button>
-                                    </div>
-                                        <input type="number" value="{{$item->qty}}" class="input-step p-1 pt-2 text-center" style="width: 40px">
-                                    <div class="input-step ">
-                                        <button class=" add" data-id="{{$item->rowId}}">+</button>
+                                    <div class="input-step ms-2">
+                                        <input type="hidden" value="{{ $item->id }}" class="prod_id">
+                                        <button class="decrement-btn changeQty">–</button>
+                                        <input name="quantity" type="number" class="qty-input" value="{{ $item->cart->quantity ?? 'N/A' }}" min="0" max="100">
+                                        <button class="increment-btn changeQty">+</button>
                                     </div>
 
                                 </div>
                                 <div class="flex-shrink-0 d-flex flex-column justify-content-between align-items-end">
-                                    <button type="button" class="btn btn-icon btn-sm btn-ghost-secondary remove-item-btn cart_remove" data-bs-toggle="modal" onclick="deleteItem('{{$item->rowId}}')"><i class="ri-close-fill fs-16"></i></button>
-                                   <div class="fw-medium mb-0 fs-16">$<span class="product-line-price">{{$item->price*$item->qty}}</span></div>
+                                    <button type="button" class="btn btn-icon btn-sm btn-ghost-secondary remove-item-btn cart_remove" data-bs-toggle="modal" onclick="deleteItem('{{$item->id}}')">
+                                        <a href="" class="d-block text-body p-1 px-2 btn-delete-item" data-bs-toggle="modal">
+                                        <i class="ri-close-fill fs-16"></i>
+                                        </a>
+                                    </button>
+                                           <div class="fw-medium mb-0 fs-16">HTG<span class="product-line-price">{{$item->unit_price *  $item->cart->quantity}}</span></div>
                                 </div>
                             </div>
                         </li>
@@ -351,19 +371,42 @@
                     <tbody>
                     <tr>
                         <td>Sub Total :</td>
-                       <td class="text-end cart-subtotal">$ {{\Gloudemans\Shoppingcart\Facades\Cart::subtotal()}}</td>
+                       <td class="text-end cart-subtotal">
+                           @isset($totalAmount)
+                               HTG {{ $totalAmount }}
+                           @else
+                               0
+                           @endisset
+                       </td>
                     </tr>
+                    <?php
+                    if (isset($totalAmount)) {
+                        $taxPercentage = 2.5; // Pourcentage de taxe
+                        $taxAmount = ($totalAmount * $taxPercentage) / 100;
+                        $shippingCharge = 100;
+
+                        $totalAmountWithTaxAndShipping = $totalAmount + $taxAmount + $shippingCharge;
+                    } else {
+                        $totalAmountWithTaxAndShipping = 0;
+                    }
+                    ?>
                     <tr>
-                        <td>Discount <span class="text-muted">(Toner15)</span>:</td>
-                        <td class="text-end cart-discount">- 0</td>
+                        <td>Discount <span class="text-muted">(Bel Mache)</span>:</td>
+                        <td class="text-end cart-discount">HTG 0</td>
                     </tr>
                     <tr>
                         <td>Shipping Charge :</td>
-                        <td class="text-end cart-shipping">$65.00</td>
+                        <td class="text-end cart-shipping">
+                            @if(count($productsWithImages) > 0)
+                                HTG {{ $shippingCharge }}
+                            @else
+                                HTG 0
+                            @endif
+                        </td>
                     </tr>
                     <tr>
-                        <td>Estimated Tax (12.5%) : </td>
-{{--                        <td class="text-end cart-tax">$ {{\Gloudemans\Shoppingcart\Facades\Cart::subtotal()}}</td>--}}
+                        <td>Estimated Tax (2.5%) : </td>
+                        <td class="text-end cart-tax">HTG {{ $taxAmount }}</td>
                     </tr>
                     </tbody>
                 </table>
@@ -374,7 +417,13 @@
         <div class="d-flex justify-content-between align-items-center mb-3">
             <h6 class="m-0 fs-16 text-muted">Total:</h6>
             <div class="px-2">
-               <h6 class="m-0 fs-16 cart-total">$ {{\Gloudemans\Shoppingcart\Facades\Cart::subtotal()}}</h6>
+               <h6 class="m-0 fs-16 cart-total">
+                   @if(count($productsWithImages) > 0)
+                       HTG {{ $totalAmountWithTaxAndShipping }}
+                   @else
+                       HTG 0
+                   @endif
+               </h6>
             </div>
         </div>
         <div class="row g-2">
@@ -389,9 +438,9 @@
 </div>
 <!-- ---------------------------------------------------------------------end cart----------------------------------------------------------------------------------------------------->
 <!-- Modal -->
-<div class="modal fade" id="searchModal" tabindex="-1" aria-hidden="true">
+<div class="modal fade  " id="searchModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-lg">
-        <div class="modal-content rounded">
+        <div class="modal-content rounded ">
             <div class="modal-header p-3">
                 <div class="position-relative w-100">
 {{--                    <form action="{{ route('search_topbar') }}" method="GET" class="input-group">--}}
@@ -641,52 +690,3 @@
         </div>
     </div>
 </div>
-
-{{--<script>--}}
-{{--    $(document).ready(function () {--}}
-
-{{--        $('.increment-btn').click(function (e) {--}}
-{{--            e.preventDefault();--}}
-{{--            var incre_value = $(this).parents('.quantity').find('.qty-input').val();--}}
-{{--            var value = parseInt(incre_value, 10);--}}
-{{--            value = isNaN(value) ? 0 : value;--}}
-{{--            if(value<100){--}}
-{{--                value++;--}}
-{{--                $(this).parents('.quantity').find('.qty-input').val(value);--}}
-{{--            }--}}
-
-{{--        });--}}
-
-{{--        $('.decrement-btn').click(function (e) {--}}
-{{--            e.preventDefault();--}}
-{{--            var decre_value = $(this).parents('.quantity').find('.qty-input').val();--}}
-{{--            var value = parseInt(decre_value, 10);--}}
-{{--            value = isNaN(value) ? 0 : value;--}}
-{{--            if(value>1){--}}
-{{--                value--;--}}
-{{--                $(this).parents('.quantity').find('.qty-input').val(value);--}}
-{{--            }--}}
-{{--        });--}}
-
-{{--    });--}}
-
-{{--    $('.cart_remove').click(function (e) {--}}
-{{--        e.preventDefault();--}}
-{{--        var ele = $(this);--}}
-{{--        if(confirm("Do you really want to remove")){--}}
-{{--            $.ajax({--}}
-{{--                url: '{{route('remove.item')}}',--}}
-{{--                method: "DELETE",--}}
-{{--                data:{--}}
-{{--                    _token: '{{csrf_token()}}',--}}
-{{--                    id: ele.parent("li").attr("data-id")--}}
-{{--                },--}}
-{{--                success: function (response){--}}
-{{--                    window.location.reload();--}}
-{{--                }--}}
-{{--            });--}}
-{{--        }--}}
-
-{{--    });--}}
-{{--</script>--}}
-

@@ -11,11 +11,11 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="text-center d-flex align-items-center justify-content-between">
-                        <h4 class="text-white mb-0">Shopping Cart</h4>
+                        <h4 class="text-white mb-0">PANIER</h4>
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb breadcrumb-light justify-content-center mb-0 fs-15">
                                 <li class="breadcrumb-item"><a href="#!">Shop</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Shopping Cart</li>
+                                <li class="breadcrumb-item active" aria-current="page">Panier</li>
                             </ol>
                         </nav>
                     </div>
@@ -31,20 +31,24 @@
     <section class="section">
         <div class="container">
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-lg-8">
                     <div class="alert alert-danger text-center text-capitalize mb-4 fs-14">
-                        save up to <b>30%</b> to <b>40%</b> off omg! just look at the <b>great deals</b>!
+                        Sauvegarder jusqu'a <b>30%</b> a <b>40%</b> de réduction OMG! Aller vite pour <b>de bon deal</b>!
                     </div>
                 </div>
             </div>
             <div class="row product-list justify-content-center">
-                <div class="col-lg-8">
+                <div class="col-lg-12">
                     <div class="d-flex align-items-center mb-4">
-                        <h5 class="mb-0 flex-grow-1 fw-medium">There are <span class="fw-bold product-count"></span>
-                            products in your cart</h5>
-                        <div class="flex-shrink-0">
-                            <a href="#!" class="text-decoration-underline link-secondary">Clear Cart</a>
-                        </div>
+                        @if(collect($productsWithImages)->isNotEmpty())
+                            <h5 class="mb-0 flex-grow-1 fw-medium">Il y a  <span class="fw-bold product-count">{{ count($productsWithImages) }}</span> produit(s) differents dans votre panier</h5>
+                        @else
+                            <!-- Si le panier est vide, n'affichez pas le code -->
+                        @endif
+                            <div class="flex-shrink-0">
+                                <a href="" class="text-decoration-underline link-secondary" onclick="emptyCart()">Supprimer panier</a>
+                            </div>
+
 
                     </div>
                     @if(Session::has('success'))
@@ -53,90 +57,100 @@
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
                     @endif
-                @if($cartContent->isNotEmpty())
-                    @foreach($cartContent as $item)
-                       @php
-                         $itemtotal = 0;
-                         $itemtotal += $item->products->unit_price * $item->quantity;
-                       @endphp
-                       <div class="card product product_data">
-                        <div class="card-body p-4 ">
-                            <div class="row gy-3">
-                                <div class="col-sm-auto">
-                                    <div class="avatar-lg h-100">
-                                        <div class="avatar-title bg-danger-subtle rounded py-3">
 
-                                            <a href="">
-                                                @if(!empty($item->products->product->image))
-                                                    <img src="{{ asset('build/images/products/'.$item->products->product->image) }}" alt=""
-                                                         style="max-height: 215px;max-width: 100%;" class="mx-auto d-block">
-                                                @else
-                                                    <img src="{{ asset('build/images/products/default.png')}}" alt=""
-                                                         style="max-height: 215px;max-width: 100%;" class="mx-auto d-block">
-                                                @endif
+                    @php
+                        $totalAmount = 0;
+                    @endphp
+
+                @if(!empty($productsWithImages) && count($productsWithImages) > 0)
+                        @foreach($productsWithImages as $item)
+                            @php
+                                $itemtotal = 0;
+                                if ($item && $item->cart) {
+                                    $itemtotal += $item->unit_price * $item->cart->quantity;
+                                }
+                                $totalAmount += $itemtotal;
+                            @endphp
+                            <div class="card product product_data">
+                                <div class="card-body p-4 ">
+                                    <div class="row gy-3">
+                                        <div class="col-sm-auto">
+                                            <div class="avatar-lg h-100">
+                                                <div class="avatar-title bg-danger-subtle rounded py-3">
+                                                    <a href="">
+                                                        @if(!empty($item->product_images->first()->image))
+                                                            <img src="{{ asset('build/images/products/'.$item->product_images->first()->image) }}" alt=""
+                                                                 style="max-height: 215px;max-width: 100%;" class="mx-auto d-block">
+                                                        @else
+                                                            <img src="{{ asset('build/images/products/default.png')}}" alt=""
+                                                                 style="max-height: 215px;max-width: 100%;" class="mx-auto d-block">
+                                                        @endif
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm">
+                                            <a href="#"> <input type="checkbox" class="form-check-input delete-checkbox" data-prod-id="{{ $item->id }}">
+                                                <h5 class="fs-16 lh-base mb-1">{{ $item->title ?? 'N/A' }}</h5>
                                             </a>
+                                            <ul class="list-inline text-muted fs-13 mb-3">
+                                                <li class="list-inline-item">Color: <span class="fw-medium">{{ $item->product_images->isNotEmpty() ? $item->product_images->first()->color : 'N/A' }}</span></li>
+                                                <li class="list-inline-item">Size: <span class="fw-medium">{{ $item->product_images->isNotEmpty() ? $item->product_images->first()->size : 'N/A' }}</span></li>
+                                            </ul>
+
+                                            <div class="input-step ms-2">
+                                                <input type="hidden" value="{{ $item->id }}" class="prod_id">
+                                                <button class="decrement-btn changeQty">–</button>
+                                                <input name="quantity" type="number" class="qty-input" value="{{ $item->cart->quantity ?? 'N/A' }}" min="0" max="100">
+                                                <button class="increment-btn changeQty">+</button>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-auto">
+                                            <div class="text-lg-end">
+                                                <p class="text-muted mb-1 fs-12">Prix:</p>
+                                                <h5 class="fs-16">HTG <span class="product-price">{{ $item->unit_price ?? 'N/A' }}</span></h5>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+                                <div>
 
-                                <div class="col-sm">
-                                    <a href="#!">
-                                        <h5 class="fs-16 lh-base mb-1">{{$item->products->title}}</h5>
+                                    <a href="" class="d-block text-body p-1 px-2 btn-delete-item" data-bs-toggle="modal">
+                                        <i class="ri-delete-bin-fill text-muted align-bottom me-1"></i> Retirer
                                     </a>
-                                    <ul class="list-inline text-muted fs-13 mb-3">
-                                        <li class="list-inline-item">Color : <span class="fw-medium">Red</span></li>
-                                        <li class="list-inline-item">Size : <span class="fw-medium">{{$item->products->size}}</span></li>
-                                    </ul>
-
-                                    <div class="input-step ms-2">
-{{--                                        {{ csrf_field() }}--}}
-                                        <input type="hidden" value="{{$item->id}}" class="prod_id">
-                                        <button class="decrement-btn changeQty">–</button>
-                                            <input name="quantity" type="number" class="qty-input" value="{{$item->quantity}}" min="0" max="100">
-                                        <button class="increment-btn changeQty">+</button>
-                                    </div>
-
                                 </div>
-                                <div class="col-sm-auto">
-                                    <div class="text-lg-end">
-                                        <p class="text-muted mb-1 fs-12">Item Price:</p>
-                                        <h5 class="fs-16">$<span class="product-price">{{$item->products->unit_price}}</span></h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-footer">
-                            <div class="row align-items-center gy-3">
-                                <div class="col-sm">
-                                    <div class="d-flex flex-wrap my-n1">
-                                        <div>
-                                            <a href="" class="d-block text-body p-1 px-2 btn-delete-item" data-bs-toggle="modal">
-                                                <i class="ri-delete-bin-fill text-muted align-bottom me-1"></i> Remove
-                                            </a>
+                                @endforeach
+                                <div class="card-footer">
+                                    <div class="row align-items-center gy-3">
+                                        <div class="col-sm">
+                                            <div class="d-flex flex-wrap my-n1">
+                                                <div>
+                                                    <div class="text-end mt-3">
+                                                        <button class="btn btn-danger delete-selected">Supprimer Selectionés</button>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div>
-                                            <a href="#!" class="d-block text-body p-1 px-2"><i
-                                                    class="ri-star-fill text-muted align-bottom me-1"></i> Add Wishlist</a>
+                                        <div class="col-sm-auto">
+                                            <div class="d-flex align-items-center gap-2 text-muted">
+                                                <div>Total :</div>
+                                                <h5 class="fs-14 mb-0">HTG <span class="product-line-price">{{ $totalAmount }}</span></h5>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-sm-auto">
-                                    <div class="d-flex align-items-center gap-2 text-muted">
-                                        <div>Total :</div>
-                                        <h5 class="fs-14 mb-0">$<span class="product-line-price">{{$itemtotal}}</span></h5>
-                                    </div>
+                                    <!-- end card footer -->
                                 </div>
                             </div>
-                        </div>
-                        <!-- end card footer -->
-                    </div>
-                    @endforeach
-                @else
+
+                    @else
+
                        <div class="col-md-12">
                            <div class="card">
                                <div class="card-body d-flex justify-content-center align-items-center">
                                    <h4>
-                                       Your Cart is empty!
+                                       Votre panier est vide!
                                    </h4>
 
                                </div>
@@ -147,48 +161,81 @@
                     <!--end card-->
                 </div>
                 <!--end col-->
-                <div class="col-lg-4">
-                    <div class="sticky-side-div">
+                <div class="col-lg-12">
+                    <div class="sticky-side-div text-center my-auto">
                         <div class="card">
                             <div class="card-body">
                                 <div class="text-center">
-                                    <h6 class="mb-3 fs-15">Have a <span class="fw-semibold">promo</span> code ?</h6>
+                                    <h6 class="mb-3 fs-15">J'ai un<span class="fw-semibold">code</span> promo ?</h6>
                                 </div>
                                 <div class="hstack gap-3 px-3 mx-n3">
-                                    <input class="form-control me-auto" type="text" placeholder="Enter coupon code"
-                                           value="Toner15" aria-label="Add Promo Code here...">
-                                    <button type="button" class="btn btn-primary w-xs">Apply</button>
+                                    <input class="form-control me-auto" type="text" placeholder="Entrer coupon code" value="" aria-label="Ajouter Promo Code ici...">
+                                    <button type="button" class="btn btn-primary w-xs">
+                                        <span class="d-flex align-items-center">
+                                            <span class="mx-auto">Appliquer</span>
+                                        </span>
+                                    </button>
                                 </div>
+
                             </div>
                         </div>
                         <div class="card overflow-hidden">
                             <div class="card-header border-bottom-dashed">
-                                <h5 class="card-title mb-0 fs-15">Order Summary</h5>
+                                <h5 class="card-title mb-0 fs-15">Résumé Commande</h5>
                             </div>
-                            <div class="card-body pt-4">
+                            <div class="card-body pt-4 text-start">
                                 <div class="table-responsive table-card">
                                     <table class="table table-borderless mb-0 fs-15">
                                         <tbody>
                                         <tr>
                                             <td>Sub Total :</td>
-                                            <td class="text-end cart-subtotal">$ {{$itemtotal}}</td>
+                                            <td class="text-end cart-subtotal">
+                                                @isset($totalAmount)
+                                                    HTG {{ $totalAmount }}
+                                                @else
+                                                    0
+                                                @endisset
+                                            </td>
                                         </tr>
                                         <tr>
-                                            <td>Discount <span class="text-muted">(Toner15)</span>:</td>
-                                            <td class="text-end cart-discount">0</td>
+                                            <td>Discount <span class="text-muted">(BelMache)</span>:</td>
+                                            <td class="text-end cart-discount">HTG 0</td>
                                         </tr>
+
+                                        <?php
+                                        if (isset($totalAmount)) {
+                                            $taxPercentage = 2.5; // Pourcentage de taxe
+                                            $taxAmount = ($totalAmount * $taxPercentage) / 100;
+                                            $shippingCharge = 100;
+
+                                            $totalAmountWithTaxAndShipping = $totalAmount + $taxAmount + $shippingCharge;
+                                        } else {
+                                            $totalAmountWithTaxAndShipping = 0;
+                                        }
+                                        ?>
                                         <tr>
                                             <td>Shipping Charge :</td>
-                                            <td class="text-end cart-shipping">0</td>
+                                            <td class="text-end cart-shipping">
+                                                @if(count($productsWithImages) > 0)
+                                                    HTG {{ $shippingCharge }}
+                                                @else
+                                                    HTG 0
+                                                @endif
+                                            </td>
                                         </tr>
+
                                         <tr>
-                                            <td>Estimated Tax (12.5%) : </td>
-                                            <td class="text-end cart-tax">0</td>
+                                            <td>Estimated Tax (2.5%) : </td>
+                                            <td class="text-end cart-tax">HTG {{ $taxAmount }}</td>
                                         </tr>
                                         <tr class="table-active">
                                             <th>Total (USD) :</th>
                                             <td class="text-end">
-                                                <span class="fw-semibold cart-total">$ {{\Gloudemans\Shoppingcart\Facades\Cart::subtotal()}}</span>
+                                                @if(count($productsWithImages) > 0)
+                                                    HTG {{ $totalAmountWithTaxAndShipping }}
+                                                @else
+                                                    HTG 0
+                                                @endif
                                             </td>
                                         </tr>
                                         </tbody>
@@ -198,9 +245,15 @@
                             </div>
                         </div>
                         <div class="hstack gap-2 justify-content-end">
-                            <button type="button" class="btn btn-hover btn-danger">Continue Shopping</button>
-                            <button type="button" class="btn btn-hover btn-success">Check Out <i
-                                    class="ri-logout-box-r-line align-bottom ms-1"></i></button>
+                            <a href="{{route('products_left') }}" >
+                              <button type="button" class="btn btn-hover btn-danger">Continue Shopping</button>
+                            </a>
+                            <a href="{{ route('checkout') }}">
+                                <button type="button" class="btn btn-hover btn-success">
+                                    Check Out <i class="ri-logout-box-r-line align-bottom ms-1"></i>
+                                </button>
+                            </a>
+
                         </div>
                     </div>
                     <!-- end stickey -->
@@ -216,9 +269,9 @@
             <div class="row justify-content-center">
                 <div class="col-lg-12">
                     <div class="d-flex align-items-center justify-content-between mb-4 pb-1">
-                        <h4 class="flex-grow-1 mb-0">New Branded Products</h4>
+                        <h4 class="flex-grow-1 mb-0">Nouvelle Arrivée de Produits</h4>
                         <div class="flex-shrink-0">
-                            <a href="#!" class="link-effect link-primary">All Products <i
+                            <a href="{{route('products_left') }}" class="link-effect link-primary">tous les Products <i
                                     class="ri-arrow-right-line ms-1 align-bottom"></i></a>
                         </div>
                     </div>
@@ -226,164 +279,54 @@
                 <!--end col-->
             </div>
             <!--end row-->
-            <div class="row">
-                <div class="col-xxl-3 col-lg-4 col-md-6">
-                    <div
-                        class="card ecommerce-product-widgets border-0 rounded-0 shadow-none overflow-hidden card-animate">
-                        <div class="bg-light bg-opacity-50 rounded py-4 position-relative">
-                            <img src="{{ URL::asset('build/images/products/img-12.png') }}" alt=""
-                                 style="max-height: 200px;max-width: 100%;" class="mx-auto d-block rounded-2">
-                            <div class="action vstack gap-2">
-                                <button class="btn btn-danger avatar-xs p-0 btn-soft-warning custom-toggle product-action"
-                                        data-bs-toggle="button"><span class="icon-on"><i
-                                            class="ri-heart-line"></i></span><span class="icon-off"><i
-                                            class="ri-heart-fill"></i></span></button>
-                            </div>
-                        </div>
-                        <div class="pt-4">
-                            <ul class="clothe-colors list-unstyled hstack gap-1 mb-3 flex-wrap">
-                                <li><input type="radio" name="sizes10" id="product-color-102"><label
-                                        class="avatar-xxs btn btn-secondary p-0 d-flex align-items-center justify-content-center rounded-circle"
-                                        for="product-color-102"></label></li>
-                                <li><input type="radio" name="sizes10" id="product-color-103"><label
-                                        class="avatar-xxs btn btn-dark p-0 d-flex align-items-center justify-content-center rounded-circle"
-                                        for="product-color-103"></label></li>
-                                <li><input type="radio" name="sizes10" id="product-color-104"><label
-                                        class="avatar-xxs btn btn-danger p-0 d-flex align-items-center justify-content-center rounded-circle"
-                                        for="product-color-104"></label></li>
-                                <li><input type="radio" name="sizes10" id="product-color-105"><label
-                                        class="avatar-xxs btn btn-light p-0 d-flex align-items-center justify-content-center rounded-circle"
-                                        for="product-color-105"></label></li>
-                            </ul>
-                            <a href="#!">
-                                <h6 class="text-capitalize fs-15 lh-base text-truncate mb-0">Carven Lounge Chair Red</h6>
-                            </a>
-                            <div class="mt-2">
-                                <span class="float-end">4.1 <i
-                                        class="ri-star-half-fill text-warning align-bottom"></i></span>
-                                <h5 class="mb-0">$209.99</h5>
-                            </div>
-                            <div class="mt-3">
-                                <a href="#!" class="btn btn-primary w-100 add-btn"><i class="mdi mdi-cart me-1"></i>
-                                    Add To Cart</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--end col-->
-                <div class="col-xxl-3 col-lg-4 col-md-6">
-                    <div
-                        class="card ecommerce-product-widgets border-0 rounded-0 shadow-none overflow-hidden card-animate">
-                        <div class="bg-light bg-opacity-50 rounded py-4 position-relative">
-                            <img src="{{ URL::asset('build/images/products/img-7.png') }}" alt=""
-                                 style="max-height: 200px;max-width: 100%;" class="mx-auto d-block rounded-2">
-                            <div class="action vstack gap-2">
-                                <button class="btn btn-danger avatar-xs p-0 btn-soft-warning custom-toggle product-action "
-                                        data-bs-toggle="button"><span class="icon-on"><i
-                                            class="ri-heart-line"></i></span><span class="icon-off"><i
-                                            class="ri-heart-fill"></i></span></button>
-                            </div>
-                        </div>
-                        <div class="pt-4">
-                            <div>
-                                <div class="avatar-xxs mb-4">
-                                    <div class="avatar-title bg-light text-muted rounded cursor-pointer"><i
-                                            class="ri-error-warning-line"></i></div>
+            <div class="row justify-content-center">
+            @foreach($products as $product)
+                    <div class="col-xxl-3 col-lg-4 col-md-6">
+                        <div class="card ecommerce-product-widgets border-0 rounded-0 shadow-none overflow-hidden card-animate">
+                            <a href="{{route('view_product',['id'=>$product->id]) }}">
+                                <div class="bg-light bg-opacity-50 rounded py-4 position-relative">
+                                    <img src="{{ URL::asset('build/images/products/'.$product->product_images->first()->image) }}" alt=""
+                                         style="max-height: 200px;max-width: 100%;" class="mx-auto d-block rounded-2">
+                                    <div class="action vstack gap-2">
+                                        <button class="btn btn-danger avatar-xs p-0 btn-soft-warning custom-toggle product-action"
+                                                data-bs-toggle="button"><span class="icon-on"><i
+                                                    class="ri-heart-line"></i></span><span class="icon-off"><i
+                                                    class="ri-heart-fill"></i></span></button>
+                                    </div>
                                 </div>
+                            </a>
+                            <div class="pt-4">
+                                <ul class="clothe-colors list-unstyled hstack gap-1 mb-3 flex-wrap">
+                                    <li><input type="radio" name="sizes10" id="product-color-102"><label
+                                            class="avatar-xxs btn btn-secondary p-0 d-flex align-items-center justify-content-center rounded-circle"
+                                            for="product-color-102"></label></li>
+                                    <li><input type="radio" name="sizes10" id="product-color-103"><label
+                                            class="avatar-xxs btn btn-dark p-0 d-flex align-items-center justify-content-center rounded-circle"
+                                            for="product-color-103"></label></li>
+                                    <li><input type="radio" name="sizes10" id="product-color-104"><label
+                                            class="avatar-xxs btn btn-danger p-0 d-flex align-items-center justify-content-center rounded-circle"
+                                            for="product-color-104"></label></li>
+                                    <li><input type="radio" name="sizes10" id="product-color-105"><label
+                                            class="avatar-xxs btn btn-light p-0 d-flex align-items-center justify-content-center rounded-circle"
+                                            for="product-color-105"></label></li>
+                                </ul>
+                                <p class="fs-11 fw-medium badge bg-primary py-2 px-3 product-lable mb-0">{{$product->slog}}
                                 <a href="#!">
-                                    <h6 class="text-capitalize fs-15 lh-base text-truncate mb-0">Innovative education book
-                                    </h6>
+                                    <h6 class="text-capitalize fs-15 lh-base text-truncate mb-0">{{$product->title}}</h6>
                                 </a>
                                 <div class="mt-2">
-                                    <span class="float-end">4.7 <i
+                                    <span class="float-end">4.1 <i
                                             class="ri-star-half-fill text-warning align-bottom"></i></span>
-                                    <h5 class="mb-0">$96.26</h5>
+                                    <h5 class="mb-0">HTG {{$product->unit_price}}</h5>
                                 </div>
-                                <div class="mt-3">
-                                    <a href="#!" class="btn btn-primary w-100 add-btn"><i
-                                            class="mdi mdi-cart me-1"></i> Add To Cart</a>
-                                </div>
+{{--                                <div class="mt-3">--}}
+{{--                                    <a href="#!" class="btn btn-primary w-100 add-btn"><i class="mdi mdi-cart me-1"></i>--}}
+{{--                                        Add To Cart</a>--}}
                             </div>
+
                         </div>
                     </div>
-                </div>
-                <!--end col-->
-                <div class="col-xxl-3 col-lg-4 col-md-6">
-                    <div
-                        class="card ecommerce-product-widgets border-0 rounded-0 shadow-none overflow-hidden card-animate">
-                        <div class="bg-light bg-opacity-50 rounded py-4 position-relative">
-                            <img src="{{ URL::asset('build/images/products/img-3.png') }}" alt=""
-                                 style="max-height: 200px;max-width: 100%;" class="mx-auto d-block rounded-2">
-                            <div class="action vstack gap-2">
-                                <button class="btn btn-danger avatar-xs p-0 btn-soft-warning custom-toggle product-action "
-                                        data-bs-toggle="button"><span class="icon-on"><i
-                                            class="ri-heart-line"></i></span><span class="icon-off"><i
-                                            class="ri-heart-fill"></i></span></button>
-                            </div>
-                            <div class="avatar-xs label">
-                                <div class="avatar-title bg-danger rounded-circle fs-11">20%</div>
-                            </div>
-                        </div>
-                        <div class="pt-4">
-                            <ul class="clothe-colors list-unstyled hstack gap-1 mb-3 flex-wrap">
-                                <li><input type="radio" name="sizes11" id="product-color-112"><label
-                                        class="avatar-xxs btn btn-secondary p-0 d-flex align-items-center justify-content-center rounded-circle"
-                                        for="product-color-112"></label></li>
-                                <li><input type="radio" name="sizes11" id="product-color-113"><label
-                                        class="avatar-xxs btn btn-primary p-0 d-flex align-items-center justify-content-center rounded-circle"
-                                        for="product-color-113"></label></li>
-                            </ul>
-                            <a href="#!">
-                                <h6 class="text-capitalize fs-15 lh-base text-truncate mb-0">Ninja Pro Max Smartwatch</h6>
-                            </a>
-                            <div class="mt-2">
-                                <span class="float-end">3.5 <i
-                                        class="ri-star-half-fill text-warning align-bottom"></i></span>
-                                <h5 class="mb-0">$247.27 <span class="text-muted fs-12"><del>$309.09</del></span></h5>
-                            </div>
-                            <div class="mt-3">
-                                <a href="#!" class="btn btn-primary w-100 add-btn"><i class="mdi mdi-cart me-1"></i>
-                                    Add To Cart</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--end col-->
-                <div class="col-xxl-3 col-lg-4 col-md-6">
-                    <div
-                        class="card ecommerce-product-widgets border-0 rounded-0 shadow-none overflow-hidden card-animate">
-                        <div class="bg-light bg-opacity-50 rounded py-4 position-relative">
-                            <img src="{{ URL::asset('build/images/products/img-2.png') }}" alt=""
-                                 style="max-height: 200px;max-width: 100%;" class="mx-auto d-block rounded-2">
-                            <div class="action vstack gap-2">
-                                <button class="btn btn-danger avatar-xs p-0 btn-soft-warning custom-toggle product-action "
-                                        data-bs-toggle="button"><span class="icon-on"><i
-                                            class="ri-heart-line"></i></span><span class="icon-off"><i
-                                            class="ri-heart-fill"></i></span></button>
-                            </div>
-                        </div>
-                        <div class="pt-4">
-                            <ul class="clothe-colors list-unstyled hstack gap-1 mb-3 flex-wrap">
-                                <li><input type="radio" name="sizes12" id="product-color-122"><label
-                                        class="avatar-xxs btn btn-success p-0 d-flex align-items-center justify-content-center rounded-circle"
-                                        for="product-color-122"></label></li>
-                            </ul>
-                            <a href="#!">
-                                <h6 class="text-capitalize fs-15 lh-base text-truncate mb-0">Opinion Striped Round Neck
-                                    Green T-shirt</h6>
-                            </a>
-                            <div class="mt-2">
-                                <span class="float-end">4.1 <i
-                                        class="ri-star-half-fill text-warning align-bottom"></i></span>
-                                <h5 class="mb-0">$126.99</h5>
-                            </div>
-                            <div class="mt-3">
-                                <a href="#!" class="btn btn-primary btn-hover w-100 add-btn"><i
-                                        class="mdi mdi-cart me-1"></i> Add To Cart</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
                 <!--end col-->
             </div>
             <!--end row-->
@@ -397,16 +340,21 @@
             <div class="row align-items-center justify-content-between">
                 <div class="col-lg-6">
                     <div>
-                        <p class="fs-15 text-uppercase fw-medium"><span class="fw-semibold text-danger">25% Up to</span>
-                            off all Products</p>
-                        <h1 class="lh-base text-capitalize mb-3">Stay home & get your daily needs from our shop</h1>
-                        <p class="fs-15 mb-4 pb-2">Start You're Daily Shopping with <a href="#!"
-                                                                                      class="link-primary text-decoration-underline fw-medium">Toner</a></p>
-                        <form action="#!">
+                        <p class="fs-15 text-uppercase fw-medium"><span class="fw-semibold text-danger">Jusqu'a 25%</span>
+                            de reduction sur tous nos Produits</p>
+                        <h1 class="lh-base text-capitalize mb-3">Restez à la maison et obtenez vos besoins quotidiens dans notre boutique</h1>
+                        <p class="fs-15 mb-4 pb-2">Commencez vos achats quotidiens avec <a href="#!"
+                                                                                      class="link-primary text-decoration-underline fw-medium">Bel Mache</a></p>
+                        @if(session('success'))
+                            <div class="alert alert-success" role="alert">
+                                {{ session('success') }}
+                            </div>
+                        @endif
+                        <form id="subscribe-form" action="{{ route('subscribe') }}" method="POST">
+                            @csrf
                             <div class="position-relative ecommerce-subscript">
-                                <input type="email" class="form-control rounded-pill" placeholder="Enter your email">
-                                <button type="submit" class="btn btn-primary btn-hover rounded-pill">Subscript
-                                    Now</button>
+                                <input type="email" name="email" class="form-control rounded-pill" placeholder="Entrer votre email" required>
+                                <button type="submit" class="btn btn-primary btn-hover rounded-pill">Abonnez-vous Maintenant</button>
                             </div>
                         </form>
                     </div>
