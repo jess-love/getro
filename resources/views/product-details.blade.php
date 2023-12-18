@@ -167,6 +167,8 @@
                             <input type="hidden" value="{{$products->id}}" class="prod_id">
                             <h5 class="fs-15 mb-0">Quantity:</h5>
 
+
+
                             <div class="input-step ms-2">
                                 <button class="decrement-btn">–</button>
                                     <input name="quantity" type="number" class="qty-input"  value="1" min="1" max="100">
@@ -798,8 +800,7 @@
                                 <h5 class="mb-0">$209.99</h5>
                             </div>
                             <div class="mt-3">
-                                <a href="shop-cart" class="btn btn-primary w-100 add-btn AddToCart"><i
-                                        class="mdi mdi-cart me-1"></i> Add To Cart</a>
+
                             </div>
                         </div>
                     </div>
@@ -836,6 +837,7 @@
                                 <div class="mt-3">
                                     <a href="shop-cart" class="btn btn-primary w-100 add-btn"><i
                                             class="mdi mdi-cart me-1"></i> Add To Cart</a>
+
                                 </div>
                             </div>
                         </div>

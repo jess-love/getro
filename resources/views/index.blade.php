@@ -255,9 +255,16 @@
 {{--                                                    <i class="mdi mdi-cart me-1"></i> Add to cart--}}
 {{--                                                </a>--}}
 {{--                                            </div>--}}
-                                            <div class="mt-3">
-                                                <a href="shop-cart" class="btn btn-primary w-100 add-btn AddToCart">
-                                                    <input type="hidden" value="{{$produit->id}}" class="prod_id" >
+{{--                                            <div class="product-btn px-3">--}}
+{{--                                                <input type="hidden" value="1" class="qty-input">--}}
+{{--                                                <a href="shop-cart" class="btn btn-primary w-100 add-btn AddToCart">--}}
+{{--                                                    <input type="hidden" value="{{$produit->id}}" class="prod_id" >--}}
+{{--                                                    <i class="mdi mdi-cart me-1"></i> Add To Cart--}}
+{{--                                                </a>--}}
+{{--                                            </div>--}}
+                                            <div class="product-btn px-3">
+                                                <input type="hidden" value="1" class="qty-input">
+                                                <a href="shop-cart" class="btn btn-primary w-100 add-btn AddToCart1" data-product-id="{{$produit->id}}">
                                                     <i class="mdi mdi-cart me-1"></i> Add To Cart
                                                 </a>
                                             </div>
@@ -267,7 +274,7 @@
                                         <div class="card-body">
                                             <div>
                                                 <a href="product-details">
-                                                    <h6 class="fs-15 lh-base text-truncate mb-0"> </b> {{$produit->title}} </b> <br> <span style="font-weight:normal;"> {{$produit->description}} </span> </h6>
+                                                    <h6 class="fs-15 lh-base text-truncate mb-0">{{$produit->title}} <br> <span style="font-weight:normal;"> {{$produit->description}} </span> </h6>
                                                 </a>
                                                 <div class="mt-3">
                                                 <span class="float-end">4.9 <i
