@@ -41,15 +41,28 @@
                 <div class="col-lg-12">
                     <div class="d-flex align-items-center mb-4">
                         @if(collect($productsWithImages)->isNotEmpty())
-                            <h5 class="mb-0 flex-grow-1 fw-medium">Il y a  <span class="fw-bold product-count">{{ count($productsWithImages) }}</span> produit(s) differents dans votre panier</h5>
+                            @php
+                                $totalProducts = 0;
+                            @endphp
+
+                            @foreach($productsWithImages as $item)
+                                @php
+                                    if ($item->cart) {
+                                        $totalProducts += $item->cart->quantity;
+                                    }
+                                @endphp
+                            @endforeach
+
+                            <h5 class="mb-0 flex-grow-1 fw-medium">
+                                Il y a <span class="fw-bold product-count">{{ $totalProducts }}</span> produit(s) différent(s) dans votre panier
+                            </h5>
                         @else
                             <!-- Si le panier est vide, n'affichez pas le code -->
                         @endif
-                            <div class="flex-shrink-0">
+
+                        <div class="flex-shrink-0">
                                 <a href="" class="text-decoration-underline link-secondary" onclick="emptyCart()">Supprimer panier</a>
                             </div>
-
-
                     </div>
                     @if(Session::has('success'))
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -62,7 +75,7 @@
                         $totalAmount = 0;
                     @endphp
 
-                @if(!empty($productsWithImages) && count($productsWithImages) > 0)
+                  @if(!empty($productsWithImages) && count($productsWithImages) > 0)
                         @foreach($productsWithImages as $item)
                             @php
                                 $itemtotal = 0;
@@ -157,7 +170,7 @@
 
                            </div>
                        </div>
-                @endif
+                   @endif
                     <!--end card-->
                 </div>
                 <!--end col-->
@@ -436,55 +449,6 @@
     <script src="{{ URL::asset('build/js/frontend/menu.init.js') }}"></script>
     <script type="text/javascript">
 
-        {{-- $('.add').click(function(){
-            var qtyElement = $(this).parent().prev(); // Qty Input
-            var qtyValue = parseInt(qtyElement.val());
-            if (qtyValue < 100) {
-                qtyElement.val(qtyValue+1);
-                var rowId = $(this).data('id');
-                var newQty = qtyElement.val();
-                updateCart(rowId, newQty);
-            }
-        });
-
-        $('.sub').click(function(){
-            var qtyElement = $(this).parent().next();
-            var qtyValue = parseInt(qtyElement.val());
-            if (qtyValue > 1) {
-                qtyElement.val(qtyValue-1);
-                var rowId = $(this).data('id');
-                var newQty = qtyElement.val();
-                updateCart(rowId, newQty);
-            }
-        });
-
-        function updateCart(rowId, qty){
-            $.ajax({
-                url: '{{route("cart_update")}}',
-                type: 'post',
-                data: {rowId:rowId, qty:qty},
-                dataType: 'json',
-                success: function (response){
-
-                    window.location.href='{{ route("shopCart") }}';
-                }
-            });
-        }
-
-        function deleteItem(rowId){
-            if(confirm('are you sure you want to delete?')) {
-                $.ajax({
-                    url: '{{route("delete_item")}}',
-                    type: 'post',
-                    data: {rowId: rowId},
-                    dataType: 'json',
-                    success: function (response) {
-
-                        window.location.href = '{{ route("shopCart") }}';
-                    }
-                });
-            }
-        } --}}
     </script>
 
 @endsection

@@ -73,7 +73,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('logout', [TonerController::class, 'logout']);
 
     Route::post('/cart-update',[App\Http\Controllers\CartController::class,'updateCart'])->name('cart-update');
-    Route::post('/add-to-cart',[App\Http\Controllers\CartController::class,'AddToCart'])->name('addToCart');
+//    Route::post('/add-to-cart',[App\Http\Controllers\CartController::class,'AddToCart'])->name('addToCart');
+    Route::post('/addToCart',[App\Http\Controllers\CartController::class,'AddToCart'])->name('addToCart');
     Route::get('/shop-cart',[App\Http\Controllers\CartController::class,'ViewCart'])->name('shopCart');
 
     Route::get('{any}', [TonerController::class, 'index']);

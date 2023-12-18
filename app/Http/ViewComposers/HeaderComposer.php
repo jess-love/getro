@@ -15,10 +15,14 @@ class HeaderComposer
 
         $catAndSub = sub_category::with('CategoryFunc')->get()->groupBy('category_id');
         $categories = Category::all();
-        $user = Auth::user();
-        $productsWithImages = Product::with(['product_images', 'cart'])->whereHas('cart', function($query) use ($user) {
-            $query->where('user_id', $user->id);
-        })->get();
+        $productsWithImages = [];
+        if (Auth::check()) {
+            $user = Auth::user();
+
+            $productsWithImages = Product::with(['product_images', 'cart'])->whereHas('cart', function($query) use ($user) {
+                $query->where('user_id', $user->id);
+            })->get();
+        }
 
         $view->with('cat_and_sub', $catAndSub)->with('categories', $categories)->with('productsWithImages', $productsWithImages);
 
