@@ -58,7 +58,7 @@
                         <div class="col-md-10">
                             <div class="bg-light rounded-2 position-relative ribbon-box overflow-hidden">
                                 <div class="ribbon ribbon-danger ribbon-shape trending-ribbon">
-                                    <span class="trending-ribbon-text">Trending</span> <i
+                                    <span class="trending-ribbon-text">{{$products->slog}}</span> <i
                                         class="ri-flashlight-fill text-white align-bottom float-end ms-1"></i>
                                 </div>
                                 <div class="swiper productSwiper2">
@@ -79,8 +79,12 @@
                         <div class="col-lg-12">
                             <div class="mt-3">
                                 <div class="hstack gap-2">
-                                    <a href="" class="btn btn-success btn-hover w-100 AddToCart">
-                                        <i class="bi bi-basket2 me-2"></i> Add To Cart
+{{--                                    <a href="" class="btn btn-success btn-hover w-100 AddToCart">--}}
+{{--                                        <i class="bi bi-basket2 me-2"></i> Add To Cart--}}
+{{--                                    </a>--}}
+                                    <a href="shop-cart" class="btn btn-primary w-100 add-btn AddToCart">
+                                        <input type="hidden" value="{{$products->id}}" class="prod_id">
+                                        <i class="mdi mdi-cart me-1"></i> Add To Cart
                                     </a>
                                     <button type="button" class="btn btn-primary btn-hover w-100">
                                         <i class="bi bi-cart2 me-2"></i> Buy Now
@@ -117,11 +121,11 @@
                             <ul class="list-unstyled vstack gap-2">
 
                                 @if($products->qty > 0)
-                                    <li class=""><i class="bi bi-check2-circle me-2 align-middle text-success"></i>In
+                                    <li class=""><i class="bi bi-check2-circle me-2 align-middle text-success"></i>En
                                         stock</li>
                                 @else
-                                    <li class=""><i class="bi bi-check2-square me-2 align-middle text-danger"></i>Out of
-                                        stock now</li>
+                                    <li class=""><i class="bi bi-check2-square me-2 align-middle text-danger"></i>Pas en
+                                        stock maintenant</li>
                                 @endif
 
 
@@ -163,9 +167,11 @@
                             <input type="hidden" value="{{$products->id}}" class="prod_id">
                             <h5 class="fs-15 mb-0">Quantity:</h5>
 
+
+
                             <div class="input-step ms-2">
                                 <button class="decrement-btn">–</button>
-                                    <input name="quantity" type="number" class="qty-input" value="1" min="0" max="100">
+                                    <input name="quantity" type="number" class="qty-input"  value="1" min="1" max="100">
                                 <button class="increment-btn">+</button>
                             </div>
 
@@ -794,8 +800,7 @@
                                 <h5 class="mb-0">$209.99</h5>
                             </div>
                             <div class="mt-3">
-                                <a href="shop-cart" class="btn btn-primary w-100 add-btn AddToCart"><i
-                                        class="mdi mdi-cart me-1"></i> Add To Cart</a>
+
                             </div>
                         </div>
                     </div>
@@ -832,6 +837,7 @@
                                 <div class="mt-3">
                                     <a href="shop-cart" class="btn btn-primary w-100 add-btn"><i
                                             class="mdi mdi-cart me-1"></i> Add To Cart</a>
+
                                 </div>
                             </div>
                         </div>

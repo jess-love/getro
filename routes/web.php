@@ -34,7 +34,6 @@ Route::get('/products-sub-category', [App\Http\Controllers\ViewCategoryControlle
 //route pour produit en liaison avec les sous-categories
 Route::get('/products/{sub_category_id}', [App\Http\Controllers\ProductController::class, 'product_list_right'])->name('products_nav');
 Route::get('/products', [App\Http\Controllers\ProductController::class, 'product_list_left'])->name('products_left');
-
 Route::get('/souscategories', [App\Http\Controllers\ProductController::class, 'Sub_Categories_Product_list_Right'])->name('sub_categories');
 
 //recherche de produit
@@ -44,22 +43,25 @@ Route::get('/searches', [App\Http\Controllers\ProductController::class, 'Search_
 //abonnement au site  dans la page produit
 Route::post('/subscribe', [App\Http\Controllers\SubscriptionController::class, 'subscribe'])->name('subscribe');
 
+//route pour gerer les informations du compte de l'utilisateur
+Route::get('/my_account', [App\Http\Controllers\UserController::class, 'MonCompte'])->name('myaccount');
 
 
-//------------------cart route----------------------------------------
-//Route::get('/shop-cart',[App\Http\Controllers\CartController::class,'shopcart'])->name('shopCart');
-
-Route::post('/update-cart',[App\Http\Controllers\CartController::class,'updateCart'])->name('cart-update');
+//------------------Start cart route----------------------------------------
 Route::post('/delete-item',[App\Http\Controllers\CartController::class,'deleteItem'])->name('delete-item');
-
+Route::get('/produitToCart/{id}',[App\Http\Controllers\CartController::class,'addProductToCart'])->name('ProductToCart');
+Route::get('/product_cart',[App\Http\Controllers\CartController::class,'ProductInCart'])->name('ProductInCart');
+Route::post('/empty-cart', [App\Http\Controllers\CartController::class, 'emptyCart'])->name('empty-cart');
 
 //------------------end route cart----------------------------------------
 
-//Route::get('/produits', [App\Http\Controllers\ProductController::class, 'ViewAllProduct'])->name('view_all_products');
+
+//------------------Start route checkout----------------------------------------
+Route::get('/checkout',[App\Http\Controllers\CheckoutController::class,'index'])->name('checkout');
+//------------------end route checkout----------------------------------------
 
 
 
-Route::get('/produitToCart/{id}',[App\Http\Controllers\CartController::class,'addProductToCart'])->name('ProductToCart');
 
 
 Route::get('index/{locale}', [App\Http\Controllers\HomeController::class, 'lang']);
@@ -70,8 +72,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
     Route::get('logout', [TonerController::class, 'logout']);
 
-
-    Route::post('/add-to-cart',[App\Http\Controllers\CartController::class,'AddToCart'])->name('addToCart');
+    Route::post('/cart-update',[App\Http\Controllers\CartController::class,'updateCart'])->name('cart-update');
+    Route::post('/addToCart',[App\Http\Controllers\CartController::class,'AddToCart'])->name('addToCart');
     Route::get('/shop-cart',[App\Http\Controllers\CartController::class,'ViewCart'])->name('shopCart');
 
     Route::get('{any}', [TonerController::class, 'index']);
