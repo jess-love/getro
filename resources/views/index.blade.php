@@ -248,20 +248,6 @@
                                                 </div>
 
                                             </div>
-{{--                                            <div class="product-btn px-3">--}}
-{{--                                                <input type="hidden" value="1" class="qty-input">--}}
-{{--                                                <a href="" class="btn btn-primary btn-sm w-75 AddToCart">--}}
-{{--                                                    <input type="hidden" value="{{$produit->id}}" class="prod_id">--}}
-{{--                                                    <i class="mdi mdi-cart me-1"></i> Add to cart--}}
-{{--                                                </a>--}}
-{{--                                            </div>--}}
-{{--                                            <div class="product-btn px-3">--}}
-{{--                                                <input type="hidden" value="1" class="qty-input">--}}
-{{--                                                <a href="shop-cart" class="btn btn-primary w-100 add-btn AddToCart">--}}
-{{--                                                    <input type="hidden" value="{{$produit->id}}" class="prod_id" >--}}
-{{--                                                    <i class="mdi mdi-cart me-1"></i> Add To Cart--}}
-{{--                                                </a>--}}
-{{--                                            </div>--}}
                                             <div class="product-btn px-3">
                                                 <input type="hidden" value="1" class="qty-input">
                                                 <a href="shop-cart" class="btn btn-primary w-100 add-btn AddToCart1" data-product-id="{{$produit->id}}">

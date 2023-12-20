@@ -122,9 +122,15 @@
                                                         </div>
 
                                                     </div>
+{{--                                                    <div class="product-btn px-3">--}}
+{{--                                                        <a href="javascript:void(0);" onclick="AddToCart({{$produit->id}});"  class="btn btn-primary btn-sm w-75 add-btn">--}}
+{{--                                                            <i class="mdi mdi-cart me-1"></i> Add to cart--}}
+{{--                                                        </a>--}}
+{{--                                                    </div>--}}
                                                     <div class="product-btn px-3">
-                                                        <a href="javascript:void(0);" onclick="AddToCart({{$produit->id}});"  class="btn btn-primary btn-sm w-75 add-btn">
-                                                            <i class="mdi mdi-cart me-1"></i> Add to cart
+                                                        <input type="hidden" value="1" class="qty-input">
+                                                        <a href="shop-cart" class="btn btn-primary w-100 add-btn AddToCart1" data-product-id="{{$produit->id}}">
+                                                            <i class="mdi mdi-cart me-1"></i> Add To Cart
                                                         </a>
                                                     </div>
 
