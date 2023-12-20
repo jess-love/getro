@@ -13,4 +13,14 @@ class Address extends Model
         return $this->belongsToMany(User::class, 'user_address', 'address_id', 'user_id');
     }
     protected $table = 'address';
+
+    protected $fillable = [
+        'lastname',
+        'firstname',
+        'street',
+        'phone',
+        'city',
+        'zip_code',
+        'country',
+    ];
 }

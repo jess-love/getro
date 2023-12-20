@@ -45,6 +45,14 @@ Route::post('/subscribe', [App\Http\Controllers\SubscriptionController::class, '
 
 //route pour gerer les informations du compte de l'utilisateur
 Route::get('/my_account', [App\Http\Controllers\UserController::class, 'MonCompte'])->name('myaccount');
+Route::post('/update-profile', [App\Http\Controllers\UserController::class, 'updateProfile'])->name('update-profile');
+
+//------------------Start route adresse----------------------------------------
+Route::get('/adresse',[App\Http\Controllers\UserController::class,'Address'])->name('address');
+Route::post('/addAddress', [App\Http\Controllers\UserController::class,'addAddress'])->name('addAddress');
+Route::post('/update-address', [App\Http\Controllers\UserController::class,'updateAddress'])->name('updateAddress');
+Route::post('/remove-address/{id}', [App\Http\Controllers\UserController::class, 'removeAddress'])->name('removeAddress');
+//------------------end route adresse----------------------------------------
 
 
 //------------------Start cart route----------------------------------------
@@ -52,7 +60,6 @@ Route::post('/delete-item',[App\Http\Controllers\CartController::class,'deleteIt
 Route::get('/produitToCart/{id}',[App\Http\Controllers\CartController::class,'addProductToCart'])->name('ProductToCart');
 Route::get('/product_cart',[App\Http\Controllers\CartController::class,'ProductInCart'])->name('ProductInCart');
 Route::post('/empty-cart', [App\Http\Controllers\CartController::class, 'emptyCart'])->name('empty-cart');
-
 //------------------end route cart----------------------------------------
 
 
