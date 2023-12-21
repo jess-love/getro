@@ -49,26 +49,26 @@
                                 <li class="nav-item " role="presentation">
                                     <a class="nav-link fs-15 active" data-bs-toggle="tab" href="#custom-v-pills-profile"
                                         role="tab" aria-selected="true"><i
-                                            class="bi bi-person-circle align-middle me-1"></i> Account Info</a>
+                                            class="bi bi-person-circle align-middle me-1"></i> Information Compte</a>
                                 </li>
                                 <li class="nav-item " role="presentation">
                                     <a class="nav-link fs-15" data-bs-toggle="tab" href="#custom-v-pills-list"
                                         role="tab" aria-selected="false" tabindex="-1"><i
-                                            class="bi bi-bookmark-check align-middle me-1"></i> Wish list</a>
+                                            class="bi bi-bookmark-check align-middle me-1"></i> Ma liste</a>
                                 </li>
                                 <li class="nav-item " role="presentation">
                                     <a class="nav-link fs-15" data-bs-toggle="tab" href="#custom-v-pills-order"
                                         role="tab" aria-selected="false" tabindex="-1"><i
-                                            class="bi bi-bag align-middle me-1"></i> Order</a>
+                                            class="bi bi-bag align-middle me-1"></i> Commande</a>
                                 </li>
                                 <li class="nav-item " role="presentation">
                                     <a class="nav-link fs-15" data-bs-toggle="tab" href="#custom-v-pills-setting"
                                         role="tab" aria-selected="false" tabindex="-1"><i
-                                            class="bi bi-gear align-middle me-1"></i> Settings</a>
+                                            class="bi bi-gear align-middle me-1"></i> Parametres</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link fs-15" href="auth-logout-basic"><i
-                                            class="bi bi-box-arrow-right align-middle me-1"></i> Logout</a>
+                                            class="bi bi-box-arrow-right align-middle me-1"></i> Deconnecter</a>
                                 </li>
                             </ul>
                         </div>
@@ -84,98 +84,105 @@
                                         <div class="card-body">
 
                                             <div class="d-flex mb-4">
-                                                <h6 class="fs-16 text-decoration-underline flex-grow-1 mb-0">Personal Info
+                                                <h6 class="fs-16 text-decoration-underline flex-grow-1 mb-0">Informations Personnelle
                                                 </h6>
-                                                <div class="flex-shrink-0">
-                                                    <a href="#!" class="badge badge-soft-dark">Edit</a>
+
+                                                <div>
+                                                    <a href="#" class="d-block text-body p-1 px-2" data-bs-toggle="modal" data-bs-target="#addAddressModal">
+                                                        <i class="ri-pencil-fill text-muted align-bottom me-1"></i> Edit
+                                                    </a>
                                                 </div>
+
+
                                             </div>
 
-                                            <div class="table-responsive table-card px-1">
-                                                <table class="table table-borderless table-sm">
-                                                    <tbody>
-                                                    @foreach($user as $User)
+                                            @if(isset($users) && $users instanceof \App\Models\User)
+                                                @php $user = $users; @endphp
+
+                                                @if(isset($user->last_name))
+                                                @else
+                                                    <script>
+                                                        alert('last_name n\'existe pas');
+                                                    </script>
+                                                @endif
+
+                                                <div class="table-responsive table-card px-1">
+                                                    <table class="table table-borderless table-sm">
+                                                        <tbody>
                                                         <tr>
-                                                            <td> Customer Name </td>
+                                                            <td> Nom Client </td>
                                                             <td class="fw-medium">
-                                                                {{$User->last_name}}
+                                                                {{ $user->first_name ?? '' }} {{ $user->last_name ?? '' }}
                                                             </td>
                                                         </tr>
                                                         <tr>
-                                                            <td> Mobile / Phone Number </td>
-                                                            <td class="fw-medium">  +(253) 01234 5678  </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Email Address </td>
-                                                            <td class="fw-medium">
-                                                                {{ @Auth::user()->email }}
+                                                            <td>Adresse Email </td>
+                                                            <td class="fw-medium" style="color: blue; text-decoration: underline;">
+                                                                {{ $user->email ?? '' }}
                                                             </td>
                                                         </tr>
                                                         <tr>
                                                             <td> Location</td>
                                                             <td class="fw-medium">
-                                                                Phoenix, USA
+                                                                @if(isset($user->address) && $user->address)
+                                                                    @foreach($user->address as $address)
+                                                                         {{ $address->country ?? '' }}
+                                                                    @endforeach
+                                                                @else
+                                                                    Pas d'adresse disponible
+                                                                @endif
                                                             </td>
                                                         </tr>
                                                         <tr>
-                                                            <td> Since Member </td>
+                                                            <td> Membre Depuis </td>
                                                             <td class="fw-medium">
-                                                                Aug, 2022
+                                                                {{ optional($user->created_at ?? '' )->format('F j, Y') ?? '' }}
                                                             </td>
                                                         </tr>
-                                                    </tbody>
-                                                    @endforeach
-                                                </table>
-                                            </div>
+
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            @endif
 
                                             <div class="mt-4">
                                                 <h6 class="fs-16 text-decoration-underline">Billing & Shipping Address</h6>
                                             </div>
-                                            <div class="row mt-4">
-                                                <div class="col-md-6">
-                                                    <div class="card mb-md-0">
-                                                        <div class="card-body">
-                                                            <div class="float-end clearfix"> <a href="address"
-                                                                    class="badge bg-primary-subtle text-primary"><i
-                                                                        class="ri-pencil-fill align-bottom me-1"></i>
-                                                                    Edit</a> </div>
-                                                            <div>
-                                                                <p
-                                                                    class="mb-3 fw-semibold fs-12 d-block text-muted text-uppercase">
-                                                                    Home Address</p>
-                                                                <h6 class="fs-14 mb-2 d-block">Raquel Murillo</h6>
-                                                                <span
-                                                                    class="text-muted fw-normal text-wrap mb-1 d-block">144
-                                                                    Cavendish Avenue, Indianapolis, IN 46251</span>
-                                                                <span class="text-muted fw-normal d-block">Mo. +(253) 01234
-                                                                    5678</span>
+
+                                            @php
+                                                $addresses = $users->address ?? collect();
+                                                $addressChunks = $addresses->chunk(2);
+                                            @endphp
+                                                @foreach($addressChunks as $addressPair)
+                                                <div class="row mt-4">
+                                                    @foreach($addressPair as $index => $address)
+                                                        <div class="col-md-6">
+                                                            <div class="card mb-md-0">
+                                                                <div class="card-body">
+                                                                    <div class="float-end clearfix">
+                                                                        <a href="{{route('address')}}" class="badge bg-primary-subtle text-primary">
+                                                                            <i class="ri-pencil-fill align-bottom me-1"></i>Edit
+                                                                        </a>
+                                                                    </div>
+                                                                    <div>
+                                                                        <p class="mb-3 fw-semibold fs-12 d-block text-muted text-uppercase">
+                                                                            Adresse {{ $index + 1 }}
+                                                                        </p>
+
+                                                                        <h6 class="fs-14 mb-2 d-block">{{ $address->firstname }} {{ $address->lastname }}</h6>
+                                                                        <span class="text-muted fw-normal text-wrap mb-1 d-block">
+                                                                            {{ $address->street }}, {{ $address->city }}, {{ $address->country }}
+                                                                        </span>
+                                                                        <span class="text-muted fw-normal d-block">+509 {{ $address->phone }}</span>
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
+                                                    @endforeach
                                                 </div>
-                                                <div class="col-md-6">
-                                                    <div class="card mb-0">
-                                                        <div class="card-body">
-                                                            <div class="float-end clearfix"> <a href="address"
-                                                                    class="badge bg-primary-subtle text-primary"><i
-                                                                        class="ri-pencil-fill align-bottom me-1"></i>
-                                                                    Edit</a> </div>
-                                                            <div>
-                                                                <p
-                                                                    class="mb-3 fw-semibold fs-12 d-block text-muted text-uppercase">
-                                                                    Shipping Address</p>
-                                                                <h6 class="fs-14 mb-2 d-block">James Honda</h6>
-                                                                <span
-                                                                    class="text-muted fw-normal text-wrap mb-1 d-block">1246
-                                                                    Virgil Street Pensacola, FL 32501</span>
-                                                                <span class="text-muted fw-normal d-block">Mo. +(253) 01234
-                                                                    5678</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                @endforeach
+
                                             </div>
-                                            <!-- end row -->
                                         </div>
                                     </div>
                                     <!--end card-->
@@ -798,6 +805,45 @@
     </section>
     <!-- end tab-->
 
+    <!-- _______________________________________________________________Modal Edit user_______________________________________________________________ -->
+    <div class="modal fade" id="addAddressModal" tabindex="-1" aria-labelledby="addAddressModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="addAddressModalLabel">Modifier Infos Utilisateur</h1>
+                    <button type="button" id="addAddress-close" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form autocomplete="off" class="needs-validation createAddress-form" id="createAddress-form"
+                          novalidate>
+                        <input type="hidden" id="addressid-input" class="form-control" value="">
+                        <div>
+                            <div class="mb-3">
+                                <label for="addaddress-FirstName" class="form-label">Prénom</label>
+                                <input type="text" class="form-control" id="addaddress-FirstName" name="first_name" placeholder="Entrer le nouveau prénom">
+                                <div class="invalid-feedback">SVP entrer un prénom.</div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="addaddress-LastName" class="form-label">Nom</label>
+                                <input type="text" class="form-control" id="addaddress-LastName" name="last_name" placeholder="Entrer le nouveau nom">
+                                <div class="invalid-feedback">SVP entrer un nom.</div>
+                            </div>
+                        </div>
+
+                        <div class="d-flex justify-content-end gap-2 mt-4">
+                            <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" id="addNewAddress" class="btn btn-primary">Update</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- _______________________________________________________________Modal Edit user_______________________________________________________________ -->
+
     <!-- start subscribe-->
     <section class="section bg-light bg-opacity-25"
         style="background-image: url('build/images/ecommerce/bg-effect.png');background-position: center; background-size: cover;">
@@ -1124,8 +1170,22 @@
             </div>
         </div>
     </div>
+
+
 @endsection
 @section('scripts')
     <!-- landing-index js -->
     <script src="{{ URL::asset('build/js/frontend/menu.init.js') }}"></script>
+    <script>
+            document.addEventListener("DOMContentLoaded", function () {
+            var modalForm = document.querySelector('#createAddress-form');
+
+            if (modalForm) {
+            modalForm.addEventListener('submit', function () {
+            // Soumettez le formulaire principal
+            document.querySelector('#mainProfileForm').submit();
+        });
+        }
+        });
+    </script>
 @endsection

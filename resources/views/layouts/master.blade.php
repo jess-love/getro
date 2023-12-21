@@ -36,6 +36,7 @@
     @include('layouts.vendor-scripts')
 {{--    <script src="{{ URL::asset('build/jquery.exzoom.js') }}"></script>--}}
     <script src="{{ URL::asset('build/js/Jess.js') }}"></script>
+    @yield('scripts')
 
 </body>
 

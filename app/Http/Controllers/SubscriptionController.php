@@ -23,7 +23,6 @@ class SubscriptionController extends Controller
         // Envoyer l'e-mail de confirmation
 //        Mail::to($request->input('email'))->send(new SubscriptionConfirmation($request->input('email')));
 
-
         // Stockez un message dans la session
         return redirect()->back()->with('success', 'Vous êtes maintenant abonné !');
     }

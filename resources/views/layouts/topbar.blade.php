@@ -103,7 +103,7 @@
                                                     <p class="mb-2 text-uppercase fs-11 fw-medium text-muted menu-title" data-key="t-checkout-pages">{{ __('t-checkout-pages') }}</p>
                                                 </li>
                                                 <li class="nav-item">
-                                                    <a href="address" class="nav-link" data-key="t-address"> {{ __('t-address') }}</a>
+                                                    <a href="{{route('address')}}" class="nav-link" data-key="t-address"> {{ __('t-address') }}</a>
                                                 </li>
                                                 <li class="nav-item">
                                                     <a href="track-order" class="nav-link" data-key="t-track-order">{{ __('t-track-order') }}</a>
