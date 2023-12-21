@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Address;
+use App\Models\Cart;
 use App\Models\UserAddress;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
@@ -45,9 +46,7 @@ class UserController extends Controller
 
     public function addAddress(Request $request)
     {
-
         $user = Auth::user();
-
 
         $request->validate([
             'lastname'  => 'required|string',
@@ -73,28 +72,6 @@ class UserController extends Controller
 
     }
 
-//    public function updateAddress(Request $request)
-//    {
-//        $validatedData = $request->validate([
-//            'lastname' => 'sometimes|string',
-//            'firstname' => 'sometimes|string',
-//            'street' => 'sometimes|string',
-//            'phone' => 'sometimes|string',
-//            'city' => 'sometimes|string',
-//            'zip_code' => 'sometimes|string',
-//            'country' => 'sometimes|string',
-//        ]);
-//
-//
-//        $address = Address::find($request->input('address_id'));
-//
-//        if ($address) {
-//            $address->update($validatedData);
-//            return back()->with('success', 'Adresse modifiée avec succès!');
-//        } else {
-//            return back()->with('error', 'Adresse non trouvée. La modification a échoué.');
-//        }
-//    }
 
 
     public function updateAddress(Request $request)
@@ -138,22 +115,40 @@ class UserController extends Controller
     }
 
 
-    public function removeAddress($id)
-    {
-        try {
-            // Vérifier s'il y a des références dans la table user_address
-            $referencesExist = UserAddress::where('address_id', $id)->exists();
+//    public function removeAddress($id)
+//    {
+//        try {
+//            // Vérifier s'il y a des références dans la table user_address
+//            $referencesExist = UserAddress::where('address_id', $id)->exists();
+//
+//            if ($referencesExist) {
+//                return response()->json(['error' => 'Il existe des références à cette adresse dans d\'autres tables.'], 500);
+//            }
+//
+//            $address = Address::findOrFail($id);
+//            $address->delete();
+//
+//            return response()->json(['message' => 'Adresse supprimée avec succès.'], 200);
+//        } catch (\Exception $e) {
+//            return response()->json(['error' => 'Une erreur est survenue lors de la suppression de l\'adresse.', 'message' => $e->getMessage()], 500);
+//        }
+//    }
 
-            if ($referencesExist) {
-                return response()->json(['error' => 'Il existe des références à cette adresse dans d\'autres tables.'], 500);
+    public function deleteAddress(Request $request){
+        if(Auth::check()){
+            $address_id = $request->input('address_id');
+            if(UserAddress::where('product_id',$address_id)->where('user_id',Auth::id())->exists()){
+                $address_user = UserAddress::where('adress_id',$address_id)->where('user_id',Auth::id())->first();
+                if ($address_user) {
+                    $address_user->delete();
+                    return response()->json(['status' => "Address Deleted successfully"]);
+                } else {
+                    return response()->json(['status' => "Address not found"]);
+                }
             }
 
-            $address = Address::findOrFail($id);
-            $address->delete();
-
-            return response()->json(['message' => 'Adresse supprimée avec succès.'], 200);
-        } catch (\Exception $e) {
-            return response()->json(['error' => 'Une erreur est survenue lors de la suppression de l\'adresse.', 'message' => $e->getMessage()], 500);
+        }else{
+            return response()->json(['status',"login to continue"]);
         }
     }
 
