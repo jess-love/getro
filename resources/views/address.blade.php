@@ -132,7 +132,7 @@
                             <div class="row g-4">
                                 <div class="row g-4">
                                     @foreach($addressPair as $index => $address)
-                                        <div class="col-lg-6">
+                                        <div class="col-lg-6 address_data">
                                             <div class="form-check card-radio" id="address{{ $index + 1 }}" data-address-id="{{ $address->id }}">
                                                 <input id="shippingAddress{{ $index + 1 }}" name="shippingAddress" type="radio" class="form-check-input" checked>
                                                 <label class="form-check-label" for="shippingAddress{{ $index + 1 }}">
@@ -150,7 +150,9 @@
                                                         </a>
                                                     </div>
                                                     <div>
-                                                        <a href="#" class="d-block text-body p-1 px-2" data-address-id="{{ $address->id }}" onclick="confirmRemoveAddress({{ $address->id }})">
+                                                        <a href="#" class="d-block text-body p-1 px-2 btn-delete-address" >
+                                                            @csrf
+                                                            <input type="hidden" value="{{ $address->id }}" class="address_id">
                                                             <i class="ri-delete-bin-fill text-muted align-bottom me-1"></i> Retirer
                                                         </a>
 

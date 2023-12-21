@@ -51,7 +51,7 @@ Route::post('/update-profile', [App\Http\Controllers\UserController::class, 'upd
 Route::get('/adresse',[App\Http\Controllers\UserController::class,'Address'])->name('address');
 Route::post('/addAddress', [App\Http\Controllers\UserController::class,'addAddress'])->name('addAddress');
 Route::post('/update-address', [App\Http\Controllers\UserController::class,'updateAddress'])->name('updateAddress');
-Route::post('/adresse',[App\Http\Controllers\UserController::class,'deleteAddress'])->name('delete-address');
+Route::post('/adresse',[App\Http\Controllers\UserController::class,'deleteAddress'])->name('deleteAddress');
 //------------------end route adresse----------------------------------------
 
 

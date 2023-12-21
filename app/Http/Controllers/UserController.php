@@ -137,8 +137,8 @@ class UserController extends Controller
     public function deleteAddress(Request $request){
         if(Auth::check()){
             $address_id = $request->input('address_id');
-            if(UserAddress::where('product_id',$address_id)->where('user_id',Auth::id())->exists()){
-                $address_user = UserAddress::where('adress_id',$address_id)->where('user_id',Auth::id())->first();
+            if(UserAddress::where('address_id',$address_id)->where('user_id',Auth::id())->exists()){
+                $address_user = UserAddress::where('address_id',$address_id)->where('user_id',Auth::id())->first();
                 if ($address_user) {
                     $address_user->delete();
                     return response()->json(['status' => "Address Deleted successfully"]);
