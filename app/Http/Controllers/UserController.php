@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Address;
+use App\Models\Cart;
 use App\Models\UserAddress;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
@@ -45,9 +46,7 @@ class UserController extends Controller
 
     public function addAddress(Request $request)
     {
-
         $user = Auth::user();
-
 
         $request->validate([
             'lastname'  => 'required|string',
@@ -72,6 +71,7 @@ class UserController extends Controller
         return back()->with('success', 'Adresse Ajoutée avec Succes!');
 
     }
+
 
     public function updateAddress(Request $request)
     {
@@ -128,6 +128,26 @@ class UserController extends Controller
             return redirect()->back()->with('success', 'Adresse supprimée avec succès');
         } else {
             return redirect()->back()->with('error', 'Adresse introuvable');
+        }
+    }
+
+
+    public function deleteAddress(Request $request){
+        if(Auth::check()){
+            $address_id = $request->input('address_id');
+            if(UserAddress::where('address_id',$address_id)->where('user_id',Auth::id())->exists()){
+                $address_user = UserAddress::where('address_id',$address_id)->where('user_id',Auth::id())->first();
+                if ($address_user) {
+                    $address_user->delete();
+                    return response()->json(['status' => "Address Deleted successfully"]);
+                } else {
+                    return response()->json(['status' => "Address not found"]);
+                }
+            }
+
+        }else{
+            return response()->json(['status',"login to continue"]);
+
         }
     }
 

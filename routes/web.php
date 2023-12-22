@@ -62,6 +62,7 @@ Route::get('/adresse',[App\Http\Controllers\UserController::class,'Address'])->n
 Route::post('/addAddress', [App\Http\Controllers\UserController::class,'addAddress'])->name('addAddress');
 Route::post('/update-address', [App\Http\Controllers\UserController::class,'updateAddress'])->name('updateAddress');
 Route::get('/remove-address/{id}', [App\Http\Controllers\UserController::class, 'removeAddress'])->name('removeAddress');
+Route::post('/adresse',[App\Http\Controllers\UserController::class,'deleteAddress'])->name('deleteAddress');
 //------------------end route adresse----------------------------------------
 
 

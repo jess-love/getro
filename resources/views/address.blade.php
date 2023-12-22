@@ -31,7 +31,7 @@
     <section class="section">
         <div class="container">
             <div class="col-xl-12">
-{{--************************************************************--}}
+
                     @if(Session::has('success'))
                         <div class="alert alert-success">
                             {{ Session::get('success') }}
@@ -44,85 +44,6 @@
                         </div>
                     @endif
 
-                    <script>
-                        function selectAddress(index, addressId) {
-                            // Supprime la classe "selected" de tous les éléments
-                            document.querySelectorAll('.form-check.card-radio').forEach(function (element) {
-                                element.classList.remove('selected');
-                            });
-
-                            // Ajoute la classe "selected" à l'élément cliqué
-                            const selectedAddress = document.getElementById('address' + index);
-                            selectedAddress.classList.add('selected');
-
-
-                            // Récupère les données de l'adresse sélectionnée
-                            const data = {
-                                lastname: selectedAddress.querySelector('.lastname').innerText,
-                                firstname: selectedAddress.querySelector('.firstname').innerText,
-                                street: selectedAddress.querySelector('.street').innerText,
-                                phone: selectedAddress.querySelector('.phone').innerText,
-                                city: selectedAddress.querySelector('.city').innerText,
-                                zip_code: selectedAddress.querySelector('.zip_code').innerText,
-                                country: selectedAddress.querySelector('.country').innerText,
-                            };
-
-                            // Remplit le formulaire de modification
-                            document.getElementById('editAddressForm').action = '{{ route("updateAddress") }}';
-                            document.getElementById('address_id').value = addressId;
-                            document.getElementById('lastname').value = data.lastname;
-                            document.getElementById('firstname').value = data.firstname;
-                            document.getElementById('street').value = data.street;
-                            document.getElementById('phone').value = data.phone;
-                            document.getElementById('city').value = data.city;
-                            document.getElementById('zip_code').value = data.zip_code;
-                            document.getElementById('country').value = data.country;
-
-                            // Affiche le modal de modification
-                            const editModal = new bootstrap.Modal(document.getElementById('EditAddressModal'));
-                            editModal.show();
-                        }
-
-{{--                        --}}{{-- Code js pour retirer une adresse--}}
-{{--                        function confirmRemoveAddress(addressId) {--}}
-{{--                            // Mettre à jour l'attribut data-address-id du bouton de suppression--}}
-{{--                            document.getElementById('remove-address').setAttribute('data-address-id', addressId);--}}
-{{--                        }--}}
-{{--                        window.addEventListener('DOMContentLoaded', (event) => {--}}
-{{--                            document.getElementById('remove-address').addEventListener('click', function () {--}}
-{{--                                console.log('Button clicked!');--}}
-{{--                                // Récupérer l'ID de l'adresse depuis l'attribut data-address-id--}}
-{{--                                var addressId = this.getAttribute('data-address-id');--}}
-{{--                                console.log('Address ID:', addressId);--}}
-
-{{--                                // Envoyer une requête AJAX pour supprimer l'adresse--}}
-{{--                                fetch('/remove-address/' + addressId, {--}}
-{{--                                    method: 'POST',--}}
-{{--                                    headers: {--}}
-{{--                                        'Content-Type': 'application/json',--}}
-{{--                                        'X-CSRF-TOKEN': '{{ csrf_token() }}' // Ajoutez le jeton CSRF si nécessaire--}}
-{{--                                    },--}}
-{{--                                })--}}
-{{--                                    .then(response => response.json())--}}
-{{--                                    .then(data => {--}}
-{{--                                        // Traiter la réponse du serveur après la suppression réussie--}}
-{{--                                        alert(data.message);--}}
-{{--                                        // Vous pouvez également mettre à jour la page ou effectuer d'autres actions nécessaires--}}
-{{--                                    })--}}
-{{--                                    .catch(error => {--}}
-{{--                                        // Traiter les erreurs ici--}}
-{{--                                        alert('Erreur lors de la suppression de l\'adresse.');--}}
-{{--                                    });--}}
-
-{{--                                // Fermer le modal après la suppression réussie--}}
-{{--                                $('#removeAddressModal').modal('hide');--}}
-{{--                            });--}}
-{{--                        });--}}
-
-
-                    </script>
-
-                    {{--************************************************************--}}
                     <div>
                         <h4 class="fs-18 mb-4">Sélectionner ou Ajouter une Adresse</h4>
                         @php
@@ -134,7 +55,7 @@
                             <div class="row g-4">
                                 <div class="row g-4">
                                     @foreach($addressPair as $index => $address)
-                                        <div class="col-lg-6">
+                                        <div class="col-lg-6 address_data">
                                             <div class="form-check card-radio" id="address{{ $index + 1 }}" data-address-id="{{ $address->id }}">
                                                 <input id="shippingAddress{{ $index + 1 }}" name="shippingAddress" type="radio" class="form-check-input" checked>
                                                 <label class="form-check-label" for="shippingAddress{{ $index + 1 }}">
@@ -152,12 +73,14 @@
                                                         </a>
                                                     </div>
                                                     <div>
-{{--                                                        <a href="#" class="d-block text-body p-1 px-2" data-bs-toggle="modal" data-bs-target="#removeAddressModal"--}}
-{{--                                                           data-address-id="{{ $address->id }}" onclick="confirmRemoveAddress({{ $address->id }})">--}}
-{{--                                                            <i class="ri-delete-bin-fill text-muted align-bottom me-1"></i> Retirer--}}
-{{--                                                        </a>--}}
                                                         <a href="{{ route('removeAddress', ['id' => $address->id]) }}" class="btn btn-soft-danger btn-icon btn-sm">
                                                             <i class="ri-close-line fs-13"></i>
+
+                                                        <a href="#" class="d-block text-body p-1 px-2 btn-delete-address" >
+                                                            @csrf
+                                                            <input type="hidden" value="{{ $address->id }}" class="address_id">
+                                                            <i class="ri-delete-bin-fill text-muted align-bottom me-1"></i> Retirer
+
                                                         </a>
 
                                                     </div>
