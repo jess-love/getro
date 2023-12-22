@@ -27,7 +27,7 @@
                             </div>
                             <div class="ms-md-auto">
                                 <!-- <p class="mb-0">Toner Member Since Jan 2020</p> -->
-                                <a href="product-list" class="btn btn-success btn-hover"><i
+                                <a href="{{ route('products_left') }}" class="btn btn-success btn-hover"><i
                                         class="bi bi-cart4 me-1 align-middle"></i> Shopping Now</a>
                             </div>
                         </div>

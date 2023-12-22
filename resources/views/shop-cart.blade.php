@@ -77,64 +77,78 @@
 
                   @if(!empty($productsWithImages) && count($productsWithImages) > 0)
                         @foreach($productsWithImages as $item)
-                            @php
-                                $itemtotal = 0;
-                                if ($item && $item->cart) {
-                                    $itemtotal += $item->unit_price * $item->cart->quantity;
-                                }
-                                $totalAmount += $itemtotal;
-                            @endphp
-                            <div class="card product product_data">
-                                <div class="card-body p-4 ">
-                                    <div class="row gy-3">
-                                        <div class="col-sm-auto">
-                                            <div class="avatar-lg h-100">
-                                                <div class="avatar-title bg-danger-subtle rounded py-3">
-                                                    <a href="">
-                                                        @if(!empty($item->product_images->first()->image))
-                                                            <img src="{{ asset('build/images/products/'.$item->product_images->first()->image) }}" alt=""
-                                                                 style="max-height: 215px;max-width: 100%;" class="mx-auto d-block">
-                                                        @else
-                                                            <img src="{{ asset('build/images/products/default.png')}}" alt=""
-                                                                 style="max-height: 215px;max-width: 100%;" class="mx-auto d-block">
-                                                        @endif
-                                                    </a>
+                            <div class="row mb-3">
+                                <div class="col-lg-12">
+                                    <div class="card product product_data">
+                                        <div class="row">
+                                            <div class="col-sm-auto">
+                                                <!-- Avatar et image du produit -->
+                                                <div class="avatar-lg h-100">
+                                                    <div class="avatar-title bg-danger-subtle rounded py-3">
+                                                        <a href="#">
+                                                            @if(!empty($item->product_images->first()->image))
+                                                                <img src="{{ asset('build/images/products/'.$item->product_images->first()->image) }}" alt="Product Image" style="max-height: 215px; max-width: 100%;" class="mx-auto d-block">
+                                                            @else
+                                                                <img src="{{ asset('build/images/products/default.png')}}" alt="Default Image" style="max-height: 215px; max-width: 100%;" class="mx-auto d-block">
+                                                            @endif
+                                                        </a>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
 
-                                        <div class="col-sm">
-                                            <a href="#"> <input type="checkbox" class="form-check-input delete-checkbox" data-prod-id="{{ $item->id }}">
-                                                <h5 class="fs-16 lh-base mb-1">{{ $item->title ?? 'N/A' }}</h5>
-                                            </a>
-                                            <ul class="list-inline text-muted fs-13 mb-3">
-                                                <li class="list-inline-item">Color: <span class="fw-medium">{{ $item->product_images->isNotEmpty() ? $item->product_images->first()->color : 'N/A' }}</span></li>
-                                                <li class="list-inline-item">Size: <span class="fw-medium">{{ $item->product_images->isNotEmpty() ? $item->product_images->first()->size : 'N/A' }}</span></li>
-                                            </ul>
+                                            <div class="col-sm">
+                                                <!-- Informations du produit -->
+                                                <a href="#">
+                                                    <input type="checkbox" class="form-check-input delete-checkbox" data-prod-id="{{ $item->id }}">
+                                                    <h5 class="fs-16 lh-base mb-1">{{ $item->title ?? 'N/A' }}</h5>
+                                                </a>
+                                                <ul class="list-inline text-muted fs-13 mb-3">
+                                                    <li class="list-inline-item">Color: <span class="fw-medium">{{ $item->product_images->isNotEmpty() ? $item->product_images->first()->color : 'N/A' }}</span></li>
+                                                    <li class="list-inline-item">Size: <span class="fw-medium">{{ $item->product_images->isNotEmpty() ? $item->product_images->first()->size : 'N/A' }}</span></li>
+                                                </ul>
 
-                                            <div class="input-step ms-2">
-                                                <input type="hidden" value="{{ $item->id }}" class="prod_id">
-                                                <button class="decrement-btn changeQty">–</button>
-                                                <input name="quantity" type="number" class="qty-input" value="{{ $item->cart->quantity ?? 'N/A' }}" min="0" max="100">
-                                                <button class="increment-btn changeQty">+</button>
+                                                <!-- Quantité du produit -->
+                                                <div class="input-step ms-2">
+                                                    <input type="hidden" value="{{ $item->id }}" class="prod_id">
+                                                    <button class="decrement-btn changeQty">–</button>
+                                                    <input name="quantity" type="number" class="qty-input" value="{{ $item->cart->quantity ?? 'N/A' }}" min="0" max="100">
+                                                    <button class="increment-btn changeQty">+</button>
+                                                </div>
                                             </div>
-                                        </div>
 
-                                        <div class="col-sm-auto">
-                                            <div class="text-lg-end">
-                                                <p class="text-muted mb-1 fs-12">Prix:</p>
+                                            <div class="col-sm-auto">
+                                                <!-- Bouton de liste de souhaits -->
+                                                <button type="button" class="btn btn-danger btn-sm custom-toggle mb-2 float-end" data-bs-toggle="button" onclick="toggleWishlist({{ $item->id }})">
+                                                    <span class="icon-on"> <i class="mdi mdi-heart-outline align-bottom fs-12"></i> </span>
+                                                    <span class="icon-off"> <i class="mdi mdi-heart align-bottom fs-12"></i> </span>
+                                                </button>
+                                                <!-- Prix du produit -->
+
+                                        </div>
+                                            <div class="text-lg-end mt-1">
+                                                <p class="text-muted mb-8 fs-12">Prix:</p>
                                                 <h5 class="fs-16">HTG <span class="product-price">{{ $item->unit_price ?? 'N/A' }}</span></h5>
                                             </div>
                                         </div>
+                                        <div class="d-flex align-items-center mt-3">
+                                            <!-- Bouton de suppression du produit -->
+                                            <a href="#" class="d-block text-body p-1 px-2 btn-delete-item" data-bs-toggle="modal">
+                                                <i class="ri-delete-bin-fill text-muted align-bottom me-1"></i> Retirer
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
-                                <div>
+                            </div>
+                        @endforeach
 
-                                    <a href="" class="d-block text-body p-1 px-2 btn-delete-item" data-bs-toggle="modal">
-                                        <i class="ri-delete-bin-fill text-muted align-bottom me-1"></i> Retirer
-                                    </a>
-                                </div>
-                                @endforeach
+
+
+
+                        @php
+                                    // Stocker la valeur dans la session
+                                    session(['totalAmount' => $totalAmount]);
+                                @endphp
+
                                 <div class="card-footer">
                                     <div class="row align-items-center gy-3">
                                         <div class="col-sm">
@@ -149,16 +163,14 @@
                                         <div class="col-sm-auto">
                                             <div class="d-flex align-items-center gap-2 text-muted">
                                                 <div>Total :</div>
+                                                <input type="hidden" id="totalAmountInput" value="{{ $totalAmount }}">
                                                 <h5 class="fs-14 mb-0">HTG <span class="product-line-price">{{ $totalAmount }}</span></h5>
                                             </div>
                                         </div>
                                     </div>
                                     <!-- end card footer -->
                                 </div>
-                            </div>
-
-                    @else
-
+                  @else
                        <div class="col-md-12">
                            <div class="card">
                                <div class="card-body d-flex justify-content-center align-items-center">
@@ -170,7 +182,7 @@
 
                            </div>
                        </div>
-                   @endif
+                  @endif
                     <!--end card-->
                 </div>
                 <!--end col-->
@@ -293,7 +305,7 @@
             </div>
             <!--end row-->
             <div class="row justify-content-center">
-            @foreach($products as $product)
+            @foreach($productsWithImages as $product)
                     <div class="col-xxl-3 col-lg-4 col-md-6">
                         <div class="card ecommerce-product-widgets border-0 rounded-0 shadow-none overflow-hidden card-animate">
                             <a href="{{route('view_product',['id'=>$product->id]) }}">
@@ -332,9 +344,6 @@
                                             class="ri-star-half-fill text-warning align-bottom"></i></span>
                                     <h5 class="mb-0">HTG {{$product->unit_price}}</h5>
                                 </div>
-{{--                                <div class="mt-3">--}}
-{{--                                    <a href="#!" class="btn btn-primary w-100 add-btn"><i class="mdi mdi-cart me-1"></i>--}}
-{{--                                        Add To Cart</a>--}}
                             </div>
 
                         </div>

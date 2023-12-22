@@ -83,41 +83,43 @@
                             editModal.show();
                         }
 
-                        {{-- Code js pour retirer une adresse--}}
-                        function confirmRemoveAddress(addressId) {
-                            // Mettre à jour l'attribut data-address-id du bouton de suppression
-                            document.getElementById('remove-address').setAttribute('data-address-id', addressId);
-                        }
-                        window.addEventListener('DOMContentLoaded', (event) => {
-                            document.getElementById('remove-address').addEventListener('click', function () {
-                                console.log('Button clicked!');
-                                // Récupérer l'ID de l'adresse depuis l'attribut data-address-id
-                                var addressId = this.getAttribute('data-address-id');
-                                console.log('Address ID:', addressId);
+{{--                        --}}{{-- Code js pour retirer une adresse--}}
+{{--                        function confirmRemoveAddress(addressId) {--}}
+{{--                            // Mettre à jour l'attribut data-address-id du bouton de suppression--}}
+{{--                            document.getElementById('remove-address').setAttribute('data-address-id', addressId);--}}
+{{--                        }--}}
+{{--                        window.addEventListener('DOMContentLoaded', (event) => {--}}
+{{--                            document.getElementById('remove-address').addEventListener('click', function () {--}}
+{{--                                console.log('Button clicked!');--}}
+{{--                                // Récupérer l'ID de l'adresse depuis l'attribut data-address-id--}}
+{{--                                var addressId = this.getAttribute('data-address-id');--}}
+{{--                                console.log('Address ID:', addressId);--}}
 
-                                // Envoyer une requête AJAX pour supprimer l'adresse
-                                fetch('/remove-address/' + addressId, {
-                                    method: 'POST',
-                                    headers: {
-                                        'Content-Type': 'application/json',
-                                        'X-CSRF-TOKEN': '{{ csrf_token() }}' // Ajoutez le jeton CSRF si nécessaire
-                                    },
-                                })
-                                    .then(response => response.json())
-                                    .then(data => {
-                                        // Traiter la réponse du serveur après la suppression réussie
-                                        alert(data.message);
-                                        // Vous pouvez également mettre à jour la page ou effectuer d'autres actions nécessaires
-                                    })
-                                    .catch(error => {
-                                        // Traiter les erreurs ici
-                                        alert('Erreur lors de la suppression de l\'adresse.');
-                                    });
+{{--                                // Envoyer une requête AJAX pour supprimer l'adresse--}}
+{{--                                fetch('/remove-address/' + addressId, {--}}
+{{--                                    method: 'POST',--}}
+{{--                                    headers: {--}}
+{{--                                        'Content-Type': 'application/json',--}}
+{{--                                        'X-CSRF-TOKEN': '{{ csrf_token() }}' // Ajoutez le jeton CSRF si nécessaire--}}
+{{--                                    },--}}
+{{--                                })--}}
+{{--                                    .then(response => response.json())--}}
+{{--                                    .then(data => {--}}
+{{--                                        // Traiter la réponse du serveur après la suppression réussie--}}
+{{--                                        alert(data.message);--}}
+{{--                                        // Vous pouvez également mettre à jour la page ou effectuer d'autres actions nécessaires--}}
+{{--                                    })--}}
+{{--                                    .catch(error => {--}}
+{{--                                        // Traiter les erreurs ici--}}
+{{--                                        alert('Erreur lors de la suppression de l\'adresse.');--}}
+{{--                                    });--}}
 
-                                // Fermer le modal après la suppression réussie
-                                $('#removeAddressModal').modal('hide');
-                            });
-                        });
+{{--                                // Fermer le modal après la suppression réussie--}}
+{{--                                $('#removeAddressModal').modal('hide');--}}
+{{--                            });--}}
+{{--                        });--}}
+
+
                     </script>
 
                     {{--************************************************************--}}
@@ -150,9 +152,12 @@
                                                         </a>
                                                     </div>
                                                     <div>
-                                                        <a href="#" class="d-block text-body p-1 px-2" data-bs-toggle="modal" data-bs-target="#removeAddressModal"
-                                                           data-address-id="{{ $address->id }}" onclick="confirmRemoveAddress({{ $address->id }})">
-                                                            <i class="ri-delete-bin-fill text-muted align-bottom me-1"></i> Retirer
+{{--                                                        <a href="#" class="d-block text-body p-1 px-2" data-bs-toggle="modal" data-bs-target="#removeAddressModal"--}}
+{{--                                                           data-address-id="{{ $address->id }}" onclick="confirmRemoveAddress({{ $address->id }})">--}}
+{{--                                                            <i class="ri-delete-bin-fill text-muted align-bottom me-1"></i> Retirer--}}
+{{--                                                        </a>--}}
+                                                        <a href="{{ route('removeAddress', ['id' => $address->id]) }}" class="btn btn-soft-danger btn-icon btn-sm">
+                                                            <i class="ri-close-line fs-13"></i>
                                                         </a>
 
                                                     </div>

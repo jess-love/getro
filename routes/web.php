@@ -23,12 +23,22 @@ Route::get('/login', function () {
 Route::get('/product-list-details', [App\Http\Controllers\ProductListDefaultController::class, 'index'])->name('product-list-details');
 Route::get('/product-details/{id}', [App\Http\Controllers\ProductdetailController::class, 'ViewProduitDetail'])->name('view_product');
 Route::get('/products-category', [App\Http\Controllers\HomeController::class, 'ViewCategory'])->name('CategoryProduct');
+Route::get('/get-products-by-slog/{slog}', [App\Http\Controllers\HomeController::class, 'getProductsBySlog'])->name('getProductsBySlog');
+
+
 
 Route::get('/products-category', [App\Http\Controllers\ViewCategoryController::class, 'ViewCategory'])->name('CategoryProduct');
 Route::get('/categories',[App\Http\Controllers\ViewCategoryController::class, 'viewcategories'])->name('VoirCategories');
 
 Route::get('/products-category', [App\Http\Controllers\ViewCategoryController::class, 'ViewCategory'])->name('CategoryProduct');
 Route::get('/products-sub-category', [App\Http\Controllers\ViewCategoryController::class, 'view_sub_categories'])->name('SubCategoryProduct');
+
+
+//wish list
+Route::post('/wishlist/add', [App\Http\Controllers\WishlistController::class, 'addToWishlist'])->name('wishlist.add');
+Route::get('/wishlist', [App\Http\Controllers\WishlistController::class, 'showWishlist'])->name('wishlist.show');
+Route::get('/wishlist/remove/{id}', [App\Http\Controllers\WishlistController::class, 'removeFromWishlist'])->name('wishlist.remove');
+Route::post('/wishlist/toggle', [App\Http\Controllers\WishlistController::class, 'toggleWishlist'])->name('wishlist.toggle');
 
 
 //route pour produit en liaison avec les sous-categories
@@ -51,7 +61,7 @@ Route::post('/update-profile', [App\Http\Controllers\UserController::class, 'upd
 Route::get('/adresse',[App\Http\Controllers\UserController::class,'Address'])->name('address');
 Route::post('/addAddress', [App\Http\Controllers\UserController::class,'addAddress'])->name('addAddress');
 Route::post('/update-address', [App\Http\Controllers\UserController::class,'updateAddress'])->name('updateAddress');
-Route::post('/remove-address/{id}', [App\Http\Controllers\UserController::class, 'removeAddress'])->name('removeAddress');
+Route::get('/remove-address/{id}', [App\Http\Controllers\UserController::class, 'removeAddress'])->name('removeAddress');
 //------------------end route adresse----------------------------------------
 
 
@@ -65,9 +75,8 @@ Route::post('/empty-cart', [App\Http\Controllers\CartController::class, 'emptyCa
 
 //------------------Start route checkout----------------------------------------
 Route::get('/checkout',[App\Http\Controllers\CheckoutController::class,'index'])->name('checkout');
+Route::get('/checkout-cart',[App\Http\Controllers\CheckoutController::class,'ViewCartCheckout'])->name('checkoutCart');
 //------------------end route checkout----------------------------------------
-
-
 
 
 
