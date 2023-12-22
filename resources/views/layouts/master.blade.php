@@ -14,6 +14,7 @@
 
     <link href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
 
     <!-- head css -->
@@ -34,7 +35,6 @@
     @include('layouts.footer')
     <!-- scripts -->
     @include('layouts.vendor-scripts')
-{{--    <script src="{{ URL::asset('build/jquery.exzoom.js') }}"></script>--}}
     <script src="{{ URL::asset('build/js/Jess.js') }}"></script>
     @yield('scripts')
 

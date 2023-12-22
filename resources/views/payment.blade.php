@@ -68,6 +68,7 @@
                     </ul>
                     <!-- Tab panes -->
                     <div class="tab-content text-muted">
+                        {{--    Paypal   --}}
                         <div class="tab-pane active" id="paypal" role="tabpanel">
                             <div class="card">
                                 <div class="card-body">
@@ -119,7 +120,7 @@
                                 </div>
                             </div>
                         </div>
-
+                        {{--    Debit credit card   --}}
                         <div class="tab-pane" id="credit" role="tabpanel">
                             <div class="card">
                                 <div class="card-body">
@@ -156,7 +157,7 @@
                                 </div>
                             </div>
                         </div>
-
+                        {{--    cash on delivery  --}}
                         <div class="tab-pane" id="cash" role="tabpanel">
 
                             <div class="card">

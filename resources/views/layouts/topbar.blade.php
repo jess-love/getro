@@ -1,12 +1,11 @@
 <?php $displayedCategories = []; ?>
 <head>
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.19.0/font/bootstrap-icons.css">
 <style>
     .highlight-link:hover {
         background-color: yellow; /* Changez cette couleur selon vos préférences */
     }
 </style>
-
 </head>
 <nav class="navbar navbar-expand-lg ecommerce-navbar" id="navbar">
     <div class="container">
@@ -246,12 +245,6 @@
             <div class="topbar-head-dropdown ms-1 header-item">
                 <button type="button" class="btn btn-icon btn-topbar btn-ghost-dark rounded-circle text-muted" data-bs-toggle="offcanvas" data-bs-target="#ecommerceCart" aria-controls="ecommerceCart">
                     <i class="ph-shopping-cart fs-18"></i>
-{{--                    @if(collect($productsWithImages)->isNotEmpty())--}}
-{{--                      <span class="position-absolute topbar-badge cartitem-badge fs-10 translate-middle badge rounded-pill bg-danger">{{ count($productsWithImages) }}</span>--}}
-{{--                    @else--}}
-
-{{--                        --}}
-{{--                    @endif--}}
                     @if(collect($productsWithImages)->isNotEmpty())
                         @php
                             $totalProducts = 0;
@@ -271,16 +264,22 @@
                 </button>
             </div>
 
+
             <div class="dropdown topbar-head-dropdown ms-2 header-item dropdown-hover-end">
-                <button type="button" class="btn btn-icon btn-topbar btn-ghost-dark rounded-circle text-muted" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="bi bi-sun align-middle fs-20"></i>
+                <button type="button" class="btn btn-icon btn-topbar btn-ghost-dark rounded-circle text-muted position-relative" onclick="redirectToWishlist()">
+                    <i class="bi bi-heart align-middle fs-20"></i>
+                    <span id="wishlistItemCount" class="badge bg-danger position-absolute top-0 end-0">{{ count($wishlistItems) }}</span>
                 </button>
-                <div class="dropdown-menu p-2 dropdown-menu-end" id="light-dark-mode">
-                    <a href="#!" class="dropdown-item" data-mode="light"><i class="bi bi-sun align-middle me-2"></i> Defualt (light mode)</a>
-                    <a href="#!" class="dropdown-item" data-mode="dark"><i class="bi bi-moon align-middle me-2"></i> Dark</a>
-                    <a href="#!" class="dropdown-item" data-mode="auto"><i class="bi bi-moon-stars align-middle me-2"></i> Auto (system defualt)</a>
-                </div>
             </div>
+
+            <script>
+                function redirectToWishlist() {
+                    window.location.href = '{{ route("wishlist.show") }}';
+                }
+            </script>
+
+
+        </div>
             <!---------------------------------------------------------avatar---------------------------------------------------------------------------------------------------------->
             <div class="dropdown header-item dropdown-hover-end">
                 <button type="button" class="btn" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -295,7 +294,7 @@
                     <a class="dropdown-item" href="javascript:void(0)"><i class="bi bi-speedometer2 text-muted fs-16 align-middle me-1"></i> <span class="align-middle">Dashboard</span></a>
                     <a class="dropdown-item" href="ecommerce-faq"><i class="mdi mdi-lifebuoy text-muted fs-16 align-middle me-1"></i> <span class="align-middle">Help</span></a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="account"><i class="bi bi-coin text-muted fs-16 align-middle me-1"></i> <span class="align-middle">Balance : <b>$8451.36</b></span></a>
+{{--                    <a class="dropdown-item" href="account"><i class="bi bi-coin text-muted fs-16 align-middle me-1"></i> <span class="align-middle">Balance : <b>$8451.36</b></span></a>--}}
                     {{--                    <a class="dropdown-item" href="account"><span class="badge bg-success-subtle text-success mt-1 float-end">New</span><i class="mdi mdi-cog-outline text-muted fs-16 align-middle me-1"></i> <span class="align-middle">Settings</span></a>--}}
                     <a class="dropdown-item" href="{{ url('logout') }}"><i class="bi bi-box-arrow-right text-muted fs-16 align-middle me-1"></i> <span class="align-middle" data-key="t-logout">{{ __('t-logout') }}</span></a>
                 </div>
@@ -372,13 +371,23 @@
 
                                     <div class="col-sm">
                                         <div class="d-flex justify-content-between align-items-center">
-                                            <h5 class="fs-16 lh-base mb-1">{{ $item->title ?? 'N/A' }}</h5>
-                                            <button type="button" class="btn btn-icon btn-sm btn-ghost-secondary remove-item-btn cart_remove" data-bs-toggle="modal" onclick="deleteItem('{{$item->id}}')">
-                                                <a href="" class="d-block text-body p-1 px-2 btn-delete-item" data-bs-toggle="modal">
-                                                    <i class="ri-close-fill fs-16"></i>
-                                                </a>
-                                            </button>
+                                            <h5 class="fs-16 lh-base mb-1 me-2">{{ $item->title ?? 'N/A' }}</h5>
+
+                                            <div class="d-flex align-items-center">
+                                                <button type="button" class="btn btn-danger btn-sm custom-toggle me-1 p-1" data-bs-toggle="button" onclick="toggleWishlist({{ $item->id }})">
+                                                    <span class="icon-on"> <i class="mdi mdi-heart-outline align-bottom fs-12"></i> </span>
+                                                    <span class="icon-off"> <i class="mdi mdi-heart align-bottom fs-12"></i> </span>
+                                                </button>
+
+                                                <button type="button" class="btn btn-icon btn-sm btn-ghost-secondary remove-item-btn cart_remove" data-bs-toggle="modal" onclick="deleteItem('{{$item->id}}')">
+                                                    <a href="" class="d-block text-body p-1 px-2 btn-delete-item" data-bs-toggle="modal">
+                                                        <i class="ri-close-fill fs-16"></i>
+                                                    </a>
+                                                </button>
+                                            </div>
                                         </div>
+
+
 
                                         <div class="list-inline-item">HTG
                                             <span class="fw-medium"> {{ $item->unit_price ?? 'N/A' }}</span>
@@ -401,6 +410,24 @@
                                             <button class="increment-btn changeQty">+</button>
                                         </div>
                                     </div>
+
+                                    <script>
+                                        function toggleWishlist(productId) {
+                                            $.ajax({
+                                                type: 'POST',
+                                                url: '/wishlist/toggle',
+                                                data: { product_id: productId },
+                                                success: function(response) {
+                                                    // alert(response.message);
+                                                    window.location.reload();
+                                                },
+
+                                                error: function(error) {
+                                                    console.error(error);
+                                                }
+                                            });
+                                        }
+                                    </script>
 
                                     </div>
                                     <div class="col-sm-auto">
@@ -441,6 +468,10 @@
                            @endisset
                        </td>
                     </tr>
+                    @php
+                        // Stocker la valeur dans la session
+                        session(['totalAmount' => $totalAmount]);
+                    @endphp
                     <?php
                     if (isset($totalAmount)) {
                         $taxPercentage = 2.5; // Pourcentage de taxe
@@ -490,10 +521,10 @@
         </div>
         <div class="row g-2">
             <div class="col-6">
-                <a href="{{route('shopCart')}}" target="_blank" class="btn btn-light w-100">View Cart</a>
+                <a href="{{ route('shopCart') }}" target="_self" class="btn btn-light w-100">Voir Panier</a>
             </div>
             <div class="col-6">
-                <a href="{{ route('checkout') }}" target="_blank" class="btn btn-info w-100">Continue to Checkout</a>
+                <a href="{{ route('checkout') }}" target="_self" class="btn btn-info w-100">Checkout</a>
             </div>
         </div>
     </div>

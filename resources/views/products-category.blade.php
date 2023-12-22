@@ -138,7 +138,6 @@
                     <div class="swiper mySwiper" dir="ltr">
 
                                                 <div class="swiper-wrapper py-4">
-{{--                            @foreach($sub_cat as $subCategory)--}}
                                 @foreach($sous_categories as $sous_category)
                                     <div class="swiper-slide">
                                         <div class="card card-animate overflow-hidden">
@@ -158,9 +157,7 @@
                                         </div>
                                     </div>
                                 @endforeach
-{{--                            @endforeach--}}
                         </div>
-
                         <div class="swiper-button-next"></div>
                         <div class="swiper-button-prev"></div>
                     </div>
