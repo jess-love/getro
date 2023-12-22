@@ -120,14 +120,32 @@
                                                 </div>
                                                 <p class="fs-11 fw-medium badge bg-primary py-2 px-3 product-lable mb-0">{{$produit->slog}}
                                                 </p>
+                                                <script>
+                                                    function toggleWishlist(productId) {
+                                                        $.ajax({
+                                                            type: 'POST',
+                                                            url: '/wishlist/toggle',
+                                                            data: { product_id: productId },
+                                                            success: function(response) {
+                                                                // alert(response.message);
+                                                                window.location.reload();
+                                                            },
+
+                                                            error: function(error) {
+                                                                console.error(error);
+                                                            }
+                                                        });
+                                                    }
+                                                </script>
                                                 <div class="gallery-product-actions">
                                                     <div class="mb-2">
-                                                        <button type="button" class="btn btn-danger btn-sm custom-toggle"
-                                                                data-bs-toggle="button">
-                                                    <span class="icon-on"><i
-                                                            class="mdi mdi-heart-outline align-bottom fs-15"></i></span>
-                                                            <span class="icon-off"><i
-                                                                    class="mdi mdi-heart align-bottom fs-15"></i></span>
+                                                        <button type="button" class="btn btn-danger btn-sm custom-toggle" data-bs-toggle="button" onclick="toggleWishlist({{ $produit->id }})">
+                                                            <span class="icon-on">
+                                                                    <i class="mdi mdi-heart-outline align-bottom fs-15"></i>
+                                                            </span>
+                                                            <span class="icon-off">
+                                                                    <i class="mdi mdi-heart align-bottom fs-15"></i>
+                                                            </span>
                                                         </button>
                                                     </div>
 
@@ -139,7 +157,7 @@
                                                 </div>
                                                 <div class="product-btn px-3">
                                                     <a href="javascript:void(0);" onclick="AddToCart({{$produit->id}});"  class="btn btn-primary btn-sm w-75 add-btn">
-                                                        <i class="mdi mdi-cart me-1"></i> Add to cart
+                                                        <i class="mdi mdi-cart me-1"></i> Ajouter au panier
                                                     </a>
                                                 </div>
 

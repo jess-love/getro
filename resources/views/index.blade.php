@@ -7,6 +7,7 @@
     <!--Swiper slider css-->
     <link href="{{ URL::asset('build/libs/swiper/swiper-bundle.min.css') }}" rel="stylesheet" type="text/css" />
 @endsection
+
 @section('content')
     <section class="position-relative">
         <div id="ecommerceHero" class="carousel slide" data-bs-ride="carousel">
@@ -189,14 +190,15 @@
 
             <div class="row mt-5">
                 <div class="col-lg-12">
-                    <div class="text-center">
-                        <ul class="list-inline categories-filter animation-nav " id="filter">
-                            <li class="list-inline-item"><a class="categories active" data-filter="*">All Arrival</a></li>
-                            <li class="list-inline-item"><a class="categories" data-filter=".seller">Best Seller</a></li>
-                            <li class="list-inline-item"><a class="categories" data-filter=".hot">Hot Collection</a></li>
-                            <li class="list-inline-item"><a class="categories" data-filter=".trendy">Trendy</a></li>
-                            <li class="list-inline-item"><a class="categories" data-filter=".arrival">New Arrival</a>
-                            </li>
+                    <div class="text-center product_data">
+                        <ul class="list-inline categories-filter animation-nav" id="filter">
+                            @foreach($products_slog as $product_slog)
+                                <li class="list-inline-item">
+                                    <a class="categories" data-filter=".seller" data-slog="{{ $product_slog }}">
+                                        {{ $product_slog }}
+                                    </a>
+                                </li>
+                            @endforeach
                         </ul>
                     </div>
 
@@ -229,29 +231,48 @@
                                                     @endif
                                                 </a>
                                             </div>
+                                            <script>
+                                                function toggleWishlist(productId) {
+                                                    $.ajax({
+                                                        type: 'POST',
+                                                        url: '/wishlist/toggle',
+                                                        data: { product_id: productId },
+                                                        success: function(response) {
+                                                            // alert(response.message);
+                                                            window.location.reload();
+                                                        },
+
+                                                        error: function(error) {
+                                                            console.error(error);
+                                                        }
+                                                    });
+                                                }
+                                            </script>
                                             <p class="fs-11 fw-medium badge bg-primary py-2 px-3 product-lable mb-0">{{$produit->slog}}
                                             </p>
                                             <div class="gallery-product-actions">
                                                 <div class="mb-2">
-                                                    <button type="button" class="btn btn-danger btn-sm custom-toggle"
-                                                            data-bs-toggle="button">
-                                                    <span class="icon-on"><i
-                                                            class="mdi mdi-heart-outline align-bottom fs-15"></i></span>
-                                                        <span class="icon-off"><i
-                                                                class="mdi mdi-heart align-bottom fs-15"></i></span>
+                                                    <button type="button" class="btn btn-danger btn-sm custom-toggle" data-bs-toggle="button" onclick="toggleWishlist({{ $produit->id }})">
+                                                        <span class="icon-on">
+                                                            <i class="mdi mdi-heart-outline align-bottom fs-15"></i>
+                                                        </span>
+                                                        <span class="icon-off">
+                                                            <i class="mdi mdi-heart align-bottom fs-15"></i>
+                                                        </span>
                                                     </button>
                                                 </div>
 
-
                                                 <div>
-                                                    <a href="{{route('view_product',['id'=>$produit->id]) }}" class="btn btn-sm btn-outline-secondary"><i class="mdi mdi-eye align-bottom fs-15"></i></a>
+                                                    <a href="{{route('view_product',['id'=>$produit->id]) }}" class="btn btn-sm btn-outline-secondary">
+                                                        <i class="mdi mdi-eye align-bottom fs-15"></i>
+                                                    </a>
                                                 </div>
 
                                             </div>
                                             <div class="product-btn px-3">
                                                 <input type="hidden" value="1" class="qty-input">
                                                 <a href="shop-cart" class="btn btn-primary w-100 add-btn AddToCart1" data-product-id="{{$produit->id}}">
-                                                    <i class="mdi mdi-cart me-1"></i> Add To Cart
+                                                    <i class="mdi mdi-cart me-1"></i> Ajouter au Panier
                                                 </a>
                                             </div>
 
@@ -279,7 +300,7 @@
                     <!----------------------------------------------end getro code------------------------------------------------------------------------------------->
 
                     <div class="mt-4 text-center">
-                        <a href="{{route('products_left') }}" class="btn btn-soft-primary btn-hover">View All Products
+                        <a href="{{route('products_left') }}" class="btn btn-soft-primary btn-hover">Voir tous les Produits
                             <i class="mdi mdi-arrow-right align-middle ms-1"></i>
                         </a>
                     </div>
@@ -837,6 +858,8 @@
     <script src="{{ URL::asset('build/js/frontend/landing-index.init.js') }}"></script>
 
     <script src="{{ URL::asset('build/js/frontend/menu.init.js') }}"></script>
+
+    <script src="{{ URL::asset('build/js/jess.js') }}"></script>
 
 @endsection
 

@@ -40,7 +40,10 @@ class CartController extends Controller
                         // Ajouter le produit au panier de l'utilisateur
                         $this->addToUserCart($product_id, Auth::id(), $product_qty);
 
-                        return response()->json(['status' => $prod_check->title . " added To Cart"]);
+                        return response()->json([
+                            'status' => $prod_check->title . " added To Cart",
+                            ]);
+
                     }
                 }
             }
@@ -55,6 +58,8 @@ class CartController extends Controller
 
             return response()->json(['error' => $e->getMessage()], 500);
         }
+
+
     }
 
     private function isProductInUserCart($product_id, $user_id)

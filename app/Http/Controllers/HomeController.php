@@ -29,8 +29,25 @@ class HomeController extends Controller
     {
         $produits = Product::with('product_images')
                             ->where('status',1)->get()->take(12);
-        return view('index',compact('produits'));
+        $products_slog = Product::where('status', 1)
+            ->pluck('slog')
+            ->take(5)
+            ->toArray();
+//        dd($products_slog);
+        return view('index',compact('produits', 'products_slog'));
     }
+
+
+    public function getProductsBySlog($slog)
+    {
+        $view_products_slug = Product::with('product_images')
+            ->where('slog', $slog)->get();
+
+        // Passer les produits et le slog à la vue 'products_slug'
+        return view('products_slug', compact('view_products_slug', 'slog'));
+    }
+
+
 
 
     public function product(Request $request){

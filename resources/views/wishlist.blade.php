@@ -36,178 +36,59 @@
                         <table class="table fs-15 table-nowrap align-middle">
                             <thead>
                                 <tr>
-                                    <th scope="col">Product</th>
-                                    <th scope="col">Price</th>
-                                    <th scope="col">Stock Status</th>
+                                    <th scope="col">Produit</th>
+                                    <th scope="col">Prix</th>
+                                    <th scope="col">Statut Stock</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
+                            @foreach($wishlistItems as $wishlistItem)
                                 <tr>
                                     <td>
                                         <div class="d-flex gap-3">
                                             <div class="avatar-sm flex-shrink-0">
                                                 <div class="avatar-title bg-dark-subtle rounded">
-                                                    <img src="{{ URL::asset('build/images/products/img-19.png') }}" alt=""
-                                                        class="avatar-xs">
+                                                    @if ($wishlistItem->product->product_images->isNotEmpty())
+                                                        <img src="{{ URL::asset('build/images/products/' . $wishlistItem->product->product_images->first()->image) }}" alt=""
+                                                             class="avatar-xs">
+                                                    @else
+                                                        <img src="{{ URL::asset('build/images/products/img-1.png') }}" alt=""
+                                                             class="avatar-xs">
+                                                    @endif
                                                 </div>
                                             </div>
                                             <div class="flex-grow-1">
-                                                <a href="product-details">
-                                                    <h6 class="fs-16">World's Most Expensive T Shirt</h6>
+                                                <a href="{{ route('view_product', ['id' => $wishlistItem->product->id]) }}">
+                                                    <h6 class="fs-16">{{ $wishlistItem->product->title }}</h6>
                                                 </a>
-                                                <p class="mb-0 text-muted fs-13">Women's Clothes</p>
+                                                <p class="mb-0 text-muted fs-13">{{ $wishlistItem->product->description }}</p>
                                             </div>
                                         </div>
                                     </td>
-                                    <td>$154.49</td>
-                                    <td><span class="badge bg-success-subtle text-success">In Stock</span></td>
+                                    <td>${{ $wishlistItem->product->unit_price }}</td>
+                                    <td><span class="badge bg-success-subtle text-success">{{ $wishlistItem->product->qty > 0 ? 'In Stock' : 'Out of Stock' }}</span></td>
                                     <td>
                                         <ul class="list-unstyled d-flex gap-3 mb-0">
                                             <li>
-                                                <a href="shop-cart" class="btn btn-soft-info btn-icon btn-sm"><i
+                                                <a href="shop-cart" class="btn btn-soft-info btn-icon btn-sm AddToCart1" data-product-id="{{$wishlistItem->product->id}}" ><i
                                                         class="ri-shopping-cart-2-line fs-13"></i></a>
                                             </li>
                                             <li>
-                                                <a href="#!" class="btn btn-soft-danger btn-icon btn-sm"><i
-                                                        class="ri-close-line fs-13"></i></a>
+                                                <a href="{{ route('wishlist.remove', ['id' => $wishlistItem->id]) }}" class="btn btn-soft-danger btn-icon btn-sm">
+                                                    <i class="ri-close-line fs-13"></i>
+                                                </a>
                                             </li>
                                         </ul>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td>
-                                        <div class="d-flex gap-3">
-                                            <div class="avatar-sm flex-shrink-0">
-                                                <div class="avatar-title bg-danger-subtle rounded">
-                                                    <img src="{{ URL::asset('build/images/products/img-12.png') }}" alt=""
-                                                        class="avatar-xs">
-                                                </div>
-                                            </div>
-                                            <div class="flex-grow-1">
-                                                <a href="product-details">
-                                                    <h6 class="fs-16">Onyx SmartGRID Chair Red</h6>
-                                                </a>
-                                                <p class="mb-0 text-muted fs-13">Furniture & Decore</p>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>$39.99</td>
-                                    <td><span class="badge bg-danger-subtle text-danger">Out Of Stock</span></td>
-                                    <td>
-                                        <ul class="list-unstyled d-flex gap-3 mb-0">
-                                            <li>
-                                                <a href="shop-cart" class="btn btn-soft-info btn-icon btn-sm"><i
-                                                        class="ri-shopping-cart-2-line fs-13"></i></a>
-                                            </li>
-                                            <li>
-                                                <a href="#!" class="btn btn-soft-danger btn-icon btn-sm"><i
-                                                        class="ri-close-line fs-13"></i></a>
-                                            </li>
-                                        </ul>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="d-flex gap-3">
-                                            <div class="avatar-sm flex-shrink-0">
-                                                <div class="avatar-title bg-success-subtle rounded">
-                                                    <img src="{{ URL::asset('build/images/products/img-4.png') }}" alt=""
-                                                        class="avatar-xs">
-                                                </div>
-                                            </div>
-                                            <div class="flex-grow-1">
-                                                <a href="product-details">
-                                                    <h6 class="fs-16">Slippers Open Toe</h6>
-                                                </a>
-                                                <p class="mb-0 text-muted fs-13">Footwear</p>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>$74.32</td>
-                                    <td><span class="badge bg-success-subtle text-success">In Stock</span></td>
-                                    <td>
-                                        <ul class="list-unstyled d-flex gap-3 mb-0">
-                                            <li>
-                                                <a href="shop-cart" class="btn btn-soft-info btn-icon btn-sm"><i
-                                                        class="ri-shopping-cart-2-line fs-13"></i></a>
-                                            </li>
-                                            <li>
-                                                <a href="#!" class="btn btn-soft-danger btn-icon btn-sm"><i
-                                                        class="ri-close-line fs-13"></i></a>
-                                            </li>
-                                        </ul>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="d-flex gap-3">
-                                            <div class="avatar-sm flex-shrink-0">
-                                                <div class="avatar-title bg-secondary-subtle rounded">
-                                                    <img src="{{ URL::asset('build/images/products/img-1.png') }}" alt=""
-                                                        class="avatar-xs">
-                                                </div>
-                                            </div>
-                                            <div class="flex-grow-1">
-                                                <a href="product-details">
-                                                    <h6 class="fs-16">Hp Trendsetter Backpack</h6>
-                                                </a>
-                                                <p class="mb-0 text-muted fs-13">Handbags & Clutches</p>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>$32.00</td>
-                                    <td><span class="badge bg-success-subtle text-success">In Stock</span></td>
-                                    <td>
-                                        <ul class="list-unstyled d-flex gap-3 mb-0">
-                                            <li>
-                                                <a href="shop-cart" class="btn btn-soft-info btn-icon btn-sm"><i
-                                                        class="ri-shopping-cart-2-line fs-13"></i></a>
-                                            </li>
-                                            <li>
-                                                <a href="#!" class="btn btn-soft-danger btn-icon btn-sm"><i
-                                                        class="ri-close-line fs-13"></i></a>
-                                            </li>
-                                        </ul>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="d-flex gap-3">
-                                            <div class="avatar-sm flex-shrink-0">
-                                                <div class="avatar-title bg-info-subtle rounded">
-                                                    <img src="{{ URL::asset('build/images/products/img-7.png') }}" alt=""
-                                                        class="avatar-xs">
-                                                </div>
-                                            </div>
-                                            <div class="flex-grow-1">
-                                                <a href="product-details">
-                                                    <h6 class="fs-16">Innovative education book</h6>
-                                                </a>
-                                                <p class="mb-0 text-muted fs-13">Books</p>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>$18.32</td>
-                                    <td><span class="badge bg-danger-subtle text-danger">Out Of Stock</span></td>
-                                    <td>
-                                        <ul class="list-unstyled d-flex gap-3 mb-0">
-                                            <li>
-                                                <a href="shop-cart" class="btn btn-soft-info btn-icon btn-sm"><i
-                                                        class="ri-shopping-cart-2-line fs-13"></i></a>
-                                            </li>
-                                            <li>
-                                                <a href="#!" class="btn btn-soft-danger btn-icon btn-sm"><i
-                                                        class="ri-close-line fs-13"></i></a>
-                                            </li>
-                                        </ul>
-                                    </td>
-                                </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     </div>
+
                     <div class="hstack gap-2 justify-content-end mt-2">
-                        <a href="product-list" class="btn btn-hover btn-secondary">Continue Shopping <i
+                        <a href="product-list" class="btn btn-hover btn-secondary">Continue Shopping<i
                                 class="ri-arrow-right-line align-bottom"></i></a>
                         <a href="checkout" class="btn btn-hover btn-primary">Check Out <i
                                 class="ri-arrow-right-line align-bottom"></i></a>
