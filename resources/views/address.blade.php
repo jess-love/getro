@@ -31,7 +31,7 @@
     <section class="section">
         <div class="container">
             <div class="col-xl-12">
-
+{{--************************************************************--}}
                     @if(Session::has('success'))
                         <div class="alert alert-success">
                             {{ Session::get('success') }}
@@ -74,15 +74,7 @@
                                                     </div>
                                                     <div>
                                                         <a href="{{ route('removeAddress', ['id' => $address->id]) }}" class="btn btn-soft-danger btn-icon btn-sm">
-                                                            <i class="ri-close-line fs-13"></i>
-
-                                                        <a href="#" class="d-block text-body p-1 px-2 btn-delete-address" >
-                                                            @csrf
-                                                            <input type="hidden" value="{{ $address->id }}" class="address_id">
-                                                            <i class="ri-delete-bin-fill text-muted align-bottom me-1"></i> Retirer
-
-                                                        </a>
-
+                                                            <i class="ri-delete-bin-fill text-muted align-bottom me-1"></i></a>
                                                     </div>
                                                 </div>
                                             </div>
