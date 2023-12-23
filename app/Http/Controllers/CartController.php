@@ -62,7 +62,12 @@ class CartController extends Controller
 
     }
 
-    private function isProductInUserCart($product_id, $user_id)
+    public function ViewCart(){
+        $cartContent = Cart::all()->where('user_id', Auth::id());
+        return view('shop-cart',compact('cartContent'));
+    }
+
+    public function isProductInUserCart($product_id, $user_id)
     {
         // Logique pour vérifier si le produit est déjà dans le panier de l'utilisateur
         return Cart::where('product_id', $product_id)->where('user_id', $user_id)->exists();
@@ -76,6 +81,7 @@ class CartController extends Controller
         $cartItem->user_id = $user_id;
         $cartItem->quantity = $product_qty;
         $cartItem->save();
+
     }
 
 

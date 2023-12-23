@@ -71,6 +71,20 @@
                         </div>
                     @endif
 
+
+                    {{-- {{dd($cartContent);}} --}}
+                @if($cartContent->isNotEmpty())
+                
+                    @foreach($cartContent as $item)
+                       
+                       <div class="card product product_data">
+                        <div class="card-body p-4 ">
+                            <div class="row gy-3">
+                                <div class="col-sm-auto">
+                                    <div class="avatar-lg h-100">
+                                        <div class="avatar-title bg-danger-subtle rounded py-3">
+
+
                     @php
                         $totalAmount = 0;
                     @endphp
@@ -168,7 +182,16 @@
                                             </div>
                                         </div>
                                     </div>
+
+                                </div>
+                                <div class="col-sm-auto">
+                                    <div class="d-flex align-items-center gap-2 text-muted">
+                                        <div>Total :</div>
+                                        <h5 class="fs-14 mb-0">$<span class="product-line-price">8</span></h5>
+                                    </div>
+
                                     <!-- end card footer -->
+
                                 </div>
                   @else
                        <div class="col-md-12">
@@ -214,6 +237,8 @@
                                         <tbody>
                                         <tr>
                                             <td>Sub Total :</td>
+
+                                            <td class="text-end cart-subtotal">$ 9</td>
                                             <td class="text-end cart-subtotal">
                                                 @isset($totalAmount)
                                                     HTG {{ $totalAmount }}

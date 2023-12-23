@@ -12,9 +12,16 @@ class Product extends Model
         return $this->hasMany(product_images::class);
     }
 
+
+    public function carts()
+    {
+        return $this->hasMany(Cart::class);
+    }
+
     public function cart() {
 //        return $this->hasOne(Cart::class, 'product_id');
         return $this->hasOne(Cart::class, 'product_id')->where('user_id', Auth::id());
     }
+
 
 }
