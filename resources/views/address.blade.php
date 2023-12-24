@@ -31,12 +31,21 @@
     <section class="section">
         <div class="container">
             <div class="col-xl-12">
-{{--************************************************************--}}
-                    @if(Session::has('success'))
-                        <div class="alert alert-success">
-                            {{ Session::get('success') }}
-                        </div>
-                    @endif
+
+                @if(Session::has('success'))
+                    <div class="alert alert-success" id="successAlert">
+                        {{ Session::get('success') }}
+                    </div>
+
+                    <script>
+                        $(document).ready(function(){
+                            // Fermer l'alerte après 5 secondes
+                            setTimeout(function(){
+                                $("#successAlert").alert('close');
+                            }, 5000);
+                        });
+                    </script>
+                @endif
 
                     @if(Session::has('error'))
                         <div class="alert alert-danger">
@@ -67,8 +76,7 @@
 
                                                 <div class="d-flex flex-wrap p-2 py-1 bg-light rounded-bottom border mt-n1 fs-13">
                                                     <div>
-                                                        <a href="#" class="d-block text-body p-1 px-2" data-bs-toggle="modal" data-bs-target="#EditAddressModal"
-                                                           onclick="selectAddress({{ $index + 1 }}, {{ $address->id }})">
+                                                        <a href="#" class="d-block text-body p-1 px-2" data-bs-toggle="modal" data-bs-target="#EditAddressModal">
                                                             <i class="ri-pencil-fill text-muted align-bottom me-1"></i> Modifier
                                                         </a>
                                                     </div>
@@ -83,10 +91,75 @@
                                 </div>
 
                             </div>
+
+                            {{--    <!-- Modal EditAddress Start -->--}}
+                            <div class="modal fade" id="EditAddressModal" tabindex="-1" aria-labelledby="EditAddressModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="EditAddressModalLabel">Modifier une Adresse</h1>
+                                            <button type="button" id="EditAddress-close" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form autocomplete="off" class="needs-validation createAddress-form" id="editAddressForm" action="{{ route('update.address', ['addressId' => $address->id]) }}" method="POST" novalidate>
+                                                @csrf
+                                                <input type="hidden" id="address_id" name="address_id" value="">
+                                                <div>
+                                                    <div class="mb-3">
+                                                        <label for="lastname" class="form-label">Nom</label>
+                                                        <input type="text" class="form-control" name="lastname" placeholder="Entrer  nom" required>
+                                                        <div class="invalid-feedback">SVP entrer un nom.</div>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="firstname" class="form-label">Prenom</label>
+                                                        <input type="text" class="form-control"  name="firstname" placeholder="Entrer prenom" required>
+                                                        <div class="invalid-feedback">SVP entrer un prenom.</div>
+                                                    </div>
+
+                                                    <div class="mb-3">
+                                                        <label for="street" class="form-label">Rue</label>
+                                                        <input type="text" class="form-control"  name="street" placeholder="Entrer rue" required>
+                                                        <div class="invalid-feedback">SVP entrer une rue.</div>
+                                                    </div>
+
+                                                    <div class="mb-3">
+                                                        <label for="phone" class="form-label">Telephone</label>
+                                                        <input type="text" class="form-control"  name="phone" placeholder="Entrer  no." required>
+                                                        <div class="invalid-feedback">SVP entrer un numero.</div>
+                                                    </div>
+
+                                                    <div class="mb-3">
+                                                        <label for="city" class="form-label">Ville</label>
+                                                        <input type="text" class="form-control"  name="city" placeholder="Entrer ville" pattern="[a-zA-Z\s]+" required>
+                                                        <div class="invalid-feedback">SVP entrer une ville.</div>
+                                                    </div>
+
+                                                    <div class="mb-3">
+                                                        <label for="zip_code" class="form-label">Code postal</label>
+                                                        <input type="text" class="form-control"  name="zip_code" placeholder="Entrer code postal" pattern="[0-9]+" required>
+                                                        <div class="invalid-feedback">SVP entrer un code postal.</div>
+                                                    </div>
+
+                                                    <div class="mb-3">
+                                                        <label for="country" class="form-label">Pays</label>
+                                                        <input type="text" class="form-control" name="country" placeholder="Entrer pays" pattern="[a-zA-Z\s]+" required>
+                                                        <div class="invalid-feedback">SVP entrer un pays.</div>
+                                                    </div>
+
+                                                    <div class="d-flex justify-content-end gap-2 mt-4">
+                                                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                                                        <button type="submit" id="updateAddress" class="btn btn-primary">Modifier</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {{--    <!-- Modal EditAddress End -->--}}
                         @endforeach
                     </div>
             </div>
-
 
             <div class="row mt-4">
                 <div class="col-lg-6">
@@ -188,71 +261,6 @@
     </div>
     <!-- Modal AddAddress End -->
 
-{{--    <!-- Modal EditAddress Start -->--}}
-    <div class="modal fade" id="EditAddressModal" tabindex="-1" aria-labelledby="EditAddressModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="EditAddressModalLabel">Modifier une Adresse</h1>
-                    <button type="button" id="EditAddress-close" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form autocomplete="off" class="needs-validation createAddress-form" id="editAddressForm" action="{{ route('updateAddress') }}" method="POST" novalidate>
-                        @csrf
-                        <input type="hidden" id="address_id" name="address_id" value="">
-                        <div>
-                            <div class="mb-3">
-                                <label for="lastname" class="form-label">Nom</label>
-                                <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Entrer  nom" required>
-                                <div class="invalid-feedback">SVP entrer un nom.</div>
-                            </div>
-                            <div class="mb-3">
-                                <label for="firstname" class="form-label">Prenom</label>
-                                <input type="text" class="form-control" id="firstname" name="firstname" placeholder="Entrer prenom" required>
-                                <div class="invalid-feedback">SVP entrer un prenom.</div>
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="street" class="form-label">Rue</label>
-                                <input type="text" class="form-control" id="street" name="street" placeholder="Entrer rue" required>
-                                <div class="invalid-feedback">SVP entrer une rue.</div>
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="phone" class="form-label">Telephone</label>
-                                <input type="text" class="form-control" id="phone" name="phone" placeholder="Entrer  no." required>
-                                <div class="invalid-feedback">SVP entrer un numero.</div>
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="city" class="form-label">Ville</label>
-                                <input type="text" class="form-control" id="city" name="city" placeholder="Entrer ville" pattern="[a-zA-Z\s]+" required>
-                                <div class="invalid-feedback">SVP entrer une ville.</div>
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="zip_code" class="form-label">Code postal</label>
-                                <input type="text" class="form-control" id="zip_code" name="zip_code" placeholder="Entrer code postal" pattern="[0-9]+" required>
-                                <div class="invalid-feedback">SVP entrer un code postal.</div>
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="country" class="form-label">Pays</label>
-                                <input type="text" class="form-control" id="country" name="country" placeholder="Entrer pays" pattern="[a-zA-Z\s]+" required>
-                                <div class="invalid-feedback">SVP entrer un pays.</div>
-                            </div>
-
-                            <div class="d-flex justify-content-end gap-2 mt-4">
-                                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
-                                <button type="submit" id="updateAddress" class="btn btn-primary">Modifier</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-{{--    <!-- Modal EditAddress End -->--}}
 
 {{--    <!-- remove address Modal Sart -->--}}
     <div id="removeAddressModal" class="modal fade zoomIn" tabindex="-1" aria-hidden="true">
@@ -376,4 +384,5 @@
 
     <!-- landing-index js -->
     <script src="{{ URL::asset('build/js/frontend/menu.init.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 @endsection

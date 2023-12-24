@@ -89,8 +89,16 @@
                         $totalAmount = 0;
                     @endphp
 
+
                   @if(!empty($productsWithImages) && count($productsWithImages) > 0)
                         @foreach($productsWithImages as $item)
+                            @php
+                                $itemtotal = 0;
+                                if ($item && $item->cart) {
+                                    $itemtotal += $item->unit_price * $item->cart->quantity;
+                                }
+                                $totalAmount += $itemtotal;
+                            @endphp
                             <div class="row mb-3">
                                 <div class="col-lg-12">
                                     <div class="card product product_data">
@@ -155,10 +163,7 @@
                             </div>
                         @endforeach
 
-
-
-
-                        @php
+                                @php
                                     // Stocker la valeur dans la session
                                     session(['totalAmount' => $totalAmount]);
                                 @endphp

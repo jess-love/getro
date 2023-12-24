@@ -1,28 +1,26 @@
 @extends('layouts.master')
+
 @section('title')
-    Product List No Sidebar
+    List Right Sidebar
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 @endsection
+
 @section('css')
     <!-- extra css -->
     <!-- nouisliderribute css -->
     <link rel="stylesheet" href="{{ URL::asset('build/libs/nouislider/nouislider.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
 @endsection
+
 @section('content')
     <section class="ecommerce-about"
-        style="background-image: url('build/images/profile-bg.jpg'); background-size: cover;background-position: center;">
+             style="background-image: url('build/images/profile-bg.jpg'); background-size: cover;background-position: center;">
         <div class="bg-overlay bg-primary" style="opacity: 0.85;"></div>
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-6">
                     <div class="text-center">
-                        <h1 class="text-white mb-0">Product List No Sidebar</h1>
-                        <nav aria-label="breadcrumb">
-                            <ol class="breadcrumb breadcrumb-light justify-content-center mt-4">
-                                <li class="breadcrumb-item"><a href="#">Product</a></li>
-                                <li class="breadcrumb-item"><a href="#">List View</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">No Sidebar</li>
-                            </ol>
-                        </nav>
+                        <h1 class="text-white mb-0"></h1>
                     </div>
                 </div>
             </div>
@@ -31,270 +29,197 @@
 
     <section class="section">
         <div class="container">
-            <div class="ecommerce-product gap-4">
-                <div class="flex-grow-1">
+            <div class="ecommerce-product ">
+                <div class="flex-grow-1" style="overflow-x: hidden;">
+                    <div class="d-flex align-items-center justify-content-between gap-2 mb-4">
+
+                        {{--Start Research--}}
+                        <div class="search-box">
+                            <form action="{{ route('search_list_left') }}" method="GET" class="input-group">
+                                <input type="text" name="query" class="form-control" id="searchProductList" autocomplete="off" placeholder="Rechercher Produits...">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="ri-search-line search-icon text-white"></i>
+                                </button>
+                            </form>
+                        </div>
+
+                        {{--End Research--}}
+
+                        {{--Start Sort By--}}
+                        <div class="flex-shrink-0 d-flex gap-2">
+                            <div class="d-flex gap-2">
+                                <div class="flex-shrink-0">
+                                    <label for="sort-elem" class="col-form-label">Trier par Prix:</label>
+                                </div>
+                                <div class="flex-shrink-0">
+                                    <form action="{{ route('products_left') }}" method="GET">
+                                        <select class="form-select w-md" id="sort-elem" name="sortType" onchange="this.form.submit()">
+                                            <option value="">All</option>
+                                            <option value="low_to_high" {{ request('sortType') == 'low_to_high' ? 'selected' : '' }}>Bas vers Haut</option>
+                                            <option value="high_to_low" {{ request('sortType') == 'high_to_low' ? 'selected' : '' }}>Haut vers Bas</option>
+                                        </select>
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+                        {{--End Sort By--}}
+
+                    </div>
+                    {{--Start Product List--}}
                     <div class="row">
-                        <div class="col-lg-12">
-                            <div class="card">
-                                <div class="card-body p-4">
-                                    <div class="row gy-4">
-                                        <div class="col-xl-3 col-md-6">
-                                            <div>
-                                                <label class="form-label">Category</label>
-                                                <select class="form-control" name="select-category" id="select-category">
-                                                    <option value="">Select Category</option>
-                                                    <option value="Grocery">Grocery</option>
-                                                    <option value="Fashion">Fashion</option>
-                                                    <option value="Watches">Watches</option>
-                                                    <option value="Electronics">Electronics</option>
-                                                    <option value="Furniture">Furniture</option>
-                                                    <option value="Automotive Accessories">Automotive Accessories</option>
-                                                    <option value="Appliances">Appliances</option>
-                                                    <option value="Kids">Kids</option>
-                                                </select>
+                        @if ($products->count() === 0)
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="text-center py-5">
+                                        <div class="avatar-lg mx-auto mb-4">
+                                            <div class="avatar-title bg-primary-subtle text-primary rounded-circle fs-24">
+                                                <i class="bi bi-search"></i>
                                             </div>
                                         </div>
+                                        <h5>No matching records found</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        @else
+                            <div class="row">
+                                @foreach($product_watch as $produit)
+                                    @php
+                                        $productImage = $produit->product_images->first();
+                                    @endphp
+                                    <div class="element-item col-md-3 col-sm-3  seller hot arrival"
+                                         data-category="hot arrival">
+                                        <div class="card overflow-hidden">
+                                            <div class="bg-warning-subtle rounded-top py-4">
+                                                <div class="gallery-product">
 
-                                        <div class="col-xl-3 col-md-6">
-                                            <div>
-                                                <label class="form-label">Price</label>
-                                                <div class="pb-3">
-                                                    <div id="slider-hide" data-slider-color="info" class="mb-4"></div>
-                                                    <div class="formCost d-none gap-2 align-items-center">
-                                                        <input class="form-control form-control-sm" type="text"
-                                                            id="minCost" value="0"> <span
-                                                            class="fw-semibold text-muted">to</span> <input
-                                                            class="form-control form-control-sm" type="text"
-                                                            id="maxCost" value="1000">
+                                                    <a href="{{route('view_product',['id'=>$produit->id]) }}">
+                                                        @if(!empty($productImage->image))
+                                                            <img src="{{ asset('build/images/products/'.$productImage->image) }}" alt=""
+                                                                 style="max-height: 215px;max-width: 100%; width: auto;" class="mx-auto d-block">
+                                                        @else
+                                                            <img src="{{ asset('build/images/products/default.png')}}" alt=""
+                                                                 style="max-height: 215px; max-width: 100%; width: auto;" class="mx-auto d-block">
+                                                        @endif
+                                                    </a>
+                                                </div>
+                                                <p class="fs-11 fw-medium badge bg-primary py-2 px-3 product-lable mb-0">{{$produit->slog}}
+                                                </p>
+                                                <script>
+                                                    function toggleWishlist(productId) {
+                                                        $.ajax({
+                                                            type: 'POST',
+                                                            url: '/wishlist/toggle',
+                                                            data: { product_id: productId },
+                                                            success: function(response) {
+                                                                // alert(response.message);
+                                                                window.location.reload();
+                                                            },
+
+                                                            error: function(error) {
+                                                                console.error(error);
+                                                            }
+                                                        });
+                                                    }
+                                                </script>
+                                                <div class="gallery-product-actions">
+                                                    <div class="mb-2">
+                                                        <button type="button" class="btn btn-danger btn-sm custom-toggle" data-bs-toggle="button" onclick="toggleWishlist({{ $produit->id }})">
+                                                                <span class="icon-on">
+                                                                    <i class="mdi mdi-heart-outline align-bottom fs-15"></i>
+                                                                </span>
+                                                            <span class="icon-off">
+                                                                    <i class="mdi mdi-heart align-bottom fs-15"></i>
+                                                                </span>
+                                                        </button>
+                                                    </div>
+
+
+                                                    <div>
+                                                        <a href="{{route('view_product',['id'=>$produit->id]) }}" class="btn btn-sm btn-outline-secondary"><i class="mdi mdi-eye align-bottom fs-15"></i></a>
+                                                    </div>
+
+                                                </div>
+                                                <div class="product-btn px-3">
+                                                    <input type="hidden" value="1" class="qty-input">
+                                                    <a href="shop-cart" class="btn btn-primary w-100 add-btn AddToCart1" data-product-id="{{$produit->id}}">
+                                                        <i class="mdi mdi-cart me-1"></i> Ajouter au Panier
+                                                    </a>
+                                                </div>
+
+                                            </div>
+                                            <div class="card-body">
+                                                <div>
+                                                    <a href="product-details">
+                                                        <h6 class="fs-15 lh-base text-truncate mb-0"> </b> {{$produit->title}} </b> <br> <span style="font-weight:normal;"> {{$produit->description}} </span> </h6>
+                                                    </a>
+                                                    <div class="mt-3">
+                                                <span class="float-end">4.9 <i
+                                                        class="ri-star-half-fill text-warning align-bottom"></i></span>
+                                                        <h5 class="mb-0">{{number_format($produit->unit_price,2) }}$ <span>   </span><span
+                                                                class="text-muted fs-12"><del>{{number_format($produit->discount,2)}}$</del></span></h5>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-
-                                        <div class="col-xl-3 col-md-6">
-                                            <div>
-                                                <label class="form-label">Rating</label>
-                                                <select class="form-control" multiple name="select-rating"
-                                                    id="select-rating">
-                                                    <option value="">Select rating</option>
-                                                    <option value="4">4 & Above</option>
-                                                    <option value="3">3 & Above</option>
-                                                    <option value="2">2 & Above</option>
-                                                    <option value="1">1</option>
-                                                </select>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-xl-3 col-md-6">
-                                            <div>
-                                                <label class="form-label">Discount</label>
-                                                <select class="form-control" multiple name="select-discount"
-                                                    id="select-discount">
-                                                    <option value="">Select discount</option>
-                                                    <option value="50">50% or more</option>
-                                                    <option value="40">40% or more</option>
-                                                    <option value="30">30% or more</option>
-                                                    <option value="20">20% or more</option>
-                                                    <option value="10">10% or more</option>
-                                                </select>
-                                            </div>
-                                        </div>
                                     </div>
-                                </div>
+                                @endforeach
                             </div>
-                        </div>
+
+                        @endif
                     </div>
-                    <div class="d-flex align-items-center justify-content-between gap-2 mb-4">
-                        <div class="search-box">
-                            <input type="text" class="form-control" id="searchProductList" autocomplete="off"
-                                placeholder="Search Products...">
-                            <i class="ri-search-line search-icon"></i>
-                        </div>
-                        <div class="flex-shrink-0 d-flex gap-2">
-                            <div class="d-flex gap-2">
-                                <div class="flex-shrink-0">
-                                    <label for="sort-elem" class="col-form-label">Sort By:</label>
-                                </div>
-                                <div class="flex-shrink-0">
-                                    <select class="form-select w-md" id="sort-elem">
-                                        <option value="">All</option>
-                                        <option value="low_to_high">Low to High</option>
-                                        <option value="high_to_low">High to Low</option>
-                                    </select>
-                                </div>
+                    {{--End Product List--}}
+
+                    {{--Start Pagination--}}
+                    {{--                    <div class="" >--}}
+                    {{--                        <form><div class="pagination page-item" >--}}
+                    {{--                                {{ $products->appends(request()->except('page'))->links() }}--}}
+                    {{--                            </div></form>--}}
+                    {{--                    </div>--}}
+                    <div class="">
+                        <form class="custom-pagination-form">
+                            <div class="pagination page-item">
+                                {{ $products->appends(request()->except('page'))->links() }}
                             </div>
-                        </div>
+                        </form>
                     </div>
 
-                    <div class="row" id="layout-noSidebar">
-                        <div class="col-xl-12">
-                            <div id="product-list"></div>
-                        </div>
-                    </div>
-                    <div class="row" id="pagination-element">
-                        <div class="col-lg-12">
-                            <div
-                                class="pagination-block pagination pagination-separated justify-content-center justify-content-sm-end mb-sm-0">
-                                <div class="page-item">
-                                    <a href="javascript:void(0);" class="page-link" id="page-prev">Previous</a>
-                                </div>
-                                <span id="page-num" class="pagination"></span>
-                                <div class="page-item">
-                                    <a href="javascript:void(0);" class="page-link" id="page-next">Next</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row d-none" id="search-result-elem">
-                        <div class="col-lg-12">
-                            <div class="text-center py-5">
-                                <div class="avatar-lg mx-auto mb-4">
-                                    <div class="avatar-title bg-primary-subtle text-primary rounded-circle fs-24">
-                                        <i class="bi bi-search"></i>
-                                    </div>
-                                </div>
-
-                                <h5>No matching records found</h5>
-                            </div>
-                        </div>
-                    </div>
+                    {{--End Pagination--}}
                 </div>
+
+
             </div>
         </div>
-    </section>
-
-    <section class="section pt-0">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="d-flex align-items-center justify-content-between mb-4 pb-1">
-                        <h3 class="flex-grow-1 mb-0">Today's Hot Deal</h3>
-                        <div class="flex-shrink-0">
-                            <a href="#!" class="link-effect link-success fw-medium">View All Products <i
-                                    class="ri-arrow-right-line ms-1 align-bottom"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <!--end col-->
-            </div>
-            <!--end row-->
-            <div class="row gy-4 gy-lg-0">
-                <div class="col-lg-4 col-md-6">
-                    <div class="ecommerce-deals-widgets">
-                        <div class="card overflow-hidden mb-0 border-0">
-                            <div class="gallery-product bg-danger-subtle card-body">
-                                <img src="{{ URL::asset('build/images/products/img-6.png') }}" alt="" class="avatar-xl">
-                            </div>
-                        </div>
-                        <div class="content mx-4 pt-5">
-                            <div class="card border-0 p-4 position-relative rounded-3 shadow-lg">
-                                <a href="#!">
-                                    <h6 class="text-capitalize fs-16 lh-base text-truncate">Striped High Neck Casual Men
-                                        Orange Sweater</h6>
-                                </a>
-                                <p class="text-muted"><i class="ri-star-fill text-warning align-bottom"></i> <i
-                                        class="ri-star-fill text-warning align-bottom"></i> <i
-                                        class="ri-star-fill text-warning align-bottom"></i> <i
-                                        class="ri-star-fill text-warning align-bottom"></i> <i
-                                        class="ri-star-half-fill text-warning align-bottom"></i> (4.7)</p>
-                                <div class="mt-3 d-flex align-items-center">
-                                    <h5 class="text-secondary flex-grow-1 mb-0">$62.40 <span
-                                            class="text-muted fs-12"><del>$120.00</del></span></h5>
-                                    <a href="#!" class="btn btn-primary btn-sm"><i
-                                            class="ri-shopping-bag-line align-bottom me-1"></i> Add</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--end col-->
-                <div class="col-lg-4 col-md-6">
-                    <div class="ecommerce-deals-widgets">
-                        <div class="card overflow-hidden mb-0 border-0">
-                            <div class="gallery-product bg-success-subtle card-body">
-                                <img src="{{ URL::asset('build/images/products/img-4.png') }}" alt="" class="avatar-xl">
-                            </div>
-                        </div>
-                        <div class="content mx-4 pt-5">
-                            <div class="card border-0 p-4 position-relative rounded-3 shadow-lg">
-                                <a href="#!">
-                                    <h6 class="text-capitalize fs-16 lh-base text-truncate">Girls Mint Green & Off-White
-                                        Solid Open Toe Flats</h6>
-                                </a>
-                                <p class="text-muted"><i class="ri-star-fill text-warning align-bottom"></i> <i
-                                        class="ri-star-fill text-warning align-bottom"></i> <i
-                                        class="ri-star-fill text-warning align-bottom"></i> <i
-                                        class="ri-star-fill text-warning align-bottom"></i> <i
-                                        class="ri-star-half-fill text-warning align-bottom"></i> (4.5)</p>
-                                <div class="mt-3 d-flex align-items-center">
-                                    <h5 class="text-secondary flex-grow-1 mb-0">$80.00 <span
-                                            class="text-muted fs-12"><del>$180.00</del></span></h5>
-                                    <a href="#!" class="btn btn-primary btn-sm"><i
-                                            class="ri-shopping-bag-line align-bottom me-1"></i> Add</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--end col-->
-                <div class="col-lg-4 col-md-6">
-                    <div class="ecommerce-deals-widgets">
-                        <div class="card overflow-hidden mb-0 border-0">
-                            <div class="gallery-product bg-dark-subtle card-body">
-                                <img src="{{ URL::asset('build/images/products/img-19.png') }}" alt="" class="avatar-xl">
-                            </div>
-                        </div>
-                        <div class="content mx-4 pt-5">
-                            <div class="card border-0 p-4 position-relative rounded-3 shadow-lg">
-                                <a href="#!">
-                                    <h6 class="text-capitalize fs-16 lh-base text-truncate">Ethex Women Ribbed Sweater</h6>
-                                </a>
-                                <p class="text-muted"><i class="ri-star-fill text-warning align-bottom"></i> <i
-                                        class="ri-star-fill text-warning align-bottom"></i> <i
-                                        class="ri-star-fill text-warning align-bottom"></i> <i
-                                        class="ri-star-fill text-warning align-bottom"></i> <i
-                                        class="ri-star-fill text-warning align-bottom"></i> (5.0)</p>
-                                <div class="mt-3 d-flex align-items-center">
-                                    <h5 class="text-secondary flex-grow-1 mb-0">$24.07 <span
-                                            class="text-muted fs-12"><del>$96.26</del></span></h5>
-                                    <a href="#!" class="btn btn-primary btn-sm"><i
-                                            class="ri-shopping-bag-line align-bottom me-1"></i> Add</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--end col-->
-            </div>
-            <!--end row-->
-        </div>
-        <!--end container-->
     </section>
 
     <section class="section bg-light bg-opacity-25"
-        style="background-image: url('build/images/ecommerce/bg-effect.png');background-position: center; background-size: cover;">
+             style="background-image: url('build/images/ecommerce/bg-effect.png');background-position: center; background-size: cover;">
         <div class="container">
             <div class="row align-items-center justify-content-between">
                 <div class="col-lg-6">
                     <div>
-                        <p class="fs-15 text-uppercase fw-medium"> <span class="fw-semibold text-danger">Summer</span>
-                            Collection</p>
-                        <h1 class="lh-base text-capitalize mb-3">Get 35% Discount For Couple Special</h1>
-                        <p class="fs-15 mb-4 pb-2">Start You'r Daily Shopping with <a href="#!"
-                                class="link-primary fw-medium">Toner</a></p>
-                        <form action="#!">
+                        <p class="fs-15 text-uppercase fw-medium"><span class="fw-semibold text-danger">Jusqu'a 25%</span>
+                            de reduction sur tous nos produits</p>
+                        <h1 class="lh-base text-capitalize mb-3">Restez à la maison et obtenez vos besoins quotidiens dans notre boutique</h1>
+                        <p class="fs-15 mb-4 pb-2">Commencez vos achats quotidiens avec <a href="#!"
+                                                                                           class="link-info fw-medium">Bel Mache</a></p>
+                        @if(session('success'))
+                            <div class="alert alert-success" role="alert">
+                                {{ session('success') }}
+                            </div>
+                        @endif
+                        <form id="subscribe-form" action="{{ route('subscribe') }}" method="POST">
+                            @csrf
                             <div class="position-relative ecommerce-subscript">
-                                <input type="email" class="form-control rounded-pill" placeholder="Enter your email">
-                                <button type="submit" class="btn btn-primary btn-hover rounded-pill">Subscript
-                                    Now</button>
+                                <input type="email" name="email" class="form-control rounded-pill" placeholder="Entrer votre email" required>
+                                <button type="submit" class="btn btn-primary btn-hover rounded-pill">Abonnez-vous Maintenant</button>
                             </div>
                         </form>
                     </div>
                 </div>
                 <!--end col-->
                 <div class="col-lg-4">
-                    <div class="mt-5 mt-lg-0">
+                    <div class="mt-4 mt-lg-0">
                         <img src="{{ URL::asset('build/images/ecommerce/subscribe.png') }}" alt="" class="img-fluid">
                     </div>
                 </div>
@@ -307,15 +232,15 @@
 
     <section class="position-relative py-5">
         <div class="container">
-            <div class="row gy-3 gy-lg-0">
+            <div class="row gy-4 gy-lg-0">
                 <div class="col-lg-3 col-sm-6">
                     <div class="d-flex align-items-center gap-3">
                         <div class="flex-shrink-0">
                             <img src="{{ URL::asset('build/images/ecommerce/fast-delivery.png') }}" alt="" class="avatar-sm">
                         </div>
                         <div class="flex-grow-1">
-                            <h5 class="fs-15">Fast & Secure Delivery</h5>
-                            <p class="text-muted mb-0">Tell about your service.</p>
+                            <h5 class="fs-15">Livraison rapide &amp; sécurisée.</h5>
+                            <p class="text-muted mb-0">Parlez de votre service.</p>
                         </div>
                     </div>
                 </div>
@@ -326,8 +251,8 @@
                             <img src="{{ URL::asset('build/images/ecommerce/returns.png') }}" alt="" class="avatar-sm">
                         </div>
                         <div class="flex-grow-1">
-                            <h5 class="fs-15">2 Days Return Policy</h5>
-                            <p class="text-muted mb-0">No question ask.</p>
+                            <h5 class="fs-15">Politique de retour sous 2 jours</h5>
+                            <p class="text-muted mb-0">Aucune question à poser.</p>
                         </div>
                     </div>
                 </div>
@@ -336,11 +261,11 @@
                     <div class="d-flex align-items-center gap-3">
                         <div class="flex-shrink-0">
                             <img src="{{ URL::asset('build/images/ecommerce/guarantee-certificate.png') }}" alt=""
-                                class="avatar-sm">
+                                 class="avatar-sm">
                         </div>
                         <div class="flex-grow-1">
-                            <h5 class="fs-15">Money Back Guarantee</h5>
-                            <p class="text-muted mb-0">Within 5 business days</p>
+                            <h5 class="fs-15">Garantie de remboursement</h5>
+                            <p class="text-muted mb-0">Dans les 5 jours ouvrables</p>
                         </div>
                     </div>
                 </div>
@@ -351,8 +276,8 @@
                             <img src="{{ URL::asset('build/images/ecommerce/24-hours-support.png') }}" alt="" class="avatar-sm">
                         </div>
                         <div class="flex-grow-1">
-                            <h5 class="fs-15">24 X 7 Service</h5>
-                            <p class="text-muted mb-0">Online service for customer</p>
+                            <h5 class="fs-15">24 X 7 de Service</h5>
+                            <p class="text-muted mb-0">Service en ligne pour le client</p>
                         </div>
                     </div>
                 </div>

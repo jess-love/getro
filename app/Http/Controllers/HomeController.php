@@ -33,7 +33,7 @@ class HomeController extends Controller
             ->pluck('slog')
             ->take(5)
             ->toArray();
-//        dd($products_slog);
+
         return view('index',compact('produits', 'products_slog'));
     }
 

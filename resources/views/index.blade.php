@@ -20,13 +20,16 @@
                                 <div class="col-lg-7">
                                     <div class="text-sm-end">
                                         <p class="fs-15 fw-semibold text-uppercase"><i
-                                                class="ri-flashlight-fill text-primary align-bottom me-1"></i> In this
-                                            season, find the best</p>
-                                        <h1 class="display-4 fw-bold lh-base text-capitalize mb-3">Exclusive collection for
-                                            everyone</h1>
-                                        <p class="fs-20 mb-4">Biggest offers on this season</p>
-                                        <button class="btn btn-danger btn-hover"><i
-                                                class="ph-shopping-cart align-middle me-1"></i> Shop Now</button>
+                                                class="ri-flashlight-fill text-primary align-bottom me-1"></i>Pour cette
+                                            saison, trouver le meilleur pour vos achats</p>
+                                        <h1 class="display-4 fw-bold lh-base text-capitalize mb-3">Collection exclusive pour
+                                            tout le monde</h1>
+                                        <p class="fs-20 mb-4">Grand offre pour cette saison</p>
+                                        <a href="{{route('products_left') }}">
+                                            <button class="btn btn-danger btn-hover"><i
+                                                class="ph-shopping-cart align-middle me-1"></i> Acheter Mainteant
+                                            </button>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -43,11 +46,12 @@
                                         <p class="fs-15 fw-semibold text-uppercase"><i
                                                 class="ri-flashlight-fill text-info align-bottom me-1"></i> Save up to <span
                                                 class="text-danger">50%</span> off</p>
-                                        <h1 class="display-4 fw-semibold text-capitalize lh-base">Pro Smart watches for
-                                            smart People</h1>
-                                        <p class="fs-18 mb-4"><b>40% off</b> up to on all selected products</p>
-                                        <button class="btn btn-primary btn-hover"><i
-                                                class="ph-shopping-cart align-middle me-1"></i> Shop Now</button>
+                                        <h1 class="display-4 fw-semibold text-capitalize lh-base">Pro Smart Montre pour
+                                            les gens intelligents</h1>
+                                        <p class="fs-18 mb-4"><b>40% de réduction</b> pour tous les produits selectionnés</p>
+                                        <a href="{{route('productWatches')}}"> <button class="btn btn-primary btn-hover">
+                                            <i class="ph-shopping-cart align-middle me-1"></i> Acheter Maintenant
+                                        </button></a>
                                     </div>
                                 </div>
                             </div>
@@ -61,14 +65,17 @@
                             <div class="row justify-content-end">
                                 <div class="col-lg-6">
                                     <div class="text-end">
-                                        <p class="fs-15 fw-semibold text-uppercase text-dark">Jewelry Design with Love</p>
-                                        <h1 class="display-4 fw-semibold text-capitalize lh-base text-dark">Discover world
-                                            best Jewelry</h1>
-                                        <p class="text-dark lead fs-19 mb-4">Jewelry are like a tribute to being a woman</p>
+                                        <p class="fs-15 fw-semibold text-uppercase text-dark">Bijous fait avec amour</p>
+                                        <h1 class="display-4 fw-semibold text-capitalize lh-base text-dark">Decouvre le
+                                            monde des bijous</h1>
+                                        <p class="text-dark lead fs-19 mb-4">Les bijoux sont comme un hommage au fait d'être une femme</p>
                                         <div class="hstack gap-2 justify-content-end">
-                                            <button class="btn btn-success btn-hover">Shop Now <i
-                                                    class="ph-arrow-up-right align-middle ms-1"></i></button>
-                                            <button class="btn btn-ghost-secondary btn-hover">Watch Now <i
+                                            <a href="{{route('products_left') }}">
+                                                <button class="btn btn-success btn-hover">Acheter Maintenant <i
+                                                        class="ph-arrow-up-right align-middle ms-1"></i>
+                                                </button>
+                                            </a>
+                                            <button class="btn btn-ghost-secondary btn-hover">Regarder Maintenant <i
                                                     class="ph-play-circle align-middle ms-1 fs-16"></i></button>
                                         </div>
                                     </div>
@@ -330,8 +337,7 @@
                         </div>
 
                         <div class="mt-4 pt-2 d-flex gap-2">
-                            <a href="#!" class="btn btn-primary w-md btn-hover">Shopping Now</a>
-                            <a href="#!" class="btn btn-danger w-md btn-hover">Subscribe</a>
+                            <a href="{{route('products_left') }}" class="btn btn-primary w-md btn-hover">Shopping Now</a>
                         </div>
                     </div>
                 </div>
