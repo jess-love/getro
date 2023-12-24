@@ -62,10 +62,10 @@ class CartController extends Controller
 
     }
 
-    public function ViewCart(){
-        $cartContent = Cart::all()->where('user_id', Auth::id());
-        return view('shop-cart',compact('cartContent'));
-    }
+//    public function ViewCart(){
+//        $cartContent = Cart::all()->where('user_id', Auth::id());
+//        return view('shop-cart',compact('cartContent'));
+//    }
 
     public function isProductInUserCart($product_id, $user_id)
     {
