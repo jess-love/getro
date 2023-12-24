@@ -56,6 +56,26 @@ class ProductController extends Controller
     }
 
 
+    public function productSpecificProduct( Request $request)
+    {
+        $sortType = $request->input('sortType', '');
+        $products = Product::with('product_images')
+            ->where('status',1);
+
+        if ($sortType == 'low_to_high') {
+            $products->orderBy('unit_price', 'asc');
+        } elseif ($sortType == 'high_to_low') {
+            $products->orderBy('unit_price', 'desc');
+        }
+
+        $products = $products->paginate(16);
+        $sub_cat = sub_category::all();
+
+        $product_watch = Product::where('title', 'like', '%watch%')
+                                  ->where('status',1)
+                                  ->get();
+        return view('product-list', ['product_watch'=> $product_watch,  'products' => $products,'sub_cat' => $sub_cat]);
+    }
 
 
     public function search($sub_category_id, Request $request)

@@ -45,6 +45,8 @@ Route::post('/wishlist/toggle', [App\Http\Controllers\WishlistController::class,
 Route::get('/products/{sub_category_id}', [App\Http\Controllers\ProductController::class, 'product_list_right'])->name('products_nav');
 Route::get('/products', [App\Http\Controllers\ProductController::class, 'product_list_left'])->name('products_left');
 Route::get('/souscategories', [App\Http\Controllers\ProductController::class, 'Sub_Categories_Product_list_Right'])->name('sub_categories');
+Route::get('/product-watches', [App\Http\Controllers\ProductController::class, 'productSpecificProduct'])->name('productWatches');
+
 
 //recherche de produit
 Route::get('/search/{sub_category_id}', [App\Http\Controllers\ProductController::class, 'search'])->name('search');
@@ -60,9 +62,10 @@ Route::post('/update-profile', [App\Http\Controllers\UserController::class, 'upd
 //------------------Start route adresse----------------------------------------
 Route::get('/adresse',[App\Http\Controllers\UserController::class,'Address'])->name('address');
 Route::post('/addAddress', [App\Http\Controllers\UserController::class,'addAddress'])->name('addAddress');
-Route::post('/update-address', [App\Http\Controllers\UserController::class,'updateAddress'])->name('updateAddress');
 Route::get('/remove-address/{id}', [App\Http\Controllers\UserController::class, 'removeAddress'])->name('removeAddress');
 Route::post('/adresse',[App\Http\Controllers\UserController::class,'deleteAddress'])->name('deleteAddress');
+Route::post('/update-address/{addressId}', [App\Http\Controllers\UserController::class, 'updateAddress'])->name('update.address');
+
 //------------------end route adresse----------------------------------------
 
 
@@ -79,19 +82,24 @@ Route::get('/checkout',[App\Http\Controllers\CheckoutController::class,'index'])
 Route::get('/checkout-cart',[App\Http\Controllers\CheckoutController::class,'ViewCartCheckout'])->name('checkoutCart');
 //------------------end route checkout----------------------------------------
 
-
+//------------------Start route payment----------------------------------------
+Route::post('/handle-payment', [App\Http\Controllers\PaymentController::class, 'handlePayment']);
+//------------------End route payment----------------------------------------
 
 Route::get('index/{locale}', [App\Http\Controllers\HomeController::class, 'lang']);
 
 Auth::routes();
 
+
 Route::middleware(['auth'])->group(function () {
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
+
     Route::get('logout', [TonerController::class, 'logout']);
 
     Route::post('/cart-update',[App\Http\Controllers\CartController::class,'updateCart'])->name('cart-update');
     Route::post('/addToCart',[App\Http\Controllers\CartController::class,'AddToCart'])->name('addToCart');
     Route::get('/shop-cart',[App\Http\Controllers\CartController::class,'ViewCart'])->name('shopCart');
+    Route::get('/getCartItemCount', [App\Http\Controllers\CartController::class, 'getCartItemCount']);
 
     Route::get('{any}', [TonerController::class, 'index']);
 });

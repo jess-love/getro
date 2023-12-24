@@ -94,7 +94,36 @@ class CartController extends Controller
     }
 
 
-
+//    public function updateCart(Request $request)
+//    {
+//        $request->validate([
+//            'product_id' => 'required',
+//            'product_qty' => 'required|numeric|min:1',
+//        ]);
+//
+//        $prod_id = $request->input('product_id');
+//        $qty = $request->input('product_qty');
+//
+//
+//        try {
+//            if ($qty <= 0) {
+//                return response()->json(['error' => 'Invalid quantity'], 400);
+//            }
+//
+//            if (Auth::check()) {
+//                if (Cart::where('product_id', $prod_id)->where('user_id', Auth::id())->exists()) {
+//                    $cart = Cart::where('product_id', $prod_id)->where('user_id', Auth::id())->first();
+//                    $cart->quantity = $qty;
+//                    $cart->save();
+//
+//                    return response()->json(['status' => "quantity updated successfully"]);
+//                }
+//            }
+//        } catch (\Exception $e) {
+//            return response()->json(['status' => "error updating quantity"]);
+//
+//        }
+//    }
     public function updateCart(Request $request)
     {
         $request->validate([
@@ -105,28 +134,32 @@ class CartController extends Controller
         $prod_id = $request->input('product_id');
         $qty = $request->input('product_qty');
 
-
         try {
             if ($qty <= 0) {
                 return response()->json(['error' => 'Invalid quantity'], 400);
             }
 
             if (Auth::check()) {
-                if (Cart::where('product_id', $prod_id)->where('user_id', Auth::id())->exists()) {
-                    $cart = Cart::where('product_id', $prod_id)->where('user_id', Auth::id())->first();
+                $userId = Auth::id();
+
+                if (Cart::where('product_id', $prod_id)->where('user_id', $userId)->exists()) {
+                    $cart = Cart::where('product_id', $prod_id)->where('user_id', $userId)->first();
                     $cart->quantity = $qty;
                     $cart->save();
 
-                    return response()->json(['status' => "quantity updated successfully"]);
+                    Log::info("Quantity updated successfully for user $userId, product $prod_id: new quantity $qty");
+
+                    return response()->json(['status' => 'quantity updated successfully']);
+                } else {
+                    Log::warning("Cart entry not found for user $userId, product $prod_id");
+                    return response()->json(['status' => 'Cart entry not found']);
                 }
             }
         } catch (\Exception $e) {
+            Log::error("Exception while updating quantity: " . $e->getMessage());
             return response()->json(['status' => "error updating quantity"]);
-
         }
     }
-
-
 
 
     public function deleteItem(Request $request){

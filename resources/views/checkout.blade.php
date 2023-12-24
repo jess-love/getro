@@ -91,8 +91,6 @@
                                                     </div>
                                                 </div>
                                             @endforeach
-{{--                                            <div class="swiper-button-next"></div>--}}
-{{--                                            <div class="swiper-button-prev"></div>--}}
                                         </div>
                                     </div>
                                 </div>
@@ -529,4 +527,34 @@
     <script src="{{ URL::asset('build/js/pages/form-wizard.init.js') }}"></script>
     <!-- landing-index js -->
     <script src="{{ URL::asset('build/js/frontend/menu.init.js') }}"></script>
+    <script src="https://js.stripe.com/v3/"></script>
+    <script>
+        var stripe = Stripe('VOTRE_CLE_PUBLIQUE_STRIPE');
+        var elements = stripe.elements();
+
+        var card = elements.create('card');
+        card.mount('#card-element');
+
+        var form = document.getElementById('payment-form');
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            stripe.confirmCardPayment(
+                'CLIENT_SECRET_RECU_DU_SERVEUR',
+                {
+                    payment_method: {
+                        card: card,
+                    }
+                }
+            ).then(function(result) {
+                if (result.error) {
+                    // Gérer les erreurs lors du paiement
+                } else {
+                    // Rediriger ou afficher un message de succès
+                }
+            });
+        });
+    </script>
+
 @endsection

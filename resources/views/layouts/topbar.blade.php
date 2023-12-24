@@ -257,7 +257,7 @@
                                 }
                             @endphp
                         @endforeach
-                        <span class="position-absolute topbar-badge cartitem-badge fs-10 translate-middle badge rounded-pill bg-danger">{{ $totalProducts }}</span>
+                        <span id="cartItemCount" class="position-absolute topbar-badge cartitem-badge fs-10 translate-middle badge rounded-pill bg-danger">{{ $totalProducts }}</span>
                     @else
                         <!-- Si le panier est vide, n'affichez pas le code -->
                     @endif
@@ -405,7 +405,7 @@
 
                                         <div class="input-step ms-2">
                                             <input type="hidden" value="{{ $item->id }}" class="prod_id">
-                                            <button class="decrement-btn changeQty">–</button>
+                                            <button class="decrement-btn changeQty" >–</button>
                                             <input name="quantity" type="number" class="qty-input" value="{{ $item->cart->quantity ?? 'N/A' }}" min="0" max="100">
                                             <button class="increment-btn changeQty">+</button>
                                         </div>
