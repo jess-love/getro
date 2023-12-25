@@ -76,7 +76,7 @@
 
                                     <form method="post" action="{{route('payment')}}">
                                         @csrf
-                                        <input type="hidden" name="amount" value="300">
+                                        <input type="hidden" name="price" value="300">
                                         <div class="row gy-3">
                                             <div class="col-md-12">
                                                 <label for="buyers-name" class="form-label">Buyers First Name</label>

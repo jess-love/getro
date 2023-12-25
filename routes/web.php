@@ -67,7 +67,9 @@ Route::post('/adresse',[App\Http\Controllers\UserController::class,'deleteAddres
 
 
 //------------------Start route Paypal----------------------------------------
-Route::post('/payment',[App\Http\Controllers\PaypalController::class,'pay'])->name('payment');
+Route::post('/payment',[App\Http\Controllers\PaypalController::class,'payment'])->name('payment');
+Route::get('/payment/paypal/success',[App\Http\Controllers\PaypalController::class,'success'])->name('paypal_success');
+Route::get('/payment/paypal/cancel',[App\Http\Controllers\PaypalController::class,'cancel'])->name('paypal_cancel');
 
 //------------------Start cart route----------------------------------------
 Route::post('/delete-item',[App\Http\Controllers\CartController::class,'deleteItem'])->name('delete-item');
