@@ -72,51 +72,58 @@
                         <div class="tab-pane active" id="paypal" role="tabpanel">
                             <div class="card">
                                 <div class="card-body">
-                                    <div class="row gy-3">
-                                        <div class="col-md-12">
-                                            <label for="buyers-name" class="form-label">Buyers First Name</label>
-                                            <input type="text" class="form-control" id="buyers-name"
-                                                placeholder="Enter Name">
-                                        </div>
 
-                                        <div class="col-md-6">
-                                            <label for="buyers-last" class="form-label">Buyers Last Name</label>
-                                            <input type="text" class="form-control" id="buyers-last"
-                                                placeholder="Enter Last Name">
-                                        </div>
 
-                                        <div class="col-md-6">
-                                            <label for="buyers-address" class="form-label">Email Address</label>
-                                            <input type="text" class="form-control" id="buyers-address"
-                                                placeholder="Enter Email Address">
-                                        </div>
+                                    <form method="post" action="{{route('payment')}}">
+                                        @csrf
+                                        <input type="hidden" name="amount" value="300">
+                                        <div class="row gy-3">
+                                            <div class="col-md-12">
+                                                <label for="buyers-name" class="form-label">Buyers First Name</label>
+                                                <input type="text" class="form-control" id="buyers-name"
+                                                       placeholder="Enter Name">
+                                            </div>
 
-                                        <div class="col-md-12">
-                                            <label class="form-label">Select your paypal account type</label>
-                                            <div class="d-flex gap-4 mt-1">
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="formRadios"
-                                                        id="formRadios1" checked>
-                                                    <label class="form-check-label" for="formRadios1">
-                                                        Domestic
-                                                    </label>
-                                                </div>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="formRadios"
-                                                        id="formRadios2">
-                                                    <label class="form-check-label" for="formRadios2">
-                                                        International
-                                                    </label>
+                                            <div class="col-md-6">
+                                                <label for="buyers-last" class="form-label">Buyers Last Name</label>
+                                                <input type="text" class="form-control" id="buyers-last"
+                                                       placeholder="Enter Last Name">
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <label for="buyers-address" class="form-label">Email Address</label>
+                                                <input type="text" class="form-control" id="buyers-address"
+                                                       placeholder="Enter Email Address">
+                                            </div>
+
+                                            <div class="col-md-12">
+                                                <label class="form-label">Select your paypal account type</label>
+                                                <div class="d-flex gap-4 mt-1">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="formRadios"
+                                                               id="formRadios1" checked>
+                                                        <label class="form-check-label" for="formRadios1">
+                                                            Domestic
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="formRadios"
+                                                               id="formRadios2">
+                                                        <label class="form-check-label" for="formRadios2">
+                                                            International
+                                                        </label>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                        <div class="hstack gap-2 justify-content-end pt-4">
+                                            <button type="submit" class="btn btn-hover btn-primary"><i
+                                                    class="ri-paypal-fill align-bottom align-bottom pe-2"></i> Log into my
+                                                Paypal
+                                            </button>
+                                        </div>
+                                    </form>
 
-                                    <div class="hstack gap-2 justify-content-end pt-4">
-                                        <button type="button" class="btn btn-hover btn-primary"><i
-                                                class="ri-paypal-fill align-bottom align-bottom pe-2"></i> Log into my
-                                            Paypal</button>
-                                    </div>
                                 </div>
                             </div>
                         </div>
