@@ -37,6 +37,21 @@
     }
 </style>
 @section('content')
+    @php
+        $totalAmount = 0;
+    @endphp
+    <?php
+    $totalAmount = session('totalAmount', 0);
+    if (isset($totalAmount)) {
+        $taxPercentage = 2.5;
+        $taxAmount = ($totalAmount * $taxPercentage) / 100;
+        $shippingCharge = 100;
+
+        $totalAmountWithTaxAndShipping = $totalAmount + $taxAmount + $shippingCharge;
+    } else {
+        $totalAmountWithTaxAndShipping = 0;
+    }
+    ?>
     <section class="page-wrapper bg-primary">
         <div class="container">
             <div class="row">
@@ -129,23 +144,8 @@
                                                         <span class="text-muted fw-normal text-wrap mb-1 d-block">{{ $address->firstname }} {{ $address->lastname }}</span>
                                                         <span class="text-muted fw-normal text-wrap mb-1 d-block"> {{ $address->street }}, {{ $address->city }}, {{ $address->country }} </span>
                                                         <span class="text-muted fw-normal d-block">+509 {{ $address->phone }}</span>
-                                                    </label> <!-- Ajout de la balise label manquante -->
+                                                    </label>
 
-                                                    <div class="d-flex flex-wrap p-2 py-1 bg-light rounded-bottom border mt-n1 fs-13">
-                                                        <div>
-                                                            <a href="#" class="d-block text-body p-1 px-2" data-bs-toggle="modal" data-bs-target="#EditAddressModal"
-                                                               onclick="selectAddress({{ $index + 1 }}, {{ $address->id }})">
-                                                                <i class="ri-pencil-fill text-muted align-bottom me-1"></i> Modifier
-                                                            </a>
-                                                        </div>
-                                                        <div>
-                                                            <a href="#" class="d-block text-body p-1 px-2" data-bs-toggle="modal" data-bs-target="#removeAddressModal"
-                                                               data-address-id="{{ $address->id }}" onclick="confirmRemoveAddress({{ $address->id }})">
-                                                                <i class="ri-delete-bin-fill text-muted align-bottom me-1"></i> Retirer
-                                                            </a>
-
-                                                        </div>
-                                                    </div>
                                                 </div>
                                             </div>
                                         @endforeach
@@ -153,140 +153,69 @@
 
                                 </div>
                             @endforeach
-{{--                            <div class="col-lg-6 col-12">--}}
-{{--                                <div class="form-check card-radio">--}}
-{{--                                    <input id="shippingAddress01" name="shippingAddress" type="radio"--}}
-{{--                                        class="form-check-input" checked="">--}}
-{{--                                    <label class="form-check-label" for="shippingAddress01">--}}
-{{--                                        <span class="mb-3 text-uppercase fw-semibold d-block">Home Address</span>--}}
-{{--                                        <span class="fs-14 mb-2 d-block fw-semibold">Witney Blessington</span>--}}
-{{--                                        <span class="text-muted fw-normal text-wrap mb-1 d-block">144 Cavendish Avenue,--}}
-{{--                                            Indianapolis, IN 46251</span>--}}
-{{--                                        <span class="text-muted fw-normal d-block">Mo. 012-345-6789</span>--}}
-{{--                                    </label>--}}
-{{--                                </div>--}}
-{{--                                <div class="d-flex flex-wrap p-2 py-1 bg-light rounded-bottom border mt-n1">--}}
-{{--                                    <div>--}}
-{{--                                        <a href="address" class="d-block text-body p-1 px-2"><i--}}
-{{--                                                class="ri-pencil-fill text-muted align-bottom me-1"></i> Edit</a>--}}
-{{--                                    </div>--}}
-{{--                                    <div>--}}
-{{--                                        <a href="#removeAddressModal" class="d-block text-body p-1 px-2"--}}
-{{--                                            data-bs-toggle="modal"><i--}}
-{{--                                                class="ri-delete-bin-fill text-muted align-bottom me-1"></i> Remove</a>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                            <div class="col-lg-6 col-12">--}}
-{{--                                <div class="form-check card-radio">--}}
-{{--                                    <input id="shippingAddress02" name="shippingAddress" type="radio"--}}
-{{--                                        class="form-check-input">--}}
-{{--                                    <label class="form-check-label" for="shippingAddress02">--}}
-{{--                                        <span class="mb-3 text-uppercase fw-semibold d-block">Office Address</span>--}}
-{{--                                        <span class="fs-14 mb-2 d-block fw-semibold">Edwin Adenike</span>--}}
-{{--                                        <span class="text-muted fw-normal text-wrap mb-1 d-block">2971 Westheimer Road,--}}
-{{--                                            Santa Ana, IL 80214</span>--}}
-{{--                                        <span class="text-muted fw-normal d-block">Mo. 012-345-6789</span>--}}
-{{--                                    </label>--}}
-{{--                                </div>--}}
-{{--                                <div class="d-flex flex-wrap p-2 py-1 bg-light rounded-bottom border mt-n1">--}}
-{{--                                    <div>--}}
-{{--                                        <a href="address" class="d-block text-body p-1 px-2"><i--}}
-{{--                                                class="ri-pencil-fill text-muted align-bottom me-1"></i> Edit</a>--}}
-{{--                                    </div>--}}
-{{--                                    <div>--}}
-{{--                                        <a href="#removeAddressModal" class="d-block text-body p-1 px-2"--}}
-{{--                                            data-bs-toggle="modal"><i--}}
-{{--                                                class="ri-delete-bin-fill text-muted align-bottom me-1"></i> Remove</a>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
                         </div>
                     </div>
-                    {{-- Adddresse de livraison end--}}
 
-                    {{-- Paiement methode start--}}
-                    <div class="mt-4 pt-2">
-                        <h5 class="mb-0 flex-grow-1">Selection de Paiement</h5>
-
-                        <ul class="nav nav-pills arrow-navtabs nav-success bg-light mb-3 mt-4 nav-justified custom-nav"
-                            role="tablist">
+                    <div class="col-xl-12">
+                        <h5 class="mb-0 flex-grow-1">Payment Selection</h5>
+                        <ul class="nav nav-pills arrow-navtabs nav-success bg-light mb-3 mt-4 nav-justified custom-nav" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link active py-3" data-bs-toggle="tab" href="#paypal" role="tab">
-                                    <span class="d-block d-sm-none"><i class="align-bottom"></i></span>
-                                    <span class="d-none d-sm-block">
-                                        <img src="{{ URL::asset('build/images/logo_mon_cash.png') }}" alt="Logo" class="align-bottom pe-2" style="width: 30%; height: 40px;">
-                                    </span>
+                                <a class="nav-link py-3" data-bs-toggle="tab" href="#credit" role="tab">
+                                    <span class="d-block d-sm-none"><i class="ri-bank-card-fill align-bottom"></i></span>
+                                    <span class="d-none d-sm-block"> <i class="ri-bank-card-fill align-bottom pe-2"></i> Credit
+                                    / Debit Card</span>
                                 </a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link py-3" data-bs-toggle="tab" href="#credit" role="tab">
-                                    <span class="d-block d-sm-none"><i class="ri-bank-card-fill align-bottom"></i></span>
-                                    <span class="d-none d-sm-block"> <i class="ri-bank-card-fill align-bottom pe-2"></i> Carte de Credit
-                                    / Carte de Debit</span>
+                                <a class="nav-link py-3" data-bs-toggle="tab" href="#cash" role="tab">
+                                    <span class="d-block d-sm-none"><i class="ri-money-dollar-box-fill align-bottom"></i></span>
+                                    <span class="d-none d-sm-block"> <i class="ri-money-dollar-box-fill align-bottom pe-2"></i>
+                                   Mon Cash</span>
                                 </a>
                             </li>
                         </ul>
                         <!-- Tab panes -->
                         <div class="tab-content text-muted">
-                            {{--    Mon cash   --}}
-                            <div class="tab-pane active" id="paypal" role="tabpanel">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="row gy-3">
-                                            <div class="col-md-12">
-                                                <label for="buyers-name" class="form-label">Nom enregistre sur MonCash</label>
-                                                <input type="text" class="form-control" id="buyers-name"
-                                                       placeholder="Entrer le nom">
-                                            </div>
-
-                                            <div class="col-md-12">
-                                                <label for="buyers-last" class="form-label">Numero Telephone</label>
-                                                <input type="number" class="form-control" id="buyers-last"
-                                                       placeholder="Entrer No telephone">
-                                            </div>
-                                        </div>
-
-                                        <div class="hstack gap-2 justify-content-end pt-4">
-                                            <button type="button" class="btn btn-hover w-md btn-primary">Choisir Paiement<i
-                                                    class="ri-logout-box-r-line align-bottom ms-2"></i></button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                             {{--    Debit credit card   --}}
                             <div class="tab-pane" id="credit" role="tabpanel">
                                 <div class="card">
-                                    <div class="card-body">
-                                        <div class="row gy-3">
-                                            <div class="col-md-12">
-                                                <label for="cc-name" class="form-label">Nom sur la carte</label>
-                                                <input type="text" class="form-control" id="cc-name"
-                                                       placeholder="Enter name">
-                                                <small class="text-muted">Entrer le nom complet qui est sur la carte</small>
+                                    <form method="post" action="/session">
+                                        <div class="card-body">
+                                            <div class="text-center py-3">
+                                                <div class="d-flex align-items-center justify-content-center flex-column">
+                                                    <div class="avatar-md mb-4">
+                                                        <img src="{{ URL::asset('build/images/ecommerce/payment/payment.png') }}" alt="Logo" class="img-fluid" style="max-width: 1000%; height: 60px;">
+                                                    </div>
+                                                </div>
                                             </div>
-
-                                            <div class="col-md-6">
-                                                <label for="cc-number" class="form-label">Numero de la carte</label>
-                                                <input type="text" class="form-control" id="cc-number"
-                                                       placeholder="xxxx xxxx xxxx xxxx">
-                                            </div>
-
-                                            <div class="col-md-3">
-                                                <label for="cc-expiration" class="form-label">Expiration</label>
-                                                <input type="text" class="form-control" id="cc-expiration"
-                                                       placeholder="MM/YY">
-                                            </div>
-
-                                            <div class="col-md-3">
-                                                <label for="cc-cvv" class="form-label">CVV</label>
-                                                <input type="text" class="form-control" id="cc-cvv" placeholder="xxx">
+                                            <div class="hstack gap-2 justify-content-end pt-4">
+                                                <input type="hidden" name="_token" value="{{csrf_token()}}">
+                                                <?php
+                                                    $totalUSD =
+                                                ?>
+                                                <input type='hidden' name="total" value="{{$totalAmountWithTaxAndShipping }}">
+                                                <input type='hidden' name="productname" value="Total a Payer:">
+                                                <button type="submit" class="btn btn-hover w-md btn-primary">Payer<i class="ri-logout-box-r-line align-bottom ms-2"></i></button>
                                             </div>
                                         </div>
 
-                                        <div class="hstack gap-2 justify-content-end pt-4">
-                                            <button type="button" class="btn btn-hover w-md btn-primary">Choisir Paiement<i
+                                    </form>
+                                </div>
+                            </div>
+                            {{--    mon cash --}}
+                            <div class="tab-pane" id="cash" role="tabpanel">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="text-center py-3">
+                                            <div class="avatar-md mx-auto mb-4">
+                                                        <img src="{{ URL::asset('build/images/logo_mon_cash.png') }}" alt="Logo" class="align-bottom pe-2" style="width: 200%; height: 100px;">
+                                            </div>
+                                            <h5 class="fs-16 mb-3"></h5>
+                                            <p class="text-muted mt-3 mb-0 w-75 mx-auto"></p>
+                                        </div>
+                                        <div class="hstack gap-2 justify-content-end pt-3">
+                                            <button type="button" class="btn btn-hover w-md btn-primary">Payer<i
                                                     class="ri-logout-box-r-line align-bottom ms-2"></i></button>
                                         </div>
                                     </div>
@@ -294,13 +223,11 @@
                             </div>
                         </div>
                     </div>
-                    {{-- Paiement methode end--}}
+
 
                 </div>
                 <!-- end col -->
-                @php
-                    $totalAmount = 0;
-                @endphp
+
                 {{--code promo et historique commande start --}}
                 <div class="col-lg-4">
                     <div class="sticky-side-div">
@@ -330,18 +257,7 @@
                                 <div class="table-responsive table-card">
                                     <table class="table table-borderless mb-0 fs-15">
                                         <tbody>
-                                        <?php
-                                        $totalAmount = session('totalAmount', 0);
-                                        if (isset($totalAmount)) {
-                                            $taxPercentage = 2.5;
-                                            $taxAmount = ($totalAmount * $taxPercentage) / 100;
-                                            $shippingCharge = 100;
 
-                                            $totalAmountWithTaxAndShipping = $totalAmount + $taxAmount + $shippingCharge;
-                                        } else {
-                                            $totalAmountWithTaxAndShipping = 0;
-                                        }
-                                        ?>
                                         <tr>
                                             <td>Sub Total :</td>
                                             <td class="text-end cart-subtotal">

@@ -43,16 +43,18 @@ class PaymentController extends Controller
        $totalprice = $request->get('total');
        $two0 = "00";
        $total = "$totalprice$two0";
+       $unitAmountInCents = round($total * 100);
 
        $session = \Stripe\Checkout\Session::create([
            'line_items'  => [
                [
                    'price_data' => [
-                       'currency'     => 'USD',
+                       'currency'     => 'HTG',
                        'product_data' => [
                            "name" => $productname,
                        ],
-                       'unit_amount'  => $total,
+//                       'unit_amount'  => $total,
+                       'unit_amount' => $unitAmountInCents,
                    ],
                    'quantity'   => 1,
                ],
