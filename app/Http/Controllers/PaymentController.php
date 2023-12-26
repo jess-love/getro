@@ -75,6 +75,6 @@ class PaymentController extends Controller
 
     public function returnToProductPage()
     {
-        return view('product-grid-sidebar-banner');
+        return view('confirmation');
     }
 }
