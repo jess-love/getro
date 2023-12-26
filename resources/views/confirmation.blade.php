@@ -41,11 +41,11 @@
                                 <h4 class="mb-3 text-capitalize">Your Order Is Completed !</h4>
                                 <p class="text-muted mb-2">You will receive an order confirmation email with details of your
                                     order.</p>
-                                <p class="text-muted mb-0">Order ID: 267676GHERT105467</p>
+                                <p class="text-muted mb-0">Order ID:hhhhuhzgsjgeikdg</p>
                                 <div class="mt-4 pt-2 hstack gap-2 justify-content-center">
                                     <a href="order-history" class="btn btn-primary btn-hover">View Order <i
                                             class="ri-arrow-right-line align-bottom ms-1"></i></a>
-                                    <a href="index" class="btn btn-soft-danger btn-hover">Back To Home <i
+                                    <a href="{{route('product_page')}}" class="btn btn-soft-danger btn-hover">Back To Home <i
                                             class="ri-home-4-line align-bottom ms-1"></i></a>
                                 </div>
                             </div>

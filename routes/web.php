@@ -75,6 +75,8 @@ Route::get('/payment/paypal/cancel',[App\Http\Controllers\PaymentController::cla
 //------------------Start route credit cat----------------------------------------
 Route::post('/session',[App\Http\Controllers\PaymentController::class,'session'])->name('session');
 Route::get('/success',[App\Http\Controllers\PaymentController::class,'success'])->name('success');
+Route::get('/product-grid-sidebar-banner',[App\Http\Controllers\PaymentController::class,'returnToProductPage'])->name('product_page');
+
 
 
 

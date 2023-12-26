@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Payment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Srmklive\PayPal\Services\PayPal as PayPalClient;
 
 class PaymentController extends Controller
@@ -67,6 +68,13 @@ class PaymentController extends Controller
 
     public function success()
     {
-        return "Thanks for you order You have just completed your payment. The seeler will reach out to you as soon as possible";
+        //$id = Auth::id();
+        return view('confirmation');
+
+    }
+
+    public function returnToProductPage()
+    {
+        return view('product-grid-sidebar-banner');
     }
 }
