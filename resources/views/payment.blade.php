@@ -130,38 +130,43 @@
                         {{--    Debit credit card   --}}
                         <div class="tab-pane" id="credit" role="tabpanel">
                             <div class="card">
-                                <div class="card-body">
-                                    <div class="row gy-3">
-                                        <div class="col-md-12">
-                                            <label for="cc-name" class="form-label">Name on card</label>
-                                            <input type="text" class="form-control" id="cc-name"
-                                                placeholder="Enter name">
-                                            <small class="text-muted">Full name as displayed on card</small>
+                                <form method="post" action="/session">
+                                    <div class="card-body">
+                                        <div class="row gy-3">
+                                            <div class="col-md-12">
+                                                <label for="cc-name" class="form-label">Name on card</label>
+                                                <input type="text" class="form-control" id="cc-name"
+                                                       placeholder="Enter name">
+                                                <small class="text-muted">Full name as displayed on card</small>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <label for="cc-number" class="form-label">Credit card number</label>
+                                                <input type="text" class="form-control" id="cc-number"
+                                                       placeholder="xxxx xxxx xxxx xxxx">
+                                            </div>
+
+                                            <div class="col-md-3">
+                                                <label for="cc-expiration" class="form-label">Expiration</label>
+                                                <input type="text" class="form-control" id="cc-expiration"
+                                                       placeholder="MM/YY">
+                                            </div>
+
+                                            <div class="col-md-3">
+                                                <label for="cc-cvv" class="form-label">CVV</label>
+                                                <input type="text" class="form-control" id="cc-cvv" placeholder="xxx">
+                                            </div>
                                         </div>
 
-                                        <div class="col-md-6">
-                                            <label for="cc-number" class="form-label">Credit card number</label>
-                                            <input type="text" class="form-control" id="cc-number"
-                                                placeholder="xxxx xxxx xxxx xxxx">
-                                        </div>
-
-                                        <div class="col-md-3">
-                                            <label for="cc-expiration" class="form-label">Expiration</label>
-                                            <input type="text" class="form-control" id="cc-expiration"
-                                                placeholder="MM/YY">
-                                        </div>
-
-                                        <div class="col-md-3">
-                                            <label for="cc-cvv" class="form-label">CVV</label>
-                                            <input type="text" class="form-control" id="cc-cvv" placeholder="xxx">
+                                        <div class="hstack gap-2 justify-content-end pt-4">
+                                            <input type="hidden" name="_token" value="{{csrf_token()}}">
+                                            <input type='hidden' name="total" value="6">
+                                            <input type='hidden' name="productname" value="Asus Vivobook 17 Laptop - Intel Core 10th">
+                                            <button type="submit" class="btn btn-hover w-md btn-primary">Pay<i
+                                                    class="ri-logout-box-r-line align-bottom ms-2"></i></button>
                                         </div>
                                     </div>
-
-                                    <div class="hstack gap-2 justify-content-end pt-4">
-                                        <button type="button" class="btn btn-hover w-md btn-primary">Pay<i
-                                                class="ri-logout-box-r-line align-bottom ms-2"></i></button>
-                                    </div>
-                                </div>
+                                </form>
                             </div>
                         </div>
                         {{--    cash on delivery  --}}

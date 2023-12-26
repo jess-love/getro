@@ -67,9 +67,16 @@ Route::post('/adresse',[App\Http\Controllers\UserController::class,'deleteAddres
 
 
 //------------------Start route Paypal----------------------------------------
-Route::post('/payment',[App\Http\Controllers\PaypalController::class,'payment'])->name('payment');
-Route::get('/payment/paypal/success',[App\Http\Controllers\PaypalController::class,'success'])->name('paypal_success');
-Route::get('/payment/paypal/cancel',[App\Http\Controllers\PaypalController::class,'cancel'])->name('paypal_cancel');
+Route::post('/payment',[App\Http\Controllers\PaymentController::class,'payment'])->name('payment');
+Route::get('/payment/paypal/success',[App\Http\Controllers\PaymentController::class,'success'])->name('paypal_success');
+Route::get('/payment/paypal/cancel',[App\Http\Controllers\PaymentController::class,'cancel'])->name('paypal_cancel');
+
+
+//------------------Start route credit cat----------------------------------------
+Route::post('/session',[App\Http\Controllers\PaymentController::class,'session'])->name('session');
+Route::get('/success',[App\Http\Controllers\PaymentController::class,'success'])->name('success');
+
+
 
 //------------------Start cart route----------------------------------------
 Route::post('/delete-item',[App\Http\Controllers\CartController::class,'deleteItem'])->name('delete-item');
