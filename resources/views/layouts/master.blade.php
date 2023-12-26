@@ -35,7 +35,7 @@
     @include('layouts.footer')
     <!-- scripts -->
     @include('layouts.vendor-scripts')
-    <script src="{{ URL::asset('build/js/Jess.js') }}"></script>
+    <script src="{{ URL::asset('build/js/jess.js') }}"></script>
     @yield('scripts')
 
 </body>

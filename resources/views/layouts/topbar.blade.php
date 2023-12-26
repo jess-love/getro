@@ -57,7 +57,7 @@
                                                 @endif
                                                 <li  class="nav-item  dropdown-hover">
                                                     <a href="{{ route('products_nav', ['sub_category_id' => $subCategory->id]) }}">
-                                                        <p class="mb-2 text-uppercase fs-11 fw-medium text-muted menu-title" data-key="t-men">{{ $subCategory->title }}</p>
+                                                        <p  style="cursor: pointer" class="mb-2 text-uppercase fs-11 fw-medium text-muted menu-title" data-key="t-men">{{ $subCategory->title }}</p>
                                                     </a>
                                                 </li>
                                             @endforeach
