@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('invoice', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('order_id');
-            $table->foreign('order_id')->references('id')->on('order');
+            $table->foreign('order_id')->references('id')->on('order')->onDelete('cascade');
             $table->integer('total_product');
             $table->float('total_price');
             $table->integer('tca');

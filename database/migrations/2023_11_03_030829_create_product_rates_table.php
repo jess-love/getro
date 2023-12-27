@@ -13,10 +13,12 @@ return new class extends Migration
     {
         Schema::create('product_rates', function (Blueprint $table) {
             $table->id();
+
             $table->unsignedBigInteger('product_id');
-            $table->foreign('product_id')->references('id')->on('products');
             $table->unsignedBigInteger('rate_id');
-            $table->foreign('rate_id')->references('id')->on('rate');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
+            $table->foreign('rate_id')->references('id')->on('rate')->onDelete('cascade');
+
             $table->timestamps();
         });
     }

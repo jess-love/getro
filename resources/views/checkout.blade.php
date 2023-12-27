@@ -192,9 +192,9 @@
                                             <div class="hstack gap-2 justify-content-end pt-4">
                                                 <input type="hidden" name="_token" value="{{csrf_token()}}">
                                                 <?php
-                                                    $totalUSD =
+                                                    $totalUSD = $totalAmountWithTaxAndShipping
                                                 ?>
-                                                <input type='hidden' name="total" value="{{$totalAmountWithTaxAndShipping }}">
+                                                <input type='hidden' name="total" value="{{$totalUSD }}">
                                                 <input type='hidden' name="productname" value="Total a Payer:">
                                                 <button type="submit" class="btn btn-hover w-md btn-primary">Payer<i class="ri-logout-box-r-line align-bottom ms-2"></i></button>
                                             </div>
@@ -223,8 +223,6 @@
                             </div>
                         </div>
                     </div>
-
-
                 </div>
                 <!-- end col -->
 
@@ -307,7 +305,6 @@
                         <div class="hstack gap-2 justify-content-between justify-content-end">
                             <a href="{{route('shopCart')}}" class="btn btn-hover btn-soft-info w-100">Retour au Panier <i
                                     class="ri-arrow-right-line label-icon align-middle ms-1"></i></a>
-                            <a href="payment" class="btn btn-hover btn-primary w-100">Confirmer Paiement</a>
                         </div>
                     </div>
                     <!-- end stickey -->

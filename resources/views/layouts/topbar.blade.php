@@ -328,8 +328,6 @@
     <div class="offcanvas-body px-0 product_data">
         <div data-simplebar  class="h-100 ">
             <ul class="list-group list-group-flush cartlist ">
-
-
                 @if(Session::has('success'))
                     <div class="alert alert-success alert-dismissible fade show" role="alert">
                         {{Session::get('success')}}
@@ -437,9 +435,8 @@
                                     </div>
                                 </div>
                             </div>
-                            @endforeach
-
-                        @else
+                    @endforeach
+                @else
 
                             <div class="col-md-12">
                                 <div class="card">
@@ -452,8 +449,8 @@
 
                                 </div>
                             </div>
-                        @endif
-                        </ul>
+                @endif
+            </ul>
 
             <div class="table-responsive mx-2 border-top">
                 <table class="table table-borderless mb-0 fs-14 fw-semibold">
