@@ -8,6 +8,7 @@ use App\Models\product_images;
 use http\Env\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use function Laravel\Prompts\alert;
 use Illuminate\Support\Facades\Log;
 
@@ -33,11 +34,9 @@ class CartController extends Controller
                 $prod_check = Product::where('id', $product_id)->first();
 
                 if ($prod_check) {
-                    // Vérifier si le produit est déjà dans le panier de l'utilisateur
                     if ($this->isProductInUserCart($product_id, Auth::id())) {
                         return response()->json(['status' => $prod_check->title . " Already added To Cart"]);
                     } else {
-                        // Ajouter le produit au panier de l'utilisateur
                         $this->addToUserCart($product_id, Auth::id(), $product_qty);
 
                         return response()->json([
@@ -62,20 +61,22 @@ class CartController extends Controller
 
     }
 
-//    public function ViewCart(){
-//        $cartContent = Cart::all()->where('user_id', Auth::id());
-//        return view('shop-cart',compact('cartContent'));
-//    }
-
-    public function isProductInUserCart($product_id, $user_id)
-    {
-        // Logique pour vérifier si le produit est déjà dans le panier de l'utilisateur
-        return Cart::where('product_id', $product_id)->where('user_id', $user_id)->exists();
-    }
-
     private function addToUserCart($product_id, $user_id, $product_qty)
     {
-        // Logique pour ajouter le produit au panier de l'utilisateur
+        $cart = Session::get('cart', []);
+        $productKey = array_search($product_id, array_column($cart, 'product_id'));
+        if ($productKey !== false) {
+
+            $cart[$productKey]['quantity'] += $product_qty;
+
+        } else {
+            $cart[] = [
+                'product_id' => $product_id,
+                'quantity' => $product_qty,
+            ];
+        }
+        Session::put('cart', $cart);
+
         $cartItem = new Cart();
         $cartItem->product_id = $product_id;
         $cartItem->user_id = $user_id;
@@ -84,6 +85,12 @@ class CartController extends Controller
 
     }
 
+
+    public function isProductInUserCart($product_id, $user_id)
+    {
+        // Logique pour vérifier si le produit est déjà dans le panier de l'utilisateur
+        return Cart::where('product_id', $product_id)->where('user_id', $user_id)->exists();
+    }
 
     public function ViewCart() {
         $user = Auth::user();
@@ -100,36 +107,6 @@ class CartController extends Controller
     }
 
 
-//    public function updateCart(Request $request)
-//    {
-//        $request->validate([
-//            'product_id' => 'required',
-//            'product_qty' => 'required|numeric|min:1',
-//        ]);
-//
-//        $prod_id = $request->input('product_id');
-//        $qty = $request->input('product_qty');
-//
-//
-//        try {
-//            if ($qty <= 0) {
-//                return response()->json(['error' => 'Invalid quantity'], 400);
-//            }
-//
-//            if (Auth::check()) {
-//                if (Cart::where('product_id', $prod_id)->where('user_id', Auth::id())->exists()) {
-//                    $cart = Cart::where('product_id', $prod_id)->where('user_id', Auth::id())->first();
-//                    $cart->quantity = $qty;
-//                    $cart->save();
-//
-//                    return response()->json(['status' => "quantity updated successfully"]);
-//                }
-//            }
-//        } catch (\Exception $e) {
-//            return response()->json(['status' => "error updating quantity"]);
-//
-//        }
-//    }
     public function updateCart(Request $request)
     {
         $request->validate([
@@ -195,8 +172,6 @@ class CartController extends Controller
             return response()->json(['status',"Login to continue"]);
         }
     }
-
-
 
     public function ProductInCart(){
         $products = Product::with('product_images')

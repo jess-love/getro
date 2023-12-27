@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('track', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('order_id');
-            $table->foreign('order_id')->references('id')->on('order');
+            $table->foreign('order_id')->references('id')->on('order')->onDelete('cascade');
             $table->string('tracking_number');
             $table->timestamps();
         });
