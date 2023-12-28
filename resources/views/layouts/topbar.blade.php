@@ -257,7 +257,7 @@
                                 }
                             @endphp
                         @endforeach
-                        <span class="position-absolute topbar-badge cartitem-badge fs-10 translate-middle badge rounded-pill bg-danger">{{ $totalProducts }}</span>
+                        <span id="cartItemCount" class="position-absolute topbar-badge cartitem-badge fs-10 translate-middle badge rounded-pill bg-danger">{{ $totalProducts }}</span>
                     @else
                         <!-- Si le panier est vide, n'affichez pas le code -->
                     @endif
@@ -328,8 +328,6 @@
     <div class="offcanvas-body px-0 product_data">
         <div data-simplebar  class="h-100 ">
             <ul class="list-group list-group-flush cartlist ">
-
-
                 @if(Session::has('success'))
                     <div class="alert alert-success alert-dismissible fade show" role="alert">
                         {{Session::get('success')}}
@@ -405,7 +403,7 @@
 
                                         <div class="input-step ms-2">
                                             <input type="hidden" value="{{ $item->id }}" class="prod_id">
-                                            <button class="decrement-btn changeQty">–</button>
+                                            <button class="decrement-btn changeQty" >–</button>
                                             <input name="quantity" type="number" class="qty-input" value="{{ $item->cart->quantity ?? 'N/A' }}" min="0" max="100">
                                             <button class="increment-btn changeQty">+</button>
                                         </div>
@@ -437,9 +435,8 @@
                                     </div>
                                 </div>
                             </div>
-                            @endforeach
-
-                        @else
+                    @endforeach
+                @else
 
                             <div class="col-md-12">
                                 <div class="card">
@@ -452,8 +449,8 @@
 
                                 </div>
                             </div>
-                        @endif
-                        </ul>
+                @endif
+            </ul>
 
             <div class="table-responsive mx-2 border-top">
                 <table class="table table-borderless mb-0 fs-14 fw-semibold">

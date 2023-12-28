@@ -22,7 +22,7 @@
                             <div>
                                 <h5 class="fs-18">{{ @Auth::user()->last_name }} {{ @Auth::user()->first_name }}!</h5>
                                 <div class="text-muted">
-                                    <i class="bi bi-geo-alt"></i> Phoenix, USA
+{{--                                    <i class="bi bi-geo-alt"></i>--}}
                                 </div>
                             </div>
                             <div class="ms-md-auto">
@@ -51,21 +51,21 @@
                                         role="tab" aria-selected="true"><i
                                             class="bi bi-person-circle align-middle me-1"></i> Information Compte</a>
                                 </li>
-                                <li class="nav-item " role="presentation">
-                                    <a class="nav-link fs-15" data-bs-toggle="tab" href="#custom-v-pills-list"
-                                        role="tab" aria-selected="false" tabindex="-1"><i
-                                            class="bi bi-bookmark-check align-middle me-1"></i> Ma liste</a>
-                                </li>
-                                <li class="nav-item " role="presentation">
-                                    <a class="nav-link fs-15" data-bs-toggle="tab" href="#custom-v-pills-order"
-                                        role="tab" aria-selected="false" tabindex="-1"><i
-                                            class="bi bi-bag align-middle me-1"></i> Commande</a>
-                                </li>
-                                <li class="nav-item " role="presentation">
-                                    <a class="nav-link fs-15" data-bs-toggle="tab" href="#custom-v-pills-setting"
-                                        role="tab" aria-selected="false" tabindex="-1"><i
-                                            class="bi bi-gear align-middle me-1"></i> Parametres</a>
-                                </li>
+{{--                                <li class="nav-item " role="presentation">--}}
+{{--                                    <a class="nav-link fs-15" data-bs-toggle="tab" href="#custom-v-pills-list"--}}
+{{--                                        role="tab" aria-selected="false" tabindex="-1"><i--}}
+{{--                                            class="bi bi-bookmark-check align-middle me-1"></i> Ma liste</a>--}}
+{{--                                </li>--}}
+{{--                                <li class="nav-item " role="presentation">--}}
+{{--                                    <a class="nav-link fs-15" data-bs-toggle="tab" href="#custom-v-pills-order"--}}
+{{--                                        role="tab" aria-selected="false" tabindex="-1"><i--}}
+{{--                                            class="bi bi-bag align-middle me-1"></i> Commande</a>--}}
+{{--                                </li>--}}
+{{--                                <li class="nav-item " role="presentation">--}}
+{{--                                    <a class="nav-link fs-15" data-bs-toggle="tab" href="#custom-v-pills-setting"--}}
+{{--                                        role="tab" aria-selected="false" tabindex="-1"><i--}}
+{{--                                            class="bi bi-gear align-middle me-1"></i> Parametres</a>--}}
+{{--                                </li>--}}
                                 <li class="nav-item">
                                     <a class="nav-link fs-15" href="auth-logout-basic"><i
                                             class="bi bi-box-arrow-right align-middle me-1"></i> Deconnecter</a>
@@ -116,7 +116,7 @@
                                                             </td>
                                                         </tr>
                                                         <tr>
-                                                            <td>Adresse Email </td>
+                                                            <td>Nom d'utilisateur</td>
                                                             <td class="fw-medium" style="color: blue; text-decoration: underline;">
                                                                 {{ $user->email ?? '' }}
                                                             </td>
@@ -816,18 +816,18 @@
                             aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form autocomplete="off" class="needs-validation createAddress-form" id="createAddress-form"
-                          novalidate>
+                     <form autocomplete="off" class="needs-validation createAddress-form" id="createAddress-form" action="{{ route('update-profile') }}" method="POST" novalidate>
+                        @csrf
                         <input type="hidden" id="addressid-input" class="form-control" value="">
                         <div>
                             <div class="mb-3">
                                 <label for="addaddress-FirstName" class="form-label">Prénom</label>
-                                <input type="text" class="form-control" id="addaddress-FirstName" name="first_name" placeholder="Entrer le nouveau prénom">
+                                <input type="text" class="form-control"  name="first_name" placeholder="Entrer le nouveau prénom">
                                 <div class="invalid-feedback">SVP entrer un prénom.</div>
                             </div>
                             <div class="mb-3">
                                 <label for="addaddress-LastName" class="form-label">Nom</label>
-                                <input type="text" class="form-control" id="addaddress-LastName" name="last_name" placeholder="Entrer le nouveau nom">
+                                <input type="text" class="form-control"  name="last_name" placeholder="Entrer le nouveau nom">
                                 <div class="invalid-feedback">SVP entrer un nom.</div>
                             </div>
                         </div>

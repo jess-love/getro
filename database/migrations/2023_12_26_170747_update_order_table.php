@@ -11,12 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('order', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->float('total');
-            $table->timestamps();
+        Schema::table('order', function (Blueprint $table) {
+            $table->string('order_id_generate')->after('user_id')->nullable();
         });
     }
 
@@ -25,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('order');
+        Schema::table('order', function (Blueprint $table) {
+            $table->dropColumn('order_id_generate');
+        });
     }
 };

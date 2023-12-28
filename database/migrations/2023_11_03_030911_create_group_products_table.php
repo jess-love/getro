@@ -13,10 +13,9 @@ return new class extends Migration
     {
         Schema::create('group_products', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('product_id');
-            $table->foreign('product_id')->references('id')->on('products');
+            $table->foreignId('product_id')->constrained()->onDelete('cascade');
             $table->unsignedBigInteger('adv_group_id');
-            $table->foreign('adv_group_id')->references('id')->on('advertisement_group');
+            $table->foreign('adv_group_id')->references('id')->on('advertisement_group')->onDelete('cascade');
             $table->timestamps();
         });
     }

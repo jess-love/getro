@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('product_id')->constrained()->onDelete('cascade');
             $table->unsignedBigInteger('color_id');
-            $table->foreign('color_id')->references('id')->on('color');
+            $table->foreign('color_id')->references('id')->on('color')->onDelete('cascade');
             $table->string('description');
             $table->integer('sort_order')->nullable();
             $table->string('image');

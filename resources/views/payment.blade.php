@@ -197,6 +197,7 @@
 
                 </div>
                 <!--end col-->
+                <!--end col-->
                 <div class="col-xl-4">
                     <div class="sticky-side-div">
                         <div class="card">

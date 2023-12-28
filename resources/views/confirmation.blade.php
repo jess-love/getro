@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-    Order Completed
+    Commande Passée
 @endsection
 @section('css')
     <!-- extra css -->
@@ -11,7 +11,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="text-center d-flex align-items-center justify-content-between">
-                        <h4 class="text-white mb-0">Order Confirm</h4>
+                        <h4 class="text-white mb-0">Commande Passée</h4>
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb breadcrumb-light justify-content-center mb-0 fs-15">
                                 <li class="breadcrumb-item"><a href="#!">Shop</a></li>
@@ -37,17 +37,24 @@
                             <div class="text-center">
                                 <img src="{{ URL::asset('build/images/success-img.png') }}" alt="" class="w-50">
                             </div>
+
                             <div class="text-center mt-5 pt-1">
-                                <h4 class="mb-3 text-capitalize">Your Order Is Completed !</h4>
-                                <p class="text-muted mb-2">You will receive an order confirmation email with details of your
-                                    order.</p>
-                                <p class="text-muted mb-0">Order ID:hhhhuhzgsjgeikdg</p>
-                                <div class="mt-4 pt-2 hstack gap-2 justify-content-center">
-                                    <a href="order-history" class="btn btn-primary btn-hover">View Order <i
-                                            class="ri-arrow-right-line align-bottom ms-1"></i></a>
-                                    <a href="{{route('product_page')}}" class="btn btn-soft-danger btn-hover">Back To Home <i
-                                            class="ri-home-4-line align-bottom ms-1"></i></a>
-                                </div>
+                                @if(isset($order))
+                                <h4 class="mb-3 text-capitalize">Votre commande est passée !</h4>
+                                <p class="text-muted mb-2">Vous recevrez un email de confirmation de commande avec les détails de votre commande.</p>
+                                <p class="text-muted mb-0">ID Commande:  {{  $order->order_id_generate  }}</p>
+                                    @if(isset($order))
+                                        <div class="mt-4 pt-2 hstack gap-2 justify-content-center">
+                                            <a href="order-history" class="btn btn-primary btn-hover">Voir Commande <i
+                                                    class="ri-arrow-right-line align-bottom ms-1"></i></a>
+                                            <a href="{{ route('product_page') }}" class="btn btn-soft-danger btn-hover">Retourner à l'accueil <i
+                                                    class="ri-home-4-line align-bottom ms-1"></i></a>
+                                        </div>
+                                    @endif
+                                @else
+                                    <p>La commande correspondante à l'ID {{ $order_key }} est introuvable.</p>
+                                @endif
+
                             </div>
                         </div>
                     </div>
@@ -65,15 +72,21 @@
             <div class="row align-items-center justify-content-between">
                 <div class="col-lg-6">
                     <div>
-                        <p class="fs-15 text-uppercase fw-medium"><span class="fw-semibold text-danger">25% Up to</span> off
-                            all Products</p>
-                        <h1 class="lh-base text-capitalize mb-3">Stay home &amp; get your daily needs from our shop</h1>
-                        <p class="fs-15 mb-4 pb-2">Start You'r Daily Shopping with <a href="#!"
-                                class="link-info fw-medium">Toner</a></p>
-                        <form action="#!">
+                        <p class="fs-15 text-uppercase fw-medium"><span class="fw-semibold text-danger">Jusqu'a 25%</span>
+                            de reduction sur tous nos Produits</p>
+                        <h1 class="lh-base text-capitalize mb-3">Restez à la maison et obtenez vos besoins quotidiens dans notre boutique</h1>
+                        <p class="fs-15 mb-4 pb-2">Commencez vos achats quotidiens avec <a href="#!"
+                                                                                           class="link-primary text-decoration-underline fw-medium">Bel Mache</a></p>
+                        @if(session('success'))
+                            <div class="alert alert-success" role="alert">
+                                {{ session('success') }}
+                            </div>
+                        @endif
+                        <form id="subscribe-form" action="{{ route('subscribe') }}" method="POST">
+                            @csrf
                             <div class="position-relative ecommerce-subscript">
-                                <input type="email" class="form-control rounded-pill" placeholder="Enter your email">
-                                <button type="submit" class="btn btn-info btn-hover rounded-pill">Subscript Now</button>
+                                <input type="email" name="email" class="form-control rounded-pill" placeholder="Entrer votre email" required>
+                                <button type="submit" class="btn btn-primary btn-hover rounded-pill">Abonnez-vous Maintenant</button>
                             </div>
                         </form>
                     </div>

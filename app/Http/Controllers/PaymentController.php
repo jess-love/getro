@@ -2,38 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\buy;
+use App\Models\Order;
 use App\Models\Payment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Str;
 use Srmklive\PayPal\Services\PayPal as PayPalClient;
 
 class PaymentController extends Controller
 {
-   public function payment( Request $request){
-       $provider = new PayPalClient;
-       $provider->setApiCredentials(config('paypal'));
-       $paypalToken = $provider->getAccessToken();
-
-       $respons = $order = $provider->createOrder([
-           [
-               "intent"=> "CAPTURE",
-               "application_context"=>[
-                   "return_url"=> route('paypal_success'),
-                   "cancel_url"=> route('paypal_cancel')
-               ],
-               "purchase_units"=>[
-                   "amount"=>[
-                       "currency_code"=> "USD",
-                       "value"=> $request->price
-                   ]
-              ]
-          ]
-       ]);
-       dd($respons);
-
-   }
-
-
+    protected $orderTotal;
 
    public function session(Request $request)
    {
@@ -43,16 +23,17 @@ class PaymentController extends Controller
        $totalprice = $request->get('total');
        $two0 = "00";
        $total = "$totalprice$two0";
+       $unitAmountInCents = round($total * 100);
 
        $session = \Stripe\Checkout\Session::create([
            'line_items'  => [
                [
                    'price_data' => [
-                       'currency'     => 'USD',
+                       'currency'     => 'HTG',
                        'product_data' => [
                            "name" => $productname,
                        ],
-                       'unit_amount'  => $total,
+                   'unit_amount' => $unitAmountInCents,
                    ],
                    'quantity'   => 1,
                ],
@@ -66,15 +47,41 @@ class PaymentController extends Controller
        return redirect()->away($session->url);
    }
 
-    public function success()
+    public function success(Request $request)
     {
-        //$id = Auth::id();
-        return view('confirmation');
+        $order_key = Str::random(10);
+        $user = Auth::user();
 
+        if ($this->orderTotal !== null) {
+            $order = new Order([
+                'user_id' => $user->id,
+                'total'   => $this->orderTotal,
+                'order_id_generate' => $order_key
+            ]);
+            $order->save();
+
+            $cart = Session::get('cart', []);
+
+            foreach ($cart as $cartItem) {
+                $buy = new Buy([
+                    'product_id' => $cartItem['product_id'],
+                    'quantity'   => $cartItem['quantity'],
+                    'order_id'   =>  $order->id,
+                ]);
+                $order->buys()->save($buy);
+            }
+
+            Session::forget('cart');
+
+            return redirect()->route('confirmation', ['order_key' => $order_key]);
+        } else {
+            return back()->with('error', 'Une erreur s\'est produite lors du traitement de la commande.');
+        }
     }
+
 
     public function returnToProductPage()
     {
-        return view('confirmation');
+        return view('index');
     }
 }

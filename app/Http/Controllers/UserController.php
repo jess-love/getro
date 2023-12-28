@@ -73,45 +73,54 @@ class UserController extends Controller
     }
 
 
-    public function updateAddress(Request $request)
+    public function updateProfile(Request $request)
     {
-        try {
-            $validatedData = $request->validate([
-                'lastname'  => 'sometimes|string',
-                'firstname' => 'sometimes|string',
-                'street'    => 'sometimes|string',
-                'phone'     => 'sometimes|string',
-                'city'      => 'sometimes|string',
-                'zip_code'  => 'sometimes|string',
-                'country'   => 'sometimes|string',
-            ]);
+        $user = auth()->user();
 
-            $addressId = $request->input('address_id');
-            Log::debug("ID d'adresse reçu pour la mise à jour : $addressId");
+        $request->validate([
+            'first_name' => 'nullable|string',
+            'last_name'  => 'nullable|string',
+        ]);
 
-            $address = Address::findOrFail($addressId);
+        $user->update([
+            'first_name' => $request->input('first_name'),
+            'last_name'  => $request->input('last_name'),
+        ]);
 
-            if (!$address) {
-                Session::flash('error', 'Adresse non trouvée. La modification a échoué cherie.');
-                Log::debug("ID d'adresse reçu pour la mise à jour babe: $addressId");
-                return back();
+        return back()->with('success', 'Profil modifé avec Succes!');
+    }
+
+
+    public function updateAddress(Request $request, $addressId)
+    {
+        // Validation des données du formulaire
+        $this->validate($request, [
+            'lastname'  => 'nullable|string',
+            'firstname' => 'nullable|string',
+            'street'    => 'nullable|string',
+            'city'      => 'nullable|string',
+            'phone'     => 'nullable|string',
+            'zip_code'  => 'nullable|string',
+        ]);
+
+        $address = Address::findOrFail($addressId);
+
+        // Mise à jour des champs uniquement s'ils sont présents dans la requête
+        foreach ($request->only(['lastname', 'firstname', 'street', 'city', 'phone', 'zip_code', 'country']) as $field => $value) {
+            if (!is_null($value)) {
+                $address->$field = $value;
             }
+        }
 
-            $address->update($validatedData);
-            Log::debug('Adresse trouvée et mise à jour avec succès.');
-
-            Session::flash('success', 'Adresse modifiée avec succès!');
-            return back();
-        } catch (ModelNotFoundException $e) {
-            Log::error("ModelNotFoundException lors de la mise à jour de l'adresse : " . $e->getMessage());
-            Session::flash('error', 'Adresse non trouvée. La modification a échouéwwwwwwwww.');
-            return back();
-        } catch (\Exception $e) {
-            Log::error("Exception lors de la mise à jour de l'adresse : " . $e->getMessage() . ' | ' . $e->getTraceAsString());
-            Session::flash('error', 'Une erreur est survenue lors de la modification de l\'adresse.');
-            return back();
+        // Enregistrement seulement si des modifications ont été apportées
+        if ($address->isDirty()) {
+            $address->save();
+            return redirect()->back()->with('success', 'Adresse mise à jour avec succès');
+        } else {
+            return redirect()->back()->withErrors(['Aucune modification détectée.']);
         }
     }
+
 
 
 
@@ -152,22 +161,6 @@ class UserController extends Controller
     }
 
 
-    public function updateProfile(Request $request)
-    {
-        $user = auth()->user();
 
-        $request->validate([
-            'first_name' => 'required|string|max:255',
-            'last_name' => 'required|string|max:255',
-        ]);
-
-
-        $user->update([
-            'first_name' => $request->input('first_name'),
-            'last_name' => $request->input('last_name'),
-        ]);
-
-        return redirect()->route('account')->with('success', 'Profil mis à jour avec succès');
-    }
 
 }

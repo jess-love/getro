@@ -71,26 +71,20 @@
                         </div>
                     @endif
 
-
-                    {{-- {{dd($cartContent);}} --}}
-                @if($cartContent->isNotEmpty())
-                
-                    @foreach($cartContent as $item)
-                       
-                       <div class="card product product_data">
-                        <div class="card-body p-4 ">
-                            <div class="row gy-3">
-                                <div class="col-sm-auto">
-                                    <div class="avatar-lg h-100">
-                                        <div class="avatar-title bg-danger-subtle rounded py-3">
-
-
                     @php
                         $totalAmount = 0;
                     @endphp
 
+
                   @if(!empty($productsWithImages) && count($productsWithImages) > 0)
                         @foreach($productsWithImages as $item)
+                            @php
+                                $itemtotal = 0;
+                                if ($item && $item->cart) {
+                                    $itemtotal += $item->unit_price * $item->cart->quantity;
+                                }
+                                $totalAmount += $itemtotal;
+                            @endphp
                             <div class="row mb-3">
                                 <div class="col-lg-12">
                                     <div class="card product product_data">
@@ -154,40 +148,37 @@
                                 </div>
                             </div>
                         @endforeach
-
-
-
-
-                        @php
+                                @php
                                     // Stocker la valeur dans la session
                                     session(['totalAmount' => $totalAmount]);
                                 @endphp
 
-                                <div class="card-footer">
-                                    <div class="row align-items-center gy-3">
-                                        <div class="col-sm">
-                                            <div class="d-flex flex-wrap my-n1">
-                                                <div>
-                                                    <div class="text-end mt-3">
-                                                        <button class="btn btn-danger delete-selected">Supprimer Selectionés</button>
-                                                    </div>
+                                <div class="card-body pt-4 text-end">
+                                    <div class="col-sm">
+                                        <div class="d-flex flex-wrap my-n1">
+                                            <div>
+                                                <div class="text-end mt-3">
+                                                    <button class="btn btn-danger delete-selected">Supprimer Selectionés</button>
                                                 </div>
                                             </div>
                                         </div>
+                                    </div>
+                                </div>
+                                <div class="ms-auto">
+                                    <div class="card-body pt-4 text-end">
                                         <div class="col-sm-auto">
                                             <div class="d-flex align-items-center gap-2 text-muted">
-                                                <div>Total :</div>
+                                                <div></div>
                                                 <input type="hidden" id="totalAmountInput" value="{{ $totalAmount }}">
-                                                <h5 class="fs-14 mb-0">HTG <span class="product-line-price">{{ $totalAmount }}</span></h5>
+                                                <h5 class="fs-8 mb-0"><span class="product-line-price"></span></h5>
                                             </div>
                                         </div>
                                     </div>
-
                                 </div>
                                 <div class="col-sm-auto">
                                     <div class="d-flex align-items-center gap-2 text-muted">
-                                        <div>Total :</div>
-                                        <h5 class="fs-14 mb-0">$<span class="product-line-price">8</span></h5>
+                                        <div></div>
+                                        <h5 class="fs-14 mb-0"><span class="product-line-price"></span></h5>
                                     </div>
 
                                     <!-- end card footer -->
@@ -237,8 +228,6 @@
                                         <tbody>
                                         <tr>
                                             <td>Sub Total :</td>
-
-                                            <td class="text-end cart-subtotal">$ 9</td>
                                             <td class="text-end cart-subtotal">
                                                 @isset($totalAmount)
                                                     HTG {{ $totalAmount }}
