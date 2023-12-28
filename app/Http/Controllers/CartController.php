@@ -63,23 +63,6 @@ class CartController extends Controller
 
     private function addToUserCart($product_id, $user_id, $product_qty)
     {
-//        if (!Session::has('cart')) {
-//            Session::put('cart', []);
-//        }
-//
-//        $cart = Session::get('cart', []);
-//
-//        $productKey = array_search($product_id, array_column($cart, 'product_id'));
-//        if ($productKey !== false) {
-//
-//            $cart[$productKey]['quantity'] += $product_qty;
-//
-//        } else {
-//            $cart[] = [
-//                'product_id' => $product_id,
-//                'quantity' => $product_qty,
-//            ];
-//        }
 
         $cartItem = new Cart();
         $cartItem->product_id = $product_id;
@@ -87,19 +70,6 @@ class CartController extends Controller
         $cartItem->quantity = $product_qty;
         $cartItem->save();
 
-
-//        $cartItem = new Cart();
-//        $cartItem->product_id = $product_id;
-//        $cartItem->user_id = $user_id;
-//        $cartItem->quantity = $product_qty;
-//        $cartItem->save();
-//
-//        $cart = Session::get('cart', []);
-//        $cart[] = $cartItem;
-//        session(['cart' => $cart]);
-//
-//        echo "After adding to cart: ";
-//        dd($cart);
     }
 
 
