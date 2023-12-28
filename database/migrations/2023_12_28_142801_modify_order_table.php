@@ -11,18 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('buys', function (Blueprint $table) {
-            $table->unsignedBigInteger('order_id')->after('product_id')->nullable();
-            $table->foreign('order_id')->references('id')->on('order')->onDelete('cascade');
+        Schema::table('order', function (Blueprint $table) {
+            $table->string('order_id_generate', 255)->default('')->change();
         });
     }
+
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::table('buys', function (Blueprint $table) {
-            //
-        });
+        //
     }
 };

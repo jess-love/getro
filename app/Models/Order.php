@@ -9,7 +9,19 @@ class Order extends Model
 {
     use HasFactory;
     protected $table = 'order';
-    protected $fillable = ['user_id', 'total'];
+    public function buys()
+    {
+        return $this->hasMany(buy::class, 'order_id', 'id');
+    }
+    public function track()
+    {
+        return $this->hasMany(Track::class, 'order_id', 'id');
+    }
+    public function invoice()
+    {
+        return $this->hasMany(Invoice::class, 'order_id', 'id');
+    }
+    protected $fillable = ['user_id', 'order_id_generate','total'];
 
     public function user()
     {

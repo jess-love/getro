@@ -11,18 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('buys', function (Blueprint $table) {
-            $table->unsignedBigInteger('order_id')->after('product_id')->nullable();
-            $table->foreign('order_id')->references('id')->on('order')->onDelete('cascade');
+        Schema::table('track', function (Blueprint $table) {
+            $table->string('status')->after('order_id')->nullable();
         });
     }
+
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::table('buys', function (Blueprint $table) {
-            //
+        Schema::table('track', function (Blueprint $table) {
+            $table->dropColumn('status');
         });
     }
 };
