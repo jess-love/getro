@@ -18,6 +18,8 @@ class HeaderComposer
         $categories = Category::all();
         $productsWithImages = [];
         $wishlistItems = [];
+        $products_slog = Product::where('status', 1)->pluck('slog')->take(5)->toArray();
+        $produits = Product::with('product_images')->where('status',1)->get()->take(12);
 
         if (Auth::check()) {
             $user = Auth::user();
@@ -32,7 +34,9 @@ class HeaderComposer
         $view->with('cat_and_sub', $catAndSub)
             ->with('categories', $categories)
             ->with('productsWithImages', $productsWithImages)
-            ->with('wishlistItems', $wishlistItems);
+            ->with('wishlistItems', $wishlistItems)
+            ->with('produits', $produits)
+            ->with('products_slog', $products_slog);
     }
 
 

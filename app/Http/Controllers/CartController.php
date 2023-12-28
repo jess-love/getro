@@ -63,19 +63,6 @@ class CartController extends Controller
 
     private function addToUserCart($product_id, $user_id, $product_qty)
     {
-        $cart = Session::get('cart', []);
-        $productKey = array_search($product_id, array_column($cart, 'product_id'));
-        if ($productKey !== false) {
-
-            $cart[$productKey]['quantity'] += $product_qty;
-
-        } else {
-            $cart[] = [
-                'product_id' => $product_id,
-                'quantity' => $product_qty,
-            ];
-        }
-        Session::put('cart', $cart);
 
         $cartItem = new Cart();
         $cartItem->product_id = $product_id;

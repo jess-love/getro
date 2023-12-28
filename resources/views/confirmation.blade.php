@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-    Commande Passée
+    Commande
 @endsection
 @section('css')
     <!-- extra css -->
@@ -11,7 +11,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="text-center d-flex align-items-center justify-content-between">
-                        <h4 class="text-white mb-0">Commande Passée</h4>
+                        <h4 class="text-white mb-0">Commande</h4>
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb breadcrumb-light justify-content-center mb-0 fs-15">
                                 <li class="breadcrumb-item"><a href="#!">Shop</a></li>
@@ -40,9 +40,9 @@
 
                             <div class="text-center mt-5 pt-1">
                                 @if(isset($order))
-                                <h4 class="mb-3 text-capitalize">Votre commande est passée !</h4>
-                                <p class="text-muted mb-2">Vous recevrez un email de confirmation de commande avec les détails de votre commande.</p>
-                                <p class="text-muted mb-0">ID Commande:  {{  $order->order_id_generate  }}</p>
+                                    <h4 class="mb-3 text-capitalize">Votre commande est passée !</h4>
+                                    <p class="text-muted mb-2">Vous recevrez un email de confirmation de commande avec les détails de votre commande.</p>
+                                    <p class="text-muted mb-0">ID Commande:  {{  $order->order_id_generate  }}</p>
                                     @if(isset($order))
                                         <div class="mt-4 pt-2 hstack gap-2 justify-content-center">
                                             <a href="order-history" class="btn btn-primary btn-hover">Voir Commande <i
@@ -52,7 +52,7 @@
                                         </div>
                                     @endif
                                 @else
-                                    <p>La commande correspondante à l'ID {{ $order_key }} est introuvable.</p>
+                                    <p>La commande correspondante à l'ID est introuvable.</p>
                                 @endif
 
                             </div>

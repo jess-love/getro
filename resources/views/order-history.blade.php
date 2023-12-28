@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-    Order History
+    Historique Commande
 @endsection
 @section('css')
     <!-- extra css -->
@@ -11,11 +11,11 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="text-center d-flex align-items-center justify-content-between">
-                        <h4 class="text-white mb-0">Order History</h4>
+                        <h4 class="text-white mb-0">Historique des Commandes</h4>
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb breadcrumb-light justify-content-center mb-0 fs-15">
                                 <li class="breadcrumb-item"><a href="#!">Shop</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Order History</li>
+                                <li class="breadcrumb-item active" aria-current="page">Historique Commandes</li>
                             </ol>
                         </nav>
                     </div>
@@ -37,11 +37,11 @@
                             <table class="table fs-15 align-middle table-nowrap">
                                 <thead>
                                     <tr>
-                                        <th scope="col">Order ID</th>
-                                        <th scope="col">Product</th>
+                                        <th scope="col">Numero Commande</th>
+                                        <th scope="col">Produit</th>
                                         <th scope="col">Date</th>
-                                        <th scope="col">Total Amount</th>
-                                        <th scope="col">Status</th>
+                                        <th scope="col">Montant Total</th>
+                                        <th scope="col">Statut</th>
                                         <th scope="col"></th>
                                     </tr>
                                 </thead>
