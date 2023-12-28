@@ -48,14 +48,15 @@ class PaymentController extends Controller
 
     public function success(Request $request)
     {
-        $order_key = Str::random(10);
+        $str=rand();
+        $order_key = sha1($str);
         $user = Auth::user();
 
-        if ($this->orderTotal !== null) {
+        // if ($this->orderTotal !== null) {
             $order = new Order([
                 'user_id' => $user->id,
-                'total'   => $request->get('total'),
-                'order_id_generate' => $order_key
+                'total'   => 56,
+                'order_id_generate' => Str::random(10)
             ]);
             $order->save();
 
@@ -72,10 +73,10 @@ class PaymentController extends Controller
 
             Session::forget('cart');
 
-            return redirect()->route('confirmation', ['order_key' => $order_key]);
-        } else {
-            return back()->with('error', 'Une erreur s\'est produite lors du traitement de la commande.');
-        }
+            return redirect()->route('confirmation', ['order_key' => 1315558583560683113]);
+        // } else {
+        //     return back()->with('error', 'Une erreur s\'est produite lors du traitement de la commande.');
+        // }
     }
 
 

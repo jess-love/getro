@@ -75,7 +75,7 @@ Route::post('/session',[App\Http\Controllers\PaymentController::class,'session']
 Route::get('/success',[App\Http\Controllers\PaymentController::class,'success'])->name('success');
 Route::get('/retour',[App\Http\Controllers\PaymentController::class,'returnToProductPage'])->name('product_page');
 Route::get('/confirmation/{order_key}', [App\Http\Controllers\ConfirmationController::class, 'show'])->name('confirmation');
-
+//------------------end route credit cart----------------------------------------
 
 
 
