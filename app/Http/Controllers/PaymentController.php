@@ -9,7 +9,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
-use Srmklive\PayPal\Services\PayPal as PayPalClient;
 
 class PaymentController extends Controller
 {
@@ -31,7 +30,7 @@ class PaymentController extends Controller
                    'price_data' => [
                        'currency'     => 'HTG',
                        'product_data' => [
-                           "name" => $productname,
+                               'name' => $productname,
                        ],
                    'unit_amount' => $unitAmountInCents,
                    ],
@@ -55,7 +54,7 @@ class PaymentController extends Controller
         if ($this->orderTotal !== null) {
             $order = new Order([
                 'user_id' => $user->id,
-                'total'   => $this->orderTotal,
+                'total'   => $request->get('total'),
                 'order_id_generate' => $order_key
             ]);
             $order->save();
